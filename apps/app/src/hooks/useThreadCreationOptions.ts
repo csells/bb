@@ -21,7 +21,7 @@ import type {
   ExecutionInputFieldSource,
   ExistingThreadExecutionInputSources,
   SystemExecutionOptionsModelLoadError,
-  SystemProvidersQuery,
+  SystemExecutionOptionsQuery,
 } from "@bb/server-contract";
 import {
   PROJECT_CHECKOUT_ENVIRONMENT_PROVIDER_ID,
@@ -110,7 +110,7 @@ type ProviderModelReasoningSelectionSetter = (
 ) => void;
 
 interface UseThreadCreationOptionsResult<TExecutionInputSources> {
-  executionOptionsRouting: SystemProvidersQuery;
+  executionOptionsRouting: SystemExecutionOptionsQuery;
   selectedProviderId: string;
   setSelectedProviderId: StringSelectionSetter;
   setProviderModelReasoning: ProviderModelReasoningSelectionSetter;
@@ -162,7 +162,7 @@ function resolveThreadCreationProviderRouting({
   environmentSelectionValue,
   modelCatalogScope,
   scope,
-}: ResolveThreadCreationProviderRoutingArgs): SystemProvidersQuery {
+}: ResolveThreadCreationProviderRoutingArgs): SystemExecutionOptionsQuery {
   if (scope === "component-local") {
     if (environmentId === undefined) {
       return {};
@@ -363,9 +363,12 @@ export function useThreadCreationOptions(
       routing: defaultCatalogRouting,
     });
   }
-  const executionOptionsRouting = resolveProviderRouting
-    ? resolveProviderRouting(rawEnvironmentSelectionValue)
-    : defaultCatalogRouting;
+  const executionOptionsRouting = {
+    ...(resolveProviderRouting
+      ? resolveProviderRouting(rawEnvironmentSelectionValue)
+      : defaultCatalogRouting),
+    ...(preferenceProjectId ? { projectId: preferenceProjectId } : {}),
+  };
   const canResolveReadyProvider =
     executionOptionsQueryEnabled &&
     scope === "new-thread" &&
@@ -485,6 +488,7 @@ export function useThreadCreationOptions(
       providers.map((p) => ({
         value: p.id,
         label: p.displayName,
+        modelPicker: p.modelPicker,
         icon: getProviderIconInfo("agent", p.id, p)?.icon,
         ...(p.strings?.brandPrefix === undefined
           ? {}

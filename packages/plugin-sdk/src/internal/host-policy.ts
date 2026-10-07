@@ -1247,6 +1247,13 @@ export type NormalizedPluginProviderDeclaration = Omit<
   readonly models: {
     readonly fallback?: readonly PluginProviderFallbackModel[];
     readonly scope: PluginProviderModelCatalogScope;
+    readonly experimental_picker: {
+      readonly label: string;
+      readonly searchPlaceholder: string;
+      readonly selectPlaceholder: string;
+      readonly projectRequiredMessage: string;
+      readonly requiresProject: boolean;
+    };
   };
 };
 
@@ -1597,6 +1604,33 @@ export function validatePluginProviderDeclaration(
     models: Object.freeze({
       ...(fallbackModels === undefined ? {} : { fallback: fallbackModels }),
       scope: modelCatalogScope,
+      experimental_picker: Object.freeze(
+        z
+          .object({
+            label: z.string().trim().min(1).max(80).default("Model"),
+            searchPlaceholder: z
+              .string()
+              .trim()
+              .min(1)
+              .max(120)
+              .default("Search models"),
+            selectPlaceholder: z
+              .string()
+              .trim()
+              .min(1)
+              .max(120)
+              .default("Select model"),
+            projectRequiredMessage: z
+              .string()
+              .trim()
+              .min(1)
+              .max(300)
+              .default("Select a project to see the available models."),
+            requiresProject: z.boolean().default(false),
+          })
+          .strict()
+          .parse(declaration.models?.experimental_picker ?? {}),
+      ),
     }),
     ...(envPassthrough === undefined
       ? {}
@@ -2392,9 +2426,7 @@ export interface NormalizedPluginEnvironmentProvider {
     PluginEnvironmentProviderDeclaration["experimental_existingPath"]
   > | null;
   create: PluginEnvironmentProviderDeclaration["create"];
-  restore: NonNullable<
-    PluginEnvironmentProviderDeclaration["restore"]
-  > | null;
+  restore: NonNullable<PluginEnvironmentProviderDeclaration["restore"]> | null;
   remove: PluginEnvironmentProviderDeclaration["remove"];
   policy: import("../environment-provider.js").PluginEnvironmentProviderPolicy;
 }

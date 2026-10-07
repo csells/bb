@@ -411,3 +411,53 @@ describe("provider declaration fields renamed in SDK 0.4.16", () => {
     );
   });
 });
+
+describe("project-aware model picker", () => {
+  it("normalizes default copy and rejects invalid opt-in settings", () => {
+    expect(
+      validatePluginProviderDeclaration(declaration()).models
+        .experimental_picker,
+    ).toEqual({
+      label: "Model",
+      searchPlaceholder: "Search models",
+      requiresProject: false,
+      selectPlaceholder: "Select model",
+      projectRequiredMessage: "Select a project to see the available models.",
+    });
+    expect(
+      validatePluginProviderDeclaration(
+        declaration({
+          models: {
+            experimental_picker: {
+              label: "Agent",
+              searchPlaceholder: "Search agents",
+              requiresProject: true,
+              selectPlaceholder: "Select an agent",
+              projectRequiredMessage:
+                "Select a Gas City project (city or rig) to see its agents.",
+            },
+          },
+        }),
+      ).models.experimental_picker,
+    ).toEqual({
+      label: "Agent",
+      searchPlaceholder: "Search agents",
+      requiresProject: true,
+      selectPlaceholder: "Select an agent",
+      projectRequiredMessage:
+        "Select a Gas City project (city or rig) to see its agents.",
+    });
+    expect(() =>
+      validatePluginProviderDeclaration(
+        declaration({ models: { experimental_picker: { label: " " } } }),
+      ),
+    ).toThrow(/label/);
+    expect(() =>
+      validatePluginProviderDeclaration(
+        declaration({
+          models: { experimental_picker: { requiresProject: "yes" as never } },
+        }),
+      ),
+    ).toThrow(/requiresProject/);
+  });
+});

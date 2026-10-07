@@ -31,7 +31,7 @@ Providers are agent backends (e.g., codex, claude-code). Each supports different
 
   bb provider list [--machine <id-or-name> | --environment <id>]
                                           List available providers
-  bb provider models [providerId] [--machine <id-or-name> | --environment <id>]
+  bb provider models [providerId] [--machine <id-or-name> | --environment <id>] [--project <id>]
                                           List models for a provider
 
 Use these before spawning threads if you are unsure which provider or model to use.
@@ -222,3 +222,9 @@ The bb user and project roots keep higher precedence than matching shared roots.
 
 OpenCode ACP declares support for the built-in /compact command. Cursor ACP does
 not expose compatible manual compaction through ACP.
+
+Providers may customize the picker heading and search through
+`models.experimental_picker` and require a project selection. Use `--project`
+when listing project-scoped agents before an environment exists. An environment
+infers its project; an explicit different project is rejected. SDK callers use
+`sdk.providers.models({ projectId, hostId, providerId })`.

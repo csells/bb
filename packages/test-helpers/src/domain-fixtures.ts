@@ -89,6 +89,13 @@ export function makeProviderInfo(
 ): ProviderInfo {
   const id = overrides.id;
   const provider: ProviderInfo = {
+    modelPicker: {
+      label: "Model",
+      searchPlaceholder: "Search models",
+      requiresProject: false,
+      selectPlaceholder: "Select model",
+      projectRequiredMessage: "Select a project to see the available models.",
+    },
     id,
     pluginId: `provider-${id}`,
     displayName: id,

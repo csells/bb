@@ -1534,6 +1534,14 @@ export interface PluginProviderDeclaration {
    * be unique and exactly one entry must be the default.
    */
   models?: {
+    /** Optional picker vocabulary and a project-selection prerequisite. Omission uses Model/Search models and permits a projectless catalog. */
+    experimental_picker?: {
+      label?: string;
+      searchPlaceholder?: string;
+      selectPlaceholder?: string;
+      projectRequiredMessage?: string;
+      requiresProject?: boolean;
+    };
     /**
      * Optional: a provider that only declares a catalog `scope` needs no
      * fallback list, and an omitted list reads as no fallbacks at all.

@@ -91,6 +91,7 @@ interface ResolveForkPointArgs {
 }
 
 interface ResolveCatalogExecutionDefaultsArgs {
+  projectId: string;
   cwd?: string;
   executionDefaults: ProjectExecutionDefaults | null;
   hostId: string | null;
@@ -101,9 +102,10 @@ interface ResolveCatalogExecutionDefaultsArgs {
 
 async function loadCatalogDefaultForProvider(
   deps: ThreadCreateDeps,
-  args: { cwd?: string; hostId: string; providerId: string },
+  args: { cwd?: string; hostId: string; providerId: string; projectId: string },
 ): Promise<ProjectExecutionDefaults | ApiError> {
   const catalog = await resolveSystemProviderModels(deps, {
+    projectId: args.projectId,
     ...(args.cwd !== undefined ? { cwd: args.cwd } : {}),
     hostId: args.hostId,
     providerId: args.providerId,
@@ -155,6 +157,7 @@ async function resolveCatalogExecutionDefaults(
   let lastError: ApiError | null = null;
   for (const providerId of candidates) {
     const result = await loadCatalogDefaultForProvider(deps, {
+      projectId: args.projectId,
       ...(args.cwd !== undefined ? { cwd: args.cwd } : {}),
       hostId: args.hostId,
       providerId,
@@ -729,6 +732,7 @@ export async function createThreadFromRequest(
     deps,
     {
       ...(modelCatalogCwd !== undefined ? { cwd: modelCatalogCwd } : {}),
+      projectId: request.projectId,
       executionDefaults,
       hostId: childHostId,
       providerId,

@@ -3763,3 +3763,23 @@ Stabilize after verifying group archive and Undo with descendants, already archi
 Starts a server-owned plugin update and returns its job immediately. `experimental_updateJobs.list/get` exposes queued/running phases and terminal update, rollback, or failure results. Jobs continue across client disconnects; finished jobs remain for ten minutes. Jobs are in memory and do not survive server restarts. `applyUpdate` retains its result contract by polling the job; raw callers without `Prefer: respond-async` retain the synchronous response. Running updates cannot be cancelled during activation or rollback.
 
 Stabilization requires exercising reconnect/reload, concurrent deduplication, rollback delivery, missing jobs after restart, and CLI/SDK parity before dropping the experimental prefix. No host-daemon wire change.
+
+## Provider project-aware catalog picker
+
+`PluginProviderDeclaration.models.experimental_picker` accepts optional `label`,
+`searchPlaceholder`, `selectPlaceholder`, `projectRequiredMessage`, and
+`requiresProject`. Normalization fills every default once;
+`ProviderInfo.modelPicker` carries explicit values.
+Audit vocabulary across desktop/compact/keyboard pickers and discoverability of
+the no-project state before stabilizing.
+
+Catalog queries (`system.executionOptions`, `providers.models`,
+`bb provider models --project`) pass projectId through the daemon to model/list.
+Project-aware catalogs must declare workspace scope. Verify project/environment
+consistency, selection reconciliation, concurrent requests, browser/server caches,
+and no projectless prewarm before stabilization. Protocol version 230 requires
+enrolled hosts to update; no production host was enrolled by this change.
+
+Picker copy revision: `selectPlaceholder` defaults to `Select model`;
+`projectRequiredMessage` defaults to `Select a project to see the available models.`
+The trigger identifies the selection, and the menu explains any project prerequisite.

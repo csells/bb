@@ -43,6 +43,7 @@ import {
 import type { ModelNavRow } from "./ModelReasoningPicker";
 
 export interface ModelReasoningMenuProps {
+  needsProject?: boolean;
   listRef: RefObject<HTMLDivElement | null>;
   providerId: string;
   provider: ProviderPickerOption | undefined;
@@ -77,6 +78,7 @@ export interface ModelReasoningMenuProps {
 }
 
 export function ModelReasoningMenu({
+  needsProject = false,
   listRef,
   providerId,
   provider,
@@ -133,16 +135,25 @@ export function ModelReasoningMenu({
           key={providerId || "no-provider"}
           role={listboxId ? "listbox" : undefined}
           id={listboxId}
-          aria-label={listboxId ? "Models" : undefined}
+          aria-label={
+            listboxId ? (provider?.modelPicker?.label ?? "Models") : undefined
+          }
           className={cn(
             "min-h-0 flex-1 overflow-y-auto overscroll-contain px-1 pb-1 pt-0",
             !isCompactViewport && "max-h-64",
           )}
         >
           {isShowingModelError ? null : (
-            <MenuSectionLabel>Model</MenuSectionLabel>
+            <MenuSectionLabel>
+              {provider?.modelPicker?.label ?? "Model"}
+            </MenuSectionLabel>
           )}
-          {modelIsLoading ? (
+          {needsProject ? (
+            <p className="px-2 py-2 text-sm text-muted-foreground">
+              {provider?.modelPicker?.projectRequiredMessage ??
+                "Select a project to see the available models."}
+            </p>
+          ) : modelIsLoading ? (
             <PickerLoadingRows
               label="Loading models"
               rowDataAttribute="data-model-loading-row"

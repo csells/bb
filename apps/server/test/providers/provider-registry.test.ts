@@ -4,6 +4,13 @@ import { createProviderRegistryService } from "../../src/services/providers/prov
 import { minimalProviderRegistration } from "../helpers/provider-registry.js";
 
 const CURSOR_LIKE_INFO = {
+  modelPicker: {
+    label: "Model",
+    searchPlaceholder: "Search models",
+    requiresProject: false,
+    selectPlaceholder: "Select model",
+    projectRequiredMessage: "Select a project to see the available models.",
+  },
   pluginId: "provider-acp",
   available: true,
   maintenance: { health: true, usage: true, installation: false },

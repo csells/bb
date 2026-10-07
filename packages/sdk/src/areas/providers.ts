@@ -20,6 +20,7 @@ export type ProviderListArgs = ProviderHostRoutingArgs & {
   signal?: AbortSignal;
 };
 export type ProviderModelsArgs = ProviderHostRoutingArgs & {
+  projectId?: string;
   providerId?: string;
   signal?: AbortSignal;
 };

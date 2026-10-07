@@ -157,6 +157,7 @@ export function buildPluginProviderRegistration(args: {
   const extensionKinds = projectExtensionKinds(args.pluginId, declaration);
 
   const info: ProviderInfo = {
+    modelPicker: { ...declaration.models.experimental_picker },
     id: declaration.id,
     pluginId: args.pluginId,
     displayName: declaration.displayName,

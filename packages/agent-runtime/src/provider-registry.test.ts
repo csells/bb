@@ -134,7 +134,7 @@ describe("provider registry", () => {
     expect(existsSync(provider.process.args.at(-4) ?? "")).toBe(true);
   });
 
-  it("passes the requested workspace to Pi model listing", () => {
+  it("passes the requested project and workspace to Pi model listing", () => {
     const provider = createProviderForId("pi", {
       additionalWorkspaceWriteRoots: [],
       bridgeLaunch: PI_BRIDGE_LAUNCH,
@@ -144,11 +144,12 @@ describe("provider registry", () => {
       provider.buildCommandPlan({
         type: "model/list",
         cwd: "/tmp/project",
+        projectId: "proj-selected",
       }),
     ).toEqual({
       kind: "request",
       method: "model/list",
-      params: { cwd: "/tmp/project" },
+      params: { cwd: "/tmp/project", projectId: "proj-selected" },
     });
   });
 

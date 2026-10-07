@@ -1,5 +1,6 @@
 import {
   getAppSettings,
+  getEnvironment,
   getStoredProviderModelCatalog,
   setAppSettings,
   updateHost,
@@ -510,8 +511,20 @@ describe("provider model catalog store", () => {
           scopeKey,
         }) !== null;
       expect([
-        rowExists("pi", "/tmp/catalog-pi-a"),
-        rowExists("pi", "/tmp/catalog-pi-b"),
+        rowExists(
+          "pi",
+          JSON.stringify([
+            getEnvironment(harness.db, environmentA)?.projectId,
+            "/tmp/catalog-pi-a",
+          ]),
+        ),
+        rowExists(
+          "pi",
+          JSON.stringify([
+            getEnvironment(harness.db, environmentB)?.projectId,
+            "/tmp/catalog-pi-b",
+          ]),
+        ),
         rowExists("pi", ""),
         rowExists("claude-code", ""),
       ]).toEqual([true, true, false, true]);
@@ -871,5 +884,71 @@ describe("provider model catalog store", () => {
         setServerMoveFrozen(harness.db, false);
       }
     });
+  });
+});
+
+it("isolates simultaneous project catalogs on one host and suppresses projectless probes", async () => {
+  await withTestHarness(async (harness) => {
+    const host = setupCatalogHost(harness, { id: "project-catalog-host" });
+    const base = requireRegistration(harness, "claude-code");
+    harness.deps.providerRegistry.register({
+      ...base,
+      info: {
+        ...base.info,
+        id: "project-agent",
+        capabilities: {
+          ...base.info.capabilities,
+          modelCatalogScope: "workspace",
+        },
+        modelPicker: {
+          label: "Agent",
+          searchPlaceholder: "Search agents",
+          requiresProject: true,
+          selectPlaceholder: "Select an agent",
+          projectRequiredMessage: "Select a project to see its agents.",
+        },
+      },
+    });
+    const a = seedProjectWithSource(harness.deps, {
+      hostId: host.hostId,
+      name: "A",
+      path: "/tmp/a",
+    }).project.id;
+    const b = seedProjectWithSource(harness.deps, {
+      hostId: host.hostId,
+      name: "B",
+      path: "/tmp/b",
+    }).project.id;
+    const pending = createDeferredPromise<HostRpcHandlerResult>();
+    host.setAnswer((command) =>
+      command.projectId === a
+        ? pending.promise
+        : catalogAnswer(modelList(`agent-${command.projectId}`)),
+    );
+    const query = { hostId: host.hostId, providerId: "project-agent" };
+    expect(
+      modelIds(await resolveSystemExecutionOptions(harness.deps, query)),
+    ).toEqual([]);
+    expect(host.listRequests()).toHaveLength(0);
+    const first = resolveSystemExecutionOptions(harness.deps, {
+      ...query,
+      projectId: a,
+    });
+    const second = await resolveSystemExecutionOptions(harness.deps, {
+      ...query,
+      projectId: b,
+    });
+    expect(modelIds(second)).toEqual([`agent-${b}`]);
+    pending.resolve(catalogAnswer(modelList(`agent-${a}`)));
+    expect(modelIds(await first)).toEqual([`agent-${a}`]);
+    expect(
+      modelIds(
+        await resolveSystemExecutionOptions(harness.deps, {
+          ...query,
+          projectId: b,
+        }),
+      ),
+    ).toEqual([`agent-${b}`]);
+    expect(host.listRequests()).toHaveLength(2);
   });
 });

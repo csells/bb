@@ -18,7 +18,7 @@ import { makeProviderInfo } from "@bb/test-helpers/domain-fixtures";
 import type {
   SystemExecutionOptionsModelLoadError,
   SystemExecutionOptionsResponse,
-  SystemProvidersQuery,
+  SystemExecutionOptionsQuery,
 } from "@bb/server-contract";
 import { afterEach, beforeAll, describe, expect, it, vi } from "vitest";
 import { systemExecutionOptionsQueryKey } from "@/hooks/queries/query-keys";
@@ -193,7 +193,7 @@ function renderPicker({
   moreModelOptions?: readonly ModelPickerOption[];
   pickerProviderOptions?: readonly ProviderPickerOption[];
   alternateProviderModels?: AvailableModel[];
-  providerRouting?: SystemProvidersQuery;
+  providerRouting?: SystemExecutionOptionsQuery;
   selectedProviderId?: string;
   modelIsLoading?: boolean;
   modelLoadError?: SystemExecutionOptionsModelLoadError | null;
@@ -1400,4 +1400,48 @@ describe("ModelReasoningPicker service tiers", () => {
     ).toBeTruthy();
     expect(screen.queryByRole("radiogroup", { name: "Speed" })).toBeNull();
   });
+});
+
+it("uses provider vocabulary and requires a project before exposing its agents", () => {
+  const picker = {
+    label: "Agents",
+    selectPlaceholder: "Select an agent",
+    projectRequiredMessage:
+      "Select a Gas City project (city or rig) to see its agents.",
+    searchPlaceholder: "Search agents",
+    requiresProject: true,
+  };
+  const providers = [
+    { value: "codex", label: "Gas City", modelPicker: picker },
+  ];
+  renderPicker({
+    pickerProviderOptions: providers,
+    modelOptions: manyCodexModels,
+    providerRouting: { hostId: "host-a" },
+  });
+  expect(
+    screen.getByRole("button", { name: "Provider, model and reasoning" })
+      .textContent,
+  ).toContain("Select an agent");
+  fireEvent.click(
+    screen.getByRole("button", { name: "Provider, model and reasoning" }),
+  );
+  expect(screen.getByText("Agents")).toBeDefined();
+  expect(
+    screen.getByText(
+      "Select a Gas City project (city or rig) to see its agents.",
+    ),
+  ).toBeDefined();
+  expect(screen.queryByRole("option")).toBeNull();
+  cleanup();
+  renderPicker({
+    pickerProviderOptions: providers,
+    modelOptions: manyCodexModels,
+    providerRouting: { hostId: "host-a", projectId: "project-a" },
+  });
+  fireEvent.click(
+    screen.getByRole("button", { name: "Provider, model and reasoning" }),
+  );
+  expect(screen.getByPlaceholderText("Search agents")).toBeDefined();
+  expect(screen.getByText("Agents")).toBeDefined();
 });

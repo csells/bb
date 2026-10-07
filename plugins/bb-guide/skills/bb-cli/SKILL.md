@@ -211,3 +211,5 @@ new turns, and `bb provider enable ID` to restore it (enabling its plugin if
 needed). These preserve the CLI and thread history. Individual opt-outs survive
 plugin off/on. Install provider plugins in Settings → Plugins; configure custom
 ACP agents in the ACP providers plugin settings.
+
+For project-scoped agent catalogs, use `bb provider models <providerId> --project <id> --machine <id> --json`. Without a selected project, providers that require one return no models.

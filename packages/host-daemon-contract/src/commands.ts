@@ -858,6 +858,7 @@ const hostListBranchOptionsCommandSchema = z
   .strict();
 
 const providerListModelsCommandSchema = z.object({
+  projectId: z.string().min(1).optional(),
   type: z.literal("provider.list_models"),
   providerId: z.string().min(1),
   bridgeLaunch: hostDaemonBridgeLaunchSchema,

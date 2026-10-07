@@ -8,6 +8,7 @@ import type {
 import { type CustomProviderModel } from "@bb/config/bb-app-managed-config";
 import {
   reasoningEffortsForLevels,
+  PERSONAL_PROJECT_ID,
   type AvailableModel,
   type ProviderInfo,
 } from "@bb/domain";
@@ -19,6 +20,7 @@ import { getHostPermissionCeiling } from "../hosts/permission-ceiling.js";
 import {
   requireConnectedHostSession,
   requireEnvironment,
+  requirePublicProject,
 } from "../lib/entity-lookup.js";
 import { expectedFallbackErrorLogFields } from "../lib/error-log-fields.js";
 import { isSuspendedHostUnavailableError } from "../lib/lifecycle-api-errors.js";
@@ -48,6 +50,7 @@ interface BuildModelLoadErrorArgs {
 }
 
 interface ResolveSystemProviderModelsArgs {
+  projectId?: string;
   cwd?: string;
   hostId: string;
   providerId: string;
@@ -316,6 +319,7 @@ export async function resolveSystemProviderModels(
 
   const result = await loadSystemProviderModels(deps, {
     cwd: args.cwd ?? null,
+    projectId: args.projectId,
     hostId: args.hostId,
     provider,
     access: { kind: "validation", requiredModel: null },
@@ -437,6 +441,22 @@ async function resolveExecutionOptions(
   } else {
     await deps.providerRegistry.whenProviderRegistered(query.providerId);
   }
+  const environment =
+    query.environmentId === undefined
+      ? null
+      : requireEnvironment(deps.db, query.environmentId);
+  const projectId = query.projectId ?? environment?.projectId ?? undefined;
+  if (projectId !== undefined) requirePublicProject(deps.db, projectId);
+  if (
+    environment !== null &&
+    query.projectId !== undefined &&
+    environment.projectId !== query.projectId
+  )
+    throw new ApiError(
+      400,
+      "invalid_request",
+      "Project and environment must belong together",
+    );
   const cwd =
     query.environmentId === undefined
       ? undefined
@@ -454,6 +474,7 @@ async function resolveExecutionOptions(
     hostId !== null && configuredRequestedProvider
       ? loadSystemProviderModels(deps, {
           cwd: cwd ?? null,
+          projectId,
           hostId,
           provider: configuredRequestedProvider,
           access,
@@ -493,6 +514,17 @@ async function resolveExecutionOptions(
     };
   }
 
+  if (
+    modelsProvider.modelPicker.requiresProject &&
+    (!projectId || projectId === PERSONAL_PROJECT_ID)
+  )
+    return {
+      providers,
+      permissionCeiling,
+      models: [],
+      selectedOnlyModels: [],
+      modelLoadError: null,
+    };
   if (!modelsProvider.available) {
     return {
       providers,
@@ -531,6 +563,7 @@ async function resolveExecutionOptions(
       ? await earlyModelResultPromise
       : await loadSystemProviderModels(deps, {
           cwd: cwd ?? null,
+          projectId,
           hostId,
           provider: modelsProvider,
           access,
@@ -559,11 +592,17 @@ async function loadSystemProviderModels(
   deps: LoggedWorkSessionDeps,
   args: {
     cwd: string | null;
+    projectId?: string;
     hostId: string;
     provider: ProviderInfo;
     access: ProviderModelCatalogAccess;
   },
 ): Promise<ModelListResult> {
+  if (
+    args.provider.modelPicker.requiresProject &&
+    (!args.projectId || args.projectId === PERSONAL_PROJECT_ID)
+  )
+    return { models: [], selectedOnlyModels: [], modelLoadError: null };
   if (!args.provider.available) {
     return unavailableProviderModelResult(args.provider.id);
   }

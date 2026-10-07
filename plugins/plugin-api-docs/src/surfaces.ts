@@ -530,6 +530,7 @@ export const SURFACE_GROUPS: SurfaceGroup[] = [
           "Provide an agent people can pick in bb's model picker. With this, a plugin can:",
         bullets: [
           "Bring any CLI agent into bb, with its own models and icon",
+          "Name the picker with models.experimental_picker (label, searchPlaceholder, selectPlaceholder, projectRequiredMessage); require a project and filter model/list by projectId",
           "Run every thread started with it through a bridge the plugin ships",
           "Report context usage, service tiers, and install status",
         ],

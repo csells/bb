@@ -182,6 +182,7 @@ async function loadThreadProviderModels(
     deps,
     {
       providerId: thread.providerId,
+      projectId: thread.projectId,
       ...(thread.environmentId !== null
         ? { environmentId: thread.environmentId }
         : {}),

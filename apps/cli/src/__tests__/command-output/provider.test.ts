@@ -91,6 +91,8 @@ describe("bb provider command output", () => {
         "claude-code",
         "--selected-model",
         "claude-opus-4-6",
+        "--project",
+        "proj-city",
       ],
       register,
     );
@@ -98,6 +100,7 @@ describe("bb provider command output", () => {
     expect(get).toHaveBeenCalledWith({
       query: {
         providerId: "claude-code",
+        projectId: "proj-city",
       },
     });
     expect(collectLogPayloads(vi.mocked(console.log))).toEqual([

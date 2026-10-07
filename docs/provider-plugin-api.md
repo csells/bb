@@ -44,22 +44,23 @@ own settings that produce registrations at runtime.
 
 ```ts
 bb.providers.register({
-  id: "claude-code",             // flat; first registration wins; no reservation
+  id: "claude-code", // flat; first registration wins; no reservation
   displayName: "Claude Code",
-  family: undefined,             // optional grouping key (the ACP agents share one)
-  icon: "./icons/claude.svg",    // a plugin SVG, served as logoUrl; a glyph name; or "<pluginId>/<name>"
+  family: undefined, // optional grouping key (the ACP agents share one)
+  icon: "./icons/claude.svg", // a plugin SVG, served as logoUrl; a glyph name; or "<pluginId>/<name>"
   strings: {
     signInHint: "Run `claude` on the machine to sign in.",
     expiredHint: "Your Claude session expired. Run `claude`, then reload.",
     installUrl: "https://docs.anthropic.com/claude-code",
-    brandPrefix: "Claude ",      // optional; stripped from model display names
-    planModeCopy: undefined,     // optional; plan-mode banner copy
-    iconTint: undefined,         // optional { light, dark }
+    brandPrefix: "Claude ", // optional; stripped from model display names
+    planModeCopy: undefined, // optional; plan-mode banner copy
+    iconTint: undefined, // optional { light, dark }
   },
   maintenance: { health: true, usage: true, installation: true }, // each defaults to false
-  capabilities: {                // pre-session facts, one client shape: ProviderInfo
+  capabilities: {
+    // pre-session facts, one client shape: ProviderInfo
     permissionModes: ["accept-edits", "auto", "full"], // closed core enum
-    fork: "checkpoint",          // "none" | "tip" | "checkpoint"
+    fork: "checkpoint", // "none" | "tip" | "checkpoint"
     supportsNativeUserQuestion: true,
     supportsManualCompaction: true,
     supportsThreadArchive: true,
@@ -67,24 +68,26 @@ bb.providers.register({
     supportsServiceTier: false,
     reasoningLevels: ["low", "high"], // the coarse ladder; `reasoningLevels` below is precise
   },
-  reasoningLevels: [             // picker options; model/list is precise
+  reasoningLevels: [
+    // picker options; model/list is precise
     { id: "low", label: "Low" },
     { id: "high", label: "High" },
   ],
-  serviceTiers: undefined,       // optional; open list of { id, label, description? },
-                                 // "default" is the standard tier; model/list is precise
-  composerActions: ["plan"],     // "plan" | "goal"
-  completedTurnDisplay: "flat",  // "collapse" (default) | "flat"; the user's per-provider setting wins
-  extensionKinds: {},            // "<name>": { item?: Schema, state?: Schema }
+  serviceTiers: undefined, // optional; open list of { id, label, description? },
+  // "default" is the standard tier; model/list is precise
+  composerActions: ["plan"], // "plan" | "goal"
+  completedTurnDisplay: "flat", // "collapse" (default) | "flat"; the user's per-provider setting wins
+  extensionKinds: {}, // "<name>": { item?: Schema, state?: Schema }
   models: { fallback: [], scope: "host" }, // cold-cache placeholder; scope is
-                                 // "host" | "workspace" (default): how far one
-                                 // model/list answer travels
+  // "host" | "workspace" (default): how far one
+  // model/list answer travels
   env: { passthrough: ["BB_CLAUDE_CODE_EXECUTABLE"] },
-  deriveProviderOptions(ctx) {   // called on every command
+  deriveProviderOptions(ctx) {
+    // called on every command
     // ctx: { threadId, projectId, model, permissionMode, promptMode?, settings }
-    return {};                   // opaque JSON handed to this plugin's bridge
+    return {}; // opaque JSON handed to this plugin's bridge
   },
-})
+});
 // => { dispose(): void }
 ```
 
@@ -95,6 +98,18 @@ description; an empty array hides the tier picker for that model, and an entry
 without the field accepts every declared tier. The server rejects an explicit
 tier the declaration does not list and passes the chosen id to the bridge as
 `serviceTier`.
+
+`models.experimental_picker` optionally declares `label` (default `Model`),
+`searchPlaceholder` (default `Search models`), `selectPlaceholder` (default
+`Select model`), `projectRequiredMessage` (default `Select a project to see the
+available models.`), and `requiresProject` (default false). A project-dependent provider uses `scope: "workspace"` and receives
+`projectId` alongside optional `cwd` in `model/list`. The picker requests a
+fresh catalog when the project changes; its query and persisted catalog keys
+include that project. With `requiresProject: true`, choosing no standard
+project shows the provider's `selectPlaceholder` on the trigger and its
+`projectRequiredMessage` beneath the list heading. It does not request or display models.
+The CLI `bb provider models <provider> --project <id>` and SDK
+`providers.models({ providerId, projectId })` use the same discovery path.
 
 bb keeps each machine's last successful `model/list` answer per
 `models.scope` across daemon reconnects and server restarts, serves it
@@ -153,8 +168,10 @@ Rules:
 
 ```ts
 export const experimental_providerBridge = experimental_defineProviderBridge({
-  handleLine, start, onClose,
-})
+  handleLine,
+  start,
+  onClose,
+});
 ```
 
 The export name and `experimental_defineProviderBridge` / `experimental_apiVersion`
@@ -284,7 +301,6 @@ colours. The web also paints `oklch()`, `lab()`, `lch()`, `color()` and a
 percentage alpha through CSS; React Native's colour parser does not, so on
 mobile such a tint falls back to the neutral row colour (never to black).
 
-
 Genericity rule: model fallback, context cleared, compaction skipped, and
 background work stay core. Codex goals and the Codex `macos` permission
 profile are codex extension kinds, with read-time conversion of persisted
@@ -383,7 +399,7 @@ plugin renders its own extension kinds and the generic `tool` items its
 provider emitted:
 
 ```ts
-app.slots.experimental_timelineRenderer({ kind, component })
+app.slots.experimental_timelineRenderer({ kind, component });
 // component props: { row, payload, presentation, thread, Original }
 ```
 

@@ -116,6 +116,24 @@ export type ProviderExtensionKinds = z.infer<
 >;
 
 export const providerInfoSchema = z.object({
+  modelPicker: z
+    .object({
+      label: z.string().min(1),
+      searchPlaceholder: z.string().min(1),
+      selectPlaceholder: z.string().min(1).default("Select model"),
+      projectRequiredMessage: z
+        .string()
+        .min(1)
+        .default("Select a project to see the available models."),
+      requiresProject: z.boolean(),
+    })
+    .default({
+      label: "Model",
+      searchPlaceholder: "Search models",
+      requiresProject: false,
+      selectPlaceholder: "Select model",
+      projectRequiredMessage: "Select a project to see the available models.",
+    }),
   id: z.string(),
   pluginId: z.string().min(1),
   displayName: z.string(),

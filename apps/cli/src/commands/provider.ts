@@ -19,6 +19,7 @@ interface ProviderListCommandOptions {
 }
 
 interface ProviderModelsCommandOptions {
+  project?: string;
   environment?: string;
   host?: string;
   json?: boolean;
@@ -123,6 +124,7 @@ export function registerProviderCommands(
 
   addProviderRoutingOptions(provider.command("models [providerId]"))
     .description("List available models for a provider")
+    .option("--project <id>", "Project whose provider catalog should be used")
     .option("--json", "Print machine-readable JSON output")
     .option(
       "--selected-model <model>",
@@ -137,6 +139,7 @@ export function registerProviderCommands(
           const serverUrl = getUrl();
           const sdk = createCliBbSdk(serverUrl);
           const executionOptions = await sdk.providers.models({
+            projectId: opts.project,
             ...(await resolveMachineEnvironmentRouting(opts, serverUrl)),
             ...(providerId ? { providerId } : {}),
           });

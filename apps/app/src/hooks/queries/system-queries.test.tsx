@@ -509,13 +509,16 @@ describe("useSystemExecutionOptions", () => {
       };
       vi.mocked(sdk.system.executionOptions).mockResolvedValue(initialCatalog);
       const { result } = renderHook(
-        () =>
-          useSystemExecutionOptions({ hostId: "host-a", providerId }),
+        () => useSystemExecutionOptions({ hostId: "host-a", providerId }),
         { wrapper },
       );
       await waitFor(() => expect(result.current.data).toEqual(initialCatalog));
       const loadedAt = result.current.dataUpdatedAt;
-      const modelLoadError = { providerId: refreshProviderId, code, detail: null };
+      const modelLoadError = {
+        providerId: refreshProviderId,
+        code,
+        detail: null,
+      };
       vi.mocked(sdk.system.executionOptions).mockResolvedValue({
         ...CODEX_CATALOG,
         providers: [makeProviderInfo({ id: refreshProviderId })],
@@ -767,4 +770,55 @@ describe("useSystemProviderStates", () => {
       });
     });
   });
+});
+
+it("does not replay another project's catalog while its response is pending", async () => {
+  const provider = makeProviderInfo({ id: "project-agent" });
+  let finishA!: (value: SystemExecutionOptionsResponse) => void;
+  const a = new Promise<SystemExecutionOptionsResponse>((resolve) => {
+    finishA = resolve;
+  });
+  const response = (id: string): SystemExecutionOptionsResponse => ({
+    ...EXECUTION_OPTIONS_RESPONSE,
+    providers: [provider],
+    models: [
+      {
+        id,
+        model: id,
+        displayName: id,
+        description: id,
+        supportedReasoningEfforts: [],
+        defaultReasoningEffort: "none",
+        isDefault: true,
+      },
+    ],
+  });
+  vi.mocked(sdk.system.executionOptions).mockImplementation(async (args) =>
+    args?.projectId === "a" ? a : response("agent-b"),
+  );
+  const { wrapper } = createQueryClientTestHarness();
+  const { result, rerender } = renderHook(
+    ({ projectId }) =>
+      useSystemExecutionOptions({
+        hostId: "one-host",
+        providerId: "project-agent",
+        projectId,
+      }),
+    { wrapper, initialProps: { projectId: "a" } },
+  );
+  await waitFor(() =>
+    expect(sdk.system.executionOptions).toHaveBeenCalledWith(
+      expect.objectContaining({ projectId: "a" }),
+    ),
+  );
+  rerender({ projectId: "b" });
+  expect(result.current.data?.models ?? []).toEqual([]);
+  await waitFor(() =>
+    expect(result.current.data?.models[0]?.model).toBe("agent-b"),
+  );
+  await act(async () => {
+    finishA(response("agent-a"));
+    await a;
+  });
+  expect(result.current.data?.models[0]?.model).toBe("agent-b");
 });

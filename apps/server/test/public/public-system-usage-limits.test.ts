@@ -156,6 +156,14 @@ describe("GET /api/v1/system/usage-limits", () => {
         minimalProviderRegistration({
           pluginId: "provider-no-usage",
           info: {
+            modelPicker: {
+              label: "Model",
+              searchPlaceholder: "Search models",
+              requiresProject: false,
+              selectPlaceholder: "Select model",
+              projectRequiredMessage:
+                "Select a project to see the available models.",
+            },
             id: "no-usage",
             pluginId: "provider-no-usage",
             displayName: "No Usage",

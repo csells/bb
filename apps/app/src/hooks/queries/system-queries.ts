@@ -10,6 +10,7 @@ import { permissionModeValues } from "@bb/domain";
 import type {
   SystemCliSkillsStatusResponse,
   SystemExecutionOptionsResponse,
+  SystemExecutionOptionsQuery,
   SystemProvidersQuery,
   SystemProviderStatesResponse,
   SystemVersionResponse,
@@ -53,6 +54,7 @@ import {
 } from "./query-policies";
 
 interface UseSystemExecutionOptionsArgs {
+  projectId?: string;
   enabled?: boolean;
   environmentId?: string;
   hostId?: string;
@@ -60,6 +62,7 @@ interface UseSystemExecutionOptionsArgs {
 }
 
 interface SystemExecutionOptionsQueryArgs {
+  projectId?: string | null;
   environmentId: string | null;
   hostId: string | null;
   providerId: string | null;
@@ -274,6 +277,7 @@ export function useSystemProviderInfo({
 }
 
 function systemExecutionOptionsQueryOptions({
+  projectId,
   environmentId,
   hostId,
   providerId,
@@ -284,12 +288,14 @@ function systemExecutionOptionsQueryOptions({
       environmentId,
       hostId,
       providerId,
+      projectId,
     }),
     queryFn: async ({ signal }) => {
       const response = await sdk.system.executionOptions({
         environmentId: environmentId ?? undefined,
         hostId: hostId ?? undefined,
         providerId: providerId ?? undefined,
+        projectId: projectId ?? undefined,
         signal,
       });
       const modelsProviderId = providerId ?? response.providers[0]?.id ?? null;
@@ -304,7 +310,12 @@ function systemExecutionOptionsQueryOptions({
             selectedOnlyModels: response.selectedOnlyModels,
           };
           writeCachedModelCatalog(
-            modelCatalogCacheKey({ environmentId, hostId, providerId }),
+            modelCatalogCacheKey({
+              environmentId,
+              hostId,
+              providerId,
+              projectId,
+            }),
             catalog,
           );
           if (providerId === null && modelsProviderId !== null) {
@@ -313,6 +324,7 @@ function systemExecutionOptionsQueryOptions({
                 environmentId,
                 hostId,
                 providerId: modelsProviderId,
+                projectId,
               }),
               catalog,
             );
@@ -332,6 +344,7 @@ function systemExecutionOptionsQueryOptions({
             environmentId,
             hostId,
             providerId: modelsProviderId,
+            projectId,
           }),
         );
         if (
@@ -351,7 +364,10 @@ function systemExecutionOptionsQueryOptions({
 
 export function prefetchSystemExecutionOptions(
   queryClient: QueryClient,
-  args: { routing: SystemProvidersQuery; providerIds: readonly string[] },
+  args: {
+    routing: SystemExecutionOptionsQuery;
+    providerIds: readonly string[];
+  },
 ): void {
   for (const providerId of args.providerIds) {
     void queryClient.prefetchQuery(
@@ -359,6 +375,7 @@ export function prefetchSystemExecutionOptions(
         environmentId: args.routing.environmentId ?? null,
         hostId: args.routing.hostId ?? null,
         providerId,
+        projectId: args.routing.projectId ?? null,
         writeLastKnown: false,
       }),
     );
@@ -368,6 +385,7 @@ export function prefetchSystemExecutionOptions(
 export function useSystemExecutionOptions(
   args: UseSystemExecutionOptionsArgs = {},
 ) {
+  const projectId = args.projectId ?? null;
   const environmentId = args.environmentId ?? null;
   const hostId = args.hostId ?? null;
   const providerId = args.providerId ?? null;
@@ -379,12 +397,14 @@ export function useSystemExecutionOptions(
     environmentId,
     hostId,
     providerId,
+    projectId,
   });
   return useQuery({
     ...systemExecutionOptionsQueryOptions({
       environmentId,
       hostId,
       providerId,
+      projectId,
       writeLastKnown: true,
     }),
     enabled,
