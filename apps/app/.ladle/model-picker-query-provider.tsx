@@ -56,6 +56,13 @@ const STORY_COMPOSER_ACTIONS_BY_PROVIDER: Record<
 
 const STORY_PROVIDER_INFOS: ProviderInfo[] = STORY_PROVIDER_OPTIONS.map(
   (provider) => ({
+    modelPicker: {
+      label: "Model",
+      searchPlaceholder: "Search models",
+      selectPlaceholder: "Select model",
+      projectRequiredMessage: "Select a project to see the available models.",
+      requiresProject: false,
+    },
     id: provider.value,
     pluginId: `provider-${provider.value}`,
     displayName: provider.label,

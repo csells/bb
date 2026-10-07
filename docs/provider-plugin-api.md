@@ -119,6 +119,20 @@ server applies the same rule on every create: a caller that leaves the model
 to bb starts on a model that fits (the default when it does), and a named
 model the choices rule out is refused with a model that fits.
 
+`models.experimental_picker` optionally declares `label` (default `Model`),
+`searchPlaceholder` (default `Search models`), `selectPlaceholder` (default
+`Select model`), `projectRequiredMessage` (default `Select a project to see the
+available models.`), and `requiresProject` (default false). A
+project-dependent provider uses `scope: "workspace"` and receives `projectId`
+alongside optional `cwd` in `model/list`. The picker requests a fresh catalog
+when the project changes; its query and persisted catalog keys include that
+project. With `requiresProject: true`, choosing no standard project shows the
+provider's `selectPlaceholder` on the trigger and its `projectRequiredMessage`
+beneath the list heading; bb neither requests nor displays models then, and it
+skips the provider's projectless prewarm. The CLI
+`bb provider models <provider> --project <id>` and SDK
+`providers.models({ providerId, projectId })` use the same discovery path.
+
 `models.fallback` is shown only until the first `model/list` probe completes,
 or when a probe fails transiently; a non-empty list has exactly one
 `isDefault`. bb keeps each machine's last successful `model/list` answer per
@@ -144,6 +158,9 @@ directory for an existing thread or a reused environment, and the project's
 checkout on the chosen machine for a new thread in a project. It is absent when
 neither is known (a thread without a project, or a project with no checkout on
 that machine). A `host`-scoped provider never receives it.
+It also carries `projectId`: the project the new thread names, or the
+environment's project for an existing thread or a reused environment. A
+caller names either a project or an environment, never both.
 
 Still experimental on the declaration (see api_to_audit.md):
 

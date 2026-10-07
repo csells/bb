@@ -838,3 +838,52 @@ describe("useSystemProviderStates", () => {
     });
   });
 });
+
+it("does not replay another project's catalog while its response is pending", async () => {
+  const provider = makeProviderInfo({ id: "project-agent" });
+  let finishA!: (value: SystemExecutionOptionsResponse) => void;
+  const a = new Promise<SystemExecutionOptionsResponse>((resolve) => {
+    finishA = resolve;
+  });
+  const response = (id: string): SystemExecutionOptionsResponse => ({
+    ...EXECUTION_OPTIONS_RESPONSE,
+    providers: [provider],
+    models: [
+      {
+        id,
+        model: id,
+        displayName: id,
+        description: id,
+        supportedReasoningEfforts: [],
+        defaultReasoningEffort: "none",
+        isDefault: true,
+      },
+    ],
+  });
+  vi.mocked(sdk.system.executionOptions).mockImplementation(async (args) =>
+    args?.projectId === "a" ? a : response("agent-b"),
+  );
+  const { queryClient } = createQueryClientTestHarness();
+  const options = (projectId: string) =>
+    liveSystemExecutionOptionsQueryOptions({
+      hostId: "one-host",
+      providerId: "project-agent",
+      projectId,
+    });
+  const first = observe(queryClient, options("a"));
+  await vi.waitFor(() =>
+    expect(sdk.system.executionOptions).toHaveBeenCalledWith(
+      expect.objectContaining({ projectId: "a" }),
+    ),
+  );
+  const second = observe(queryClient, options("b"));
+  expect(second.getCurrentResult().data?.models ?? []).toEqual([]);
+  await vi.waitFor(() =>
+    expect(second.getCurrentResult().data?.models[0]?.model).toBe("agent-b"),
+  );
+  finishA(response("agent-a"));
+  await vi.waitFor(() =>
+    expect(first.getCurrentResult().data?.models[0]?.model).toBe("agent-a"),
+  );
+  expect(second.getCurrentResult().data?.models[0]?.model).toBe("agent-b");
+});

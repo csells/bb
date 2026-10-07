@@ -24,6 +24,7 @@ import type {
   ExecutionInputFieldSource,
   ExistingThreadExecutionInputSources,
   SystemExecutionOptionsModelLoadError,
+  SystemExecutionOptionsQuery,
   SystemProvidersQuery,
 } from "@bb/server-contract";
 import {
@@ -115,7 +116,7 @@ type ProviderModelReasoningSelectionSetter = (
 ) => void;
 
 interface UseThreadCreationOptionsResult<TExecutionInputSources> {
-  executionOptionsRouting: SystemProvidersQuery;
+  executionOptionsRouting: SystemExecutionOptionsQuery;
   selectedProviderId: string;
   setSelectedProviderId: StringSelectionSetter;
   setProviderModelReasoning: ProviderModelReasoningSelectionSetter;
@@ -529,6 +530,7 @@ export function useThreadCreationOptions(
       providers.map((p) => ({
         value: p.id,
         label: p.displayName,
+        modelPicker: p.modelPicker,
         icon: getProviderIconInfo("agent", p.id, p)?.icon,
         ...(p.strings?.brandPrefix === undefined
           ? {}
@@ -1044,7 +1046,10 @@ export function useThreadCreationOptions(
   }, [scope, setRootComposeReuseValue]);
 
   return {
-    executionOptionsRouting,
+    executionOptionsRouting:
+      executionOptionsProjectId === undefined
+        ? executionOptionsRouting
+        : { ...executionOptionsRouting, projectId: executionOptionsProjectId },
     selectedProviderId: effectiveProviderId,
     setSelectedProviderId,
     setProviderModelReasoning,

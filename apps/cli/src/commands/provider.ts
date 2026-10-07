@@ -126,7 +126,7 @@ export function registerProviderCommands(
     .description("List available models for a provider")
     .option(
       "--project <id>",
-      "Project whose checkout on the machine the provider reads its models and options from",
+      "Project whose provider catalog to list; workspace-scoped providers read it from the project's checkout on the machine",
     )
     .option("--json", "Print machine-readable JSON output")
     .option(

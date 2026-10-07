@@ -1,3 +1,4 @@
+import { PERSONAL_PROJECT_ID } from "@bb/domain";
 import {
   useCallback,
   useEffect,
@@ -9,7 +10,7 @@ import {
 } from "react";
 import type {
   SystemExecutionOptionsModelLoadError,
-  SystemProvidersQuery,
+  SystemExecutionOptionsQuery,
 } from "@bb/server-contract";
 import {
   resolveServiceTierOptions,
@@ -172,7 +173,7 @@ export function buildModelNavRows({
 }
 
 interface ModelReasoningPickerProps {
-  providerRouting?: SystemProvidersQuery;
+  providerRouting?: SystemExecutionOptionsQuery;
   providerOptions: readonly ProviderPickerOption[];
   selectedProviderId: string;
   onSelectedProviderChange?: (value: string) => void;
@@ -336,19 +337,31 @@ export function ModelReasoningPicker({
           providerLabel: selectedProviderLabel,
         })
       : "Could not load models.";
-  const triggerModelLabel = modelIsLoading
-    ? "Loading models..."
-    : hasSelectedModel
-      ? stripModelBrandPrefix(selectedModelLabel, selectedProvider?.brandPrefix)
-      : selectedModelLoadFailed
-        ? hasAlternateSelectionPath
-          ? "Select model"
-          : FAILED_TO_LOAD_MODELS_LABEL
-        : modelOptions.length === 0
-          ? canSwitchProviders
-            ? "Select model"
-            : "No models available"
-          : "Select model";
+  const needsProject = (provider: ProviderPickerOption | undefined) =>
+    provider?.modelPicker?.requiresProject === true &&
+    (providerRouting?.projectId === PERSONAL_PROJECT_ID ||
+      (!providerRouting?.projectId && !providerRouting?.environmentId));
+  const triggerModelLabel = needsProject(selectedProvider)
+    ? (selectedProvider?.modelPicker?.selectPlaceholder ?? "Select model")
+    : modelIsLoading
+      ? "Loading models..."
+      : hasSelectedModel
+        ? stripModelBrandPrefix(
+            selectedModelLabel,
+            selectedProvider?.brandPrefix,
+          )
+        : selectedModelLoadFailed
+          ? hasAlternateSelectionPath
+            ? (selectedProvider?.modelPicker?.selectPlaceholder ??
+              "Select model")
+            : FAILED_TO_LOAD_MODELS_LABEL
+          : modelOptions.length === 0
+            ? canSwitchProviders
+              ? (selectedProvider?.modelPicker?.selectPlaceholder ??
+                "Select model")
+              : "No models available"
+            : (selectedProvider?.modelPicker?.selectPlaceholder ??
+              "Select model");
   const triggerModelValueIsDestructive =
     triggerModelLabel === FAILED_TO_LOAD_MODELS_LABEL;
   const { base: triggerModelBase, tag: triggerModelTag } =
@@ -357,9 +370,10 @@ export function ModelReasoningPicker({
   const selectedReasoningOption = reasoningOptions.find(
     (r) => r.value === reasoningValue,
   );
-  const triggerReasoningLabel = hasSelectedModel
-    ? (selectedReasoningOption?.label ?? null)
-    : null;
+  const triggerReasoningLabel =
+    hasSelectedModel && !needsProject(selectedProvider)
+      ? (selectedReasoningOption?.label ?? null)
+      : null;
 
   const isPreviewing =
     previewProviderId !== null && previewProviderId !== selectedProviderId;
@@ -442,10 +456,13 @@ export function ModelReasoningPicker({
   const activeModelLoadFailed = isPreviewing
     ? previewQuery.isError || activeModelLoadErrorMatches
     : modelLoadFailed || activeModelLoadErrorMatches;
-  const activeModelOptions = previewModelOptions;
-  const activeMoreModelOptions = previewSelectionBlocked
+  const activeModelOptions = needsProject(activeProvider)
     ? EMPTY_MODEL_OPTIONS
-    : previewMoreModelOptions;
+    : previewModelOptions;
+  const activeMoreModelOptions =
+    previewSelectionBlocked || needsProject(activeProvider)
+      ? EMPTY_MODEL_OPTIONS
+      : previewMoreModelOptions;
   const hasActiveModelOptions = activeModelOptions.length > 0;
   const activeModelErrorIsProviderSpecific =
     activeModelLoadErrorMatches && activeModelLoadError !== null;
@@ -743,7 +760,11 @@ export function ModelReasoningPicker({
   useIndexedAppCommandHandlers(
     MODEL_CYCLE_COMMANDS,
     (index, { target }) => {
-      if (!ownsCycleChord(target)) return false;
+      if (
+        !ownsCycleChord(target) ||
+        needsProject(handoffMode ? activeProvider : selectedProvider)
+      )
+        return false;
       const options = (handoffMode ? activeModelOptions : modelOptions).filter(
         (option) => option.disabled !== true,
       );
@@ -1036,7 +1057,11 @@ export function ModelReasoningPicker({
       <PopoverTrigger asChild>{trigger}</PopoverTrigger>
       <PopoverContent
         align={align}
-        mobileTitle={handoffMode ? "Handoff to new thread" : "Model"}
+        mobileTitle={
+          handoffMode
+            ? "Handoff to new thread"
+            : (activeProvider?.modelPicker?.label ?? "Model")
+        }
         mobileClassName={cn(
           "h-[min(32rem,80dvh)]",
           handoffMode && HANDOFF_DRAWER_TOP_CLASS_NAME,
@@ -1108,6 +1133,9 @@ export function ModelReasoningPicker({
 
         {showSearchInput ? (
           <ModelSearchInput
+            placeholder={
+              activeProvider?.modelPicker?.searchPlaceholder ?? "Search models"
+            }
             inputRef={searchInputRef}
             query={searchQuery}
             onQueryChange={handleQueryChange}
@@ -1124,6 +1152,7 @@ export function ModelReasoningPicker({
           providerId={activeProviderId}
           provider={activeProvider}
           providerLabel={activeProviderLabel}
+          needsProject={needsProject(activeProvider)}
           listboxId={showSearchInput ? listboxId : undefined}
           optionId={optionDomId}
           modelIsLoading={activeModelIsLoading}
@@ -1196,6 +1225,7 @@ function ResetBrowseStateOnContentUnmount({
 }
 
 interface ModelSearchInputProps {
+  placeholder: string;
   inputRef: React.RefObject<HTMLInputElement | null>;
   query: string;
   onQueryChange: (query: string) => void;
@@ -1205,6 +1235,7 @@ interface ModelSearchInputProps {
 }
 
 function ModelSearchInput({
+  placeholder,
   inputRef,
   query,
   onQueryChange,
@@ -1224,8 +1255,8 @@ function ModelSearchInput({
           value={query}
           onChange={(event) => onQueryChange(event.target.value)}
           onKeyDown={onKeyDown}
-          placeholder="Search models"
-          aria-label="Search models"
+          placeholder={placeholder}
+          aria-label={placeholder}
           role="combobox"
           aria-expanded
           aria-controls={listboxId}

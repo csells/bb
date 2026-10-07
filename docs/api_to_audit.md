@@ -2976,3 +2976,24 @@ directories, linked worktrees, and submodules. Core callers: the setup guide
 Stabilize after deciding whether depth, recency window, and limit should be
 caller options, and after exercising slow or network-mounted home directories
 and Windows hosts.
+
+## Provider project-aware catalog picker
+
+`PluginProviderDeclaration.models.experimental_picker` accepts optional `label`,
+`searchPlaceholder`, `selectPlaceholder`, `projectRequiredMessage`, and
+`requiresProject`. Normalization fills every default once;
+`ProviderInfo.modelPicker` carries explicit values.
+Audit vocabulary across desktop/compact/keyboard pickers and discoverability of
+the no-project state before stabilizing.
+
+Catalog queries (`system.executionOptions`, `providers.models`,
+`bb provider models --project`) pass projectId through the daemon to model/list
+for workspace-scoped providers; an environment supplies its own project.
+Project-aware catalogs must declare workspace scope. Verify project/environment
+consistency, selection reconciliation, concurrent requests, browser/server caches,
+and no projectless prewarm before stabilization. Protocol version 238 requires
+enrolled hosts to update.
+
+Picker copy: `selectPlaceholder` defaults to `Select model`;
+`projectRequiredMessage` defaults to `Select a project to see the available models.`
+The trigger identifies the selection, and the menu explains any project prerequisite.

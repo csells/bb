@@ -52,6 +52,13 @@ describe("buildPluginProviderRegistration", () => {
       available: true,
       logoUrl: "/api/v1/system/providers/my-remote-agent/logo",
       maintenance: { health: true, usage: false, installation: true },
+      modelPicker: {
+        label: "Model",
+        searchPlaceholder: "Search models",
+        selectPlaceholder: "Select model",
+        projectRequiredMessage: "Select a project to see the available models.",
+        requiresProject: false,
+      },
       capabilities: {
         supportsThreadArchive: true,
         supportsThreadRename: true,

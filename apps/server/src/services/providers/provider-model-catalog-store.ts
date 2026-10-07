@@ -69,6 +69,7 @@ export interface ProviderModelCatalogStore {
       hostId: string;
       provider: ProviderInfo;
       cwd: string | null;
+      projectId?: string;
       access: ProviderModelCatalogAccess;
     },
   ): Promise<ProviderModelCatalogReadResult>;
@@ -390,7 +391,7 @@ export function createProviderModelCatalogStore(options: {
     refresh: CatalogRefresh,
     settlement: RefreshSettlement,
   ): void {
-    const { hostId, providerId, scopeKey } = entry.key;
+    const { hostId, providerId } = entry.key;
     const now = options.now();
     const log = (
       level: "info" | "warn" | "error",
@@ -400,7 +401,7 @@ export function createProviderModelCatalogStore(options: {
         {
           hostId,
           providerId,
-          scope: scopeKey === "" ? "host" : "workspace",
+          scope: entry.key.scopeKey === "" ? "host" : "workspace",
           durationMs: now - refresh.startedAt,
           ...fields,
         },
@@ -477,8 +478,9 @@ export function createProviderModelCatalogStore(options: {
     entry: CatalogEntry,
     fingerprint: string,
     bridgeLaunch: HostDaemonBridgeLaunch,
+    context: { cwd?: string; projectId?: string } = {},
   ): Promise<void> {
-    const { hostId, providerId, scopeKey } = entry.key;
+    const { hostId, providerId } = entry.key;
     const refresh: CatalogRefresh = {
       fingerprint,
       sessionId: deps.hub.getDaemonSessionIdForHost(hostId),
@@ -493,7 +495,7 @@ export function createProviderModelCatalogStore(options: {
       command: {
         type: "provider.list_models",
         providerId,
-        ...(scopeKey === "" ? {} : { cwd: scopeKey }),
+        ...context,
         bridgeLaunch,
       },
     }).then(
@@ -513,10 +515,11 @@ export function createProviderModelCatalogStore(options: {
     entry: CatalogEntry,
     fingerprint: string,
     bridgeLaunch: HostDaemonBridgeLaunch,
+    context: { cwd?: string; projectId?: string } = {},
   ): Promise<void> {
     return entry.refresh?.fingerprint === fingerprint
       ? entry.refresh.promise
-      : startRefresh(deps, entry, fingerprint, bridgeLaunch);
+      : startRefresh(deps, entry, fingerprint, bridgeLaunch, context);
   }
 
   return {
@@ -526,16 +529,22 @@ export function createProviderModelCatalogStore(options: {
         args.provider.id,
       );
       const fingerprint = catalogFingerprint(args.provider.id, bridgeLaunch);
+      const workspaceScoped = providerModelCatalogDependsOnWorkspace(
+        args.provider.capabilities.modelCatalogScope,
+      );
+      const context = {
+        ...(args.cwd !== null && workspaceScoped ? { cwd: args.cwd } : {}),
+        ...(!workspaceScoped || args.projectId === undefined
+          ? {}
+          : { projectId: args.projectId }),
+      };
       const entry = loadEntry(deps, {
         hostId: args.hostId,
         providerId: args.provider.id,
         scopeKey:
-          args.cwd !== null &&
-          providerModelCatalogDependsOnWorkspace(
-            args.provider.capabilities.modelCatalogScope,
-          )
-            ? args.cwd
-            : "",
+          context.projectId === undefined
+            ? (context.cwd ?? "")
+            : JSON.stringify([context.projectId, context.cwd ?? null]),
       });
       for (let refreshed = false; ; refreshed = true) {
         const decision = evaluate(
@@ -547,15 +556,28 @@ export function createProviderModelCatalogStore(options: {
         );
         if (decision.kind === "serve") {
           if (decision.backgroundRefresh) {
-            void joinOrStartRefresh(deps, entry, fingerprint, bridgeLaunch);
+            void joinOrStartRefresh(
+              deps,
+              entry,
+              fingerprint,
+              bridgeLaunch,
+              context,
+            );
           }
           return decision.result;
         }
-        await joinOrStartRefresh(deps, entry, fingerprint, bridgeLaunch);
+        await joinOrStartRefresh(
+          deps,
+          entry,
+          fingerprint,
+          bridgeLaunch,
+          context,
+        );
       }
     },
 
     async refreshForPrewarm(deps, args) {
+      if (args.provider.modelPicker.requiresProject) return;
       const bridgeLaunch = resolveBridgeLaunchForProviderId(
         deps,
         args.provider.id,

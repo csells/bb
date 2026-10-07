@@ -193,6 +193,14 @@ describe("getProviderStates", () => {
         minimalProviderRegistration({
           pluginId: "provider-no-health",
           info: {
+            modelPicker: {
+              label: "Model",
+              searchPlaceholder: "Search models",
+              requiresProject: false,
+              selectPlaceholder: "Select model",
+              projectRequiredMessage:
+                "Select a project to see the available models.",
+            },
             id: "no-health",
             pluginId: "provider-no-health",
             displayName: "No Health",

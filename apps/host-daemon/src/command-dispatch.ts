@@ -389,6 +389,7 @@ async function withResolvedBridgeLaunch<TResult>(
   command: CommandOf<"provider.list_models" | "provider.health">,
   options: CommandDispatchOptions,
   call: (args: {
+    projectId?: string;
     providerId: string;
     bridgeLaunch: AgentRuntimeBridgeLaunch;
     cwd?: string;
@@ -400,6 +401,10 @@ async function withResolvedBridgeLaunch<TResult>(
   );
   return call({
     providerId: command.providerId,
+    ...(command.type === "provider.list_models" &&
+    command.projectId !== undefined
+      ? { projectId: command.projectId }
+      : {}),
     ...(command.cwd !== undefined ? { cwd: command.cwd } : {}),
     bridgeLaunch,
   });

@@ -29,6 +29,13 @@ what it reports in the project's checkout on the chosen machine, which is what
 a new thread in that project is offered; it cannot be combined with
 `--environment`. Other providers answer the same for every directory.
 
+A provider may also scope its list to the project itself and rename the
+picker (for example "Agent" instead of "Model") through
+`models.experimental_picker`. One that requires a project lists nothing until
+a project is selected, so pass `--project` before an environment exists; an
+environment supplies its own project. SDK callers use
+`sdk.providers.models({ projectId, hostId, providerId })`.
+
 When a provider's models declare options (a mode, an on/off switch), `bb provider
 models` lists them under the table with their ids, values and defaults; `--json`
 carries them per model as `sessionOptions`. Choose values at creation with
