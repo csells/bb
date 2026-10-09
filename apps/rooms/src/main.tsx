@@ -29,6 +29,85 @@ function Avatar({ name, agent = false }: { name: string; agent?: boolean }) {
     </span>
   );
 }
+function PendingReplies({
+  snapshot,
+  decisionAgents,
+}: {
+  snapshot: Snapshot;
+  decisionAgents: string[];
+}) {
+  const deliveries = snapshot.deliveries.filter((d) =>
+    ["queued", "dispatching", "running"].includes(d.state),
+  );
+  const [now, setNow] = useState(Date.now);
+  const hasWork = deliveries.length > 0;
+  useEffect(() => {
+    if (!hasWork) return;
+    setNow(Date.now());
+    const timer = setInterval(() => setNow(Date.now()), 1000);
+    return () => clearInterval(timer);
+  }, [hasWork]);
+  return deliveries.map((delivery) => {
+    const agent = snapshot.agents.find((a) => a.id === delivery.agentId);
+    if (!agent) return null;
+    const output = snapshot.messages.filter(
+      (m) => m.authorId === agent.id && m.causeId === delivery.messageId,
+    );
+    const latest = output.at(-1);
+    const needsDecision = decisionAgents.includes(agent.id);
+    if (
+      !needsDecision &&
+      latest?.kind === "agent" &&
+      latest.status === "streaming" &&
+      latest.text.trim()
+    )
+      return null;
+    const cause = snapshot.messages.find((m) => m.id === delivery.messageId);
+    const since = delivery.startedAt ?? cause?.createdAt;
+    const elapsed =
+      since === undefined
+        ? null
+        : Math.max(0, Math.floor((now - since) / 1000));
+    const state = needsDecision
+      ? `${agent.name} needs a decision`
+      : delivery.state === "queued"
+        ? `Queued for ${agent.name}`
+        : delivery.state === "dispatching"
+          ? `Starting ${agent.name}`
+          : output.length
+            ? `${agent.name} is working`
+            : `Waiting for ${agent.name}’s first response`;
+    return (
+      <div
+        className="message pending-reply"
+        key={delivery.id}
+        data-agent-id={agent.id}
+      >
+        <Avatar name={agent.name} agent />
+        <div className="message-body">
+          <div className="pending-heading">
+            <span className="pending-status" role="status">
+              <i className="pulse" aria-hidden="true" />
+              {state}
+            </span>
+            {elapsed !== null && (
+              <span className="pending-elapsed" aria-label="Elapsed time">
+                {elapsed < 60
+                  ? `${elapsed}s`
+                  : `${Math.floor(elapsed / 60)}m ${elapsed % 60}s`}
+              </span>
+            )}
+          </div>
+          <p>
+            {needsDecision
+              ? "Review the request below to continue."
+              : "You can keep typing while you wait."}
+          </p>
+        </div>
+      </div>
+    );
+  });
+}
 function QuestionForm({
   payload,
   submit,
@@ -572,6 +651,17 @@ function App() {
                 </div>
               </article>
             ),
+          )}
+          {sending && (
+            <div className="sending-notice" role="status">
+              Sending your message…
+            </div>
+          )}
+          {snapshot && (
+            <PendingReplies
+              snapshot={snapshot}
+              decisionAgents={pending.map((p) => p.agent.id)}
+            />
           )}
           <div ref={end} />
         </div>

@@ -85,16 +85,30 @@ try {
     JSON.stringify({ roomId: room.id, stamp }),
     { mode: 0o600 },
   );
+  const submittedAt = Date.now();
   await send(
     alex,
     "@builder @reviewer Introduce yourself using your assigned name. Then write ten numbered sentences about how humans and agents can collaborate in a shared conversation. Do not call tools or address the other agent.",
   );
+  for (const page of pages) {
+    await expect(page.locator(".conversation .pending-reply")).toHaveCount(2);
+    await expect(
+      page.locator(".conversation .pending-reply").first(),
+    ).toContainText(/Waiting for|Starting|Queued/);
+  }
+  console.log(
+    "PASS both humans see two pending replies before any agent text",
+    { pendingMs: Date.now() - submittedAt },
+  );
   const observed = new Map<string, Set<number>>();
+  const firstTextMs = new Map<string, number>();
   let done = false;
   const until = Date.now() + 240000;
   while (Date.now() < until) {
     const s = await snapshot();
     for (const m of s.messages.filter((m: any) => m.kind === "agent")) {
+      if (m.text && !firstTextMs.has(m.authorName))
+        firstTextMs.set(m.authorName, Date.now() - submittedAt);
       const lengths = observed.get(m.authorName) ?? new Set();
       lengths.add(m.text.length);
       observed.set(m.authorName, lengths);
@@ -111,6 +125,12 @@ try {
     await new Promise((r) => setTimeout(r, 400));
   }
   expect(done).toBe(true);
+  for (const page of pages)
+    await expect(page.locator(".pending-reply")).toHaveCount(0);
+  console.log(
+    "First text observed via public API (milliseconds)",
+    Object.fromEntries(firstTextMs),
+  );
   for (const name of ["Builder", "Reviewer"]) {
     expect(observed.get(name)?.size).toBeGreaterThan(1);
     for (const p of pages)

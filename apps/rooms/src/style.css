@@ -337,7 +337,7 @@ header {
   flex: 1;
   min-height: 0;
   overflow: auto;
-  padding: 30px max(30px, calc((100% - 850px) /2));
+  padding: 30px max(30px, calc((100% - 850px) / 2));
   scrollbar-color: var(--line) transparent;
 }
 .message {
@@ -348,6 +348,39 @@ header {
 .message-body {
   flex: 1;
   min-width: 0;
+}
+.pending-reply .message-body {
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--panel);
+  padding: 14px 16px;
+}
+.pending-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+  color: var(--accent);
+  font-size: 13px;
+}
+.pending-status .pulse {
+  display: inline-block;
+  margin-right: 8px;
+}
+.pending-elapsed {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  font-size: 12px;
+}
+.pending-reply p,
+.sending-notice {
+  color: var(--muted);
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+.sending-notice {
+  margin: 0 0 20px 44px;
 }
 .message-meta {
   display: flex;
@@ -478,7 +511,7 @@ header {
   color: var(--muted);
 }
 footer {
-  padding: 0 max(26px, calc((100% - 850px) /2)) 18px;
+  padding: 0 max(26px, calc((100% - 850px) / 2)) 18px;
   flex-shrink: 0;
 }
 .composer {
