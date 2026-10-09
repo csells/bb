@@ -1,0 +1,184 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -project RoomsSafari.xcodeproj -scheme RoomsSafari -destination "platform=iOS Simulator,id=F2BA55AE-0A08-463F-80CE-BE4BB3F38748" -derivedDataPath /Users/admin/rooms-safari-evidence/derived -resultBundlePath /Users/admin/rooms-safari-keyboard-fixed/rooms-safari.xcresult -parallel-testing-enabled NO
+
+Writing result bundle at path:
+	/Users/admin/rooms-safari-keyboard-fixed/rooms-safari.xcresult
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (2 targets)
+    Target 'RoomsSafariUITests' in project 'RoomsSafari'
+        ➜ Explicit dependency on target 'RoomsSafari' in project 'RoomsSafari'
+    Target 'RoomsSafari' in project 'RoomsSafari' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 5d46e69c9086f9706a0fe98cf9129b3b
+Build description path: /Users/admin/rooms-safari-evidence/derived/Build/Intermediates.noindex/XCBuildData/5d46e69c9086f9706a0fe98cf9129b3b.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk /Users/admin/rooms-safari-evidence/derived/SDKStatCaches.noindex/iphonesimulator27.0-24A430-8dc58220667be655e1bcc261a7455254.sdkstatcache
+    cd /Users/admin/rooms-safari-check/ios/RoomsSafari.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -o /Users/admin/rooms-safari-evidence/derived/SDKStatCaches.noindex/iphonesimulator27.0-24A430-8dc58220667be655e1bcc261a7455254.sdkstatcache
+
+ProcessInfoPlistFile /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafari.app/Info.plist /Users/admin/rooms-safari-evidence/derived/Build/Intermediates.noindex/RoomsSafari.build/Debug-iphonesimulator/RoomsSafari.build/empty-RoomsSafari.plist (in target 'RoomsSafari' from project 'RoomsSafari')
+    cd /Users/admin/rooms-safari-check/ios
+    builtin-infoPlistUtility /Users/admin/rooms-safari-evidence/derived/Build/Intermediates.noindex/RoomsSafari.build/Debug-iphonesimulator/RoomsSafari.build/empty-RoomsSafari.plist -producttype com.apple.product-type.application -genpkginfo /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafari.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafari.app/Info.plist
+
+CopySwiftLibs /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafari.app (in target 'RoomsSafari' from project 'RoomsSafari')
+    cd /Users/admin/rooms-safari-check/ios
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafari.app/RoomsSafari.debug.dylib --scan-folder /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafari.app/Frameworks --scan-folder /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafari.app/PlugIns --scan-folder /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafari.app/SystemExtensions --scan-folder /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafari.app/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafari.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/admin/rooms-safari-evidence/derived/Build/Intermediates.noindex/RoomsSafari.build/Debug-iphonesimulator/RoomsSafari.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+ProcessInfoPlistFile /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafariUITests-Runner.app/PlugIns/RoomsSafariUITests.xctest/Info.plist /Users/admin/rooms-safari-evidence/derived/Build/Intermediates.noindex/RoomsSafari.build/Debug-iphonesimulator/RoomsSafariUITests.build/empty-RoomsSafariUITests.plist (in target 'RoomsSafariUITests' from project 'RoomsSafari')
+    cd /Users/admin/rooms-safari-check/ios
+    builtin-infoPlistUtility /Users/admin/rooms-safari-evidence/derived/Build/Intermediates.noindex/RoomsSafari.build/Debug-iphonesimulator/RoomsSafariUITests.build/empty-RoomsSafariUITests.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/admin/rooms-safari-evidence/derived/Build/Intermediates.noindex/RoomsSafari.build/Debug-iphonesimulator/RoomsSafariUITests.build/ProductTypeInfoPlistAdditions.plist -o /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafariUITests-Runner.app/PlugIns/RoomsSafariUITests.xctest/Info.plist
+
+CopySwiftLibs /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafariUITests-Runner.app/PlugIns/RoomsSafariUITests.xctest (in target 'RoomsSafariUITests' from project 'RoomsSafari')
+    cd /Users/admin/rooms-safari-check/ios
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafariUITests-Runner.app/PlugIns/RoomsSafariUITests.xctest/RoomsSafariUITests --scan-folder /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafariUITests-Runner.app/PlugIns/RoomsSafariUITests.xctest/Frameworks --scan-folder /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafariUITests-Runner.app/PlugIns/RoomsSafariUITests.xctest/PlugIns --scan-folder /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafariUITests-Runner.app/PlugIns/RoomsSafariUITests.xctest/SystemExtensions --scan-folder /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafariUITests-Runner.app/PlugIns/RoomsSafariUITests.xctest/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/admin/rooms-safari-evidence/derived/Build/Products/Debug-iphonesimulator/RoomsSafariUITests-Runner.app/PlugIns/RoomsSafariUITests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/admin/rooms-safari-evidence/derived/Build/Intermediates.noindex/RoomsSafari.build/Debug-iphonesimulator/RoomsSafariUITests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+PruneExplicitPrecompiledModules /Users/admin/rooms-safari-evidence/derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/admin/rooms-safari-evidence/derived/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/admin/rooms-safari-evidence/derived/SDKExplicitPrecompiledModules
+
+2026-10-09 18:02:37.194188+0000 RoomsSafariUITests-Runner[2372:25540] [Default] Running tests...
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-09 18:02:39.637.
+Test Suite 'RoomsSafariUITests.xctest' started at 2026-10-09 18:02:39.637.
+Test Suite 'RoomsSafariTests' started at 2026-10-09 18:02:39.638.
+Test Case '-[RoomsSafariUITests.RoomsSafariTests testPersistentDrawerAndComposerInSafari]' started.
+    t =     0.01s Start Test at 2026-10-09 18:02:39.646
+    t =     0.03s Set Up
+    t =     0.04s Open com.apple.mobilesafari
+    t =     0.04s     Activate com.apple.mobilesafari
+    t =     0.04s         Wait for com.apple.mobilesafari to idle
+    t =     0.06s Waiting 30.0s for Button (First Match) to exist
+objc[2372]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x1021c8398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x1065b4310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =     1.11s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+    t =     1.11s         Checking existence of `Button (First Match)`
+    t =     1.14s Tap Button (First Match)
+    t =     1.14s     Wait for com.apple.mobilesafari to idle
+    t =     1.15s     Find the Button (First Match)
+    t =     1.17s     Check for interrupting elements affecting "People1" Button
+    t =     1.20s     Synthesize event
+    t =     1.49s     Wait for com.apple.mobilesafari to idle
+    t =     1.49s Waiting 10.0s for "Close panel" Button to exist
+    t =     2.55s     Checking `Expect predicate `existsNoRetry == 1` for object "Close panel" Button`
+    t =     2.55s         Checking existence of `"Close panel" Button`
+    t =     2.58s Checking existence of `"People in this room" StaticText`
+    t =     2.59s Find the Application 'com.apple.mobilesafari'
+    t =     2.68s Added attachment named 'people-open'
+    t =     2.68s Tap "Close panel" Button
+    t =     2.68s     Wait for com.apple.mobilesafari to idle
+    t =     2.68s     Find the "Close panel" Button
+    t =     2.69s     Check for interrupting elements affecting "Close panel" Button
+    t =     2.72s     Synthesize event
+    t =     3.01s     Wait for com.apple.mobilesafari to idle
+    t =     3.01s Tap "People1" Button
+    t =     3.01s     Wait for com.apple.mobilesafari to idle
+    t =     3.02s     Find the "People1" Button
+    t =     3.05s     Check for interrupting elements affecting "People1" Button
+    t =     3.08s     Synthesize event
+    t =     3.38s     Wait for com.apple.mobilesafari to idle
+    t =     3.38s Waiting 10.0s for "Close panel" Button to exist
+    t =     4.44s     Checking `Expect predicate `existsNoRetry == 1` for object "Close panel" Button`
+    t =     4.44s         Checking existence of `"Close panel" Button`
+    t =     4.49s Tap "Close panel" Button
+    t =     4.49s     Wait for com.apple.mobilesafari to idle
+    t =     4.49s     Find the "Close panel" Button
+    t =     4.52s     Check for interrupting elements affecting "Close panel" Button
+    t =     4.54s     Synthesize event
+    t =     4.84s     Wait for com.apple.mobilesafari to idle
+    t =     4.84s Tap Button (First Match)
+    t =     4.84s     Wait for com.apple.mobilesafari to idle
+    t =     4.85s     Find the Button (First Match)
+    t =     4.87s     Check for interrupting elements affecting "＋ Add agent" Button
+    t =     4.90s     Synthesize event
+    t =     5.19s     Wait for com.apple.mobilesafari to idle
+    t =     5.20s Waiting 10.0s for "Name" TextField to exist
+    t =     6.25s     Checking `Expect predicate `existsNoRetry == 1` for object "Name" TextField`
+    t =     6.26s         Checking existence of `"Name" TextField`
+    t =     6.29s Tap "Name" TextField
+    t =     6.29s     Wait for com.apple.mobilesafari to idle
+    t =     6.30s     Find the "Name" TextField
+    t =     6.32s     Check for interrupting elements affecting "Nova" TextField
+    t =     6.35s     Synthesize event
+    t =     6.65s     Wait for com.apple.mobilesafari to idle
+    t =     6.99s Type 'Temporary agent' into "Nova" TextField
+    t =     6.99s     Wait for com.apple.mobilesafari to idle
+    t =     7.00s     Find the "Nova" TextField
+    t =     7.03s     Check for interrupting elements affecting "Nova" TextField
+    t =     7.07s     Synthesize event
+    t =     7.53s     Wait for com.apple.mobilesafari to idle
+    t =     7.54s Find the Application 'com.apple.mobilesafari'
+    t =     7.63s Added attachment named 'agent-drawer-keyboard'
+    t =     7.63s Tap "Close panel" Button
+    t =     7.64s     Wait for com.apple.mobilesafari to idle
+    t =     7.64s     Find the "Close panel" Button
+    t =     7.67s     Check for interrupting elements affecting "Close panel" Button
+    t =     7.70s     Synthesize event
+    t =     7.99s     Wait for com.apple.mobilesafari to idle
+    t =     8.26s Waiting 10.0s for "Message the room" TextView to exist
+    t =     9.31s     Checking `Expect predicate `existsNoRetry == 1` for object "Message the room" TextView`
+    t =     9.31s         Checking existence of `"Message the room" TextView`
+    t =     9.35s Tap "Message the room" TextView
+    t =     9.35s     Wait for com.apple.mobilesafari to idle
+    t =     9.35s     Find the "Message the room" TextView
+    t =     9.38s     Check for interrupting elements affecting "Message the room… use @ to bring someone in" TextView
+    t =     9.41s     Synthesize event
+    t =     9.69s     Wait for com.apple.mobilesafari to idle
+    t =    10.01s Type 'Safari can type af...' into "Message the room… use @ to bring someone in" TextView
+    t =    10.01s     Wait for com.apple.mobilesafari to idle
+    t =    10.03s     Find the "Message the room… use @ to bring someone in" TextView
+    t =    10.07s     Check for interrupting elements affecting "Message the room… use @ to bring someone in" TextView
+    t =    10.10s     Synthesize event
+    t =    11.00s     Wait for com.apple.mobilesafari to idle
+    t =    11.00s Tap "Send message" Button
+    t =    11.00s     Wait for com.apple.mobilesafari to idle
+    t =    11.00s     Find the "Send message" Button
+    t =    11.04s     Check for interrupting elements affecting "Send message" Button
+    t =    11.07s     Synthesize event
+    t =    11.39s     Wait for com.apple.mobilesafari to idle
+    t =    11.77s Waiting 10.0s for "Safari can type after closing the drawer." StaticText to exist
+    t =    12.82s     Checking `Expect predicate `existsNoRetry == 1` for object "Safari can type after closing the drawer." StaticText`
+    t =    12.82s         Checking existence of `"Safari can type after closing the drawer." StaticText`
+    t =    12.85s Find the Application 'com.apple.mobilesafari'
+    t =    12.96s Added attachment named 'composer-after-drawer'
+    t =    13.14s Tear Down
+Test Case '-[RoomsSafariUITests.RoomsSafariTests testPersistentDrawerAndComposerInSafari]' passed (13.161 seconds).
+Test Suite 'RoomsSafariTests' passed at 2026-10-09 18:02:52.808.
+	 Executed 1 test, with 0 failures (0 unexpected) in 13.161 (13.170) seconds
+Test Suite 'RoomsSafariUITests.xctest' passed at 2026-10-09 18:02:52.808.
+	 Executed 1 test, with 0 failures (0 unexpected) in 13.161 (13.171) seconds
+Test Suite 'All tests' passed at 2026-10-09 18:02:52.808.
+	 Executed 1 test, with 0 failures (0 unexpected) in 13.161 (13.172) seconds
+2026-10-09 18:02:53.105 xcodebuild[2365:25344] [MT] IDETestOperationsObserverDebug: 17.369 elapsed -- Testing started completed.
+2026-10-09 18:02:53.105 xcodebuild[2365:25344] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-09 18:02:53.105 xcodebuild[2365:25344] [MT] IDETestOperationsObserverDebug: 17.369 sec, +17.369 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/admin/rooms-safari-keyboard-fixed/rooms-safari.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started

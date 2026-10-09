@@ -3,6 +3,11 @@ import type { Command } from "commander";
 import { readFile, writeFile } from "node:fs/promises";
 import { randomUUID } from "node:crypto";
 import { createExperimentalRoomsClient } from "@bb/sdk";
+import {
+  roomsIntentSchema,
+  roomsPolicyInputSchema,
+  roomsAgentCommandSchema,
+} from "@bb/domain";
 import { action } from "../action.js";
 const printJson = (value: unknown): void => {
   process.stdout.write(JSON.stringify(value, null, 2) + "\n");
@@ -14,7 +19,7 @@ export function registerRoomsCommands(program: Command) {
     .requiredOption("--server <url>", "Rooms gateway URL")
     .requiredOption(
       "--token-file <path>",
-      "Private file containing your Rooms session token",
+      "Private file containing a Rooms session or activation token",
     );
   rooms
     .command("login")
@@ -71,19 +76,84 @@ export function registerRoomsCommands(program: Command) {
     );
   rooms
     .command("send <room>")
-    .description("Send a prompt; @mentions choose agents")
+    .description("Publish a room message with explicit recipients and intent")
     .requiredOption("--message-file <path>", "UTF-8 prompt file")
+    .option("--intent <kind>", "post, request, or notice", "post")
+    .option("--to <ids>", "Comma-separated participant IDs")
+    .option("--reply-to <message>", "Message being answered")
+    .option("--request-id <id>", "UUID reused to retry the same send")
     .option("--json", "JSON output")
     .action(
-      action(async (room: string, opts: { messageFile: string }) =>
+      action(
+        async (
+          room: string,
+          opts: {
+            messageFile: string;
+            intent: string;
+            to?: string;
+            replyTo?: string;
+            requestId?: string;
+          },
+        ) =>
+          printJson(
+            await (
+              await client()
+            ).send(room, {
+              text: await readFile(opts.messageFile, "utf8"),
+              requestId: opts.requestId ?? randomUUID(),
+              intent: roomsIntentSchema.parse(opts.intent),
+              recipients:
+                opts.to
+                  ?.split(",")
+                  .map((id) => id.trim())
+                  .filter(Boolean) ?? [],
+              replyTo: opts.replyTo ?? null,
+            }),
+          ),
+      ),
+    );
+  rooms
+    .command("policy <room>")
+    .description("Set visible room pause and activation budget policy")
+    .requiredOption(
+      "--file <path>",
+      "JSON with paused and maxActivations (null for unlimited)",
+    )
+    .option("--json", "JSON output")
+    .action(
+      action(async (room: string, opts: { file: string }) =>
         printJson(
           await (
             await client()
-          ).send(room, {
-            text: await readFile(opts.messageFile, "utf8"),
-            requestId: randomUUID(),
-            recipients: [],
-          }),
+          ).policy(
+            room,
+            roomsPolicyInputSchema.parse(
+              JSON.parse(await readFile(opts.file, "utf8")),
+            ),
+          ),
+        ),
+      ),
+    );
+  rooms
+    .command("agent-command")
+    .description(
+      "Execute a scoped participation command using an activation token",
+    )
+    .requiredOption(
+      "--file <path>",
+      "JSON command with operation, requestId and args",
+    )
+    .option("--json", "JSON output")
+    .action(
+      action(async (opts: { file: string }) =>
+        printJson(
+          await (
+            await client()
+          ).agentCommand(
+            roomsAgentCommandSchema.parse(
+              JSON.parse(await readFile(opts.file, "utf8")),
+            ),
+          ),
         ),
       ),
     );
@@ -123,6 +193,26 @@ export function registerRoomsCommands(program: Command) {
       ),
     );
   rooms
+    .command("activity <room> <agent>")
+    .description("Inspect private execution status as the room owner")
+    .option("--json", "JSON output")
+    .action(
+      action(async (room: string, agent: string) =>
+        printJson(await (await client()).activity(room, agent)),
+      ),
+    );
+  rooms
+    .command("recover <room> <agent>")
+    .description(
+      "Stop uncertain executions and release their fenced delivery as the owner",
+    )
+    .option("--json", "JSON output")
+    .action(
+      action(async (room: string, agent: string) =>
+        printJson(await (await client()).recover(room, agent)),
+      ),
+    );
+  rooms
     .command("steer <room> <agent>")
     .description("Redirect a running agent")
     .requiredOption("--message-file <path>", "UTF-8 steering message")
@@ -140,7 +230,7 @@ export function registerRoomsCommands(program: Command) {
   rooms
     .command("request <method> <path>")
     .description(
-      "Call the Rooms API, including membership, default-agent and interaction operations",
+      "Call the Rooms API, including membership and interaction operations",
     )
     .option("--body-file <path>", "JSON request body")
     .option("--json", "JSON output")

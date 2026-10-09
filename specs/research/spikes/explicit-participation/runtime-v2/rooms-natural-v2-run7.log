@@ -1,0 +1,11 @@
+PASS two independently authenticated human participants
+PASS independent real agents chose and published their own contributions
+PASS a real discussion continued beyond two peer handoffs before becoming idle
+PASS Builder runs in a top-level BB thread
+PASS Reviewer runs in a top-level BB thread
+PASS a second human notice can complete with successful no-reply silence
+Error: model-authored public text grew across separately observed stream revisions
+    at check (file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:40:25)
+    at file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:328:3
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+Evidence: /Users/admin/rooms-natural-v2-run7.json

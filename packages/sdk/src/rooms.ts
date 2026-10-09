@@ -6,6 +6,11 @@ import {
   roomsUserSchema,
   roomsCreateAgentSchema,
   roomsMessageInputSchema,
+  roomsPolicyInputSchema,
+  roomsAgentCommandSchema,
+  roomsAgentCommandResultSchema,
+  roomsActivitySchema,
+  roomsPublicationReceiptSchema,
 } from "@bb/domain";
 export interface ExperimentalRoomsClientOptions {
   baseUrl: string;
@@ -82,25 +87,81 @@ export function createExperimentalRoomsClient(
       );
     },
     async send(roomId: string, input: z.input<typeof roomsMessageInputSchema>) {
-      return request(
-        "POST",
-        `/rooms/${encodeURIComponent(roomId)}/messages`,
-        roomsMessageInputSchema.parse(input),
+      return roomsPublicationReceiptSchema.parse(
+        await request(
+          "POST",
+          `/rooms/${encodeURIComponent(roomId)}/messages`,
+          roomsMessageInputSchema.parse(input),
+        ),
+      );
+    },
+    async policy(
+      roomId: string,
+      input: z.input<typeof roomsPolicyInputSchema>,
+    ) {
+      return roomsRoomSchema.parse(
+        await request(
+          "PUT",
+          `/rooms/${encodeURIComponent(roomId)}/policy`,
+          roomsPolicyInputSchema.parse(input),
+        ),
+      );
+    },
+    async agentCommand(input: z.input<typeof roomsAgentCommandSchema>) {
+      return roomsAgentCommandResultSchema.parse(
+        await request(
+          "POST",
+          "/agent/commands",
+          roomsAgentCommandSchema.parse(input),
+        ),
       );
     },
     async stop(roomId: string, agentId: string) {
-      return request(
-        "POST",
-        `/rooms/${encodeURIComponent(roomId)}/agents/${encodeURIComponent(agentId)}/stop`,
-        {},
+      return z
+        .object({ ok: z.literal(true) })
+        .parse(
+          await request(
+            "POST",
+            `/rooms/${encodeURIComponent(roomId)}/agents/${encodeURIComponent(agentId)}/stop`,
+            {},
+          ),
+        );
+    },
+    async activity(roomId: string, agentId: string) {
+      return roomsActivitySchema.parse(
+        await request(
+          "GET",
+          `/rooms/${encodeURIComponent(roomId)}/agents/${encodeURIComponent(agentId)}/activity`,
+        ),
       );
     },
+    async recover(roomId: string, agentId: string) {
+      return z
+        .object({
+          recovered: z.literal(true),
+          inspectedThreads: z.array(z.string()),
+        })
+        .parse(
+          await request(
+            "POST",
+            `/rooms/${encodeURIComponent(roomId)}/agents/${encodeURIComponent(agentId)}/recover`,
+            {},
+          ),
+        );
+    },
     async steer(roomId: string, agentId: string, text: string) {
-      return request(
-        "POST",
-        `/rooms/${encodeURIComponent(roomId)}/agents/${encodeURIComponent(agentId)}/steer`,
-        { text },
-      );
+      return z
+        .object({
+          accepted: z.literal(true),
+          delivery: z.enum(["sent", "queued"]),
+        })
+        .parse(
+          await request(
+            "POST",
+            `/rooms/${encodeURIComponent(roomId)}/agents/${encodeURIComponent(agentId)}/steer`,
+            { text },
+          ),
+        );
     },
   };
 }

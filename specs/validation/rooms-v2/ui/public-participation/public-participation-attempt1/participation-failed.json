@@ -1,0 +1,6 @@
+{
+  "roomId": "",
+  "claims": [],
+  "failures": [],
+  "error": "Error: locator.click: Error: strict mode violation: getByRole('button', { name: 'Create room', exact: true }) resolved to 2 elements:\n    1) <button aria-label=\"Create room\">＋</button> aka getByLabel('Create room')\n    2) <button class=\"primary\">Create room</button> aka getByText('Create room')\n\nCall log:\n  - waiting for getByRole('button', { name: 'Create room', exact: true })\n"
+}

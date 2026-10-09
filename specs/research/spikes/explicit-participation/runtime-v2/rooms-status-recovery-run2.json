@@ -1,0 +1,19 @@
+{
+  "data": "/var/folders/p7/f_99nxmj7s16qrxbl0cbpz4r0000gn/T/rooms-observation-recovery-LqO0Pc",
+  "originalDeliveryId": "837e22c4-fb06-43b5-a343-d04dcebacd15",
+  "threadId": "thr_5fagmv4pji",
+  "checks": [
+    "native connectivity failure retains activation and exposes its observation error",
+    "identical polling failures produce one diagnostic instead of repeating every500ms",
+    "actual native terminal receipt clears transient error and settles successful no-public-reply",
+    "private provider output remains unpublished during recovery",
+    "recovery creates no new native execution events"
+  ],
+  "beforeSeq": 131,
+  "afterSeq": 131,
+  "recovered": {
+    "state": "complete",
+    "error": null,
+    "outcome": "no_reply"
+  }
+}

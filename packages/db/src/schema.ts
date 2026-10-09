@@ -1359,3 +1359,181 @@ export const projectAttachmentBackfills = sqliteTable(
     error: text("error"),
   },
 );
+
+export const roomUsers = sqliteTable("rooms_users", {
+  id: text("id").primaryKey(),
+  handle: text("handle").notNull().unique(),
+  name: text("name").notNull(),
+  password: text("password").notNull(),
+});
+export const roomSessions = sqliteTable("rooms_sessions", {
+  hash: text("hash").primaryKey(),
+  userId: text("user_id")
+    .notNull()
+    .references(() => roomUsers.id),
+  expires: integer("expires").notNull(),
+});
+export const sharedRooms = sqliteTable("rooms_rooms", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  ownerId: text("owner_id").notNull(),
+  revision: integer("revision").notNull().default(0),
+  paused: integer("paused").notNull().default(0),
+  pauseReason: text("pause_reason"),
+  maxActivations: integer("max_activations"),
+  activationsUsed: integer("activations_used").notNull().default(0),
+});
+export const roomMembers = sqliteTable(
+  "rooms_members",
+  {
+    roomId: text("room_id")
+      .notNull()
+      .references(() => sharedRooms.id),
+    userId: text("user_id")
+      .notNull()
+      .references(() => roomUsers.id),
+    role: text("role").notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.roomId, t.userId] })],
+);
+export const roomInvites = sqliteTable("rooms_invites", {
+  hash: text("hash").primaryKey(),
+  roomId: text("room_id")
+    .notNull()
+    .references(() => sharedRooms.id),
+  role: text("role").notNull(),
+  expires: integer("expires").notNull(),
+  used: integer("used").notNull().default(0),
+});
+export const roomAgents = sqliteTable(
+  "rooms_agents",
+  {
+    id: text("id").primaryKey(),
+    roomId: text("room_id")
+      .notNull()
+      .references(() => sharedRooms.id),
+    handle: text("handle").notNull(),
+    name: text("name").notNull(),
+    provider: text("provider").notNull(),
+    model: text("model").notNull(),
+    instructions: text("instructions").notNull(),
+    projectId: text("project_id"),
+    threadId: text("thread_id"),
+    status: text("status").notNull().default("idle"),
+    epoch: integer("epoch").notNull().default(0),
+  },
+  (t) => [uniqueIndex("rooms_agent_handle").on(t.roomId, t.handle)],
+);
+export const roomMessages = sqliteTable(
+  "rooms_messages",
+  {
+    seq: integer("seq").primaryKey({ autoIncrement: true }),
+    id: text("id").notNull().unique(),
+    roomId: text("room_id")
+      .notNull()
+      .references(() => sharedRooms.id),
+    authorId: text("author_id").notNull(),
+    authorName: text("author_name").notNull(),
+    kind: text("kind").notNull(),
+    text: text("text").notNull(),
+    status: text("status").notNull(),
+    createdAt: integer("created_at").notNull(),
+    causeId: text("cause_id"),
+    intent: text("intent").notNull(),
+    recipients: text("recipients").notNull(),
+    replyTo: text("reply_to"),
+    activationId: text("activation_id"),
+  },
+  (t) => [
+    index("rooms_message_order").on(t.roomId, t.seq),
+    index("rooms_message_activation").on(t.activationId),
+  ],
+);
+export const roomDeliveries = sqliteTable(
+  "rooms_deliveries",
+  {
+    seq: integer("seq").primaryKey({ autoIncrement: true }),
+    id: text("id").notNull().unique(),
+    roomId: text("room_id")
+      .notNull()
+      .references(() => sharedRooms.id),
+    agentId: text("agent_id")
+      .notNull()
+      .references(() => roomAgents.id),
+    messageId: text("message_id")
+      .notNull()
+      .references(() => roomMessages.id),
+    state: text("state").notNull(),
+    error: text("error"),
+    createdAt: integer("created_at").notNull(),
+    startedAt: integer("started_at"),
+    intent: text("intent").notNull(),
+    activationId: text("activation_id"),
+    threadId: text("thread_id"),
+    outcome: text("outcome"),
+  },
+  (t) => [
+    uniqueIndex("rooms_delivery_once").on(t.agentId, t.messageId),
+    index("rooms_delivery_work").on(t.state, t.seq),
+  ],
+);
+export const roomActivations = sqliteTable(
+  "rooms_activations",
+  {
+    id: text("id").primaryKey(),
+    agentId: text("agent_id")
+      .notNull()
+      .references(() => roomAgents.id),
+    roomId: text("room_id")
+      .notNull()
+      .references(() => sharedRooms.id),
+    deliveryId: text("delivery_id")
+      .notNull()
+      .references(() => roomDeliveries.id),
+    state: text("state").notNull(),
+    threadId: text("thread_id"),
+    epoch: integer("epoch").notNull(),
+    capabilityHash: text("capability_hash").notNull().unique(),
+    revoked: integer("revoked").notNull().default(0),
+    requestedOutcome: text("requested_outcome"),
+    stopRequested: integer("stop_requested").notNull().default(0),
+  },
+  (t) => [
+    uniqueIndex("rooms_one_active_agent")
+      .on(t.agentId)
+      .where(sql`${t.state} IN ('dispatching','running','uncertain')`),
+    uniqueIndex("rooms_activation_delivery").on(t.deliveryId),
+  ],
+);
+export const roomReceipts = sqliteTable(
+  "rooms_receipts",
+  {
+    scope: text("scope").notNull(),
+    requestId: text("request_id").notNull(),
+    payload: text("payload").notNull(),
+    response: text("response").notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.scope, t.requestId] })],
+);
+export const roomStreams = sqliteTable("rooms_streams", {
+  messageId: text("message_id")
+    .primaryKey()
+    .references(() => roomMessages.id),
+  activationId: text("activation_id")
+    .notNull()
+    .references(() => roomActivations.id),
+  state: text("state").notNull(),
+  nextSequence: integer("next_sequence").notNull().default(0),
+  commitPayload: text("commit_payload"),
+});
+export const roomChunks = sqliteTable(
+  "rooms_chunks",
+  {
+    messageId: text("message_id")
+      .notNull()
+      .references(() => roomStreams.messageId),
+    sequence: integer("sequence").notNull(),
+    text: text("text").notNull(),
+  },
+  (t) => [primaryKey({ columns: [t.messageId, t.sequence] })],
+);

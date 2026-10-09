@@ -1,0 +1,5 @@
+PASS two visible waiting replies before first token, live elapsed time, usable composer
+PASS queued and starting states
+PASS actual streaming text replaces only its agent’s waiting reply
+PASS waiting continues between outputs and clears on stop/error
+PASS pending survives reload, fits mobile, clears on completion; no browser errors

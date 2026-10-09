@@ -1,0 +1,16 @@
+{
+  "roomId": "4f6f361d-54e8-4772-b9d8-68c110f1048c",
+  "claims": [
+    "Two separately authenticated human browser sessions joined through one-time invitation",
+    "Concurrent human messages preserve authorship and an identical retried post appears once",
+    "Structured recipients route a request without textual mentions; both browsers show pending work and remain writable while paused",
+    "Two real agents independently published replies to a natural request and settled pending status",
+    "Raw narrative mentions do not wake agents without structured addressing",
+    "An optional natural context notice completed without a public acknowledgment or endless pending indicator",
+    "A natural peer request produced an authenticated Atlas request and independent Nova publication",
+    "A second human can send an addressed follow-up while an agent is running; it remains durably queued",
+    "Stop cancels the selected agent activation and removes its pending reply"
+  ],
+  "failures": [],
+  "error": "Error: locator.click: Error: strict mode violation: getByLabel('Room controls', { exact: true }) resolved to 2 elements:\n    1) <button aria-label=\"Room controls\">⋯</button> aka getByRole('button', { name: 'Room controls' })\n    2) <div inert=\"\" role=\"dialog\" tabindex=\"-1\" aria-hidden=\"true\" data-state=\"closed\" data-bb-plugin-root=\"\" data-bb-portaled-overlay=\"\" data-persistent-drawer-content=\"\" aria-labelledby=\"room-panel-title\" class=\"fixed inset-x-0 bottom-0 z-50 mt-24 flex max-h-[calc(92dvh-var(--bb-drawer-keyboard-inset,0px))] flex-col rounded-t-xl border bg-background pb-[var(--bb-safe-area-bottom,env(safe-area-inset-bottom))] outline-none rooms-drawer\">…</div> aka locator('div').filter({ hasText: 'Room controls×An agent turn' })\n\nCall log:\n  - waiting for getByLabel('Room controls', { exact: true })\n"
+}

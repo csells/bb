@@ -1,0 +1,10 @@
+{
+  "checks": [
+    "copied compiled CLI executes from temporary path, including macOS /var alias",
+    "copied compiled CLI emits actual HTTP publication receipt",
+    "compiled subprocess transmits selected text under credential-bound authorization",
+    "invalid compiled CLI invocation fails visibly instead of exiting successfully without action"
+  ],
+  "aliasDirectory": "/var/folders/p7/f_99nxmj7s16qrxbl0cbpz4r0000gn/T/rooms-cli-compiled-WmiJNl",
+  "canonicalDirectory": "/private/var/folders/p7/f_99nxmj7s16qrxbl0cbpz4r0000gn/T/rooms-cli-compiled-WmiJNl"
+}

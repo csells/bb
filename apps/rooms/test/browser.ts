@@ -113,6 +113,15 @@ try {
   await expect(blair.getByRole("alert")).toContainText("not a member");
   await alex.getByLabel("Close panel").click();
   console.log("[7/8] Membership revocation closes access in the other browser");
+  await expect
+    .poll(() =>
+      alex
+        .locator(".rooms-drawer")
+        .evaluate(
+          (node) => node.getBoundingClientRect().top >= innerHeight - 1,
+        ),
+    )
+    .toBe(true);
   await mkdir(data + "/evidence", { recursive: true });
   await alex.screenshot({
     path: data + "/evidence/humans-desktop.png",

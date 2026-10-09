@@ -381,6 +381,10 @@ connects. With `--no-wait`, it returns the creating host ID immediately.
 - `bb rooms send`
 - `bb rooms invite`
 - `bb rooms agent-add`
+- `bb rooms policy`
+- `bb rooms agent-command`
+- `bb rooms activity`
+- `bb rooms recover`
 - `bb rooms stop`
 - `bb rooms steer`
 - `bb rooms request`

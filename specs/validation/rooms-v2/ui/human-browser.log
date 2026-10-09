@@ -1,0 +1,9 @@
+[1/8] Owner registration through the browser passed
+[2/8] One-time invitation and separate second-human session passed
+[3/8] Both humans see each other’s live messages with distinct authors
+[4/8] Concurrent sends retained exactly once in both browsers
+[5/8] Reload reconstructs the persisted conversation
+[6/8] Anonymous reads and forged attribution rejected
+[7/8] Membership revocation closes access in the other browser
+[8/8] Desktop/mobile render, no horizontal overflow or browser exceptions
+PASS human browser acceptance 9fa8fa06-f7df-49cf-be2f-8d22397918d2

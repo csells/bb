@@ -1,5 +1,9 @@
 :root {
   color-scheme: dark;
+  --text-2xs: 0.625rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.9375rem;
   --canvas: #171819;
   --ink: #eeeae3;
   --panel: color-mix(in oklch, var(--canvas), var(--ink) 3%);
@@ -9,7 +13,7 @@
   --accent: #e5bb78;
   --green: #a3cba4;
   font:
-    14px/1.5 -apple-system,
+    16px/1.5 -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
     sans-serif;
@@ -21,6 +25,7 @@
 }
 body {
   margin: 0;
+  font-size: 14px;
 }
 button,
 input,
@@ -892,4 +897,200 @@ footer {
     animation: none !important;
     transition: none !important;
   }
+}
+
+.visually-hidden,
+.rooms-drawer .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+.composer-intent {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 10px 12px 0;
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+.composer-intent label {
+  margin: 0;
+}
+.composer-intent select {
+  padding: 5px 8px;
+  font-size: var(--text-xs);
+}
+.recipient-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 8px 12px 0;
+}
+.recipient-chips button {
+  padding: 3px 8px;
+  font-size: var(--text-xs);
+  background: color-mix(in oklch, var(--canvas), var(--accent) 12%);
+}
+.message-recipients {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  margin-bottom: 6px;
+}
+.message.system {
+  border-inline-start: 2px solid var(--accent);
+  padding-inline-start: 10px;
+  color: var(--muted);
+}
+.message.system > .avatar {
+  display: none;
+}
+.room-paused {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 22px;
+  background: color-mix(in oklch, var(--canvas), var(--accent) 8%);
+  font-size: var(--text-sm);
+}
+.room-paused strong {
+  margin-inline-end: 8px;
+  color: var(--accent);
+}
+:where([data-persistent-drawer-backdrop]) {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: color-mix(in oklab, var(--canvas), transparent 30%);
+}
+:where(.rooms-drawer) {
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 51;
+  width: 360px;
+  max-width: 100vw;
+  display: flex;
+  flex-direction: column;
+  background: var(--panel);
+  border-inline-start: 1px solid var(--line);
+  outline: none;
+}
+:where(.rooms-drawer) .panel {
+  position: static;
+  width: 100%;
+  min-height: 0;
+  flex: 1;
+  border: 0;
+  box-shadow: none;
+}
+:where(.rooms-drawer) [data-persistent-drawer-handle] {
+  height: 12px;
+  flex-shrink: 0;
+}
+:where(.rooms-drawer) [data-responsive-drawer-placeholder] {
+  min-height: 128px;
+}
+@media (max-width: 700px) {
+  :where(.rooms-drawer) {
+    top: auto;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-height: calc(92dvh - var(--bb-drawer-keyboard-inset, 0px));
+    border-radius: 16px 16px 0 0;
+    border-top: 1px solid var(--line);
+  }
+  :where(.rooms-drawer) [data-persistent-drawer-handle] {
+    height: 28px;
+    width: 64px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    touch-action: none;
+  }
+  :where(.rooms-drawer) [data-persistent-drawer-handle] > div {
+    width: 40px;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--muted);
+  }
+  .composer-intent > span {
+    display: none;
+  }
+  .room-paused {
+    padding: 8px 14px;
+    align-items: start;
+    flex-direction: column;
+  }
+  .mentions {
+    max-width: calc(100vw - 90px);
+  }
+}
+
+.input-status {
+  padding: 6px 2px;
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+
+.activity-link {
+  width: 100%;
+  margin-top: 12px;
+}
+.activity-details {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 10px 14px;
+  font-size: var(--text-sm);
+}
+.activity-details dt {
+  color: var(--muted);
+}
+.activity-details dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.activity-details code {
+  font-size: var(--text-xs);
+}
+
+@media (max-width: 767px) and (pointer: coarse) {
+  :root {
+    --text-2xs: 0.6875rem;
+    --text-xs: 0.875rem;
+    --text-sm: 0.9375rem;
+    --text-base: 1rem;
+  }
+  input,
+  select,
+  textarea,
+  .composer textarea,
+  .composer-intent select {
+    font-size: var(--text-base);
+  }
+}
+
+:where(.rooms-drawer) .panel-title {
+  position: sticky;
+  top: 0;
+  background: var(--panel);
+  z-index: 1;
+}
+:where(.rooms-drawer) .panel-title button {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.pending-error {
+  color: var(--accent);
 }

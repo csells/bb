@@ -1,0 +1,15 @@
+PASS two independently authenticated human participants
+PASS two real independent agents executed explicit publication fixtures
+PASS Builder runs in a top-level BB thread
+PASS Reviewer runs in a top-level BB thread
+PASS controlled model actually emitted private labeled-other-agent text
+PASS a second human notice can complete with successful no-reply silence
+PASS scripted public chunks executed by real model tool produced observable stream revisions
+PASS gateway restart reattached the same accepted activation and BB thread
+PASS gateway restart produced one explicit publication without replaying execution
+PASS second human steering input is durably visible in the room
+PASS real running agent observed native steering and explicitly published its effect
+PASS stopped real activation rejects a delayed authenticated publisher
+PASS canceled real execution published no final output
+PASS actual private finals containing another agent label and mention never became room messages
+Evidence: /Users/admin/rooms-controlled-v2-run3.json

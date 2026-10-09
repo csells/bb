@@ -1,0 +1,23 @@
+{
+  "packs_commit": "520e95cb22992a8a1017f7a60da267f203497c7e",
+  "core_source_commit": "5de30260d5d7c7f27ce1b7e518209c5508b06467",
+  "execution": "disposable Rooms VM, /Users/admin/gascity-participation-spike",
+  "go_version": "go1.25.9 darwin/arm64",
+  "python_version": "3.14.7",
+  "pytest_version": "9.1.1",
+  "go_passed_events_including_subtests": 55,
+  "go_top_level_passed": 46,
+  "go_failures": 0,
+  "go_package_result": [
+    {
+      "Time": "2026-10-09T17:08:17.138877Z",
+      "Action": "pass",
+      "Package": "github.com/sjarmak/gc-slack-adapter",
+      "Elapsed": 4.791
+    }
+  ],
+  "python_passed": 88,
+  "go_command": "GOMAXPROCS=1 GOTOOLCHAIN=local go test -json -race -p=1 ./... -run \"Test(ComputeWakeSet|CompanyThreadParticipant|CompanyThreadParticipants|Acceptance3|Acceptance5|IngressReceipt|CompanyAsync|CompanyCrash|CompanyRetry|CompanyStoreFailure|CompanySaturation)\" -count=1",
+  "python_command": "python -m pytest tests/test_slack_company_synthesis.py tests/test_slack_chat_reply_current.py -q --junitxml=python-junit.xml",
+  "scope": "real reference pack implementation with fixture data and fake Slack/GC HTTP endpoints, no live Slack or model calls; no BB implementation claim"
+}

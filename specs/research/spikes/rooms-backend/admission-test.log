@@ -1,0 +1,41 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 8aeb2964118fbcd3
+@bb/templates:generate:templates: cache miss, executing 46369ac3f9cebfe8
+@bb/templates:generate:plugin-scaffold: cache miss, executing ead6bc40853aabc4
+//:ensure-native-modules: 
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules: 
+@bb/templates:generate:plugin-scaffold: 
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold: 
+@bb/templates:generate:templates: 
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates: 
+@bb/rooms:test: cache miss, executing fcdd24ff18f4ab24
+@bb/rooms:test: 
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:test: > vitest run "admission.test.ts"
+@bb/rooms:test: 
+@bb/rooms:test: 
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb/apps/rooms[39m
+@bb/rooms:test: 
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/admission.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+@bb/rooms:test: 
+@bb/rooms:test: [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+@bb/rooms:test: [2m   Start at [22m 17:38:06
+@bb/rooms:test: [2m   Duration [22m 327ms[2m (transform 175ms, setup 0ms, import 243ms, tests 8ms, environment 0ms)[22m
+@bb/rooms:test: 
+
+ Tasks:    4 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    1.068s 
+

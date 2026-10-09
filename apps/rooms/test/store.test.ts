@@ -55,30 +55,4 @@ describe("separate humans and durable room state", () => {
     expect(s.messages(room.id)).toHaveLength(1);
     expect(s.work()).toHaveLength(1);
   });
-  it("updates one streamed message without losing attribution or adding duplicate rows", () => {
-    const { s, room, owner } = fixture();
-    const { message } = s.requestMessage(owner, room.id, "hello", "one");
-    s.putMessage(
-      {
-        ...message,
-        id: "stream-first",
-        text: "first",
-        kind: "agent",
-        status: "streaming",
-      },
-      "stream",
-    );
-    s.putMessage(
-      {
-        ...message,
-        id: "other",
-        text: "first second",
-        kind: "agent",
-        status: "complete",
-      },
-      "stream",
-    );
-    expect(s.messages(room.id)).toHaveLength(2);
-    expect(s.messages(room.id)[1].text).toBe("first second");
-  });
 });

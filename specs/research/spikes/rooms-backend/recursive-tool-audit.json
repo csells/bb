@@ -1,0 +1,68 @@
+{
+  "scope": "Preserved runtime-v2 attempts only; source-only audit, no provider/VM calls",
+  "attempts": [
+    {
+      "attempt_file": "rooms-natural-v2-run2.json",
+      "sha256": "a76ab12273c994e494ea7e17c295c0eb622a09e614ccf9f4bcfdb5b9d760edb5",
+      "captured_private_threads": 0,
+      "recursive_work_rows": 0,
+      "recursive_command_tool_calls": 0,
+      "participation_launcher_calls": 0,
+      "launcher_calls": [],
+      "public_agent_messages": 0,
+      "coverage_note": "Counts are from preserved privateTurns snapshots, recursively including turn children; absent snapshots are not evidence that no execution occurred."
+    },
+    {
+      "attempt_file": "rooms-natural-v2-run3.json",
+      "sha256": "4009d895bdcfc0c15421394332af6f63a1af64b025455ea8bffd8f9c9da1a888",
+      "captured_private_threads": 1,
+      "recursive_work_rows": 0,
+      "recursive_command_tool_calls": 0,
+      "participation_launcher_calls": 0,
+      "launcher_calls": [],
+      "public_agent_messages": 0,
+      "coverage_note": "Counts are from preserved privateTurns snapshots, recursively including turn children; absent snapshots are not evidence that no execution occurred."
+    },
+    {
+      "attempt_file": "rooms-natural-v2-run4.json",
+      "sha256": "1d2fb907fe934547966ed6e7f3e27a00ea7edb7c25cec653215f907483de5886",
+      "captured_private_threads": 1,
+      "recursive_work_rows": 0,
+      "recursive_command_tool_calls": 0,
+      "participation_launcher_calls": 0,
+      "launcher_calls": [],
+      "public_agent_messages": 0,
+      "coverage_note": "Counts are from preserved privateTurns snapshots, recursively including turn children; absent snapshots are not evidence that no execution occurred."
+    },
+    {
+      "attempt_file": "rooms-natural-v2-run5.json",
+      "sha256": "a7d65f350b29b70b3b964018fd3e7f6b88a2aa4a8ebf839204f1d31428e17a53",
+      "captured_private_threads": 1,
+      "recursive_work_rows": 0,
+      "recursive_command_tool_calls": 0,
+      "participation_launcher_calls": 0,
+      "launcher_calls": [],
+      "public_agent_messages": 0,
+      "coverage_note": "Counts are from preserved privateTurns snapshots, recursively including turn children; absent snapshots are not evidence that no execution occurred."
+    },
+    {
+      "attempt_file": "rooms-natural-v2-run6.json",
+      "sha256": "ca1fb768aecd4dbac56896208989b099e65fa97eb3c1efcf50136067c3bf522b",
+      "captured_private_threads": 1,
+      "recursive_work_rows": 1,
+      "recursive_command_tool_calls": 1,
+      "participation_launcher_calls": 1,
+      "launcher_calls": [
+        {
+          "work_row_id": "thr_gys9cdtcpf:command:da9a5d777e-i1",
+          "exit_code": 0,
+          "status": "completed",
+          "output_characters": 0,
+          "operation": "request"
+        }
+      ],
+      "public_agent_messages": 0,
+      "coverage_note": "Counts are from preserved privateTurns snapshots, recursively including turn children; absent snapshots are not evidence that no execution occurred."
+    }
+  ]
+}

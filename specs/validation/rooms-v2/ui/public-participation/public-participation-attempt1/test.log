@@ -1,0 +1,18 @@
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+locator.click: Error: strict mode violation: getByRole('button', { name: 'Create room', exact: true }) resolved to 2 elements:
+    1) <button aria-label="Create room">＋</button> aka getByLabel('Create room')
+    2) <button class="primary">Create room</button> aka getByText('Create room')
+
+Call log:
+  - waiting for getByRole('button', { name: 'Create room', exact: true })
+
+    at <anonymous> (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/participation.browser.ts:114:72) {
+  log: [
+    "  - waiting for getByRole('button', { name: 'Create room', exact: true })"
+  ]
+}
+
+Node.js v24.20.0

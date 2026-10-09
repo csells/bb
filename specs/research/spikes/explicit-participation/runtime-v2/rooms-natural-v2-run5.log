@@ -1,0 +1,6 @@
+PASS two independently authenticated human participants
+Error: independent real agents chose and published their own contributions
+    at check (file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:34:25)
+    at file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:226:3
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+Evidence: /Users/admin/rooms-natural-v2-run5.json

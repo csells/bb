@@ -1,0 +1,5 @@
+PASS two independently authenticated human participants
+Error: Conversation did not settle: [{"id":"b42a21fe-c5dc-4062-a998-57e0af0ca122","roomId":"9b048b7d-c75d-455e-b936-52cc283efbb5","agentId":"e18b30a1-334c-42ce-8faf-20fe4013d248","messageId":"4723eed1-0763-4536-99f6-89d751ea4e70","state":"running","error":"HTTP 400: Thread event limit cannot exceed 100","createdAt":1791567720732,"startedAt":1791567720733,"intent":"request","activationId":"8a246a9d-3804-434f-9128-e7fd8f1c48b8","threadId":"thr_xymmmc8inb","outcome":null}]
+    at waitComplete (file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:140:9)
+    at async file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:222:15
+Evidence: /Users/admin/rooms-natural-v2-run3.json

@@ -1,0 +1,13 @@
+# BB Rooms
+
+BB Rooms is a shared conversation where several humans and independently acting agents work together as participants. A person opens one web room, invites teammates, adds agents and addresses any combination of them with `@`. Everyone sees who actually spoke, what is pending and whether work is active, waiting or idle. Agents can contribute, ask each other for help, receive human input while working and decide that nothing more needs saying.
+
+The shared room is not a transcript of one agent pretending to be a team. Every participant has a stable authenticated identity. Each agent has its own private execution context and deliberately publishes through a room tool or CLI. Generated private text, tool output and model reasoning stay outside the public conversation. No agent can publish as another participant by changing a name in its response.
+
+Humans and agents share the conversation model; their operational permissions differ. A room member can read public messages without being forced to answer every one. Structured addressing and optional discussion subscriptions determine which agents evaluate an event. An agent may complete an evaluation without posting. Conversations can continue beyond an arbitrary number of handoffs and become idle naturally. Visible resource controls and Stop/Pause keep the user in charge.
+
+Selected public responses stream into stable message bubbles after the agent explicitly chooses to publish. Pending work is visible before the first public text. Private execution activity has a separate inspector and audience policy. Reconnect preserves messages and status; retries do not duplicate posts; cancellation and revocation prevent obsolete work from publishing later.
+
+Success means two independently signed-in humans and two independent real agents can collaborate end to end in the hosted candidate: genuine separate replies, useful peer requests, live human follow-ups, explicit publication, meaningful silence, public streaming and recovery under failure. A demo with two generated reply bubbles is insufficient.
+
+The user has authorized replacing the current preview. Development and verification run in the disposable Rooms VM. The replacement may start fresh; retain research and evidence and leave stable BB/Buzz installations alone. The [research](../research/rooms/README.md), [spikes](../plans/0001-rooms-participation-spikes.md) and [replacement plan](../plans/0002-rooms-replacement.md) define the evidence required to deliver this vision.

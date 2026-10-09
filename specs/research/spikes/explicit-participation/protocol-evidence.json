@@ -1,0 +1,200 @@
+{
+  "passed": [
+    "two human principals preserve independent authors",
+    "author and room override rejected",
+    "other agent and same agent other activation cannot append stream",
+    "begin append replay never wake an agent",
+    "conflicting commit retry recipient is rejected",
+    "lost commit acknowledgment retry returns one publication and one delivery",
+    "ack and no-post settle is successful silence",
+    "idle activation cannot publish late",
+    "same agent concurrent immutable capabilities retain their original rooms",
+    "stop makes open stream terminal and fences stale appends",
+    "restart preserves canceled fence and publication/delivery replay identity",
+    "no phantom public output after all negative operations"
+  ],
+  "state": {
+    "messages": {
+      "R1:H1:h1": {
+        "id": "R1:H1:h1",
+        "actor": "H1",
+        "room": "R1",
+        "activation": "H1",
+        "text": "first human",
+        "targets": [],
+        "replyTo": null
+      },
+      "R1:H2:h2": {
+        "id": "R1:H2:h2",
+        "actor": "H2",
+        "room": "R1",
+        "activation": "H2",
+        "text": "second human",
+        "targets": [],
+        "replyTo": null
+      },
+      "R1:A:stream": {
+        "id": "R1:A:stream",
+        "actor": "A",
+        "room": "R1",
+        "activation": "A1",
+        "text": "Hello B",
+        "targets": [
+          "B"
+        ],
+        "replyTo": null
+      },
+      "R1:A:oldroom": {
+        "id": "R1:A:oldroom",
+        "actor": "A",
+        "room": "R1",
+        "activation": "A1",
+        "text": "old reply",
+        "targets": [],
+        "replyTo": null
+      },
+      "R2:A:newroom": {
+        "id": "R2:A:newroom",
+        "actor": "A",
+        "room": "R2",
+        "activation": "A2",
+        "text": "new reply",
+        "targets": [],
+        "replyTo": null
+      }
+    },
+    "streams": {
+      "A1:stream": {
+        "id": "A1:stream",
+        "actor": "A",
+        "room": "R1",
+        "activation": "A1",
+        "state": "committed",
+        "chunks": [
+          "Hello ",
+          "B"
+        ],
+        "key": "stream",
+        "message": "R1:A:stream",
+        "commitArgs": {
+          "stream": "A1:stream",
+          "targets": [
+            "B"
+          ]
+        }
+      },
+      "A2:aborted": {
+        "id": "A2:aborted",
+        "actor": "A",
+        "room": "R2",
+        "activation": "A2",
+        "state": "aborted",
+        "chunks": [],
+        "key": "aborted"
+      }
+    },
+    "deliveries": {
+      "R1:A:stream->B": {
+        "id": "R1:A:stream->B",
+        "room": "R1",
+        "recipient": "B",
+        "message": "R1:A:stream",
+        "state": "completed",
+        "activation": "B1"
+      }
+    },
+    "receipts": {},
+    "events": [
+      {
+        "at": 1791566036.886768,
+        "kind": "publication",
+        "id": "R1:H1:h1",
+        "actor": "H1",
+        "room": "R1"
+      },
+      {
+        "at": 1791566036.887705,
+        "kind": "publication",
+        "id": "R1:H2:h2",
+        "actor": "H2",
+        "room": "R1"
+      },
+      {
+        "at": 1791566036.891387,
+        "kind": "stream-begin",
+        "id": "A1:stream"
+      },
+      {
+        "at": 1791566036.894179,
+        "kind": "stream-chunk",
+        "id": "A1:stream",
+        "seq": 0
+      },
+      {
+        "at": 1791566036.8972852,
+        "kind": "stream-chunk",
+        "id": "A1:stream",
+        "seq": 1
+      },
+      {
+        "at": 1791566036.8993301,
+        "kind": "publication",
+        "id": "R1:A:stream",
+        "actor": "A",
+        "room": "R1"
+      },
+      {
+        "at": 1791566036.899331,
+        "kind": "delivery-queued",
+        "id": "R1:A:stream->B",
+        "recipient": "B"
+      },
+      {
+        "at": 1791566036.8993332,
+        "kind": "stream-committed",
+        "id": "A1:stream"
+      },
+      {
+        "at": 1791566036.9040089,
+        "kind": "delivery-accepted",
+        "id": "R1:A:stream->B",
+        "activation": "B1"
+      },
+      {
+        "at": 1791566036.904995,
+        "kind": "activation-idle",
+        "activation": "B1"
+      },
+      {
+        "at": 1791566036.9081569,
+        "kind": "publication",
+        "id": "R1:A:oldroom",
+        "actor": "A",
+        "room": "R1"
+      },
+      {
+        "at": 1791566036.909076,
+        "kind": "publication",
+        "id": "R2:A:newroom",
+        "actor": "A",
+        "room": "R2"
+      },
+      {
+        "at": 1791566036.91012,
+        "kind": "stream-begin",
+        "id": "A2:aborted"
+      },
+      {
+        "at": 1791566036.911156,
+        "kind": "activation-stopped",
+        "activation": "A2"
+      }
+    ]
+  },
+  "limitations": [
+    "No generic active lease fencing on restart; canceled leases persist fenced.",
+    "No OS principal isolation; this validates HTTP capability boundary.",
+    "No live model in deterministic fixture.",
+    "No full production scheduler, membership revocation, or browser streaming UI."
+  ]
+}

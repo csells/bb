@@ -1,0 +1,9 @@
+{
+  "started": "2026-10-09T17:40:46.395Z",
+  "model": "rooms-local/qwen2.5:7b-instruct-q4_K_M",
+  "checks": [],
+  "observations": [],
+  "privateTurns": {},
+  "dataDirectory": "/var/folders/p7/f_99nxmj7s16qrxbl0cbpz4r0000gn/T/rooms-runtime-acceptance-TdYDRX",
+  "error": "Error: Gateway startup failed: file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/dist/server.js:27985\n  throw new Error(\n        ^\n\nError: Missing database migrations. Expected meta/_journal.json under one of: /Users/admin/code/Forks/get-bb/bb/apps/rooms/drizzle, /Users/admin/code/Forks/get-bb/bb/apps/rooms/dist/drizzle\n    at resolveMigrationsFolderForModuleDir (file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/dist/server.js:27985:9)\n    at resolveMigrationsFolder (file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/dist/server.js:27990:10)\n    at migrate2 (file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/dist/server.js:28782:28)\n    at new RoomsStore (file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/dist/server.js:29061:5)\n    at file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/dist/server.js:41505:13\n    at ModuleJob.run (node:internal/modules/esm/module_job:561:25)\n    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    at async node:internal/modules/esm/loader:647:26\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)\n\nNode.js v24.20.0\n"
+}

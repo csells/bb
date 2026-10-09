@@ -1,0 +1,999 @@
+{
+  "started": "2026-10-09T17:13:21.673Z",
+  "claims": [
+    "AgentA explicitly invoked CLI to publish one selected request",
+    "Raw AgentA final with simulated other-agent dialogue remains private",
+    "Explicit addressed publication enqueued only AgentB",
+    "Independent AgentB invoked explicit begin append commit CLI",
+    "Selected public stream chunks form one message",
+    "Private final mentions and public stream chunks created no extra wakes",
+    "Participants have distinct top-level runtime threads",
+    "Successful no-tool no-post agent activation adds zero room messages",
+    "Actual first agent entered running sleep tool before busy input",
+    "Actual agent independently observed queued second-human input",
+    "Busy activation public reply stayed under original immutable capability"
+  ],
+  "privateTranscripts": {
+    "AgentA": {
+      "maxSeq": 29,
+      "rows": [
+        {
+          "id": "thr_67zfj4unj9:user-seed:1",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": null,
+          "sourceSeqStart": 1,
+          "sourceSeqEnd": 1,
+          "startedAt": 1791566001762,
+          "createdAt": 1791566001762,
+          "kind": "conversation",
+          "role": "user",
+          "messageSeq": 1,
+          "text": "Run this integration test by executing exactly ONE bash command. Keep the && operators so operations occur in order: /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json ack @/Users/admin/rooms-participation-spike/live3/arg-3cb6b591-eaf1-49f8-8bed-0f059a592311.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json request @/Users/admin/rooms-participation-spike/live3/arg-e7e5192d-7c49-44ca-be5f-210046986826.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json settle @/Users/admin/rooms-participation-spike/live3/arg-890386ee-96ad-480f-a599-ec34c4e38117.json. After success respond PRIVATE_FAKE_DIALOGUE AgentB: test fixture. @AgentB.",
+          "mentions": [],
+          "attachments": {
+            "webImages": 0,
+            "localImages": 0,
+            "localFiles": 0,
+            "imageUrls": [],
+            "localImagePaths": [],
+            "localFilePaths": []
+          },
+          "initiator": "user",
+          "senderThreadId": null,
+          "systemMessageKind": "unlabeled",
+          "systemMessageSubject": null,
+          "turnRequest": {
+            "isGrouped": false,
+            "kind": "message",
+            "status": "accepted"
+          }
+        },
+        {
+          "id": "thr_67zfj4unj9:dab8495407-t3:turn",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t3",
+          "sourceSeqStart": 1,
+          "sourceSeqEnd": 29,
+          "startedAt": 1791566002170,
+          "createdAt": 1791566014417,
+          "kind": "turn",
+          "status": "completed",
+          "summaryCount": 1,
+          "completedAt": 1791566014417,
+          "children": [
+            {
+              "id": "thr_67zfj4unj9:command:dab8495407-i6",
+              "threadId": "thr_67zfj4unj9",
+              "turnId": "dab8495407-t3",
+              "sourceSeqStart": 7,
+              "sourceSeqEnd": 10,
+              "startedAt": 1791566012469,
+              "createdAt": 1791566012527,
+              "kind": "work",
+              "workKind": "command",
+              "status": "completed",
+              "callId": "dab8495407-i6",
+              "command": "/usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json ack @/Users/admin/rooms-participation-spike/live3/arg-3cb6b591-eaf1-49f8-8bed-0f059a592311.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json request @/Users/admin/rooms-participation-spike/live3/arg-e7e5192d-7c49-44ca-be5f-210046986826.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json settle @/Users/admin/rooms-participation-spike/live3/arg-890386ee-96ad-480f-a599-ec34c4e38117.json",
+              "cwd": "/Users/admin/rooms-participation-spike/workspace-AgentA",
+              "source": null,
+              "output": "{\"id\": \"live:Human1:initial->AgentA\", \"room\": \"live\", \"recipient\": \"AgentA\", \"message\": \"live:Human1:initial\", \"state\": \"accepted\", \"activation\": \"a1\"}\n{\"id\": \"live:AgentA:ask-b\", \"actor\": \"AgentA\", \"room\": \"live\", \"activation\": \"a1\", \"text\": \"AgentB, what is one reason friendship gives life meaning?\", \"targets\": [\"AgentB\"], \"replyTo\": \"live:Human1:initial\"}\n{\"state\": \"idle\"}\n",
+              "exitCode": 0,
+              "completedAt": 1791566012527,
+              "approvalStatus": null,
+              "activityIntents": []
+            }
+          ]
+        },
+        {
+          "id": "thr_67zfj4unj9:assistant:kind:assistant|turn:dab8495407-t3|parent:root|item:dab8495407-i7",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t3",
+          "sourceSeqStart": 13,
+          "sourceSeqEnd": 27,
+          "startedAt": 1791566013258,
+          "createdAt": 1791566014417,
+          "kind": "conversation",
+          "role": "assistant",
+          "messageSeq": 27,
+          "text": "AgentB, one reason friendship gives life meaning is that it provides a sense of belonging and connection, helping us feel understood, valued, and supported in our journey through life.",
+          "attachments": null,
+          "turnRequest": null
+        }
+      ],
+      "contextBoundarySeq": null,
+      "completedTurnDisplay": "collapse",
+      "activePromptMode": null,
+      "activeThinking": null,
+      "activeWorkflows": [],
+      "activeBackgroundCommands": [],
+      "pendingTodos": null,
+      "goal": null,
+      "modelFallback": null,
+      "contextWindowUsage": {
+        "estimated": true,
+        "modelContextWindow": 32768,
+        "usedTokens": 5444
+      },
+      "timelinePage": {
+        "kind": "latest",
+        "segmentLimit": 100,
+        "returnedSegmentCount": 1,
+        "hasOlderRows": false,
+        "olderCursor": null,
+        "historySnapshot": "{\"version\":3,\"threadId\":\"thr_67zfj4unj9\",\"maxSeq\":29,\"status\":\"idle\",\"surface\":\"[false,false,true,false,32000,\\\"Pi\\\",\\\"Explicit participation spike AgentA\\\",\\\"/Users/admin/rooms-participation-spike/workspace-AgentA\\\",\\\"collapse\\\"]\"}",
+        "olderRowsSourceSeqEnd": null
+      }
+    },
+    "AgentB": {
+      "maxSeq": 30,
+      "rows": [
+        {
+          "id": "thr_9jri6cmqxn:user-seed:1",
+          "threadId": "thr_9jri6cmqxn",
+          "turnId": null,
+          "sourceSeqStart": 1,
+          "sourceSeqEnd": 1,
+          "startedAt": 1791566014716,
+          "createdAt": 1791566014716,
+          "kind": "conversation",
+          "role": "user",
+          "messageSeq": 1,
+          "text": "You are independent AgentB. AgentA asked: AgentB, what is one reason friendship gives life meaning?. Run this integration test with exactly ONE bash tool command, preserving && sequencing: /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json ack @/Users/admin/rooms-participation-spike/live3/arg-d7ca174c-6d73-485b-a930-2c143bc01a7c.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json begin @/Users/admin/rooms-participation-spike/live3/arg-520c4be4-5c03-4272-a62b-3478a3d55dde.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json append @/Users/admin/rooms-participation-spike/live3/arg-31f0c360-5c0a-43f4-a06a-84dd60aa9614.json && sleep 1 && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json append @/Users/admin/rooms-participation-spike/live3/arg-5e373630-253d-4afe-b132-9ac6d7ebc3b4.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json commit @/Users/admin/rooms-participation-spike/live3/arg-e4b12509-0a20-4f23-a49b-b9bcd7f8c8b0.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json settle @/Users/admin/rooms-participation-spike/live3/arg-3e04a8fd-d8b4-4868-abd9-b4208c7760ff.json. Then respond PRIVATE_B_DONE @AgentA.",
+          "mentions": [],
+          "attachments": {
+            "webImages": 0,
+            "localImages": 0,
+            "localFiles": 0,
+            "imageUrls": [],
+            "localImagePaths": [],
+            "localFilePaths": []
+          },
+          "initiator": "user",
+          "senderThreadId": null,
+          "systemMessageKind": "unlabeled",
+          "systemMessageSubject": null,
+          "turnRequest": {
+            "isGrouped": false,
+            "kind": "message",
+            "status": "accepted"
+          }
+        },
+        {
+          "id": "thr_9jri6cmqxn:op:thread-provisioning:3",
+          "threadId": "thr_9jri6cmqxn",
+          "turnId": null,
+          "sourceSeqStart": 3,
+          "sourceSeqEnd": 8,
+          "startedAt": 1791566014718,
+          "createdAt": 1791566014765,
+          "kind": "system",
+          "systemKind": "operation",
+          "operationKind": "thread-provisioning",
+          "title": "Provisioned thread",
+          "detail": "Preparing workspace\nPreparing Project checkout…\nUsing workspace: /Users/admin/rooms-participation-spike/workspace-AgentB",
+          "status": "completed",
+          "completedAt": 1791566014765
+        },
+        {
+          "id": "thr_9jri6cmqxn:daf78e29b3-t1:turn",
+          "threadId": "thr_9jri6cmqxn",
+          "turnId": "daf78e29b3-t1",
+          "sourceSeqStart": 1,
+          "sourceSeqEnd": 30,
+          "startedAt": 1791566015634,
+          "createdAt": 1791566045596,
+          "kind": "turn",
+          "status": "completed",
+          "summaryCount": 2,
+          "completedAt": 1791566045596,
+          "children": [
+            {
+              "id": "thr_9jri6cmqxn:command:daf78e29b3-i1",
+              "threadId": "thr_9jri6cmqxn",
+              "turnId": "daf78e29b3-t1",
+              "sourceSeqStart": 13,
+              "sourceSeqEnd": 20,
+              "startedAt": 1791566040673,
+              "createdAt": 1791566042099,
+              "kind": "work",
+              "workKind": "command",
+              "status": "completed",
+              "callId": "daf78e29b3-i1",
+              "command": "/usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json ack @/Users/admin/rooms-participation-spike/live3/arg-d7ca174c-6d73-485b-a930-2c143bc01a7c.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json begin @/Users/admin/rooms-participation-spike/live3/arg-520c4be4-5c03-4272-a62b-3478a3d55dde.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json append @/Users/admin/rooms-participation-spike/live3/arg-31f0c360-5c0a-43f4-a06a-84dd60aa9614.json && sleep 1 && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json append @/Users/admin/rooms-participation-spike/live3/arg-5e373630-253d-4afe-b132-9ac6d7ebc3b4.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json commit @/Users/admin/rooms-participation-spike/live3/arg-e4b12509-0a20-4f23-a49b-b9bcd7f8c8b0.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/b1.json settle @/Users/admin/rooms-participation-spike/live3/arg-3e04a8fd-d8b4-4868-abd9-b4208c7760ff.json",
+              "cwd": "/Users/admin/rooms-participation-spike/workspace-AgentB",
+              "source": null,
+              "output": "{\"id\": \"live:AgentA:ask-b->AgentB\", \"room\": \"live\", \"recipient\": \"AgentB\", \"message\": \"live:AgentA:ask-b\", \"state\": \"accepted\", \"activation\": \"b1\"}\n{\"id\": \"b1:reply\", \"actor\": \"AgentB\", \"room\": \"live\", \"activation\": \"b1\", \"state\": \"open\", \"chunks\": [], \"key\": \"reply\"}\n{\"id\": \"b1:reply\", \"actor\": \"AgentB\", \"room\": \"live\", \"activation\": \"b1\", \"state\": \"open\", \"chunks\": [\"Friendship gives life meaning \"], \"key\": \"reply\"}\n{\"id\": \"b1:reply\", \"actor\": \"AgentB\", \"room\": \"live\", \"activation\": \"b1\", \"state\": \"open\", \"chunks\": [\"Friendship gives life meaning \", \"through mutual care.\"], \"key\": \"reply\"}\n{\"id\": \"live:AgentB:reply\", \"actor\": \"AgentB\", \"room\": \"live\", \"activation\": \"b1\", \"text\": \"Friendship gives life meaning through mutual care.\", \"targets\": [], \"replyTo\": \"live:AgentA:ask-b\"}\n{\"state\": \"idle\"}\n",
+              "exitCode": 0,
+              "completedAt": 1791566042099,
+              "approvalStatus": null,
+              "activityIntents": []
+            },
+            {
+              "id": "thr_9jri6cmqxn:file-edit:daf78e29b3-i2:PRIVATE_B_DONE.txt:file-change:0",
+              "threadId": "thr_9jri6cmqxn",
+              "turnId": "daf78e29b3-t1",
+              "sourceSeqStart": 14,
+              "sourceSeqEnd": 15,
+              "startedAt": 1791566040673,
+              "createdAt": 1791566040673,
+              "kind": "work",
+              "workKind": "file-change",
+              "status": "completed",
+              "callId": "daf78e29b3-i2",
+              "change": {
+                "path": "PRIVATE_B_DONE.txt",
+                "kind": "add",
+                "movePath": null,
+                "diff": "--- /dev/null\n+++ b/PRIVATE_B_DONE.txt\n+@AgentA\n",
+                "diffStats": {
+                  "added": 1,
+                  "removed": 0
+                }
+              },
+              "stdout": null,
+              "stderr": null,
+              "approvalStatus": null
+            }
+          ]
+        },
+        {
+          "id": "thr_9jri6cmqxn:assistant:kind:assistant|turn:daf78e29b3-t1|parent:root|item:daf78e29b3-i3",
+          "threadId": "thr_9jri6cmqxn",
+          "turnId": "daf78e29b3-t1",
+          "sourceSeqStart": 23,
+          "sourceSeqEnd": 28,
+          "startedAt": 1791566045372,
+          "createdAt": 1791566045596,
+          "kind": "conversation",
+          "role": "assistant",
+          "messageSeq": 28,
+          "text": "Friendship gives life meaning through mutual care.",
+          "attachments": null,
+          "turnRequest": null
+        }
+      ],
+      "contextBoundarySeq": null,
+      "completedTurnDisplay": "collapse",
+      "activePromptMode": null,
+      "activeThinking": null,
+      "activeWorkflows": [],
+      "activeBackgroundCommands": [],
+      "pendingTodos": null,
+      "goal": null,
+      "modelFallback": null,
+      "contextWindowUsage": {
+        "estimated": true,
+        "modelContextWindow": 32768,
+        "usedTokens": 6109
+      },
+      "timelinePage": {
+        "kind": "latest",
+        "segmentLimit": 100,
+        "returnedSegmentCount": 1,
+        "hasOlderRows": false,
+        "olderCursor": null,
+        "historySnapshot": "{\"version\":3,\"threadId\":\"thr_9jri6cmqxn\",\"maxSeq\":30,\"status\":\"idle\",\"surface\":\"[false,false,true,false,32000,\\\"Pi\\\",\\\"Explicit participation spike AgentB\\\",\\\"/Users/admin/rooms-participation-spike/workspace-AgentB\\\",\\\"collapse\\\"]\"}",
+        "olderRowsSourceSeqEnd": null
+      }
+    },
+    "noPost": {
+      "maxSeq": 43,
+      "rows": [
+        {
+          "id": "thr_67zfj4unj9:user-seed:1",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": null,
+          "sourceSeqStart": 1,
+          "sourceSeqEnd": 1,
+          "startedAt": 1791566001762,
+          "createdAt": 1791566001762,
+          "kind": "conversation",
+          "role": "user",
+          "messageSeq": 1,
+          "text": "Run this integration test by executing exactly ONE bash command. Keep the && operators so operations occur in order: /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json ack @/Users/admin/rooms-participation-spike/live3/arg-3cb6b591-eaf1-49f8-8bed-0f059a592311.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json request @/Users/admin/rooms-participation-spike/live3/arg-e7e5192d-7c49-44ca-be5f-210046986826.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json settle @/Users/admin/rooms-participation-spike/live3/arg-890386ee-96ad-480f-a599-ec34c4e38117.json. After success respond PRIVATE_FAKE_DIALOGUE AgentB: test fixture. @AgentB.",
+          "mentions": [],
+          "attachments": {
+            "webImages": 0,
+            "localImages": 0,
+            "localFiles": 0,
+            "imageUrls": [],
+            "localImagePaths": [],
+            "localFilePaths": []
+          },
+          "initiator": "user",
+          "senderThreadId": null,
+          "systemMessageKind": "unlabeled",
+          "systemMessageSubject": null,
+          "turnRequest": {
+            "isGrouped": false,
+            "kind": "message",
+            "status": "accepted"
+          }
+        },
+        {
+          "id": "thr_67zfj4unj9:dab8495407-t3:turn",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t3",
+          "sourceSeqStart": 1,
+          "sourceSeqEnd": 29,
+          "startedAt": 1791566002170,
+          "createdAt": 1791566014417,
+          "kind": "turn",
+          "status": "completed",
+          "summaryCount": 1,
+          "completedAt": 1791566014417,
+          "children": [
+            {
+              "id": "thr_67zfj4unj9:command:dab8495407-i6",
+              "threadId": "thr_67zfj4unj9",
+              "turnId": "dab8495407-t3",
+              "sourceSeqStart": 7,
+              "sourceSeqEnd": 10,
+              "startedAt": 1791566012469,
+              "createdAt": 1791566012527,
+              "kind": "work",
+              "workKind": "command",
+              "status": "completed",
+              "callId": "dab8495407-i6",
+              "command": "/usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json ack @/Users/admin/rooms-participation-spike/live3/arg-3cb6b591-eaf1-49f8-8bed-0f059a592311.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json request @/Users/admin/rooms-participation-spike/live3/arg-e7e5192d-7c49-44ca-be5f-210046986826.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json settle @/Users/admin/rooms-participation-spike/live3/arg-890386ee-96ad-480f-a599-ec34c4e38117.json",
+              "cwd": "/Users/admin/rooms-participation-spike/workspace-AgentA",
+              "source": null,
+              "output": "{\"id\": \"live:Human1:initial->AgentA\", \"room\": \"live\", \"recipient\": \"AgentA\", \"message\": \"live:Human1:initial\", \"state\": \"accepted\", \"activation\": \"a1\"}\n{\"id\": \"live:AgentA:ask-b\", \"actor\": \"AgentA\", \"room\": \"live\", \"activation\": \"a1\", \"text\": \"AgentB, what is one reason friendship gives life meaning?\", \"targets\": [\"AgentB\"], \"replyTo\": \"live:Human1:initial\"}\n{\"state\": \"idle\"}\n",
+              "exitCode": 0,
+              "completedAt": 1791566012527,
+              "approvalStatus": null,
+              "activityIntents": []
+            }
+          ]
+        },
+        {
+          "id": "thr_67zfj4unj9:assistant:kind:assistant|turn:dab8495407-t3|parent:root|item:dab8495407-i7",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t3",
+          "sourceSeqStart": 13,
+          "sourceSeqEnd": 27,
+          "startedAt": 1791566013258,
+          "createdAt": 1791566014417,
+          "kind": "conversation",
+          "role": "assistant",
+          "messageSeq": 27,
+          "text": "AgentB, one reason friendship gives life meaning is that it provides a sense of belonging and connection, helping us feel understood, valued, and supported in our journey through life.",
+          "attachments": null,
+          "turnRequest": null
+        },
+        {
+          "id": "thr_67zfj4unj9:user-seed:30",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t4",
+          "sourceSeqStart": 30,
+          "sourceSeqEnd": 30,
+          "startedAt": 1791566045956,
+          "createdAt": 1791566045956,
+          "kind": "conversation",
+          "role": "user",
+          "messageSeq": 30,
+          "text": "For this integration test, reply with the exact text PRIVATE_NO_POST AgentB: test fixture. @AgentB. Do not use tools.",
+          "mentions": [],
+          "attachments": {
+            "webImages": 0,
+            "localImages": 0,
+            "localFiles": 0,
+            "imageUrls": [],
+            "localImagePaths": [],
+            "localFilePaths": []
+          },
+          "initiator": "user",
+          "senderThreadId": null,
+          "systemMessageKind": "unlabeled",
+          "systemMessageSubject": null,
+          "turnRequest": {
+            "isGrouped": false,
+            "kind": "message",
+            "status": "accepted"
+          }
+        },
+        {
+          "id": "thr_67zfj4unj9:assistant:kind:assistant|turn:dab8495407-t4|parent:root|item:dab8495407-i8",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t4",
+          "sourceSeqStart": 34,
+          "sourceSeqEnd": 41,
+          "startedAt": 1791566052225,
+          "createdAt": 1791566052619,
+          "kind": "conversation",
+          "role": "assistant",
+          "messageSeq": 41,
+          "text": "PRIVATE_NO_POST AgentB: test fixture. @AgentB.",
+          "attachments": null,
+          "turnRequest": null
+        }
+      ],
+      "contextBoundarySeq": null,
+      "completedTurnDisplay": "collapse",
+      "activePromptMode": null,
+      "activeThinking": null,
+      "activeWorkflows": [],
+      "activeBackgroundCommands": [],
+      "pendingTodos": null,
+      "goal": null,
+      "modelFallback": null,
+      "contextWindowUsage": {
+        "estimated": true,
+        "modelContextWindow": 32768,
+        "usedTokens": 5495
+      },
+      "timelinePage": {
+        "kind": "latest",
+        "segmentLimit": 100,
+        "returnedSegmentCount": 2,
+        "hasOlderRows": false,
+        "olderCursor": null,
+        "historySnapshot": "{\"version\":3,\"threadId\":\"thr_67zfj4unj9\",\"maxSeq\":43,\"status\":\"idle\",\"surface\":\"[false,false,true,false,32000,\\\"Pi\\\",\\\"Explicit participation spike AgentA\\\",\\\"/Users/admin/rooms-participation-spike/workspace-AgentA\\\",\\\"collapse\\\"]\"}",
+        "olderRowsSourceSeqEnd": null
+      }
+    },
+    "busy": {
+      "maxSeq": 69,
+      "rows": [
+        {
+          "id": "thr_67zfj4unj9:user-seed:1",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": null,
+          "sourceSeqStart": 1,
+          "sourceSeqEnd": 1,
+          "startedAt": 1791566001762,
+          "createdAt": 1791566001762,
+          "kind": "conversation",
+          "role": "user",
+          "messageSeq": 1,
+          "text": "Run this integration test by executing exactly ONE bash command. Keep the && operators so operations occur in order: /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json ack @/Users/admin/rooms-participation-spike/live3/arg-3cb6b591-eaf1-49f8-8bed-0f059a592311.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json request @/Users/admin/rooms-participation-spike/live3/arg-e7e5192d-7c49-44ca-be5f-210046986826.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json settle @/Users/admin/rooms-participation-spike/live3/arg-890386ee-96ad-480f-a599-ec34c4e38117.json. After success respond PRIVATE_FAKE_DIALOGUE AgentB: test fixture. @AgentB.",
+          "mentions": [],
+          "attachments": {
+            "webImages": 0,
+            "localImages": 0,
+            "localFiles": 0,
+            "imageUrls": [],
+            "localImagePaths": [],
+            "localFilePaths": []
+          },
+          "initiator": "user",
+          "senderThreadId": null,
+          "systemMessageKind": "unlabeled",
+          "systemMessageSubject": null,
+          "turnRequest": {
+            "isGrouped": false,
+            "kind": "message",
+            "status": "accepted"
+          }
+        },
+        {
+          "id": "thr_67zfj4unj9:dab8495407-t3:turn",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t3",
+          "sourceSeqStart": 1,
+          "sourceSeqEnd": 29,
+          "startedAt": 1791566002170,
+          "createdAt": 1791566014417,
+          "kind": "turn",
+          "status": "completed",
+          "summaryCount": 1,
+          "completedAt": 1791566014417,
+          "children": [
+            {
+              "id": "thr_67zfj4unj9:command:dab8495407-i6",
+              "threadId": "thr_67zfj4unj9",
+              "turnId": "dab8495407-t3",
+              "sourceSeqStart": 7,
+              "sourceSeqEnd": 10,
+              "startedAt": 1791566012469,
+              "createdAt": 1791566012527,
+              "kind": "work",
+              "workKind": "command",
+              "status": "completed",
+              "callId": "dab8495407-i6",
+              "command": "/usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json ack @/Users/admin/rooms-participation-spike/live3/arg-3cb6b591-eaf1-49f8-8bed-0f059a592311.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json request @/Users/admin/rooms-participation-spike/live3/arg-e7e5192d-7c49-44ca-be5f-210046986826.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/a1.json settle @/Users/admin/rooms-participation-spike/live3/arg-890386ee-96ad-480f-a599-ec34c4e38117.json",
+              "cwd": "/Users/admin/rooms-participation-spike/workspace-AgentA",
+              "source": null,
+              "output": "{\"id\": \"live:Human1:initial->AgentA\", \"room\": \"live\", \"recipient\": \"AgentA\", \"message\": \"live:Human1:initial\", \"state\": \"accepted\", \"activation\": \"a1\"}\n{\"id\": \"live:AgentA:ask-b\", \"actor\": \"AgentA\", \"room\": \"live\", \"activation\": \"a1\", \"text\": \"AgentB, what is one reason friendship gives life meaning?\", \"targets\": [\"AgentB\"], \"replyTo\": \"live:Human1:initial\"}\n{\"state\": \"idle\"}\n",
+              "exitCode": 0,
+              "completedAt": 1791566012527,
+              "approvalStatus": null,
+              "activityIntents": []
+            }
+          ]
+        },
+        {
+          "id": "thr_67zfj4unj9:assistant:kind:assistant|turn:dab8495407-t3|parent:root|item:dab8495407-i7",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t3",
+          "sourceSeqStart": 13,
+          "sourceSeqEnd": 27,
+          "startedAt": 1791566013258,
+          "createdAt": 1791566014417,
+          "kind": "conversation",
+          "role": "assistant",
+          "messageSeq": 27,
+          "text": "AgentB, one reason friendship gives life meaning is that it provides a sense of belonging and connection, helping us feel understood, valued, and supported in our journey through life.",
+          "attachments": null,
+          "turnRequest": null
+        },
+        {
+          "id": "thr_67zfj4unj9:user-seed:30",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t4",
+          "sourceSeqStart": 30,
+          "sourceSeqEnd": 30,
+          "startedAt": 1791566045956,
+          "createdAt": 1791566045956,
+          "kind": "conversation",
+          "role": "user",
+          "messageSeq": 30,
+          "text": "For this integration test, reply with the exact text PRIVATE_NO_POST AgentB: test fixture. @AgentB. Do not use tools.",
+          "mentions": [],
+          "attachments": {
+            "webImages": 0,
+            "localImages": 0,
+            "localFiles": 0,
+            "imageUrls": [],
+            "localImagePaths": [],
+            "localFilePaths": []
+          },
+          "initiator": "user",
+          "senderThreadId": null,
+          "systemMessageKind": "unlabeled",
+          "systemMessageSubject": null,
+          "turnRequest": {
+            "isGrouped": false,
+            "kind": "message",
+            "status": "accepted"
+          }
+        },
+        {
+          "id": "thr_67zfj4unj9:assistant:kind:assistant|turn:dab8495407-t4|parent:root|item:dab8495407-i8",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t4",
+          "sourceSeqStart": 34,
+          "sourceSeqEnd": 41,
+          "startedAt": 1791566052225,
+          "createdAt": 1791566052619,
+          "kind": "conversation",
+          "role": "assistant",
+          "messageSeq": 41,
+          "text": "PRIVATE_NO_POST AgentB: test fixture. @AgentB.",
+          "attachments": null,
+          "turnRequest": null
+        },
+        {
+          "id": "thr_67zfj4unj9:user-seed:44",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t5",
+          "sourceSeqStart": 44,
+          "sourceSeqEnd": 44,
+          "startedAt": 1791566052715,
+          "createdAt": 1791566052715,
+          "kind": "conversation",
+          "role": "user",
+          "messageSeq": 44,
+          "text": "Execute exactly one bash command preserving && sequencing: sleep 15 && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/busy-a.json post @/Users/admin/rooms-participation-spike/live3/arg-1172c4e2-a431-441e-8a69-0ef7b0d4f724.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/busy-a.json settle @/Users/admin/rooms-participation-spike/live3/arg-9f84af02-2a3d-4cbe-96ba-f6eccea24793.json. Then respond PRIVATE_BUSY_COMPLETE.",
+          "mentions": [],
+          "attachments": {
+            "webImages": 0,
+            "localImages": 0,
+            "localFiles": 0,
+            "imageUrls": [],
+            "localImagePaths": [],
+            "localFilePaths": []
+          },
+          "initiator": "user",
+          "senderThreadId": null,
+          "systemMessageKind": "unlabeled",
+          "systemMessageSubject": null,
+          "turnRequest": {
+            "isGrouped": false,
+            "kind": "message",
+            "status": "accepted"
+          }
+        },
+        {
+          "id": "thr_67zfj4unj9:dab8495407-t5:turn:0",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t5",
+          "sourceSeqStart": 47,
+          "sourceSeqEnd": 50,
+          "startedAt": 1791566052757,
+          "createdAt": 1791566075484,
+          "kind": "turn",
+          "status": "completed",
+          "summaryCount": 1,
+          "completedAt": 1791566076006,
+          "children": [
+            {
+              "id": "thr_67zfj4unj9:command:dab8495407-i9",
+              "threadId": "thr_67zfj4unj9",
+              "turnId": "dab8495407-t5",
+              "sourceSeqStart": 47,
+              "sourceSeqEnd": 50,
+              "startedAt": 1791566060430,
+              "createdAt": 1791566075484,
+              "kind": "work",
+              "workKind": "command",
+              "status": "completed",
+              "callId": "dab8495407-i9",
+              "command": "sleep 15 && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/busy-a.json post @/Users/admin/rooms-participation-spike/live3/arg-1172c4e2-a431-441e-8a69-0ef7b0d4f724.json && /usr/bin/python3 /Users/admin/rooms-participation-spike/room.py /Users/admin/rooms-participation-spike/live3/busy-a.json settle @/Users/admin/rooms-participation-spike/live3/arg-9f84af02-2a3d-4cbe-96ba-f6eccea24793.json",
+              "cwd": "/Users/admin/rooms-participation-spike/workspace-AgentA",
+              "source": null,
+              "output": "{\"id\": \"live:AgentA:busy-done\", \"actor\": \"AgentA\", \"room\": \"live\", \"activation\": \"busy-a\", \"text\": \"BUSY_FIRST_COMPLETED\", \"targets\": [], \"replyTo\": null}\n{\"state\": \"idle\"}\n",
+              "exitCode": 0,
+              "completedAt": 1791566075484,
+              "approvalStatus": null,
+              "activityIntents": []
+            }
+          ]
+        },
+        {
+          "id": "thr_67zfj4unj9:assistant:kind:assistant|turn:dab8495407-t5|parent:root|item:dab8495407-i10",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t5",
+          "sourceSeqStart": 53,
+          "sourceSeqEnd": 56,
+          "startedAt": 1791566075998,
+          "createdAt": 1791566076006,
+          "kind": "conversation",
+          "role": "assistant",
+          "messageSeq": 56,
+          "text": "PRIVATE_BUSY_COMPLETE",
+          "attachments": null,
+          "turnRequest": null
+        },
+        {
+          "id": "thr_67zfj4unj9:user-seed:59",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t6",
+          "sourceSeqStart": 59,
+          "sourceSeqEnd": 59,
+          "startedAt": 1791566076044,
+          "createdAt": 1791566076044,
+          "kind": "conversation",
+          "role": "user",
+          "messageSeq": 59,
+          "text": "A second human sent a message while you were busy. Acknowledge receipt privately by responding exactly BUSY_INPUT_OBSERVED. No tools, no room publication.",
+          "mentions": [],
+          "attachments": {
+            "webImages": 0,
+            "localImages": 0,
+            "localFiles": 0,
+            "imageUrls": [],
+            "localImagePaths": [],
+            "localFilePaths": []
+          },
+          "initiator": "user",
+          "senderThreadId": null,
+          "systemMessageKind": "unlabeled",
+          "systemMessageSubject": null,
+          "turnRequest": {
+            "isGrouped": false,
+            "kind": "message",
+            "status": "accepted"
+          }
+        },
+        {
+          "id": "thr_67zfj4unj9:assistant:kind:assistant|turn:dab8495407-t6|parent:root|item:dab8495407-i11",
+          "threadId": "thr_67zfj4unj9",
+          "turnId": "dab8495407-t6",
+          "sourceSeqStart": 63,
+          "sourceSeqEnd": 67,
+          "startedAt": 1791566076474,
+          "createdAt": 1791566076562,
+          "kind": "conversation",
+          "role": "assistant",
+          "messageSeq": 67,
+          "text": "BUSY_INPUT_OBSERVED",
+          "attachments": null,
+          "turnRequest": null
+        }
+      ],
+      "contextBoundarySeq": null,
+      "completedTurnDisplay": "collapse",
+      "activePromptMode": null,
+      "activeThinking": null,
+      "activeWorkflows": [],
+      "activeBackgroundCommands": [],
+      "pendingTodos": null,
+      "goal": null,
+      "modelFallback": null,
+      "contextWindowUsage": {
+        "estimated": true,
+        "modelContextWindow": 32768,
+        "usedTokens": 5991
+      },
+      "timelinePage": {
+        "kind": "latest",
+        "segmentLimit": 100,
+        "returnedSegmentCount": 4,
+        "hasOlderRows": false,
+        "olderCursor": null,
+        "historySnapshot": "{\"version\":3,\"threadId\":\"thr_67zfj4unj9\",\"maxSeq\":69,\"status\":\"idle\",\"surface\":\"[false,false,true,false,32000,\\\"Pi\\\",\\\"Explicit participation spike AgentA\\\",\\\"/Users/admin/rooms-participation-spike/workspace-AgentA\\\",\\\"collapse\\\"]\"}",
+        "olderRowsSourceSeqEnd": null
+      }
+    }
+  },
+  "threads": {
+    "AgentA": "thr_67zfj4unj9",
+    "AgentB": "thr_9jri6cmqxn"
+  },
+  "timings": [
+    {
+      "event": "busy-requested",
+      "at": 1791566052692
+    },
+    {
+      "event": "broker-durable-receipt",
+      "at": 1791566060906,
+      "messageId": "live:Human2:busy-followup"
+    },
+    {
+      "event": "provider-queue-ack",
+      "at": 1791566060920
+    },
+    {
+      "event": "agent-observed",
+      "at": 1791566076870
+    }
+  ],
+  "topLevel": {
+    "a": null,
+    "b": null
+  },
+  "busyQueueReceipt": {
+    "ok": true,
+    "delivery": "queued",
+    "queuedMessage": {
+      "id": "qmsg_ir88sgipzs",
+      "origin": null,
+      "originPluginId": null,
+      "initiator": "user",
+      "senderThreadId": null,
+      "threadId": "thr_67zfj4unj9",
+      "content": [
+        {
+          "type": "text",
+          "text": "A second human sent a message while you were busy. Acknowledge receipt privately by responding exactly BUSY_INPUT_OBSERVED. No tools, no room publication.",
+          "mentions": []
+        }
+      ],
+      "model": "rooms-local/qwen3:4b-instruct-2507-q4_K_M",
+      "reasoningLevel": "medium",
+      "permissionMode": "full",
+      "serviceTier": "default",
+      "groupWithNext": false,
+      "sendAt": null,
+      "waitingOn": {
+        "kind": "thread-busy"
+      },
+      "failureReason": null,
+      "payload": {
+        "kind": "inline"
+      },
+      "editable": true,
+      "createdAt": 1791566060916,
+      "updatedAt": 1791566060916
+    }
+  },
+  "publicState": {
+    "messages": {
+      "live:Human1:initial": {
+        "id": "live:Human1:initial",
+        "actor": "Human1",
+        "room": "live",
+        "activation": "human1",
+        "text": "Ask AgentA to consider a question and request AgentB independently.",
+        "targets": [
+          "AgentA"
+        ],
+        "replyTo": null
+      },
+      "live:Human2:contribution": {
+        "id": "live:Human2:contribution",
+        "actor": "Human2",
+        "room": "live",
+        "activation": "human2",
+        "text": "I am a second independent human. We both participate.",
+        "targets": [],
+        "replyTo": null
+      },
+      "live:AgentA:ask-b": {
+        "id": "live:AgentA:ask-b",
+        "actor": "AgentA",
+        "room": "live",
+        "activation": "a1",
+        "text": "AgentB, what is one reason friendship gives life meaning?",
+        "targets": [
+          "AgentB"
+        ],
+        "replyTo": "live:Human1:initial"
+      },
+      "live:AgentB:reply": {
+        "id": "live:AgentB:reply",
+        "actor": "AgentB",
+        "room": "live",
+        "activation": "b1",
+        "text": "Friendship gives life meaning through mutual care.",
+        "targets": [],
+        "replyTo": "live:AgentA:ask-b"
+      },
+      "live:Human2:busy-followup": {
+        "id": "live:Human2:busy-followup",
+        "actor": "Human2",
+        "room": "live",
+        "activation": "human2",
+        "text": "BUSY_INPUT_OBSERVED: please acknowledge privately after your current action.",
+        "targets": [
+          "AgentA"
+        ],
+        "replyTo": null
+      },
+      "live:AgentA:busy-done": {
+        "id": "live:AgentA:busy-done",
+        "actor": "AgentA",
+        "room": "live",
+        "activation": "busy-a",
+        "text": "BUSY_FIRST_COMPLETED",
+        "targets": [],
+        "replyTo": null
+      }
+    },
+    "streams": {
+      "b1:reply": {
+        "id": "b1:reply",
+        "actor": "AgentB",
+        "room": "live",
+        "activation": "b1",
+        "state": "committed",
+        "chunks": [
+          "Friendship gives life meaning ",
+          "through mutual care."
+        ],
+        "key": "reply",
+        "message": "live:AgentB:reply"
+      }
+    },
+    "deliveries": {
+      "live:Human1:initial->AgentA": {
+        "id": "live:Human1:initial->AgentA",
+        "room": "live",
+        "recipient": "AgentA",
+        "message": "live:Human1:initial",
+        "state": "completed",
+        "activation": "a1"
+      },
+      "live:AgentA:ask-b->AgentB": {
+        "id": "live:AgentA:ask-b->AgentB",
+        "room": "live",
+        "recipient": "AgentB",
+        "message": "live:AgentA:ask-b",
+        "state": "completed",
+        "activation": "b1"
+      },
+      "live:Human2:busy-followup->AgentA": {
+        "id": "live:Human2:busy-followup->AgentA",
+        "room": "live",
+        "recipient": "AgentA",
+        "message": "live:Human2:busy-followup",
+        "state": "queued"
+      }
+    },
+    "receipts": {},
+    "events": [
+      {
+        "at": 1791566001.7281148,
+        "kind": "publication",
+        "id": "live:Human1:initial",
+        "actor": "Human1",
+        "room": "live"
+      },
+      {
+        "at": 1791566001.728117,
+        "kind": "delivery-queued",
+        "id": "live:Human1:initial->AgentA",
+        "recipient": "AgentA"
+      },
+      {
+        "at": 1791566001.730134,
+        "kind": "publication",
+        "id": "live:Human2:contribution",
+        "actor": "Human2",
+        "room": "live"
+      },
+      {
+        "at": 1791566012.429176,
+        "kind": "delivery-accepted",
+        "id": "live:Human1:initial->AgentA",
+        "activation": "a1"
+      },
+      {
+        "at": 1791566012.474017,
+        "kind": "publication",
+        "id": "live:AgentA:ask-b",
+        "actor": "AgentA",
+        "room": "live"
+      },
+      {
+        "at": 1791566012.474018,
+        "kind": "delivery-queued",
+        "id": "live:AgentA:ask-b->AgentB",
+        "recipient": "AgentB"
+      },
+      {
+        "at": 1791566012.5168772,
+        "kind": "activation-idle",
+        "activation": "a1"
+      },
+      {
+        "at": 1791566040.717726,
+        "kind": "delivery-accepted",
+        "id": "live:AgentA:ask-b->AgentB",
+        "activation": "b1"
+      },
+      {
+        "at": 1791566040.761784,
+        "kind": "stream-begin",
+        "id": "b1:reply"
+      },
+      {
+        "at": 1791566040.8055072,
+        "kind": "stream-chunk",
+        "id": "b1:reply",
+        "seq": 0
+      },
+      {
+        "at": 1791566042.004524,
+        "kind": "stream-chunk",
+        "id": "b1:reply",
+        "seq": 1
+      },
+      {
+        "at": 1791566042.047116,
+        "kind": "publication",
+        "id": "live:AgentB:reply",
+        "actor": "AgentB",
+        "room": "live"
+      },
+      {
+        "at": 1791566042.0471182,
+        "kind": "stream-committed",
+        "id": "b1:reply"
+      },
+      {
+        "at": 1791566042.088885,
+        "kind": "activation-idle",
+        "activation": "b1"
+      },
+      {
+        "at": 1791566060.902614,
+        "kind": "publication",
+        "id": "live:Human2:busy-followup",
+        "actor": "Human2",
+        "room": "live"
+      },
+      {
+        "at": 1791566060.902619,
+        "kind": "delivery-queued",
+        "id": "live:Human2:busy-followup->AgentA",
+        "recipient": "AgentA"
+      },
+      {
+        "at": 1791566075.4325492,
+        "kind": "publication",
+        "id": "live:AgentA:busy-done",
+        "actor": "AgentA",
+        "room": "live"
+      },
+      {
+        "at": 1791566075.4755409,
+        "kind": "activation-idle",
+        "activation": "busy-a"
+      }
+    ]
+  },
+  "completed": "2026-10-09T17:14:36.876Z"
+}

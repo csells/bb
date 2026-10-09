@@ -1,0 +1,5 @@
+PASS native connectivity failure retains activation and exposes its observation error
+PASS identical polling failures produce one diagnostic instead of repeating every500ms
+PASS actual native terminal receipt clears transient error and settles successful no-public-reply
+PASS private provider output remains unpublished during recovery
+PASS recovery creates no new native execution events

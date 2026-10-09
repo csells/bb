@@ -1,0 +1,32 @@
+name: RoomsSafari
+options:
+  bundleIdPrefix: lab.rooms
+settings:
+  base:
+    CODE_SIGNING_ALLOWED: NO
+    GENERATE_INFOPLIST_FILE: YES
+    SWIFT_VERSION: "5.0"
+    INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsArbitraryLoads: YES
+targets:
+  RoomsSafari:
+    type: application
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources: [App]
+    settings:
+      TARGETED_DEVICE_FAMILY: "1,2"
+      INFOPLIST_KEY_UILaunchScreen_Generation: YES
+  RoomsSafariUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    deploymentTarget: "26.0"
+    sources: [UITests]
+    dependencies:
+      - target: RoomsSafari
+schemes:
+  RoomsSafari:
+    build:
+      targets:
+        RoomsSafari: all
+    test:
+      targets: [RoomsSafariUITests]

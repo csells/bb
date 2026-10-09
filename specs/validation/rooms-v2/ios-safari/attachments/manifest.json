@@ -1,0 +1,35 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "F2BA55AE-0A08-463F-80CE-BE4BB3F38748",
+        "deviceName" : "RoomsSafariAcceptance",
+        "exportedFileName" : "662B2A84-5F21-4BFF-9285-BC47333BD522.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "composer-after-drawer_0_70FA8783-FC8C-4A0C-AD18-61F1619449B5.png",
+        "timestamp" : 1791568972.602
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "F2BA55AE-0A08-463F-80CE-BE4BB3F38748",
+        "deviceName" : "RoomsSafariAcceptance",
+        "exportedFileName" : "BE4FD365-5A37-47ED-94F8-3F23DA3C86D6.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "agent-drawer-keyboard_0_A787777B-5D23-44AE-9A21-C28AE9BF3111.png",
+        "timestamp" : 1791568967.272
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "F2BA55AE-0A08-463F-80CE-BE4BB3F38748",
+        "deviceName" : "RoomsSafariAcceptance",
+        "exportedFileName" : "192F9AC5-CA13-4E6A-B449-DBFD1B95DFCB.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "people-open_0_6227DADA-EC9F-45D0-B49E-D0A01063B917.png",
+        "timestamp" : 1791568962.314
+      }
+    ],
+    "testIdentifier" : "RoomsSafariTests/testPersistentDrawerAndComposerInSafari()",
+    "testIdentifierURL" : "test://com.apple.xcode/RoomsSafari/RoomsSafariUITests/RoomsSafariTests/testPersistentDrawerAndComposerInSafari"
+  }
+]

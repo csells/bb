@@ -1,0 +1,13 @@
+PASS Two separately authenticated human browser sessions joined through one-time invitation
+PASS Concurrent human messages preserve authorship and an identical retried post appears once
+PASS Structured recipients route a request without textual mentions; both browsers show pending work and remain writable while paused
+PASS Two real agents independently published replies to a natural request and settled pending status
+PASS Raw narrative mentions do not wake agents without structured addressing
+PASS An optional natural context notice completed without a public acknowledgment or endless pending indicator
+PASS A natural peer request produced an authenticated Atlas request and independent Nova publication
+PASS A second human can send an addressed follow-up while an agent is running; it remains durably queued
+PASS Stop cancels the selected agent activation and removes its pending reply
+PASS Owner can set a visible turn budget or explicitly select unlimited turns
+PASS Owner can inspect execution metadata while another human cannot access the private activity endpoint
+PASS Reload recovers public history; compact shared drawer leaves app root usable and composer functional
+{"roomId":"d681b420-111a-4a3b-861c-6eab2615d4a2","claims":["Two separately authenticated human browser sessions joined through one-time invitation","Concurrent human messages preserve authorship and an identical retried post appears once","Structured recipients route a request without textual mentions; both browsers show pending work and remain writable while paused","Two real agents independently published replies to a natural request and settled pending status","Raw narrative mentions do not wake agents without structured addressing","An optional natural context notice completed without a public acknowledgment or endless pending indicator","A natural peer request produced an authenticated Atlas request and independent Nova publication","A second human can send an addressed follow-up while an agent is running; it remains durably queued","Stop cancels the selected agent activation and removes its pending reply","Owner can set a visible turn budget or explicitly select unlimited turns","Owner can inspect execution metadata while another human cannot access the private activity endpoint","Reload recovers public history; compact shared drawer leaves app root usable and composer functional"],"failures":[]}

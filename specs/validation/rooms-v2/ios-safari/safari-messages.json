@@ -1,0 +1,16 @@
+[
+  {
+    "id": "24d18c50-835e-4df2-b77b-c708a7089aa2",
+    "roomId": "safari-room",
+    "authorId": "safari-human",
+    "authorName": "Safari Human",
+    "kind": "human",
+    "text": "Safari can type after closing the drawer.",
+    "status": "complete",
+    "createdAt": 1791568970820,
+    "causeId": null,
+    "intent": "post",
+    "recipients": [],
+    "replyTo": null
+  }
+]

@@ -3,16 +3,26 @@ import { getCookie, setCookie, deleteCookie } from "hono/cookie";
 import { streamSSE } from "hono/streaming";
 import { bodyLimit } from "hono/body-limit";
 import { z } from "zod";
-import { pendingInteractionResolutionSchema } from "@bb/domain";
+import {
+  pendingInteractionResolutionSchema,
+  roomsActivitySchema,
+} from "@bb/domain";
 import { RoomsStore, RoomError, id } from "./store.js";
 import { RoomRuntime } from "./runtime.js";
 import {
   createAgentSchema,
   handle,
   messageInputSchema,
+  policySchema,
   type User,
 } from "./contracts.js";
-import { recipients } from "./routing.js";
+import { executeAgentCommand } from "./protocol.js";
+const sessionToken = (c: Parameters<typeof getCookie>[0]) => {
+  const authorization = c.req.header("Authorization");
+  return authorization?.startsWith("Bearer ")
+    ? authorization.slice(7)
+    : (getCookie(c, "rooms_session") ?? "");
+};
 export function createRoomsApp(
   store: RoomsStore,
   runtime: RoomRuntime,
@@ -110,23 +120,27 @@ export function createRoomsApp(
     signIn(c, u);
     return c.json({ user: u });
   });
+  app.post("/api/agent/commands", async (c) => {
+    const authorization = c.req.header("Authorization") ?? "";
+    if (!authorization.startsWith("Bearer "))
+      throw new RoomError(401, "An activation capability is required");
+    const result = executeAgentCommand(
+      store,
+      authorization.slice(7),
+      await c.req.json(),
+    );
+    runtime.tick();
+    return c.json(result);
+  });
   app.use("/api/*", async (c, next) => {
-    const bearer = c.req.header("Authorization");
-    const raw = bearer?.startsWith("Bearer ")
-      ? bearer.slice(7)
-      : (getCookie(c, "rooms_session") ?? "");
-    c.set("user", store.authenticate(raw));
+    c.set("user", store.authenticate(sessionToken(c)));
     await next();
   });
   app.get("/api/me", (c) =>
     c.json({ user: c.get("user"), rooms: store.rooms(c.get("user").id) }),
   );
   app.post("/api/logout", (c) => {
-    store.logout(
-      c.req.header("Authorization")?.replace(/^Bearer /, "") ??
-        getCookie(c, "rooms_session") ??
-        "",
-    );
+    store.logout(sessionToken(c));
     deleteCookie(c, "rooms_session", { path: "/" });
     return c.json({ ok: true });
   });
@@ -183,9 +197,7 @@ export function createRoomsApp(
     online.set(roomId, presence);
     presence.set(user.id, (presence.get(user.id) ?? 0) + 1);
     store.touch(roomId);
-    const raw =
-      getCookie(c, "rooms_session") ??
-      (c.req.header("Authorization") ?? "").replace(/^Bearer /, "");
+    const raw = sessionToken(c);
     return streamSSE(c, async (stream) => {
       let revision = -1;
       try {
@@ -236,35 +248,28 @@ export function createRoomsApp(
     const b = createAgentSchema.parse(await c.req.json());
     return c.json(store.addAgent(roomId, b));
   });
-  app.put("/api/rooms/:roomId/default", async (c) => {
+  app.put("/api/rooms/:roomId/policy", async (c) => {
     const roomId = c.req.param("roomId");
     store.membership(roomId, c.get("user").id, true);
-    const b = z
-      .object({ agentId: z.string().nullable() })
-      .strict()
-      .parse(await c.req.json());
-    store.setDefault(roomId, b.agentId);
-    return c.json({ ok: true });
+    const policy = policySchema.parse(await c.req.json());
+    store.setPolicy(roomId, policy);
+    runtime.tick();
+    return c.json(store.room(roomId));
   });
   app.post("/api/rooms/:roomId/messages", async (c) => {
     const roomId = c.req.param("roomId");
     const b = messageInputSchema.parse(await c.req.json());
-    const agents = store.agents(roomId);
-    const targets = b.recipients.length
-      ? [...new Set(b.recipients)]
-      : recipients(b.text, agents, store.room(roomId).defaultAgentId);
-    if (targets.some((t) => !agents.some((a) => a.id === t)))
-      throw new RoomError(400, "Unknown recipient");
-    const result = store.transaction(() => {
-      const r = store.requestMessage(
-        c.get("user"),
-        roomId,
-        b.text,
-        b.requestId,
-      );
-      if (!r.duplicate) for (const a of targets) store.enqueue(a, r.message);
-      return r;
-    });
+    const result = store.sendHuman(
+      c.get("user"),
+      roomId,
+      {
+        text: b.text,
+        intent: b.intent,
+        recipients: b.recipients,
+        replyTo: b.replyTo,
+      },
+      b.requestId,
+    );
     runtime.tick();
     return c.json(result);
   });
@@ -283,16 +288,27 @@ export function createRoomsApp(
       .strict()
       .parse(await c.req.json());
     const u = c.get("user");
-    store.requestMessage(u, c.req.param("roomId"), b.text, id());
-    await runtime.steer(
+    const receipt = await runtime.steer(
       c.req.param("agentId"),
       `Steering from human ${u.name} (@${u.handle}): ${b.text}`,
     );
-    return c.json({ ok: true });
+    store.requestMessage(u, c.req.param("roomId"), b.text, id());
+    return c.json({ accepted: true, delivery: receipt.delivery });
   });
-  app.get("/api/rooms/:roomId/agents/:agentId/interactions", async (c) =>
-    c.json(await runtime.interactions(c.req.param("agentId"))),
-  );
+  app.get("/api/rooms/:roomId/agents/:agentId/interactions", async (c) => {
+    store.membership(c.req.param("roomId"), c.get("user").id, true);
+    return c.json(await runtime.interactions(c.req.param("agentId")));
+  });
+  app.get("/api/rooms/:roomId/agents/:agentId/activity", async (c) => {
+    store.membership(c.req.param("roomId"), c.get("user").id, true);
+    return c.json(
+      roomsActivitySchema.parse(await runtime.activity(c.req.param("agentId"))),
+    );
+  });
+  app.post("/api/rooms/:roomId/agents/:agentId/recover", async (c) => {
+    store.membership(c.req.param("roomId"), c.get("user").id, true);
+    return c.json(await runtime.recover(c.req.param("agentId")));
+  });
   app.post(
     "/api/rooms/:roomId/agents/:agentId/interactions/:interactionId",
     async (c) => {

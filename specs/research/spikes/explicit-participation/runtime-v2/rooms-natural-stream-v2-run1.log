@@ -1,0 +1,6 @@
+PASS two independently authenticated human participants
+Error: model-authored public text grew across separately observed stream revisions
+    at check (file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:50:25)
+    at file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:350:5
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+Evidence: /Users/admin/rooms-natural-stream-v2-run1.json

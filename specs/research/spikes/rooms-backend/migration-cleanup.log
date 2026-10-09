@@ -1,0 +1,77 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/db
+   • Running db:generate in 1 packages
+   • Remote caching disabled
+
+@bb/db:db:generate: cache bypass, force executing 6ab193cad2654119
+@bb/db:db:generate: 
+@bb/db:db:generate: > @bb/db@0.0.1 db:generate /Users/admin/code/Forks/get-bb/bb/packages/db
+@bb/db:db:generate: > drizzle-kit generate "--name=rooms_remove_ignored_fields"
+@bb/db:db:generate: 
+@bb/db:db:generate: No config path provided, using default 'drizzle.config.ts'
+@bb/db:db:generate: Reading config file '/Users/admin/code/Forks/get-bb/bb/packages/db/drizzle.config.ts'
+@bb/db:db:generate: 56 tables
+@bb/db:db:generate: app_settings 13 columns 0 indexes 0 fks
+@bb/db:db:generate: app_settings_values 3 columns 0 indexes 0 fks
+@bb/db:db:generate: app_theme 4 columns 0 indexes 0 fks
+@bb/db:db:generate: apikey 22 columns 3 indexes 1 fks
+@bb/db:db:generate: user 7 columns 1 indexes 0 fks
+@bb/db:db:generate: environment_hook_operations 8 columns 0 indexes 0 fks
+@bb/db:db:generate: environment_variables 7 columns 2 indexes 1 fks
+@bb/db:db:generate: environments 29 columns 8 indexes 2 fks
+@bb/db:db:generate: events 13 columns 13 indexes 2 fks
+@bb/db:db:generate: host_daemon_sessions 14 columns 3 indexes 1 fks
+@bb/db:db:generate: hosts 26 columns 3 indexes 0 fks
+@bb/db:db:generate: plugins 38 columns 0 indexes 1 fks
+@bb/db:db:generate: maintenance_scan_cursors 8 columns 1 indexes 0 fks
+@bb/db:db:generate: pending_interactions 17 columns 5 indexes 1 fks
+@bb/db:db:generate: plugin_artifacts 13 columns 1 indexes 0 fks
+@bb/db:db:generate: plugin_kv 4 columns 0 indexes 0 fks
+@bb/db:db:generate: plugin_marketplace_icons 8 columns 0 indexes 0 fks
+@bb/db:db:generate: plugin_marketplaces 14 columns 0 indexes 0 fks
+@bb/db:db:generate: plugin_schedules 8 columns 0 indexes 0 fks
+@bb/db:db:generate: plugin_settings 4 columns 0 indexes 0 fks
+@bb/db:db:generate: plugin_state_snapshots 18 columns 2 indexes 0 fks
+@bb/db:db:generate: project_attachment_backfills 8 columns 0 indexes 1 fks
+@bb/db:db:generate: project_attachment_threads 2 columns 1 indexes 2 fks
+@bb/db:db:generate: project_attachments 9 columns 3 indexes 1 fks
+@bb/db:db:generate: project_execution_defaults 7 columns 1 indexes 1 fks
+@bb/db:db:generate: project_sources 9 columns 3 indexes 2 fks
+@bb/db:db:generate: projects 8 columns 4 indexes 0 fks
+@bb/db:db:generate: prompt_history_entries 7 columns 4 indexes 2 fks
+@bb/db:db:generate: provider_model_catalogs 7 columns 0 indexes 1 fks
+@bb/db:db:generate: queued_thread_messages 30 columns 4 indexes 1 fks
+@bb/db:db:generate: retained_event_outputs 4 columns 1 indexes 1 fks
+@bb/db:db:generate: rooms_activations 11 columns 3 indexes 3 fks
+@bb/db:db:generate: rooms_agents 11 columns 1 indexes 1 fks
+@bb/db:db:generate: rooms_chunks 3 columns 0 indexes 1 fks
+@bb/db:db:generate: rooms_deliveries 13 columns 3 indexes 3 fks
+@bb/db:db:generate: rooms_invites 5 columns 0 indexes 1 fks
+@bb/db:db:generate: rooms_members 3 columns 0 indexes 2 fks
+@bb/db:db:generate: rooms_messages 14 columns 3 indexes 1 fks
+@bb/db:db:generate: rooms_receipts 4 columns 0 indexes 0 fks
+@bb/db:db:generate: rooms_sessions 3 columns 0 indexes 1 fks
+@bb/db:db:generate: rooms_streams 5 columns 0 indexes 2 fks
+@bb/db:db:generate: rooms_users 4 columns 1 indexes 0 fks
+@bb/db:db:generate: rooms_rooms 8 columns 0 indexes 0 fks
+@bb/db:db:generate: system_experiments 3 columns 0 indexes 0 fks
+@bb/db:db:generate: terminal_sessions 15 columns 4 indexes 4 fks
+@bb/db:db:generate: thread_conversation_outlines 3 columns 0 indexes 1 fks
+@bb/db:db:generate: thread_dynamic_context_file_states 7 columns 1 indexes 1 fks
+@bb/db:db:generate: thread_plugin_metadata 3 columns 0 indexes 1 fks
+@bb/db:db:generate: thread_pruning_cursors 18 columns 1 indexes 1 fks
+@bb/db:db:generate: thread_pruning_work 3 columns 1 indexes 1 fks
+@bb/db:db:generate: thread_search_segments 8 columns 2 indexes 1 fks
+@bb/db:db:generate: thread_sections 4 columns 1 indexes 0 fks
+@bb/db:db:generate: thread_tabs 4 columns 0 indexes 1 fks
+@bb/db:db:generate: threads 26 columns 14 indexes 6 fks
+@bb/db:db:generate: ui_preference_defaults 2 columns 0 indexes 0 fks
+@bb/db:db:generate: ui_preferences 4 columns 0 indexes 0 fks
+@bb/db:db:generate: 
+@bb/db:db:generate: [✓] Your SQL migration file ➜ drizzle/0143_rooms_remove_ignored_fields.sql 🚀
+
+ Tasks:    1 successful, 1 total
+Cached:    0 cached, 1 total
+  Time:    680ms 
+

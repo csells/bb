@@ -1,4 +1,4 @@
-import { it, expect, afterEach, vi } from "vitest";
+import { it, expect, afterEach } from "vitest";
 import { RoomsStore } from "../src/store.js";
 import { RoomRuntime } from "../src/runtime.js";
 const stores: RoomsStore[] = [];
@@ -33,18 +33,14 @@ function setup() {
 it("surfaces an ambiguous dispatch after restart without duplicating it", () => {
   const { store, room, agent, runtime } = setup();
   const delivery = store.work()[0];
-  store.saveDelivery({ ...delivery, state: "dispatching" });
-  store.saveAgent({ ...agent, status: "starting" });
-  const spawn = vi.spyOn(runtime.sdk.threads, "spawn");
+  store.beginActivation(delivery.id);
   runtime.start();
   runtime.close();
-  expect(spawn).not.toHaveBeenCalled();
   expect(store.work()).toEqual([]);
-  expect(store.deliveries(room.id)[0].state).toBe("error");
-  expect(store.agent(agent.id).status).toBe("error");
-  expect(store.messages(room.id).at(-1)?.text).toContain(
-    "may have been accepted",
-  );
+  expect(store.deliveries(room.id)[0].state).toBe("uncertain");
+  expect(store.agent(agent.id).status).toBe("uncertain");
+  expect(store.deliveries(room.id)[0].error).toContain("may have accepted");
+  expect(store.messages(room.id)).toHaveLength(1);
 });
 it("cancels queued deliveries and ignores a late execution failure after stop", async () => {
   const { store, room, agent, runtime } = setup();

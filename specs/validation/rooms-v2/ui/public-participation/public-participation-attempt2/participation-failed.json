@@ -1,0 +1,9 @@
+{
+  "roomId": "c55dfec3-1d5e-4fa4-aa8b-babd087d4cb6",
+  "claims": [
+    "Two separately authenticated human browser sessions joined through one-time invitation",
+    "Concurrent human messages preserve authorship and an identical retried post appears once"
+  ],
+  "failures": [],
+  "error": "TimeoutError: locator.selectOption: Timeout 30000ms exceeded.\nCall log:\n  - waiting for getByLabel('Provider', { exact: true })\n"
+}

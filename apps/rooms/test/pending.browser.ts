@@ -1,13 +1,20 @@
-import { chromium, expect } from "@playwright/test";
+import { chromium, webkit, expect } from "@playwright/test";
+import { mkdir } from "node:fs/promises";
 import type { Snapshot } from "../src/contracts.js";
 const origin = process.env.ROOMS_TEST_ORIGIN ?? "http://127.0.0.1:38900";
+const evidence =
+  process.env.ROOMS_TEST_EVIDENCE ?? "/tmp/rooms-pending-evidence";
+await mkdir(evidence, { recursive: true });
 const user = { id: "human", handle: "alex", name: "Alex QA" };
 const snapshot: Snapshot = {
   room: {
     id: "pending-qa",
     name: "Pending replies QA",
     ownerId: user.id,
-    defaultAgentId: null,
+    paused: false,
+    pauseReason: null,
+    maxActivations: null,
+    activationsUsed: 2,
     revision: 1,
   },
   members: [{ ...user, role: "owner" }],
@@ -21,7 +28,6 @@ const snapshot: Snapshot = {
     instructions: "",
     projectId: null,
     threadId: null,
-    lastSeq: 0,
     status: "working",
   })),
   messages: [
@@ -35,7 +41,9 @@ const snapshot: Snapshot = {
       status: "complete",
       createdAt: Date.now(),
       causeId: null,
-      depth: 0,
+      intent: "request",
+      recipients: ["Builder", "Reviewer"],
+      replyTo: null,
     },
   ],
   deliveries: ["Builder", "Reviewer"].map((agentId) => ({
@@ -46,12 +54,18 @@ const snapshot: Snapshot = {
     state: "running",
     error: null,
     startedAt: Date.now(),
-    baseline: 0,
+    createdAt: Date.now(),
+    intent: "request",
+    activationId: "activation-" + agentId,
+    threadId: null,
+    outcome: null,
   })),
   online: [user.id],
 };
-const browser = await chromium.launch({ headless: true });
-const page = await browser.newPage();
+const browserType =
+  process.env.ROOMS_TEST_BROWSER === "webkit" ? webkit : chromium;
+const browser = await browserType.launch({ headless: true });
+const page = await browser.newPage({ hasTouch: true, isMobile: true });
 const errors: string[] = [];
 page.on("pageerror", (e) => errors.push(e.message));
 await page.route("**/api/**", async (route) => {
@@ -65,21 +79,41 @@ try {
   const pending = page.locator(".conversation .pending-reply");
   await expect(pending).toHaveCount(2);
   await expect(pending.first()).toContainText(
-    "Waiting for Builder’s first response",
+    "Builder is working on your request",
   );
   await expect(pending.last()).toContainText(
-    "Waiting for Reviewer’s first response",
+    "Reviewer is working on your request",
   );
   const elapsed = pending.first().locator(".pending-elapsed");
   const initial = await elapsed.textContent();
   await expect(elapsed).not.toHaveText(initial!);
   await page.getByLabel("Message the room").fill("I can keep typing");
   await page.screenshot({
-    path: "/Users/admin/rooms-data/evidence/pending-desktop.png",
+    path: evidence + "/pending-desktop.png",
     fullPage: true,
   });
   console.log(
     "PASS two visible waiting replies before first token, live elapsed time, usable composer",
+  );
+  snapshot.deliveries[0].error =
+    "Could not reach the provider. Retrying status check.";
+  snapshot.room.revision++;
+  await expect(pending).toHaveCount(2);
+  await expect(pending.first()).toContainText(
+    "Unable to confirm execution status",
+  );
+  await expect(pending.first()).toContainText("Your request remains pending");
+  await expect(page.getByLabel("Message the room")).toHaveValue(
+    "I can keep typing",
+  );
+  snapshot.deliveries[0].error = null;
+  snapshot.room.revision++;
+  await expect(pending.first()).not.toContainText("Unable to confirm");
+  await expect(pending.first()).toContainText(
+    "Builder is working on your request",
+  );
+  console.log(
+    "PASS temporary status failure stays pending, remains writable and recovers",
   );
   snapshot.deliveries[0].state = "queued";
   snapshot.agents[0].status = "idle";
@@ -89,6 +123,7 @@ try {
   await expect(pending.last()).toContainText("Starting Reviewer");
   console.log("PASS queued and starting states");
   snapshot.deliveries[0].state = "running";
+  snapshot.agents[0].status = "working";
   snapshot.messages.push({
     id: "reply",
     roomId: snapshot.room.id,
@@ -99,7 +134,9 @@ try {
     status: "streaming",
     createdAt: Date.now(),
     causeId: "prompt",
-    depth: 1,
+    intent: "post",
+    recipients: [],
+    replyTo: "prompt",
   });
   snapshot.room.revision++;
   await expect(pending).toHaveCount(1);
@@ -110,18 +147,36 @@ try {
   console.log(
     "PASS actual streaming text replaces only its agent’s waiting reply",
   );
+  snapshot.deliveries[0].error = "Provider status is temporarily unavailable.";
+  snapshot.room.revision++;
+  await expect(pending).toHaveCount(2);
+  await expect(pending.first()).toContainText(
+    "Unable to confirm execution status",
+  );
+  await expect(page.locator('article[data-author="Builder"]')).toContainText(
+    "Hello, I am Builder",
+  );
+  snapshot.deliveries[0].error = null;
+  snapshot.room.revision++;
+  await expect(pending).toHaveCount(1);
+  console.log(
+    "PASS public streaming does not conceal a temporary status failure",
+  );
   snapshot.messages[1].status = "complete";
   snapshot.room.revision++;
   await expect(pending).toHaveCount(2);
   await expect(pending.first()).toContainText("Builder is working");
   snapshot.deliveries[0].state = "stopped";
   snapshot.deliveries[1].state = "error";
+  snapshot.agents[0].status = "stopped";
+  snapshot.agents[1].status = "error";
   snapshot.room.revision++;
   await expect(pending).toHaveCount(0);
   console.log(
     "PASS waiting continues between outputs and clears on stop/error",
   );
   snapshot.deliveries[0].state = "running";
+  snapshot.agents[0].status = "working";
   snapshot.messages.splice(1);
   snapshot.room.revision++;
   await page.setViewportSize({ width: 390, height: 844 });
@@ -134,12 +189,63 @@ try {
     ),
   ).toBe(true);
   await page.screenshot({
-    path: "/Users/admin/rooms-data/evidence/pending-mobile.png",
+    path: evidence + "/pending-mobile.png",
     fullPage: true,
   });
+  expect(
+    await page
+      .getByLabel("Message the room")
+      .evaluate((node) => getComputedStyle(node).fontSize),
+  ).toBe("16px");
+  await page.getByRole("button", { name: /People/ }).click();
+  await expect(
+    page.getByRole("heading", { name: "People in this room" }),
+  ).toBeVisible();
+  expect(
+    await page
+      .locator("#root")
+      .evaluate(
+        (node) =>
+          node.hasAttribute("inert") ||
+          node.getAttribute("aria-hidden") === "true",
+      ),
+  ).toBe(false);
+  await page.getByLabel("Close panel").click();
+  await expect
+    .poll(() =>
+      page
+        .locator(".rooms-drawer")
+        .evaluate(
+          (node) => node.getBoundingClientRect().top >= innerHeight - 1,
+        ),
+    )
+    .toBe(true);
+  await page.getByRole("button", { name: /Add agent/ }).click();
+  const agentName = page.getByRole("textbox", { name: "Name", exact: true });
+  await expect(agentName).toBeVisible();
+  expect(
+    await agentName.evaluate((node) => getComputedStyle(node).fontSize),
+  ).toBe("16px");
+  await agentName.fill("Touch field remains usable");
+  await expect(page.getByLabel("Close panel")).toBeInViewport();
+  await page.getByLabel("Close panel").click();
+  await page
+    .getByLabel("Message the room")
+    .fill("Composer remains usable after the drawer");
+  await expect(page.getByLabel("Message the room")).toHaveValue(
+    "Composer remains usable after the drawer",
+  );
+  console.log(
+    "PASS compiled mobile touch inputs are16px; shared drawers preserve root and composer usability",
+  );
   snapshot.deliveries[0].state = "complete";
+  snapshot.deliveries[0].outcome = "no_reply";
+  snapshot.agents[0].status = "idle";
   snapshot.room.revision++;
   await expect(pending).toHaveCount(0);
+  await expect(
+    page.locator(".participant").filter({ hasText: "Builder" }),
+  ).toContainText("No public reply");
   expect(errors).toEqual([]);
   console.log(
     "PASS pending survives reload, fits mobile, clears on completion; no browser errors",

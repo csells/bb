@@ -10,12 +10,16 @@ const data = process.env.ROOMS_DATA_DIR;
 if (!data) throw new Error("ROOMS_DATA_DIR is required");
 const origin = process.env.ROOMS_PUBLIC_ORIGIN;
 if (!origin) throw new Error("ROOMS_PUBLIC_ORIGIN is required");
+const port = Number(process.env.ROOMS_PORT ?? 38900);
+if (!Number.isInteger(port) || port < 1 || port > 65535)
+  throw new Error("ROOMS_PORT must be a valid TCP port");
 mkdirSync(data, { recursive: true, mode: 0o700 });
 const store = new RoomsStore(join(data, "rooms.sqlite"));
 const runtime = new RoomRuntime(
   store,
   process.env.ROOMS_BB_URL ?? "http://127.0.0.1:38886",
   join(data, "workspaces"),
+  process.env.ROOMS_AGENT_ORIGIN ?? `http://127.0.0.1:${port}`,
 );
 if (!existsSync(join(data, "initialized"))) {
   const room = store.createRoom("Workshop", "");
@@ -40,7 +44,7 @@ const server = serve(
   {
     fetch: app.fetch,
     hostname: process.env.ROOMS_BIND_HOST ?? "0.0.0.0",
-    port: Number(process.env.ROOMS_PORT ?? 38900),
+    port,
   },
   () =>
     console.log(

@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "node ../../scripts/build-node-entry.mjs src/server.ts dist/server.js --clean-dist && vite build",
+    "build": "node ../../scripts/build-node-entry.mjs src/server.ts dist/server.js --clean-dist --copy-dir ../../packages/db/drizzle dist/drizzle && node ../../scripts/build-node-entry.mjs src/agent-cli-entry.ts dist/agent-cli.js && vite build",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
   },
@@ -17,7 +17,9 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-markdown": "^10.1.0",
-    "@bb/domain": "workspace:*"
+    "@bb/domain": "workspace:*",
+    "@bb/db": "workspace:*",
+    "@bb/shared-ui": "workspace:*"
   },
   "devDependencies": {
     "@types/better-sqlite3": "^7.6.12",

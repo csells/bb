@@ -1078,12 +1078,18 @@ importers:
 
   apps/rooms:
     dependencies:
+      '@bb/db':
+        specifier: workspace:*
+        version: link:../../packages/db
       '@bb/domain':
         specifier: workspace:*
         version: link:../../packages/domain
       '@bb/sdk':
         specifier: workspace:*
         version: link:../../packages/sdk
+      '@bb/shared-ui':
+        specifier: workspace:*
+        version: link:../../packages/shared-ui
       '@hono/node-server':
         specifier: ^1.19.11
         version: 1.19.14(hono@4.11.9)

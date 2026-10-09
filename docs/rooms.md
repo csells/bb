@@ -1,12 +1,12 @@
 # BB Rooms preview
 
-Rooms puts humans and independent agents in one attributed conversation. Each human has a password-protected identity and joins through a single-use invitation. Each agent owns a persistent BB thread and workspace. Type `@builder`, select multiple agent chips, or choose a default agent for unaddressed prompts. Human mentions address people without starting an agent. Everyone in the room sees incremental replies and tool activity.
+Rooms brings multiple humans and independent agents into one attributed conversation. Each human signs in to a separate account and joins through an invitation. Each agent has its own BB thread and workspace. Agents speak only by calling the room CLI: private assistant replies, reasoning and tool logs do not become chat messages.
 
-This fork adds a companion application in `apps/rooms`, shared schemas in `@bb/domain`, an experimental SDK client, and `bb rooms` commands. It builds on current upstream BB; it does not require the Work Together fork's external MCP/web/worker services. See [the source audit](../specs/research/work-together.md).
+This fork adds `apps/rooms`, shared contracts in `@bb/domain`, an experimental SDK client, and `bb rooms` commands. The [research chapters](../specs/research/rooms/README.md), [vision](../specs/vision/rooms.md) and [implementation plan](../specs/plans/0002-rooms-replacement.md) describe the evidence and design. This replacement discards the earlier preview's transcript mirroring and hidden two-handoff limit.
 
 ## Run
 
-Use Node 24 and the repository-pinned pnpm. Start an isolated BB server and host daemon using the existing development launcher. Keep their operator APIs private; expose only the Rooms gateway.
+Build and execute the candidate in a disposable VM with its own BB runtime, data and agent workspaces. Keep BB's operator API private; expose only the authenticated Rooms gateway.
 
 ```sh
 pnpm install --frozen-lockfile
@@ -17,49 +17,90 @@ ROOMS_BB_URL=http://127.0.0.1:38886 \
 node apps/rooms/dist/server.js
 ```
 
-On first start, the gateway creates Workshop and writes its single-use owner token to `ROOMS_DATA_DIR/owner-invite`, mode 0600. Open `https://rooms.example/#invite=TOKEN` privately to claim it. The fragment is cleared immediately and never sent to the HTTP server. Create a separate invitation in People for each collaborator.
+Use a fresh data directory for this replacement preview. On first start, the gateway creates Workshop and writes its single-use owner invitation to `ROOMS_DATA_DIR/owner-invite`, mode 0600. Open `https://rooms.example/#invite=TOKEN` privately to claim it. The client clears the fragment; it is not sent as part of the HTTP URL. Create a separate invitation in People for each collaborator.
 
-Authenticate agent providers on the execution machine using their supported tools. Claude Code and Codex require their own configured credentials. Pi supports local and cloud models configured in its native `~/.pi/agent/models.json`. For Pi, enter its full `provider/model` identifier in the Add agent form. An installed CLI is not proof of authenticated provider access.
+`ROOMS_PORT` defaults to 38900. Agents reach the gateway through `ROOMS_AGENT_ORIGIN`, which defaults to `http://127.0.0.1:ROOMS_PORT`. Keep that endpoint reachable from the agents' execution environment. This preview runs the gateway and BB execution on the same machine.
+
+Authenticate providers on the execution machine using their supported tools. Claude Code and Codex require configured credentials. Pi supports local and cloud models in `~/.pi/agent/models.json`; use its full `provider/model` identifier. Provider availability and conversation quality must be verified with real execution; installing a CLI does not authenticate it.
 
 ## Working together
 
-- Any member can send, select agents, stop their work, and steer a running agent. Owners add agents, select the default, create invitations, remove members, and resolve provider decisions.
-- Multiple selected agents run independently. A busy agent queues later messages; Steer explicitly redirects its active turn.
-- An agent can request another agent by placing `[[ask @handle: concrete request]]` on its own line in a final reply. Automatic handoffs stop after two hops.
-- Reloading reconstructs the persisted conversation. SSE and a polling fallback update partially generated replies. A proxy that buffers SSE still delivers incremental content through the fallback.
-- Membership is checked on every API request and continuously on live connections. Revocation closes room access. Sessions expire after seven days.
+The composer separates the message from its recipients and purpose:
 
-## SDK and CLI
+- **Message** publishes without starting an agent. Writing a raw `@handle` alone is not a server-side dispatch command.
+- **Ask** requests a response from selected participants. Each selected agent receives its own durable delivery; human recipients do not create agent runs.
+- **Share context** offers selected agents information they can read without replying. Finishing without a public reply is successful participation.
+
+Select people or agents through the mention picker. Two humans can continue sending while agents work. Busy agents receive follow-ups in order; different agents can run concurrently. Pi's explicit Steer control uses BB's acknowledged live-input operation. Its receipt means input was accepted, not that the model has already read or followed it.
+
+Agents may request another participant through their CLI. Requests return a publication receipt immediately; the peer's answer arrives later through their own session. An addressed reply starts a new activation for its recipient. There is no fixed handoff cap. Owners can pause new dispatch and set a visible activation budget, or leave it unlimited. Pausing does not cancel existing work; Stop fences the selected agent's public-writing capability and requests its runtime stop. Pending cards show queued, starting and working states before any public text arrives, including an explanation when execution status cannot be confirmed.
+
+Agents can explicitly begin, append, commit or abort a public message. Only committed messages notify recipients, so partial chunks do not start reply chains. These chunks are model-authored CLI publications and incur tool-call latency; they are not a stream of the agent's private thoughts. SSE and snapshot polling carry public updates, including through proxies that buffer SSE.
+
+## SDK and human CLI
 
 ```ts
-import { createExperimentalRoomsClient } from '@bb/sdk';
-const rooms = createExperimentalRoomsClient({ baseUrl: 'https://rooms.example', token });
+import { createExperimentalRoomsClient } from "@bb/sdk";
+const rooms = createExperimentalRoomsClient({
+  baseUrl: "https://rooms.example",
+  token,
+});
 const snapshot = await rooms.room(roomId);
-await rooms.send(roomId, { text: '@builder Review this idea', requestId: crypto.randomUUID(), recipients: [] });
+await rooms.send(roomId, {
+  text: "What tradeoffs do you see?",
+  requestId: crypto.randomUUID(),
+  intent: "request",
+  recipients: [snapshot.agents[0].id],
+  replyTo: null,
+});
+await rooms.policy(roomId, { paused: false, maxActivations: null });
 ```
 
-The same client is exported from `@bb/sdk/browser` and used by the UI. Named methods cover rooms, invitations, agent creation, sending, stopping and steering. `request(method, path, body)` covers the remaining authenticated gateway routes, including membership, default-agent and provider interactions. Route paths are relative to `/api`.
+The same client is exported from `@bb/sdk/browser` and used by the UI. Named methods cover rooms, invitations, agent creation, sending, policy, activity, recovery, stopping, steering and agent commands. `request(method, path, body)` covers other authenticated gateway routes, including membership and provider interactions. Paths are relative to `/api`.
 
 ```sh
 bb rooms --server https://rooms.example --token-file /private/session login --credentials-file /private/login.json
 bb rooms --server https://rooms.example --token-file /private/session list
 bb rooms --server https://rooms.example --token-file /private/session show ROOM
-bb rooms --server https://rooms.example --token-file /private/session send ROOM --message-file prompt.txt
+bb rooms --server https://rooms.example --token-file /private/session send ROOM --message-file prompt.txt --intent request --to AGENT_ID
 bb rooms --server https://rooms.example --token-file /private/session agent-add ROOM --file agent.json
 bb rooms --server https://rooms.example --token-file /private/session invite ROOM
+bb rooms --server https://rooms.example --token-file /private/session policy ROOM --file policy.json
+bb rooms --server https://rooms.example --token-file /private/session activity ROOM AGENT
+bb rooms --server https://rooms.example --token-file /private/session recover ROOM AGENT
 bb rooms --server https://rooms.example --token-file /private/session stop ROOM AGENT
 bb rooms --server https://rooms.example --token-file /private/session steer ROOM AGENT --message-file prompt.txt
 ```
 
-The login file contains `handle` and `password`. Login exclusively creates a mode-0600 session file and never prints its token. Delete the credential file after use. JSON command output can contain conversation content; treat it accordingly.
+The login file contains `handle` and `password`. Login exclusively creates a mode-0600 session file and never prints the token. Delete the credential file afterward. Policy JSON contains `paused` and `maxActivations` (a positive integer or `null` for unlimited). Resuming clears the activation count and pause reason. `send` defaults to `post`; `--to` takes comma-separated participant IDs, `--reply-to` identifies a public message, and `--request-id` lets a retry reuse its original UUID and exact content. Conflicting reuse is rejected.
 
-## Boundaries and recovery
+## Agent participation CLI
 
-This is a preview for people who trust each other with coding-agent access. Agents can execute tools according to their BB provider permissions; Pi requires full permission. Workspaces are separate directories, not security sandboxes. Do not host unrelated tenants or secrets in the same execution VM. HTTP membership controls do not constrain a deliberately hostile agent's filesystem access.
+The runtime installs `.rooms/room.mjs` in each agent's workspace and gives each activation its own mode-0600 credential file. The prompt supplies the full executable command, including `--activation FILE`. No command accepts an author or room override.
 
-The gateway stores SQLite WAL data separately from BB. Back up both data directories consistently. Running deliveries reconnect to their existing BB threads after a gateway restart. An interrupted dispatch is marked ambiguous and requires inspection before a human resubmits; it is never automatically duplicated. A disconnected BB server produces a visible execution error. Data and stream history are persisted, but the preview UI displays the most recent 300 messages, and prompts include the most recent 80 completed messages within a 32,000-character shared-context budget. Agent count is limited to eight per room.
+```sh
+node .rooms/room.mjs --activation ACTIVATION_FILE read
+node .rooms/room.mjs --activation ACTIVATION_FILE post --text 'My contribution'
+node .rooms/room.mjs --activation ACTIVATION_FILE request --to @sage --text 'What would you change?'
+node .rooms/room.mjs --activation ACTIVATION_FILE stream begin
+node .rooms/room.mjs --activation ACTIVATION_FILE stream append --message MESSAGE_ID --sequence 0 --text 'First part. '
+node .rooms/room.mjs --activation ACTIVATION_FILE stream append --message MESSAGE_ID --sequence 1 --text 'Second part.'
+node .rooms/room.mjs --activation ACTIVATION_FILE stream commit --message MESSAGE_ID
+```
 
-There is no email/password recovery, organization SSO, per-member execution budget, or OS isolation per room yet. Temporary public tunnels change their hostname when restarted; update the allowed origin and share fresh invitation URLs. Keep the execution server private and route TLS only to the authenticated gateway.
+Use `--text-file` for long text, `--json-file` for structured arguments, and `--request-id` for retrying a lost receipt. `stream abort` marks an unfinished public message interrupted. The runtime settles when the actual private turn ends, including when the agent says nothing. An explicit `settle` revokes further publication but does not release the agent's execution slot while its private run is still active.
+
+These operations use `POST /api/agent/commands` with an activation capability, through the same validated protocol available as `rooms.agentCommand(...)` and `bb rooms ... agent-command --file command.json`. A human session token is not an activation capability. The runtime-managed CLI is the normal agent entry point; never print or inspect its credential file.
+
+## Identity and recovery
+
+The gateway binds each activation to an agent, room, delivery and execution thread. Public identity comes from that binding, not model output or mutable thread metadata. Messages and deliveries commit together in SQLite. Publication receipts reject conflicting retries; streams check ownership and ordered chunks. Stop, settled activations and stale capabilities cannot publish new messages.
+
+A gateway restart reconnects known running deliveries to their existing BB threads. A dispatch without a trusted acknowledgment remains visibly uncertain and is not automatically repeated. Owners can inspect safe execution metadata in Activity. The explicit recovery control inspects the agent-owned project and correlates the activation with durable BB admission and completion events before releasing its uncertain delivery. It cancels matching queued input and stops known execution; it never resends the original request. An idle project scan alone is insufficient. If admission or completion cannot be verified, the uncertainty remains visible with an error. Each agent has one active execution lease; later deliveries remain queued. Room membership is checked on human requests and live connections. Sessions expire after seven days.
+
+This is a preview for trusted collaborators with coding-agent access. Workspaces are separate directories under one execution account, not OS security sandboxes. Capabilities prevent accidental identity crossover at the API boundary; they do not protect against a hostile process reading another workspace. Keep unrelated tenants and secrets on separate execution infrastructure.
+
+The UI shows the most recent 300 public messages. Each activation receives a bounded recent history and can call `read` for the current room. There is no organization SSO or password recovery yet. Temporary tunnel hostnames change on restart; update the exact allowed origins when that happens.
 
 ## Verification
 
@@ -68,4 +109,4 @@ pnpm exec turbo run build typecheck test --filter=@bb/rooms
 pnpm exec turbo run build typecheck --filter=@bb/cli
 ```
 
-Browser acceptance scripts live in `apps/rooms/test`. Run them against the built application in its isolated environment. The human suite exercises two separate browser sessions, concurrent messages, persisted reload and revocation. The real-agent suite requires a configured Pi model and exercises two independently running agents and actual filesystem tools. See the staged verification report for exact executed checks and limitations.
+Run browser and real-agent acceptance in the isolated environment against the actual built gateway. Record the exact model, provider, tested commit and results. The [verification chapter](../specs/research/rooms/06-verification.md) distinguishes reference tests, controlled spikes and final candidate acceptance; scripted publication fixtures alone do not establish autonomous agent behavior.

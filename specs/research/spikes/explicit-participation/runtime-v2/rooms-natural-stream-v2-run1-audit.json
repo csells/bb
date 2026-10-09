@@ -1,0 +1,11 @@
+{
+  "source": "rooms-natural-stream-v2-run1.json",
+  "sha256": "0a504a698009d1b0c6c2dd6aefad300156923fbb8ed38f8ef35c49ca602578ac",
+  "workRows": 0,
+  "reasoningRows": 1,
+  "agentPublications": 0,
+  "deliveryOutcomes": [
+    "no_reply"
+  ],
+  "error": "Error: model-authored public text grew across separately observed stream revisions"
+}

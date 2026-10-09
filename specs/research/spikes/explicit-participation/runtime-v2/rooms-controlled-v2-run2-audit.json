@@ -1,0 +1,17 @@
+{
+  "source": "rooms-controlled-v2-run2.json",
+  "actualPrivateFinalStrings": [
+    "CONTROLLED_PRIVATE_FINAL Reviewer: fixture @builder"
+  ],
+  "exactPublicMatches": [],
+  "agentSteeringEffectPresent": true,
+  "steerReceipts": [
+    {
+      "steerHttpReceipt": {
+        "accepted": true,
+        "delivery": "sent"
+      },
+      "acceptedAt": "2026-10-09T18:26:21.333Z"
+    }
+  ]
+}

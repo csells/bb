@@ -8,6 +8,11 @@ export {
   roomsSnapshotSchema as snapshotSchema,
   roomsCreateAgentSchema as createAgentSchema,
   roomsMessageInputSchema as messageInputSchema,
+  roomsAgentCommandSchema as agentCommandSchema,
+  roomsPublicationSchema as publicationSchema,
+  roomsPolicyInputSchema as policySchema,
+  roomsActivationSchema as activationSchema,
+  roomsAgentCommandResultSchema as agentCommandResultSchema,
 } from "@bb/domain";
 export type {
   RoomsUser as User,
@@ -16,4 +21,8 @@ export type {
   RoomsMessage as Message,
   RoomsDelivery as Delivery,
   RoomsSnapshot as Snapshot,
+  RoomsActivation as Activation,
+  RoomsAgentCommand as AgentCommand,
+  RoomsAgentCommandResult as AgentCommandResult,
+  RoomsPublication as Publication,
 } from "@bb/domain";

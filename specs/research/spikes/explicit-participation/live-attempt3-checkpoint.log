@@ -1,0 +1,8 @@
+PASS AgentA explicitly invoked CLI to publish one selected request
+PASS Raw AgentA final with simulated other-agent dialogue remains private
+PASS Explicit addressed publication enqueued only AgentB
+PASS Independent AgentB invoked explicit begin append commit CLI
+PASS Selected public stream chunks form one message
+PASS Private final mentions and public stream chunks created no extra wakes
+PASS Participants have distinct top-level runtime threads
+PASS Successful no-tool no-post agent activation adds zero room messages

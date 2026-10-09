@@ -1,0 +1,4 @@
+PASS recorded AgentA ordinary final is absent from public messages
+PASS actual later private other-agent label and mention exists, absent from all public messages
+PASS only two explicitly requested initial deliveries plus second human busy request exist
+PASS both recorded BB parentThreadId fields are null and busy receipt is queued

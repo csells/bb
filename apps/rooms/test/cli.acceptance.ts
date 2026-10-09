@@ -17,11 +17,13 @@ const dir = await mkdtemp(join(tmpdir(), "rooms-cli-"));
 try {
   const credentials = join(dir, "login.json"),
     token = join(dir, "session"),
-    message = join(dir, "message.txt");
+    message = join(dir, "message.txt"),
+    policy = join(dir, "policy.json");
   await writeFile(credentials, JSON.stringify({ handle, password }), {
     mode: 0o600,
   });
   await writeFile(message, "A real CLI message");
+  await writeFile(policy, JSON.stringify({ paused: true, maxActivations: 7 }));
   const args = [
     new URL("../../cli/dist/index.js", import.meta.url).pathname,
     "rooms",
@@ -42,8 +44,26 @@ try {
     "CLI Human",
   );
   assert.equal(cli(["show", room.id]).messages.length, 1);
+  assert.equal(cli(["policy", room.id, "--file", policy]).paused, true);
+  assert.equal(cli(["show", room.id]).room.maxActivations, 7);
+  const requestId = crypto.randomUUID();
+  const send = [
+    "send",
+    room.id,
+    "--message-file",
+    message,
+    "--intent",
+    "notice",
+    "--request-id",
+    requestId,
+  ];
+  const first = cli(send);
+  const retry = cli(send);
+  assert.equal(first.message.id, retry.message.id);
+  assert.equal(first.message.intent, "notice");
+  assert.equal(cli(["show", room.id]).messages.length, 2);
   console.log(
-    "PASS built CLI login, private token file, room list, authenticated send, persisted show over public HTTPS",
+    "PASS built CLI login, private token file, intent and retry identity, visible policy and persisted show through the running gateway",
   );
 } finally {
   await rm(dir, { recursive: true });

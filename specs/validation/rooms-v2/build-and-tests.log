@@ -1,0 +1,243 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/cli, @bb/rooms
+   • Running build, typecheck, test in 2 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 9b2010826d0c8b67
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold: 
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold: 
+@bb/plugin-build:generate: cache hit, replaying logs cd7b0119740bb816
+@bb/plugin-build:generate: 
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate: 
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/templates:generate:templates: cache hit, replaying logs c34ddd17b9ae631a
+@bb/templates:generate:templates: 
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates: 
+@bb/rooms:typecheck: cache miss, executing 0685c0ec74aebf93
+@bb/cli:build: cache miss, executing 24b1772b8a193ce3
+@bb/rooms:build: cache miss, executing b97f28d52905b496
+@bb/cli:typecheck: cache miss, executing b6dc228144f8c338
+@bb/rooms:build: 
+@bb/rooms:build: > @bb/rooms@0.1.0 build /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:build: > node ../../scripts/build-node-entry.mjs src/server.ts dist/server.js --clean-dist --copy-dir ../../packages/db/drizzle dist/drizzle && node ../../scripts/build-node-entry.mjs src/agent-cli.ts dist/agent-cli.js && vite build
+@bb/rooms:build: 
+//:ensure-native-modules: 
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules: 
+@bb/rooms:typecheck: 
+@bb/rooms:typecheck: > @bb/rooms@0.1.0 typecheck /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:typecheck: > tsc --noEmit
+@bb/rooms:typecheck: 
+@bb/cli:typecheck: 
+@bb/cli:typecheck: > @bb/cli@0.0.1 typecheck /Users/admin/code/Forks/get-bb/bb/apps/cli
+@bb/cli:typecheck: > tsc --noEmit
+@bb/cli:typecheck: 
+@bb/cli:build: 
+@bb/cli:build: > @bb/cli@0.0.1 build /Users/admin/code/Forks/get-bb/bb/apps/cli
+@bb/cli:build: > node ../../scripts/build-node-entry.mjs src/index.ts dist/index.js --clean-dist --split
+@bb/cli:build: 
+@bb/cli:test: cache miss, executing 37d7d0d61e5ca9b2
+@bb/rooms:test: cache miss, executing 6bb7ef8144d6392d
+@bb/cli:test: 
+@bb/cli:test: > @bb/cli@0.0.1 test /Users/admin/code/Forks/get-bb/bb/apps/cli
+@bb/cli:test: > vitest run
+@bb/cli:test: 
+@bb/rooms:test: 
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:test: > vitest run
+@bb/rooms:test: 
+@bb/rooms:build: vite v7.3.7 building client environment for production...
+@bb/rooms:build: transforming...
+@bb/cli:test: 
+@bb/cli:test:  RUN  v4.1.1 /Users/admin/code/Forks/get-bb/bb/apps/cli
+@bb/cli:test: 
+@bb/rooms:test: 
+@bb/rooms:test:  RUN  v4.1.1 /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:test: 
+@bb/rooms:build: ../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+@bb/rooms:build: 
+@bb/rooms:build: "// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+@bb/rooms:build: 
+@bb/rooms:build: in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+@bb/rooms:build: ../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+@bb/rooms:build: 
+@bb/rooms:build: "/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+@bb/rooms:build:  * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+@bb/rooms:build:  * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+@bb/rooms:build: 
+@bb/rooms:build: in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+@bb/rooms:build: ✓ 466 modules transformed.
+@bb/rooms:build: rendering chunks...
+@bb/rooms:build: computing gzip size...
+@bb/rooms:build: dist/web/index.html                   0.40 kB │ gzip:   0.27 kB
+@bb/rooms:build: dist/web/assets/index-CiD2uzZh.css   15.02 kB │ gzip:   3.84 kB
+@bb/rooms:build: dist/web/assets/index-Cxai2Aq-.js   521.77 kB │ gzip: 162.45 kB
+@bb/rooms:build: 
+@bb/rooms:build: (!) Some chunks are larger than 500 kB after minification. Consider:
+@bb/rooms:build: - Using dynamic import() to code-split the application
+@bb/rooms:build: - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+@bb/rooms:build: - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+@bb/rooms:build: ✓ built in 5.36s
+@bb/rooms:test:  ✓  @bb/rooms  test/store.test.ts (3 tests) 2401ms
+@bb/rooms:test:      ✓ atomically consumes invites and binds sessions to distinct identities  1163ms
+@bb/rooms:test:      ✓ rejects revoked room access without invalidating other memberships  731ms
+@bb/rooms:test:      ✓ deduplicates a retried human send and agent delivery  506ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/machine.test.ts (22 tests) 2635ms
+@bb/cli:test:      ✓ polls the creating host until it becomes active  519ms
+@bb/cli:test:      ✓ prints the manual enrollment command while following  515ms
+@bb/cli:test:      ✓ waits for delayed manual enrollment readiness and prints the command once  1506ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/updates.test.ts (17 tests) 3145ms
+@bb/cli:test:      ✓ bb updates app apply confirms before interrupting threads, then follows the restart  2012ms
+@bb/cli:test:      ✓ bb updates app apply exits non-zero when the update fails  1012ms
+@bb/rooms:test:  ✓  @bb/rooms  test/recovery.test.ts (3 tests) 2071ms
+@bb/rooms:test:    ✓ surfaces an ambiguous dispatch after restart without duplicating it  549ms
+@bb/rooms:test:    ✓ cancels queued deliveries and ignores a late execution failure after stop  597ms
+@bb/rooms:test:    ✓ rejects a human join that would collide with an existing agent handle  926ms
+@bb/rooms:test:  ✓  @bb/rooms  test/sdk.test.ts (1 test) 900ms
+@bb/rooms:test:    ✓ shares authenticated, idempotent messaging and logout between SDK and gateway  900ms
+@bb/rooms:test:  ✓  @bb/rooms  test/agent-cli.test.ts (1 test) 113ms
+@bb/rooms:test:  ✓  @bb/rooms  test/protocol.test.ts (7 tests) 5925ms
+@bb/rooms:test:      ✓ publishes only under the capability identity and atomically validates recipients and reply scope  1073ms
+@bb/rooms:test:      ✓ keeps explicit silence successful without releasing an active provider lease  744ms
+@bb/rooms:test:      ✓ streams selected public content with ordered retries and one notification at commit  707ms
+@bb/rooms:test:      ✓ preserves running capabilities across restart while fencing ambiguous dispatch without replay  637ms
+@bb/rooms:test:      ✓ persists successful queue cancellation separately from uncertain or wrong-thread admission  782ms
+@bb/rooms:test:      ✓ serializes same-agent claims across database connections while letting independent agents participate  933ms
+@bb/rooms:test:      ✓ exposes configurable activation budgets and explicit pause without forbidding conversational depth  1047ms
+@bb/rooms:test:  ✓  @bb/rooms  test/admission.test.ts (3 tests) 17ms
+@bb/rooms:test:  ✓  @bb/rooms  test/http.test.ts (6 tests) 5072ms
+@bb/rooms:test:      ✓ terminates a stream when its bearer session expires even if a valid cookie is also present  1327ms
+@bb/rooms:test:      ✓ does not publish a human message when live steering is rejected  433ms
+@bb/rooms:test:      ✓ keeps human sessions and agent capabilities in separate authority domains  848ms
+@bb/rooms:test:      ✓ rejects anonymous reads and cross-room sessions  834ms
+@bb/rooms:test:      ✓ rejects CSRF and client-forged authors  1007ms
+@bb/rooms:test:      ✓ attributes a valid send from the authenticated session  622ms
+@bb/rooms:test: 
+@bb/rooms:test:  Test Files  7 passed (7)
+@bb/rooms:test:       Tests  24 passed (24)
+@bb/rooms:test:    Start at  18:06:13
+@bb/rooms:test:    Duration  9.28s (transform 2.91s, setup 0ms, import 9.08s, tests 16.50s, environment 0ms)
+@bb/rooms:test: 
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/plugin-cli-proxy.test.ts (35 tests) 2659ms
+@bb/cli:test:      ✓ outlives the global fetch headers timeout while a plugin command waits on a human  2530ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/guide.test.ts (6 tests) 2518ms
+@bb/cli:test:      ✓ bb guide commands <group> lists each command once with its options and aliases  2507ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/plugin-build.test.ts (9 tests) 344ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/plugin-new.test.ts (40 tests) 687ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/plugin-cli-broken-pipe.e2e.test.ts (8 tests) 10789ms
+@bb/cli:test:      ✓ fixture stdout preserves exit 0 (early close: true, write error: null)  3506ms
+@bb/cli:test:      ✓ fixture stderr preserves exit 0 (early close: true, write error: null)  1568ms
+@bb/cli:test:      ✓ plugin run fixture stdout preserves exit 0 (early close: true, write error: null)  1152ms
+@bb/cli:test:      ✓ plugin run fixture stderr preserves exit 0 (early close: true, write error: null)  1293ms
+@bb/cli:test:      ✓ fixture stdout preserves exit 7 (early close: true, write error: null)  1707ms
+@bb/cli:test:      ✓ fixture stdout preserves exit 0 (early close: false, write error: null)  556ms
+@bb/cli:test:      ✓ fixture stdout preserves exit 1 (early close: false, write error: ENOSPC)  463ms
+@bb/cli:test:      ✓ fixture stdout preserves exit 1 (early close: false, write error: generic stream failure)  541ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/server-machine-service.test.ts (6 tests | 1 skipped) 270ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/server-local.test.ts (52 tests) 200ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/plugin-migrate.test.ts (15 tests) 241ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-interactions.test.ts (23 tests) 52ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-spawn.test.ts (43 tests) 86ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-actions.test.ts (22 tests) 41ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/server-move.test.ts (30 tests) 46ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-log.test.ts (19 tests) 44ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-tell.test.ts (19 tests) 58ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/environment.test.ts (35 tests) 37ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/project.test.ts (22 tests) 58ms
+@bb/cli:test: error: unknown option '--project'
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/terminal.test.ts (30 tests) 49ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-organization.test.ts (13 tests) 44ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/plugin-catalog.test.ts (19 tests) 48ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/server-export.test.ts (8 tests) 49ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/prompt-history.test.ts (2 tests) 24ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-wait.test.ts (6 tests) 47ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-list.test.ts (10 tests) 48ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/settings.test.ts (18 tests) 31ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-show.test.ts (11 tests) 32ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-open.test.ts (11 tests) 45ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/status.test.ts (5 tests) 28ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/provider.test.ts (6 tests) 29ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-fork.test.ts (7 tests) 33ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/machine-environment.test.ts (10 tests) 29ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/marketplace.test.ts (5 tests) 28ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/plugin-updates.test.ts (13 tests) 26ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-count.test.ts (7 tests) 25ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-update.test.ts (8 tests) 24ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/skill.test.ts (8 tests) 31ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/browser.test.ts (4 tests) 25ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-output.test.ts (3 tests) 23ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/theme.test.ts (6 tests) 20ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-pane.test.ts (5 tests) 23ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/thread-context.test.ts (2 tests) 27ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/diagnostics.test.ts (3 tests) 7ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/command-output/plugin-config.test.ts (6 tests) 15ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/commander-errors.test.ts (21 tests) 4ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/plugin-dev-loop.test.ts (8 tests) 6ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/context-env.test.ts (7 tests) 3ms
+@bb/cli:test:  ✓  @bb/cli:isolated  src/__tests__/helpers/command-output-harness.test.ts (1 test) 3ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/bb-cli-skill-coverage.test.ts (2 tests) 1730ms
+@bb/cli:test:      ✓ lists every core command path  1726ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/packaged-plugin-build.test.ts (1 test) 504ms
+@bb/cli:test:      ✓ includes generated SDK app exports when the facade package is not resolvable  504ms
+@bb/cli:test:  ✓  @bb/cli  src/commands/machine-enrollment.test.ts (11 tests) 87ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/bin.test.ts (2 tests) 76ms
+@bb/cli:test: ✘ [ERROR] Expected identifier but found end of file
+@bb/cli:test: 
+@bb/cli:test:     ../../../../../../../../private/tmp/bb-vt-QuPM6t/bb-plugin-server-build-e3BYn8/server.ts:2:0:
+@bb/cli:test:       2 │ 
+@bb/cli:test:         ╵ ^
+@bb/cli:test: 
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/plugin-server-build.test.ts (5 tests) 40ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/plugin-scaffold-dependencies.test.ts (4 tests) 40ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/cli-error-log.test.ts (6 tests) 15ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/table.test.ts (7 tests) 5ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/plugin-guide-docs.test.ts (3 tests) 5ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/bb-cli-reexec.test.ts (7 tests) 7ms
+@bb/cli:test:  ✓  @bb/cli  src/commands/thread/send-time.test.ts (9 tests) 4ms
+@bb/cli:test:  ✓  @bb/cli  src/commands/thread/pending-todos.test.ts (8 tests) 3ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/version.test.ts (4 tests) 4ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/json-shapes.test.ts (2 tests) 3ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/text-input.test.ts (6 tests) 3ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/spawn-helpers.test.ts (36 tests) 2ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/command-groups.test.ts (4 tests) 1ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/command-resolution.test.ts (19 tests) 1ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/json-flag-enforcement.test.ts (1 test) 1ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/get-error-message.test.ts (5 tests) 0ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/cli-error-output.test.ts (7 tests) 0ms
+@bb/cli:test:  ✓  @bb/cli  src/commands/updates.test.ts (4 tests) 0ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/startup-graph.test.ts (8 tests) 3519ms
+@bb/cli:test:      ✓ loads only the named command group for `bb thread`  654ms
+@bb/cli:test:      ✓ shows and enforces the thread search result limit  1324ms
+@bb/cli:test:        ✓ uses registered plugin help from the split artifact  828ms
+@bb/cli:test:  ✓  @bb/cli  src/__tests__/cli-entry-errors.e2e.test.ts (11 tests) 5268ms
+@bb/cli:test:      ✓ fills in the current project when thread spawn omits --project  426ms
+@bb/cli:test:      ✓ prints one JSON envelope on stdout for a parse error under --json  463ms
+@bb/cli:test:      ✓ fails --help on a subcommand that does not exist instead of printing the group's help  466ms
+@bb/cli:test:      ✓ names the real command for a guessed verb with no alias  329ms
+@bb/cli:test:      ✓ runs bb machine for bb host when no plugin owns that name  734ms
+@bb/cli:test:      ✓ forwards --help to a plugin that renders its own help and never runs one that does not  996ms
+@bb/cli:test:      ✓ records a failed plugin command by its declared name only  397ms
+@bb/cli:test:      ✓ still answers help for a soft alias when the server is down  323ms
+@bb/cli:test:      ✓ prints the JSON envelope when the server is down  635ms
+@bb/cli:test: 
+@bb/cli:test:  Test Files  72 passed (72)
+@bb/cli:test:       Tests  857 passed | 1 skipped (858)
+@bb/cli:test:    Start at  18:06:13
+@bb/cli:test:    Duration  21.02s (transform 9.60s, setup 0ms, import 18.95s, tests 36.06s, environment 4ms)
+@bb/cli:test: 
+
+ Tasks:    10 successful, 10 total
+Cached:    3 cached, 10 total
+  Time:    22.922s 
+
