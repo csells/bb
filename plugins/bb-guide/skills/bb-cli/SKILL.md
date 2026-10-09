@@ -211,3 +211,7 @@ new turns, and `bb provider enable ID` to restore it (enabling its plugin if
 needed). These preserve the CLI and thread history. Individual opt-outs survive
 plugin off/on. Install provider plugins in Settings → Plugins; configure custom
 ACP agents in the ACP providers plugin settings.
+
+## Rooms fork preview
+
+For shared human/agent conversations, use `bb rooms --help`. The gateway URL and a private token file are required. `bb rooms --server URL --token-file PATH login --credentials-file PATH` saves a session without printing it. Room membership restricts subsequent operations. Address agents in `send ROOM --message-file PATH`; use explicit `steer` or `stop` for active work. Never print session tokens or copy provider credentials without authorization. See `docs/rooms.md` in the fork.

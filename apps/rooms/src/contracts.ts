@@ -1,0 +1,19 @@
+export {
+  roomsHandle as handle,
+  roomsUserSchema as userSchema,
+  roomsRoomSchema as roomSchema,
+  roomsAgentSchema as agentSchema,
+  roomsMessageSchema as messageSchema,
+  roomsDeliverySchema as deliverySchema,
+  roomsSnapshotSchema as snapshotSchema,
+  roomsCreateAgentSchema as createAgentSchema,
+  roomsMessageInputSchema as messageInputSchema,
+} from "@bb/domain";
+export type {
+  RoomsUser as User,
+  RoomsRoom as Room,
+  RoomsAgent as Agent,
+  RoomsMessage as Message,
+  RoomsDelivery as Delivery,
+  RoomsSnapshot as Snapshot,
+} from "@bb/domain";

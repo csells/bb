@@ -2134,3 +2134,7 @@ Settings. Search scope is remembered in browser local storage separately for
 new-thread and follow-up composers. Starred text and mentions persist in the
 plugin database. See the [Prompt Library skill](../plugins/prompt-library/skills/prompt-library/SKILL.md)
 for CLI and SDK commands.
+
+## Rooms gateway (fork preview)
+
+`ROOMS_DATA_DIR` is a required private absolute directory containing room SQLite data and the initial owner invitation. `ROOMS_PUBLIC_ORIGIN` is a required comma-separated allowlist of exact browser origins, with the public HTTPS origin first. `ROOMS_BB_URL` defaults to `http://127.0.0.1:38886` and must point to the private execution server. `ROOMS_BIND_HOST` defaults to `0.0.0.0`; `ROOMS_PORT` defaults to `38900`. See [Rooms](rooms.md) for authentication, deployment and trust boundaries.

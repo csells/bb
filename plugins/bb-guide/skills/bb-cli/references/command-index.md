@@ -370,3 +370,17 @@ connects. With `--no-wait`, it returns the creating host ID immediately.
 
 - `bb plugin update <id> --yes --no-wait`: start a background update.
 - `bb plugin update-jobs [job-id] [--json]`: inspect update progress and recent results.
+
+## Rooms fork preview
+
+- `bb rooms`
+- `bb rooms login`
+- `bb rooms list`
+- `bb rooms show`
+- `bb rooms create`
+- `bb rooms send`
+- `bb rooms invite`
+- `bb rooms agent-add`
+- `bb rooms stop`
+- `bb rooms steer`
+- `bb rooms request`

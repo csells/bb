@@ -1,0 +1,33 @@
+{
+  "name": "@bb/rooms",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node ../../scripts/build-node-entry.mjs src/server.ts dist/server.js --clean-dist && vite build",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@bb/sdk": "workspace:*",
+    "@hono/node-server": "^1.19.11",
+    "hono": "^4.7.0",
+    "better-sqlite3": "12.10.0",
+    "zod": "^4.3.6",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-markdown": "^10.1.0",
+    "@bb/domain": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "vite": "^7.3.1",
+    "vitest": "^4.1.1",
+    "esbuild": "^0.28.0",
+    "typescript": "npm:@typescript/typescript6@^6.0.2",
+    "@playwright/test": "^1.58.2"
+  }
+}

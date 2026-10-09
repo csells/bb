@@ -83,6 +83,11 @@ export const CORE_COMMAND_GROUPS: readonly CommandGroup[] = [
     (m) => (program, deps) => m.registerThreadCommands(program, deps.getUrl),
   ),
   group(
+    "rooms",
+    () => import("./commands/rooms.js"),
+    (m) => (program) => m.registerRoomsCommands(program),
+  ),
+  group(
     "environment",
     () => import("./commands/environment.js"),
     (m) => (program, deps) =>

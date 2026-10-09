@@ -492,3 +492,7 @@ directories are inside that storage before removing files, including dev
 servers in nested checkouts. On macOS and Linux this uses the same SIGTERM
 grace period and SIGKILL fallback as worktree removal. Windows does not
 enumerate process working directories.
+
+## Shared rooms (fork preview)
+
+`bb rooms --server URL --token-file PATH` connects to the separate authenticated Rooms gateway. Use `login --credentials-file PATH`, `list`, `show ROOM`, `create NAME`, `send ROOM --message-file PATH`, `invite ROOM`, `agent-add ROOM --file PATH`, `stop ROOM AGENT`, and `steer ROOM AGENT --message-file PATH`. `request METHOD /path --body-file PATH` accesses other gateway operations. Each room agent uses its own BB thread. See `docs/rooms.md`; ordinary BB operator access is not room membership.
