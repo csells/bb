@@ -1,0 +1,196 @@
+{
+  "started": "2026-10-09T19:37:22.339Z",
+  "model": "gpt-6.1-sol",
+  "provider": "codex",
+  "steering": "native",
+  "steeringFault": "delay-after",
+  "scope": "actual native steering transport fault",
+  "qualification": "controlled runtime fixture, not autonomous model qualification",
+  "checks": [
+    "two independently authenticated human participants",
+    "known in-flight steering retains its active lease without fencing during a delayed successful acknowledgment",
+    "a later human request cannot acquire the agent while a steering dispatch remains unresolved",
+    "delayed successful native steering acknowledgment is accepted without revoking its capability",
+    "the original activation settles and its queued follow-up runs after the exact delayed acknowledgment"
+  ],
+  "observations": [
+    {
+      "fault": "delay-after",
+      "interceptedAt": "2026-10-09T19:37:29.073Z"
+    },
+    {
+      "forwarded": {
+        "status": 200
+      },
+      "releasedAt": "2026-10-09T19:37:53.289Z"
+    },
+    {
+      "messageId": "4fbdf05c-564e-4165-9a83-ce17cbed41fe",
+      "streamedLengths": {},
+      "deliveries": [
+        {
+          "id": "09d98467-7337-4080-93ce-2a6bff6a4837",
+          "roomId": "708f5b43-11d7-42a3-b4be-6e668d60bc6b",
+          "agentId": "0240cf49-3f5c-4ad5-9e4c-571300d91bdc",
+          "messageId": "459d84ff-0c7b-478f-9444-ab68da36caef",
+          "state": "complete",
+          "error": null,
+          "createdAt": 1791574672579,
+          "startedAt": 1791574674286,
+          "intent": "request",
+          "activationId": "1bd67b90-d92e-4419-8709-32d978754bd6",
+          "threadId": "thr_spz6arqza6",
+          "outcome": "no_reply"
+        },
+        {
+          "id": "7b821844-c9b2-4741-b9ed-62f9d462bca4",
+          "roomId": "708f5b43-11d7-42a3-b4be-6e668d60bc6b",
+          "agentId": "0240cf49-3f5c-4ad5-9e4c-571300d91bdc",
+          "messageId": "4fbdf05c-564e-4165-9a83-ce17cbed41fe",
+          "state": "complete",
+          "error": null,
+          "createdAt": 1791574642646,
+          "startedAt": 1791574642647,
+          "intent": "request",
+          "activationId": "3d93e99f-d36f-4c84-8604-13dc6eb7c112",
+          "threadId": "thr_spz6arqza6",
+          "outcome": "no_reply"
+        }
+      ]
+    }
+  ],
+  "privateTurns": {},
+  "dataDirectory": "/var/folders/p7/f_99nxmj7s16qrxbl0cbpz4r0000gn/T/rooms-runtime-acceptance-lB7aJx",
+  "finalSnapshot": {
+    "room": {
+      "id": "708f5b43-11d7-42a3-b4be-6e668d60bc6b",
+      "name": "Workshop",
+      "ownerId": "ed12854f-7369-4c43-af65-161912ec88bf",
+      "revision": 17,
+      "paused": false,
+      "pauseReason": null,
+      "maxActivations": null,
+      "activationsUsed": 2
+    },
+    "members": [
+      {
+        "id": "9f3dabfb-f75e-4dac-b811-faf1e0577391",
+        "handle": "blair",
+        "name": "Blair",
+        "role": "member"
+      },
+      {
+        "id": "ed12854f-7369-4c43-af65-161912ec88bf",
+        "handle": "alex",
+        "name": "Alex",
+        "role": "owner"
+      }
+    ],
+    "agents": [
+      {
+        "id": "0240cf49-3f5c-4ad5-9e4c-571300d91bdc",
+        "roomId": "708f5b43-11d7-42a3-b4be-6e668d60bc6b",
+        "handle": "builder",
+        "name": "Builder",
+        "provider": "codex",
+        "model": "gpt-6.1-sol",
+        "instructions": "You bring a practical perspective to open conversation. You may agree, disagree, ask another participant, or decide no response is needed. Speak through the room CLI.",
+        "projectId": "proj_kjwfsf45tk",
+        "threadId": "thr_spz6arqza6",
+        "status": "idle"
+      },
+      {
+        "id": "5f03e4ea-5624-4eaa-951f-ffb772c27002",
+        "roomId": "708f5b43-11d7-42a3-b4be-6e668d60bc6b",
+        "handle": "reviewer",
+        "name": "Reviewer",
+        "provider": "codex",
+        "model": "gpt-6.1-sol",
+        "instructions": "You bring an independent reflective perspective. You may agree, disagree, ask another participant, or decide no response is needed. Speak through the room CLI.",
+        "projectId": null,
+        "threadId": null,
+        "status": "idle"
+      }
+    ],
+    "messages": [
+      {
+        "id": "4fbdf05c-564e-4165-9a83-ce17cbed41fe",
+        "roomId": "708f5b43-11d7-42a3-b4be-6e668d60bc6b",
+        "authorId": "ed12854f-7369-4c43-af65-161912ec88bf",
+        "authorName": "Alex",
+        "kind": "human",
+        "text": "For a transport recovery test, run shell sleep 20, then finish privately without posting anything to the room.",
+        "status": "complete",
+        "createdAt": 1791574642646,
+        "causeId": null,
+        "intent": "request",
+        "recipients": [
+          "0240cf49-3f5c-4ad5-9e4c-571300d91bdc"
+        ],
+        "replyTo": null
+      },
+      {
+        "id": "459d84ff-0c7b-478f-9444-ab68da36caef",
+        "roomId": "708f5b43-11d7-42a3-b4be-6e668d60bc6b",
+        "authorId": "9f3dabfb-f75e-4dac-b811-faf1e0577391",
+        "authorName": "Blair",
+        "kind": "human",
+        "text": "No public response is needed; this is a queued follow-up after recovery.",
+        "status": "complete",
+        "createdAt": 1791574672579,
+        "causeId": null,
+        "intent": "request",
+        "recipients": [
+          "0240cf49-3f5c-4ad5-9e4c-571300d91bdc"
+        ],
+        "replyTo": null
+      },
+      {
+        "id": "357cac2a-6938-4fc2-a60f-f20031dd6549",
+        "roomId": "708f5b43-11d7-42a3-b4be-6e668d60bc6b",
+        "authorId": "9f3dabfb-f75e-4dac-b811-faf1e0577391",
+        "authorName": "Blair",
+        "kind": "human",
+        "text": "Transport recovery observation: remember DELAYED_STEERING_INPUT privately; do not publish or ask anyone.",
+        "status": "complete",
+        "createdAt": 1791574673291,
+        "causeId": null,
+        "intent": "post",
+        "recipients": [],
+        "replyTo": null
+      }
+    ],
+    "deliveries": [
+      {
+        "id": "09d98467-7337-4080-93ce-2a6bff6a4837",
+        "roomId": "708f5b43-11d7-42a3-b4be-6e668d60bc6b",
+        "agentId": "0240cf49-3f5c-4ad5-9e4c-571300d91bdc",
+        "messageId": "459d84ff-0c7b-478f-9444-ab68da36caef",
+        "state": "complete",
+        "error": null,
+        "createdAt": 1791574672579,
+        "startedAt": 1791574674286,
+        "intent": "request",
+        "activationId": "1bd67b90-d92e-4419-8709-32d978754bd6",
+        "threadId": "thr_spz6arqza6",
+        "outcome": "no_reply"
+      },
+      {
+        "id": "7b821844-c9b2-4741-b9ed-62f9d462bca4",
+        "roomId": "708f5b43-11d7-42a3-b4be-6e668d60bc6b",
+        "agentId": "0240cf49-3f5c-4ad5-9e4c-571300d91bdc",
+        "messageId": "4fbdf05c-564e-4165-9a83-ce17cbed41fe",
+        "state": "complete",
+        "error": null,
+        "createdAt": 1791574642646,
+        "startedAt": 1791574642647,
+        "intent": "request",
+        "activationId": "3d93e99f-d36f-4c84-8604-13dc6eb7c112",
+        "threadId": "thr_spz6arqza6",
+        "outcome": "no_reply"
+      }
+    ],
+    "online": []
+  },
+  "finished": "2026-10-09T19:37:57.025Z"
+}

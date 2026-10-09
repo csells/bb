@@ -1,4 +1,6 @@
-# Shared human and agent rooms
+# Shared human and agent rooms — superseded preview
+
+Status: rejected and superseded by [explicit participation](0001-rooms-participation-spikes.md) and [the replacement](0002-rooms-replacement.md). Retained as historical evidence of the original design, including its discarded transcript mirroring and two-hop limit. This is not the current product contract.
 
 Build a reviewable preview on current BB without importing the separately deployed Work Together service stack. Maintain the upstream BB runtime and use its SDK as the execution boundary.
 

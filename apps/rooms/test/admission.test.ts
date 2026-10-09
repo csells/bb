@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
 import { parseThreadEventRow, type ThreadEventRow } from "@bb/domain";
-import { inspectAdmission } from "../src/admission.js";
+import {
+  inspectAdmission,
+  inspectSteeringAdmission,
+} from "../src/admission.js";
 
 const activation = "7f961440-dc7c-473d-a96b-4d74e44e5c99";
 const marker = `\nActivation: ${activation}\n`;
@@ -66,6 +69,59 @@ function completed(seq = 3, turnId = "turn-alpha", threadId = "thread-alpha") {
 }
 
 describe("durable provider admission proof", () => {
+  it("requires a steering submission's own marker rather than the original activation's completion", () => {
+    const steeringId = "9c3745c3-1ca4-4de3-a2b8-726807abc7f7";
+    const steeringMarker = `Steering: ${steeringId}\n`;
+    const steeringText = "Use the corrected approach";
+    const original = [requested(), accepted(), completed()];
+    expect(
+      inspectSteeringAdmission(original, activation, steeringId, steeringText)
+        .state,
+    ).toBe("missing");
+    const nextId = "creq_23456789ac";
+    for (const text of [
+      marker,
+      steeringMarker,
+      `${marker}\nSteering: other\n`,
+      marker + steeringMarker + "Changed input",
+    ]) {
+      expect(
+        inspectSteeringAdmission(
+          [
+            ...original,
+            requested(4, nextId, text),
+            accepted(5, nextId, "turn-second"),
+            completed(6, "turn-second"),
+          ],
+          activation,
+          steeringId,
+          steeringText,
+        ).state,
+      ).toBe("missing");
+    }
+    const submission = requested(
+      4,
+      nextId,
+      marker + steeringMarker + steeringText,
+    );
+    const proof = [...original, submission, accepted(5, nextId, "turn-second")];
+    expect(
+      inspectSteeringAdmission(proof, activation, steeringId, steeringText)
+        .state,
+    ).toBe("pending");
+    expect(
+      inspectSteeringAdmission(
+        [...proof, completed(6, "turn-second")],
+        activation,
+        steeringId,
+        steeringText,
+      ),
+    ).toMatchObject({
+      state: "settled",
+      requestIds: [nextId],
+      terminalOutcome: "completed",
+    });
+  });
   it("requires matching request, acceptance and terminal turn even with no assistant output", () => {
     expect(inspectAdmission([requested()], activation).state).toBe("pending");
     expect(inspectAdmission([requested(), accepted()], activation).state).toBe(

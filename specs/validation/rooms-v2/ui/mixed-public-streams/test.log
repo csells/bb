@@ -1,0 +1,33 @@
+PASS Two separately authenticated human browser sessions joined through one-time invitation
+PASS Concurrent human messages preserve authorship and an identical retried post appears once
+PASS Atlas authored one public stream that grew through at least three text states in both human browsers and finalized under the same message identity
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+
+Call Log:
+- Timeout 300000ms exceeded while waiting on the predicate
+    at captureRawStack (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js:9282:17)
+    at callMatcherAsStep (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13316:57)
+    at Object.toBe (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13308:23)
+    at settle (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/participation.browser.ts:121:6)
+    at <anonymous> (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/participation.browser.ts:623:13) {
+  matcherResult: {
+    pass: false,
+    message: 'expect(received).toBe(expected) // Object.is equality\n' +
+      '\n' +
+      'Expected: true\n' +
+      'Received: false\n' +
+      '\n' +
+      'Call Log:\n' +
+      '- Timeout 300000ms exceeded while waiting on the predicate',
+    name: 'toBe'
+  }
+}
+
+Node.js v24.20.0

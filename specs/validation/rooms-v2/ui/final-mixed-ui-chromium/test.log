@@ -1,0 +1,11 @@
+PASS two visible waiting replies before first token, live elapsed time, usable composer
+PASS uncertain execution stays visibly needs attention after reload despite newer queued follow-ups, without an active-work indicator
+PASS permission grants submit the requested profile and only provider-offered decisions are shown
+PASS Codex, Claude and Pi expose steering while working and display the actual sent or queued receipt
+PASS temporary status failure stays pending, remains writable and recovers
+PASS queued and starting states
+PASS actual streaming text replaces only its agent’s waiting reply
+PASS public streaming does not conceal a temporary status failure
+PASS waiting continues between outputs and clears on stop/error
+PASS compiled mobile touch inputs are16px; shared drawers preserve root and composer usability
+PASS pending survives reload, fits mobile, clears on completion; no browser errors

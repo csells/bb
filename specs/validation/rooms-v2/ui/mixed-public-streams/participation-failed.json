@@ -1,0 +1,26 @@
+{
+  "roomId": "66f56af3-aafa-4c0e-9811-3b8796e270e7",
+  "agents": [
+    {
+      "name": "Atlas",
+      "handle": "atlas",
+      "provider": "codex",
+      "model": "gpt-6.1-sol",
+      "instructions": "Bring a thoughtful, practical perspective. Participate in the room as yourself."
+    },
+    {
+      "name": "Nova",
+      "handle": "nova",
+      "provider": "claude-code",
+      "model": "claude-opus-5-5",
+      "instructions": "Bring an imaginative, questioning perspective. Participate in the room as yourself."
+    }
+  ],
+  "claims": [
+    "Two separately authenticated human browser sessions joined through one-time invitation",
+    "Concurrent human messages preserve authorship and an identical retried post appears once",
+    "Atlas authored one public stream that grew through at least three text states in both human browsers and finalized under the same message identity"
+  ],
+  "failures": [],
+  "error": "Error: expect(received).toBe(expected) // Object.is equality\n\nExpected: true\nReceived: false\n\nCall Log:\n- Timeout 300000ms exceeded while waiting on the predicate"
+}

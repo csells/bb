@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-10-09T19:18:29.284000+00:00",
+  "authorization": "User explicitly approved Codex and Claude authentication transfer and use in the disposable Rooms VM.",
+  "transfer": "Pinned SSH stdin; credential values held only in memory; no source authentication changes.",
+  "codex": {
+    "source": "Configured host Codex auth.json",
+    "destination": "/Users/admin/.codex/auth.json",
+    "loggedIn": true,
+    "modelDiscoveryError": null,
+    "selectedModel": "gpt-6.1-sol"
+  },
+  "claude": {
+    "source": "Host macOS Keychain Claude Code-credentials item",
+    "destination": "/Users/admin/.claude/.credentials.json",
+    "loggedIn": true,
+    "authMethod": "claude.ai",
+    "modelDiscoveryError": null,
+    "selectedModel": "claude-opus-5-5"
+  },
+  "fileMode": "0600",
+  "directoryMode": "0700",
+  "actualModelParticipation": "At this authentication-only checkpoint qualification was still in progress; later actual participation evidence is recorded in ../explicit-participation/runtime-v2/README.md. Login and discovery alone are not end-to-end proof.",
+  "cleanup": "Remove task-added provider authentication files and any task-created provider Keychain entries before VM teardown; no refresh copied back to source."
+}

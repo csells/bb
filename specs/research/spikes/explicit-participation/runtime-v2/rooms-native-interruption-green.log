@@ -1,0 +1,6 @@
+PASS two independently authenticated human participants
+PASS second human input is queued while the first native execution is active
+PASS ordinary native interruption preserves and executes separately queued human input
+PASS ordinary native interruption fences only its own active execution
+PASS native interruption recovery does not publish private provider output
+Evidence: /Users/admin/rooms-native-interruption-green.json

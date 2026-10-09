@@ -4,6 +4,8 @@ import { z } from "zod";
 import {
   roomsRoomSchema,
   roomsSnapshotSchema,
+  pendingInteractionPayloadSchema,
+  isApprovalPendingInteractionPayload,
   type RoomsSnapshot,
 } from "@bb/domain";
 
@@ -13,6 +15,40 @@ const evidenceDirectory = process.env.ROOMS_TEST_EVIDENCE;
 const provider = process.env.ROOMS_TEST_PROVIDER ?? "pi";
 const model =
   process.env.ROOMS_TEST_MODEL ?? "rooms-local/qwen3:4b-instruct-2507-q4_K_M";
+const streamingOnly = process.env.ROOMS_TEST_STREAMING_ONLY === "1";
+const streamAgent = process.env.ROOMS_TEST_STREAM_AGENT;
+const approvedPublicationCommands: {
+  agent: string;
+  command: string;
+  at: string;
+}[] = [];
+const verifyStreaming =
+  streamingOnly || process.env.ROOMS_TEST_STREAMING === "1";
+const streamObservationSchema = z.array(
+  z.object({ id: z.string(), status: z.string(), text: z.string() }),
+);
+const streamEvidence: {
+  agent: string;
+  observers: z.infer<typeof streamObservationSchema>[];
+}[] = [];
+const agentConfigurations = [
+  {
+    name: "Atlas",
+    handle: "atlas",
+    provider: process.env.ROOMS_TEST_ATLAS_PROVIDER ?? provider,
+    model: process.env.ROOMS_TEST_ATLAS_MODEL ?? model,
+    instructions:
+      "Bring a thoughtful, practical perspective. Participate in the room as yourself.",
+  },
+  {
+    name: "Nova",
+    handle: "nova",
+    provider: process.env.ROOMS_TEST_NOVA_PROVIDER ?? provider,
+    model: process.env.ROOMS_TEST_NOVA_MODEL ?? model,
+    instructions:
+      "Bring an imaginative, questioning perspective. Participate in the room as yourself.",
+  },
+];
 if (!origin || !inviteFile || !evidenceDirectory)
   throw new Error(
     "Set ROOMS_TEST_ORIGIN, ROOMS_TEST_INVITE_FILE and ROOMS_TEST_EVIDENCE to isolated candidate resources",
@@ -72,6 +108,55 @@ async function settle(previous: RoomsSnapshot["deliveries"] = []) {
     .poll(
       async () => {
         const value = await snapshot();
+        if (verifyStreaming) {
+          for (const approval of await alex.locator(".approval").all()) {
+            await approval.locator("summary").click();
+            const payload = pendingInteractionPayloadSchema.parse(
+              JSON.parse(
+                (await approval.locator("pre").textContent()) ?? "null",
+              ),
+            );
+            if (
+              !isApprovalPendingInteractionPayload(payload) ||
+              payload.subject.kind !== "command"
+            )
+              throw new Error(
+                "Unexpected provider approval requires manual review",
+              );
+            const current = value.deliveries.find(
+              (delivery) =>
+                delivery.state === "running" &&
+                payload.subject.kind === "command" &&
+                payload.subject.command.includes(
+                  `/participate-${delivery.activationId}'`,
+                ),
+            );
+            if (!current?.activationId)
+              throw new Error("Approval is not bound to a current activation");
+            const wrapper = `${process.env.ROOMS_TEST_WORKSPACES ?? "/Users/admin/rooms-v2-data/workspaces"}/${roomId}/${current.agentId}/.rooms/participate-${current.activationId}`;
+            expect(payload.subject.command).toBe(
+              `C='${wrapper}'; "$C" stream begin`,
+            );
+            expect(payload.availableDecisions).toContain("allow_once");
+            await alex.screenshot({
+              path: `${evidenceDirectory}/owner-publication-approval-${approvedPublicationCommands.length}.png`,
+              fullPage: true,
+            });
+            await approval
+              .getByRole("button", { name: "Allow once", exact: true })
+              .click();
+            approvedPublicationCommands.push({
+              agent: current.agentId,
+              command: payload.subject.command,
+              at: new Date().toISOString(),
+            });
+            await writeFile(
+              `${evidenceDirectory}/approved-publication-commands.json`,
+              JSON.stringify(approvedPublicationCommands, null, 2),
+            );
+            await expect(approval).toHaveCount(0, { timeout: 10000 });
+          }
+        }
         const current = value.deliveries.filter(
           (delivery) => !existingIds.has(delivery.id),
         );
@@ -107,6 +192,58 @@ async function assertShellUsable(page: Page) {
       () => document.documentElement.scrollWidth > window.innerWidth + 1,
     ),
   ).toBe(false);
+}
+async function startStreamObservation(page: Page, author: string) {
+  await page.evaluate((author) => {
+    document.getElementById("qa-stream-observations")?.remove();
+    const output = document.createElement("script");
+    output.id = "qa-stream-observations";
+    output.type = "application/json";
+    const observations: { id: string; status: string; text: string }[] = [];
+    const existing = new Set(
+      Array.from(
+        document.querySelectorAll("article[data-message-id]"),
+        (node) => node.getAttribute("data-message-id"),
+      ),
+    );
+    output.textContent = "[]";
+    document.body.append(output);
+    const root = document.getElementById("root");
+    if (!root) throw new Error("Application root unavailable");
+    const observer = new MutationObserver(() => {
+      if (!output.isConnected) {
+        observer.disconnect();
+        return;
+      }
+      for (const node of document.querySelectorAll(
+        "article[data-message-id]",
+      )) {
+        const id = node.getAttribute("data-message-id");
+        if (
+          !id ||
+          existing.has(id) ||
+          node.getAttribute("data-author") !== author
+        )
+          continue;
+        const text = node.querySelector(".prose")?.textContent ?? "";
+        const status = node.getAttribute("data-status") ?? "";
+        if (
+          !observations.some(
+            (entry) =>
+              entry.id === id && entry.status === status && entry.text === text,
+          )
+        )
+          observations.push({ id, status, text });
+      }
+      output.textContent = JSON.stringify(observations);
+    });
+    observer.observe(root, {
+      subtree: true,
+      childList: true,
+      characterData: true,
+      attributes: true,
+    });
+  }, author);
 }
 
 try {
@@ -200,18 +337,13 @@ try {
     "Concurrent human messages preserve authorship and an identical retried post appears once",
   );
 
-  for (const [name, handle, instructions] of [
-    [
-      "Atlas",
-      "atlas",
-      "Bring a thoughtful, practical perspective. Participate in the room as yourself.",
-    ],
-    [
-      "Nova",
-      "nova",
-      "Bring an imaginative, questioning perspective. Participate in the room as yourself.",
-    ],
-  ]) {
+  for (const {
+    name,
+    handle,
+    provider,
+    model,
+    instructions,
+  } of agentConfigurations) {
     await alex
       .getByRole("button", { name: "＋ Add agent", exact: true })
       .click();
@@ -228,271 +360,392 @@ try {
       alex.locator(".participant").filter({ hasText: name }),
     ).toBeVisible();
   }
-  await alex
-    .getByRole("button", { name: "Pause new turns", exact: true })
-    .click();
-  await expect(
-    blair.getByText("New agent turns paused", { exact: true }),
-  ).toBeVisible();
-  await selectMention(alex, "atlas", "Atlas");
-  await alex.getByLabel("Message the room").press("End");
-  await alex.getByLabel("Message the room").pressSequentially("@nova");
-  await alex.getByRole("option", { name: /Nova/ }).click();
-  await expect(alex.getByLabel("Message intent")).toHaveValue("request");
-  await send(
-    alex,
-    "Introduce yourself in one sentence and offer your own view on what makes a shared conversation useful.",
-  );
-  for (const page of [alex, blair]) {
-    await expect(page.locator(".pending-reply")).toHaveCount(2);
-    await expect(page.locator(".pending-reply").first()).toContainText(
-      "Queued",
+  const configured = await snapshot();
+  for (const configuration of agentConfigurations) {
+    const agent = configured.agents.find(
+      (item) => item.handle === configuration.handle,
     );
+    expect(agent?.provider).toBe(configuration.provider);
+    expect(agent?.model).toBe(configuration.model);
   }
-  const queued = await snapshot();
-  expect(queued.deliveries).toHaveLength(2);
-  const agentIds = queued.agents.map((agent) => agent.id).sort();
-  expect(queued.messages.at(-1)?.recipients.toSorted()).toEqual(agentIds);
-  expect(queued.messages.at(-1)?.text).not.toContain("@");
-  await send(
-    blair,
-    "A second human can still contribute while both requests wait.",
-  );
-  expect((await snapshot()).deliveries).toHaveLength(2);
-  recordClaim(
-    "Structured recipients route a request without textual mentions; both browsers show pending work and remain writable while paused",
-  );
+  if (!streamingOnly) {
+    await alex
+      .getByRole("button", { name: "Pause new turns", exact: true })
+      .click();
+    await expect(
+      blair.getByText("New agent turns paused", { exact: true }),
+    ).toBeVisible();
+    await selectMention(alex, "atlas", "Atlas");
+    await alex.getByLabel("Message the room").press("End");
+    await alex.getByLabel("Message the room").pressSequentially("@nova");
+    await alex.getByRole("option", { name: /Nova/ }).click();
+    await expect(alex.getByLabel("Message intent")).toHaveValue("request");
+    await send(
+      alex,
+      "Introduce yourself in one sentence and offer your own view on what makes a shared conversation useful.",
+    );
+    for (const page of [alex, blair]) {
+      await expect(page.locator(".pending-reply")).toHaveCount(2);
+      await expect(page.locator(".pending-reply").first()).toContainText(
+        "Queued",
+      );
+    }
+    const queued = await snapshot();
+    expect(queued.deliveries).toHaveLength(2);
+    for (const configuration of agentConfigurations) {
+      const configuredAgent = queued.agents.find(
+        (agent) => agent.handle === configuration.handle,
+      );
+      expect(configuredAgent?.provider).toBe(configuration.provider);
+      expect(configuredAgent?.model).toBe(configuration.model);
+    }
+    const agentIds = queued.agents.map((agent) => agent.id).sort();
+    expect(queued.messages.at(-1)?.recipients.toSorted()).toEqual(agentIds);
+    expect(queued.messages.at(-1)?.text).not.toContain("@");
+    await send(
+      blair,
+      "A second human can still contribute while both requests wait.",
+    );
+    expect((await snapshot()).deliveries).toHaveLength(2);
+    recordClaim(
+      "Structured recipients route a request without textual mentions; both browsers show pending work and remain writable while paused",
+    );
 
-  await alex
-    .getByRole("button", { name: "Resume agents", exact: true })
-    .first()
-    .click();
-  await settle();
-  const introductions = await snapshot();
-  for (const id of agentIds)
+    await alex
+      .getByRole("button", { name: "Resume agents", exact: true })
+      .first()
+      .click();
+    await settle();
+    const introductions = await snapshot();
+    for (const id of agentIds)
+      expect(
+        introductions.messages.some(
+          (message) =>
+            message.kind === "agent" &&
+            message.authorId === id &&
+            message.status === "complete",
+        ),
+      ).toBe(true);
+    for (const page of [alex, blair]) {
+      await expect(page.locator(".pending-reply")).toHaveCount(0);
+      await expect(
+        page.locator('article[data-author="Atlas"]').first(),
+      ).toBeVisible();
+      await expect(
+        page.locator('article[data-author="Nova"]').first(),
+      ).toBeVisible();
+    }
     expect(
-      introductions.messages.some(
-        (message) =>
-          message.kind === "agent" &&
-          message.authorId === id &&
-          message.status === "complete",
+      introductions.messages.every((message) =>
+        ["human", "agent", "system"].includes(message.kind),
       ),
     ).toBe(true);
-  for (const page of [alex, blair]) {
-    await expect(page.locator(".pending-reply")).toHaveCount(0);
-    await expect(
-      page.locator('article[data-author="Atlas"]').first(),
-    ).toBeVisible();
-    await expect(
-      page.locator('article[data-author="Nova"]').first(),
-    ).toBeVisible();
-  }
-  expect(
-    introductions.messages.every((message) =>
-      ["human", "agent", "system"].includes(message.kind),
-    ),
-  ).toBe(true);
-  recordClaim(
-    "Two real agents independently published replies to a natural request and settled pending status",
-  );
+    recordClaim(
+      "Two real agents independently published replies to a natural request and settled pending status",
+    );
 
-  const beforePrivate = introductions.messages.length;
-  await send(
-    alex,
-    "Quoted names @atlas and @nova are ordinary text in this message, not a request to respond.",
-  );
-  await expect
-    .poll(async () => (await snapshot()).messages.length)
-    .toBe(beforePrivate + 1);
-  expect((await snapshot()).deliveries).toHaveLength(
-    introductions.deliveries.length,
-  );
-  recordClaim(
-    "Raw narrative mentions do not wake agents without structured addressing",
-  );
+    const beforePrivate = introductions.messages.length;
+    await send(
+      alex,
+      "Quoted names @atlas and @nova are ordinary text in this message, not a request to respond.",
+    );
+    await expect
+      .poll(async () => (await snapshot()).messages.length)
+      .toBe(beforePrivate + 1);
+    expect((await snapshot()).deliveries).toHaveLength(
+      introductions.deliveries.length,
+    );
+    recordClaim(
+      "Raw narrative mentions do not wake agents without structured addressing",
+    );
 
-  await selectMention(blair, "nova", "Nova");
-  await blair.getByLabel("Message intent").selectOption("notice");
-  const beforeNotice = await snapshot();
-  await send(
-    blair,
-    "Thanks, that is all the context for now. There is no new question or task and no public reply is needed.",
-  );
-  await settle(beforeNotice.deliveries);
-  const afterNotice = await snapshot();
-  expect(
-    afterNotice.messages.filter((message) => message.kind === "agent"),
-  ).toHaveLength(
-    beforeNotice.messages.filter((message) => message.kind === "agent").length,
-  );
-  await expect(blair.locator(".pending-reply")).toHaveCount(0);
-  recordClaim(
-    "An optional natural context notice completed without a public acknowledgment or endless pending indicator",
-  );
+    await selectMention(blair, "nova", "Nova");
+    await blair.getByLabel("Message intent").selectOption("notice");
+    const beforeNotice = await snapshot();
+    await send(
+      blair,
+      "Thanks, that is all the context for now. There is no new question or task and no public reply is needed.",
+    );
+    await settle(beforeNotice.deliveries);
+    const afterNotice = await snapshot();
+    expect(
+      afterNotice.messages.filter((message) => message.kind === "agent"),
+    ).toHaveLength(
+      beforeNotice.messages.filter((message) => message.kind === "agent")
+        .length,
+    );
+    await expect(blair.locator(".pending-reply")).toHaveCount(0);
+    recordClaim(
+      "An optional natural context notice completed without a public acknowledgment or endless pending indicator",
+    );
 
-  await selectMention(alex, "atlas", "Atlas");
-  const beforePeer = await snapshot();
-  await send(
-    alex,
-    "Ask Nova for one different perspective on whether friendship makes life meaningful. Let Nova answer independently in this room, then briefly respond to Nova's actual point. Do not write Nova's answer yourself.",
-  );
-  await settle(beforePeer.deliveries);
-  await expect
-    .poll(
-      async () => {
-        const current = await snapshot();
-        const previousIds = new Set(
-          beforePeer.messages.map((message) => message.id),
-        );
-        const additions = current.messages.filter(
-          (message) => !previousIds.has(message.id),
-        );
-        return (
-          additions.some(
-            (message) =>
-              message.authorName === "Atlas" &&
-              message.recipients.some(
-                (id) =>
-                  current.agents.find((agent) => agent.id === id)?.name ===
-                  "Nova",
-              ),
-          ) &&
-          additions.some(
-            (message) =>
-              message.authorName === "Nova" && message.kind === "agent",
-          )
-        );
-      },
-      { timeout: 300000 },
-    )
-    .toBe(true);
-  await settle(beforePeer.deliveries);
-  recordClaim(
-    "A natural peer request produced an authenticated Atlas request and independent Nova publication",
-  );
-
-  await selectMention(alex, "atlas", "Atlas");
-  const beforeStop = await snapshot();
-  await send(
-    alex,
-    "Before answering, use a shell tool to wait twenty seconds. Then share one idea for a community garden.",
-  );
-  const atlasWork = alex
-    .locator(".working > span")
-    .filter({ hasText: "Atlas" });
-  await expect(
-    atlasWork.getByRole("button", { name: "Stop", exact: true }),
-  ).toBeVisible({ timeout: 30000 });
-  await selectMention(blair, "atlas", "Atlas");
-  await send(
-    blair,
-    "While you work, please also consider accessibility for older neighbors.",
-  );
-  const previousIds = new Set(
-    beforeStop.deliveries.map((delivery) => delivery.id),
-  );
-  await expect
-    .poll(async () =>
-      (await snapshot()).deliveries
-        .filter((delivery) => !previousIds.has(delivery.id))
-        .map((delivery) => delivery.state)
-        .sort(),
-    )
-    .toEqual(["queued", "running"]);
-  await expect(
-    alex.locator('article[data-author="Blair"]').last(),
-  ).toContainText("While you work");
-  recordClaim(
-    "A second human can send an addressed follow-up while an agent is running; it remains durably queued",
-  );
-  await atlasWork.getByRole("button", { name: "Stop", exact: true }).click();
-  await expect
-    .poll(async () =>
-      (await snapshot()).deliveries
-        .filter((delivery) => !previousIds.has(delivery.id))
-        .map((delivery) => delivery.state),
-    )
-    .toEqual(["stopped", "stopped"]);
-  await expect(alex.locator(".pending-reply")).toHaveCount(0);
-  recordClaim(
-    "Stop cancels the selected agent activation and removes its pending reply",
-  );
-
-  await alex
-    .getByRole("button", { name: "Room controls", exact: true })
-    .click();
-  await alex.getByLabel("Agent turn budget").fill("1");
-  await alex
-    .getByRole("button", { name: "Save controls", exact: true })
-    .click();
-  expect((await snapshot()).room.maxActivations).toBe(1);
-  await alex
-    .getByRole("button", { name: "Room controls", exact: true })
-    .click();
-  await alex.getByLabel("Agent turn budget").fill("");
-  await alex
-    .getByRole("button", { name: "Save controls", exact: true })
-    .click();
-  expect((await snapshot()).room.maxActivations).toBeNull();
-  recordClaim(
-    "Owner can set a visible turn budget or explicitly select unlimited turns",
-  );
-
-  await alex
-    .getByRole("button", { name: "Room controls", exact: true })
-    .click();
-  await alex
-    .getByRole("button", { name: "View agent activity", exact: true })
-    .click();
-  await expect(
-    alex.getByRole("heading", { name: "Agent activity", exact: true }),
-  ).toBeVisible();
-  await expect(alex.locator(".activity-details")).toContainText(provider);
-  await expect(alex.locator(".activity-details")).toContainText(
-    "Private session",
-  );
-  await alex.getByLabel("Close panel").click();
-  await expect(
-    blair.getByRole("button", { name: "Room controls", exact: true }),
-  ).toHaveCount(0);
-  const firstAgent = (await snapshot()).agents[0];
-  expect(
-    (
-      await second.request.get(
-        `${origin}/api/rooms/${roomId}/agents/${firstAgent.id}/activity`,
+    await selectMention(alex, "atlas", "Atlas");
+    const beforePeer = await snapshot();
+    await send(
+      alex,
+      "Ask Nova for one different perspective on whether friendship makes life meaningful. Let Nova answer independently in this room, then briefly respond to Nova's actual point. Do not write Nova's answer yourself.",
+    );
+    await settle(beforePeer.deliveries);
+    await expect
+      .poll(
+        async () => {
+          const current = await snapshot();
+          const previousIds = new Set(
+            beforePeer.messages.map((message) => message.id),
+          );
+          const additions = current.messages.filter(
+            (message) => !previousIds.has(message.id),
+          );
+          return (
+            additions.some(
+              (message) =>
+                message.authorName === "Atlas" &&
+                message.recipients.some(
+                  (id) =>
+                    current.agents.find((agent) => agent.id === id)?.name ===
+                    "Nova",
+                ),
+            ) &&
+            additions.some(
+              (message) =>
+                message.authorName === "Nova" && message.kind === "agent",
+            )
+          );
+        },
+        { timeout: 300000 },
       )
-    ).status(),
-  ).toBe(403);
-  recordClaim(
-    "Owner can inspect execution metadata while another human cannot access the private activity endpoint",
-  );
+      .toBe(true);
+    await settle(beforePeer.deliveries);
+    recordClaim(
+      "A natural peer request produced an authenticated Atlas request and independent Nova publication",
+    );
 
-  await blair.reload();
-  await expect(
-    blair.locator('article[data-author="Nova"]').first(),
-  ).toBeVisible();
-  await alex.screenshot({
-    path: `${evidenceDirectory}/participation-desktop.png`,
-    fullPage: true,
-  });
-  await blair.setViewportSize({ width: 390, height: 844 });
-  await blair.getByRole("button", { name: /People/ }).click();
-  await expect(blair.getByRole("dialog")).toBeVisible();
-  await assertShellUsable(blair);
-  await blair.getByLabel("Close panel").click();
-  await expect(blair.getByRole("dialog")).toBeHidden();
-  await assertShellUsable(blair);
-  await send(
-    blair,
-    "Mobile participant still has a working composer after closing People.",
-  );
-  await blair.screenshot({
-    path: `${evidenceDirectory}/participation-mobile.png`,
-    fullPage: true,
-  });
-  recordClaim(
-    "Reload recovers public history; compact shared drawer leaves app root usable and composer functional",
-  );
+    await selectMention(alex, "atlas", "Atlas");
+    const beforeStop = await snapshot();
+    await send(
+      alex,
+      "Before answering, use a shell tool to wait twenty seconds. Then share one idea for a community garden.",
+    );
+    const atlasWork = alex
+      .locator(".working > span")
+      .filter({ hasText: "Atlas" });
+    await expect(
+      atlasWork.getByRole("button", { name: "Stop", exact: true }),
+    ).toBeVisible({ timeout: 30000 });
+    await selectMention(blair, "atlas", "Atlas");
+    await send(
+      blair,
+      "While you work, please also consider accessibility for older neighbors.",
+    );
+    const previousIds = new Set(
+      beforeStop.deliveries.map((delivery) => delivery.id),
+    );
+    await expect
+      .poll(async () =>
+        (await snapshot()).deliveries
+          .filter((delivery) => !previousIds.has(delivery.id))
+          .map((delivery) => delivery.state)
+          .sort(),
+      )
+      .toEqual(["queued", "running"]);
+    await expect(
+      alex.locator('article[data-author="Blair"]').last(),
+    ).toContainText("While you work");
+    recordClaim(
+      "A second human can send an addressed follow-up while an agent is running; it remains durably queued",
+    );
+    await atlasWork.getByRole("button", { name: "Stop", exact: true }).click();
+    await expect
+      .poll(async () =>
+        (await snapshot()).deliveries
+          .filter((delivery) => !previousIds.has(delivery.id))
+          .map((delivery) => delivery.state),
+      )
+      .toEqual(["stopped", "stopped"]);
+    await expect(alex.locator(".pending-reply")).toHaveCount(0);
+    recordClaim(
+      "Stop cancels the selected agent activation and removes its pending reply",
+    );
+
+    await alex
+      .getByRole("button", { name: "Room controls", exact: true })
+      .click();
+    await alex.getByLabel("Agent turn budget").fill("1");
+    await alex
+      .getByRole("button", { name: "Save controls", exact: true })
+      .click();
+    await expect
+      .poll(async () => (await snapshot()).room.maxActivations)
+      .toBe(1);
+    await expect(alex.getByRole("dialog")).toBeHidden();
+    await alex
+      .getByRole("button", { name: "Room controls", exact: true })
+      .click();
+    await alex.getByLabel("Agent turn budget").fill("");
+    await alex
+      .getByRole("button", { name: "Save controls", exact: true })
+      .click();
+    await expect
+      .poll(async () => (await snapshot()).room.maxActivations)
+      .toBeNull();
+    await expect(alex.getByRole("dialog")).toBeHidden();
+    recordClaim(
+      "Owner can set a visible turn budget or explicitly select unlimited turns",
+    );
+
+    await alex
+      .getByRole("button", { name: "Room controls", exact: true })
+      .click();
+    await alex
+      .getByRole("button", { name: "View agent activity", exact: true })
+      .click();
+    await expect(
+      alex.getByRole("heading", { name: "Agent activity", exact: true }),
+    ).toBeVisible();
+    const activityAgents = (await snapshot()).agents;
+    for (const configuration of agentConfigurations) {
+      const agent = activityAgents.find(
+        (item) => item.handle === configuration.handle,
+      );
+      if (!agent)
+        throw new Error(`Missing configured agent ${configuration.name}`);
+      await alex
+        .getByRole("dialog")
+        .getByRole("combobox")
+        .selectOption(agent.id);
+      await expect(alex.locator(".activity-details")).toContainText(
+        configuration.provider,
+      );
+      await expect(alex.locator(".activity-details")).toContainText(
+        "Private session",
+      );
+    }
+    await alex.getByLabel("Close panel").click();
+    await expect(
+      blair.getByRole("button", { name: "Room controls", exact: true }),
+    ).toHaveCount(0);
+    const firstAgent = (await snapshot()).agents[0];
+    expect(
+      (
+        await second.request.get(
+          `${origin}/api/rooms/${roomId}/agents/${firstAgent.id}/activity`,
+        )
+      ).status(),
+    ).toBe(403);
+    recordClaim(
+      "Owner can inspect execution metadata while another human cannot access the private activity endpoint",
+    );
+
+    await blair.reload();
+    await expect(
+      blair.locator('article[data-author="Nova"]').first(),
+    ).toBeVisible();
+    await alex.screenshot({
+      path: `${evidenceDirectory}/participation-desktop.png`,
+      fullPage: true,
+    });
+    await blair.setViewportSize({ width: 390, height: 844 });
+    await blair.getByRole("button", { name: /People/ }).click();
+    await expect(blair.getByRole("dialog")).toBeVisible();
+    await assertShellUsable(blair);
+    await blair.getByLabel("Close panel").click();
+    await expect(blair.getByRole("dialog")).toBeHidden();
+    await assertShellUsable(blair);
+    await send(
+      blair,
+      "Mobile participant still has a working composer after closing People.",
+    );
+    await blair.screenshot({
+      path: `${evidenceDirectory}/participation-mobile.png`,
+      fullPage: true,
+    });
+    recordClaim(
+      "Reload recovers public history; compact shared drawer leaves app root usable and composer functional",
+    );
+  }
+  if (verifyStreaming) {
+    await blair.setViewportSize({ width: 1280, height: 900 });
+    for (const configuration of agentConfigurations.filter(
+      (agent) => !streamAgent || agent.handle === streamAgent,
+    )) {
+      const beforeStream = await snapshot();
+      await Promise.all(
+        [alex, blair].map((page) =>
+          startStreamObservation(page, configuration.name),
+        ),
+      );
+      await selectMention(alex, configuration.handle, configuration.name);
+      await send(
+        alex,
+        "Write an original short story about two neighbors who turn an abandoned lot into a garden. Share it in one streamed room message, publishing at least three meaningful parts as you compose them so both people can read the story growing before it is finished. Choose all the wording yourself, then finalize that same message.",
+      );
+      await settle(beforeStream.deliveries);
+      for (const page of [alex, blair])
+        await expect(
+          page.locator(`article[data-author="${configuration.name}"]`).last(),
+        ).toHaveAttribute("data-status", "complete");
+      const observers = await Promise.all(
+        [alex, blair].map(async (page) =>
+          streamObservationSchema.parse(
+            JSON.parse(
+              (await page.locator("#qa-stream-observations").textContent()) ??
+                "[]",
+            ),
+          ),
+        ),
+      );
+      streamEvidence.push({ agent: configuration.name, observers });
+      await writeFile(
+        `${evidenceDirectory}/stream-observations.json`,
+        JSON.stringify(streamEvidence, null, 2),
+      );
+      const afterStream = await snapshot();
+      const previousIds = new Set(
+        beforeStream.messages.map((message) => message.id),
+      );
+      const publications = afterStream.messages.filter(
+        (message) =>
+          !previousIds.has(message.id) &&
+          message.authorName === configuration.name &&
+          message.kind === "agent",
+      );
+      expect(publications).toHaveLength(1);
+      expect(publications[0].status).toBe("complete");
+      expect(publications[0].text.length).toBeGreaterThan(100);
+      for (const observations of observers) {
+        expect(new Set(observations.map((entry) => entry.id))).toEqual(
+          new Set([publications[0].id]),
+        );
+        const growing = observations.filter(
+          (entry) =>
+            entry.status === "streaming" &&
+            entry.text !== "…" &&
+            entry.text.length > 0,
+        );
+        expect(
+          new Set(growing.map((entry) => entry.text)).size,
+        ).toBeGreaterThanOrEqual(3);
+        expect(
+          new Set(growing.map((entry) => entry.text.length)).size,
+        ).toBeGreaterThanOrEqual(3);
+        expect(growing.at(-1)?.text.length).toBeGreaterThan(
+          growing[0].text.length,
+        );
+        expect(observations.at(-1)?.status).toBe("complete");
+      }
+      await alex.screenshot({
+        path: `${evidenceDirectory}/stream-${configuration.handle}-owner.png`,
+        fullPage: true,
+      });
+      await blair.screenshot({
+        path: `${evidenceDirectory}/stream-${configuration.handle}-member.png`,
+        fullPage: true,
+      });
+      recordClaim(
+        `${configuration.name} authored one public stream that grew through at least three text states in both human browsers and finalized under the same message identity`,
+      );
+    }
+  }
   expect(failures).toEqual([]);
   await writeFile(
     `${evidenceDirectory}/participation-browser.json`,
@@ -502,8 +755,11 @@ try {
         roomId,
         claims,
         failures,
-        provider,
-        model,
+        agents: agentConfigurations,
+        streamingEnabled: verifyStreaming,
+        streamingOnly,
+        streamAgent: streamAgent ?? null,
+        approvedPublicationCommands,
         completed: new Date().toISOString(),
       },
       null,
@@ -523,7 +779,17 @@ try {
   }
   await writeFile(
     `${evidenceDirectory}/participation-failed.json`,
-    JSON.stringify({ roomId, claims, failures, error: String(error) }, null, 2),
+    JSON.stringify(
+      {
+        roomId,
+        agents: agentConfigurations,
+        claims,
+        failures,
+        error: String(error),
+      },
+      null,
+      2,
+    ),
   );
   throw error;
 } finally {

@@ -1,0 +1,8 @@
+{
+  "roomId": "66f56af3-aafa-4c0e-9811-3b8796e270e7",
+  "action": "Actual owner Allow once UI",
+  "command": "C='/Users/admin/rooms-v2-data/workspaces/66f56af3-aafa-4c0e-9811-3b8796e270e7/a1c59e1d-b55c-4daf-b377-6405a6c8b08a/.rooms/participate-82e701af-05ad-4812-bdb3-2ae5086184af'; \"$C\" stream begin",
+  "scope": "Activation-scoped stream begin only",
+  "authentication": "Additional short-lived session for same QA owner, issued in fixture and revoked after browser check",
+  "at": "2026-10-09T20:02:52.133Z"
+}

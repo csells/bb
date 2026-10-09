@@ -81,6 +81,162 @@ const publication: Publication = {
   replyTo: null,
 };
 describe("explicit authenticated participation", () => {
+  it("retains the execution lease across restart and Stop until every steering submission settles", () => {
+    const directory = mkdtempSync(join(tmpdir(), "rooms-steering-"));
+    directories.push(directory);
+    const path = join(directory, "rooms.db");
+    const { store, ca, cb, a, b, human, room } = setup(path);
+    const activationId = ca.activation.id;
+    store.recordSteering(
+      activationId,
+      "thread-alpha",
+      "steer-first",
+      "Use the corrected approach",
+    );
+    store.recordSteering(
+      activationId,
+      "thread-alpha",
+      "steer-second",
+      "Include the new constraint",
+    );
+    expect(() => store.finishActivation(activationId, "no_reply")).toThrow(
+      "Steering admission is unresolved",
+    );
+    expect(() =>
+      store.recordSteering(
+        activationId,
+        "thread-alpha",
+        "steer-first",
+        "Changed input",
+      ),
+    ).toThrow("another execution");
+    expect(() =>
+      store.settleSteering(
+        activationId,
+        "thread-alpha",
+        "steer-first",
+        "cancelled",
+      ),
+    ).toThrow("Fence the activation");
+    expect(() =>
+      store.recordSteering(
+        cb.activation.id,
+        "thread-bravo",
+        "steer-first",
+        "Use the corrected approach",
+      ),
+    ).toThrow("another execution");
+    expect(() =>
+      store.settleSteering(
+        activationId,
+        "thread-bravo",
+        "steer-first",
+        "settled",
+      ),
+    ).toThrow("another execution thread");
+    expect(() =>
+      store.settleSteering(
+        cb.activation.id,
+        "thread-bravo",
+        "steer-first",
+        "settled",
+      ),
+    ).toThrow("does not belong");
+    store.close();
+    stores.splice(stores.indexOf(store), 1);
+    const restarted = new RoomsStore(path);
+    stores.push(restarted);
+    restarted.recoverActivations();
+    expect(
+      restarted.pendingSteerings(activationId).map((steering) => steering.id),
+    ).toEqual(["steer-first", "steer-second"]);
+    expect(restarted.pendingSteerings(activationId)[0].text).toBe(
+      "Use the corrected approach",
+    );
+    restarted.fenceAgent(a.id, "Stopped during a lost steering acknowledgment");
+    expect(() =>
+      restarted.recordSteering(
+        activationId,
+        "thread-alpha",
+        "too-late",
+        "Stopped input",
+      ),
+    ).toThrow("requires the active execution");
+    restarted.sendHuman(
+      human,
+      room.id,
+      {
+        ...publication,
+        intent: "request",
+        recipients: [a.id],
+      },
+      "after-stop",
+    );
+    const waiting = restarted
+      .work()
+      .find(
+        (delivery) => delivery.agentId === a.id && delivery.state === "queued",
+      )!;
+    expect(restarted.beginActivation(waiting.id)).toBeNull();
+    expect(() => restarted.finishActivation(activationId, "no_reply")).toThrow(
+      "Steering admission is unresolved",
+    );
+    restarted.markActivationUncertain(
+      activationId,
+      "Lost steering acknowledgment",
+    );
+    expect(() => restarted.resolveUncertain(a.id)).toThrow(
+      "Steering admission is unresolved",
+    );
+    restarted.settleSteering(
+      activationId,
+      "thread-alpha",
+      "steer-first",
+      "settled",
+    );
+    restarted.settleSteering(
+      activationId,
+      "thread-alpha",
+      "steer-first",
+      "settled",
+    );
+    expect(() => restarted.resolveUncertain(a.id)).toThrow(
+      "Steering admission is unresolved",
+    );
+    expect(() =>
+      restarted.recordQueueCancellation(
+        activationId,
+        "thread-alpha",
+        "queued-steer",
+        ["steer-second", "unknown-steer"],
+      ),
+    ).toThrow("does not belong");
+    expect(restarted.hasQueueCancellation(activationId, "thread-alpha")).toBe(
+      false,
+    );
+    expect(
+      restarted.pendingSteerings(activationId).map((steering) => steering.id),
+    ).toEqual(["steer-second"]);
+    restarted.recordQueueCancellation(
+      activationId,
+      "thread-alpha",
+      "queued-steer",
+      ["steer-second"],
+    );
+    expect(() =>
+      restarted.settleSteering(
+        activationId,
+        "thread-alpha",
+        "steer-second",
+        "settled",
+      ),
+    ).toThrow("another terminal outcome");
+    restarted.resolveUncertain(a.id);
+    restarted.markActivationUncertain(activationId, "Late transport failure");
+    expect(restarted.activation(activationId).state).toBe("stopped");
+    expect(restarted.beginActivation(waiting.id)).not.toBeNull();
+    expect(restarted.agent(b.id).status).toBe("working");
+  });
   it("publishes only under the capability identity and atomically validates recipients and reply scope", () => {
     const { store, room, second, a, b, ca, command } = setup();
     const otherRoom = store.createRoom("Other", second.id);
@@ -290,6 +446,13 @@ describe("explicit authenticated participation", () => {
     expect(reopened.beginActivation(next.id)).toBeNull();
     expect(reopened.messages(room.id)).toHaveLength(4);
     const error = reopened.delivery(pending.id).error;
+    reopened.fenceAgent(
+      c.id,
+      "Recovering uncertain execution",
+      "active-execution",
+    );
+    expect(reopened.delivery(next.id).state).toBe("queued");
+    expect(reopened.agent(c.id).status).toBe("uncertain");
     reopened.resolveUncertain(c.id);
     expect(reopened.delivery(pending.id)).toMatchObject({
       state: "stopped",
@@ -373,6 +536,7 @@ describe("explicit authenticated participation", () => {
     expect(other.beginActivation(next.id)).toBeNull();
     expect(store.activation(cb.activation.id).state).toBe("running");
     store.fenceAgent(a.id, "Stopped by a human");
+    expect(other.delivery(next.id).state).toBe("stopped");
     expect(other.beginActivation(next.id)).toBeNull();
     store.finishActivation(ca.activation.id, "no_reply");
     expect(other.activation(ca.activation.id).state).toBe("stopped");

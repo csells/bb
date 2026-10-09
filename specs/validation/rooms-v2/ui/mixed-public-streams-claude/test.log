@@ -1,0 +1,4 @@
+PASS Two separately authenticated human browser sessions joined through one-time invitation
+PASS Concurrent human messages preserve authorship and an identical retried post appears once
+PASS Nova authored one public stream that grew through at least three text states in both human browsers and finalized under the same message identity
+{"roomId":"075d932b-efb7-4648-aded-73501f66bb76","claims":["Two separately authenticated human browser sessions joined through one-time invitation","Concurrent human messages preserve authorship and an identical retried post appears once","Nova authored one public stream that grew through at least three text states in both human browsers and finalized under the same message identity"],"failures":[]}

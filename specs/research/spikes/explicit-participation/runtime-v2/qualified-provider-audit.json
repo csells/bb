@@ -1,0 +1,50 @@
+[
+  {
+    "file": "rooms-natural-codex-v2-run3.json",
+    "sha256": "ff4847bfe23cdb0f23848d0c7224755ece1ff6da44eb3b14be1c7d3c7b87699d",
+    "provider": "codex",
+    "model": "gpt-6.1-sol",
+    "checksPassed": 15,
+    "steeringReceipts": [
+      {
+        "accepted": true,
+        "delivery": "sent"
+      }
+    ],
+    "actualStoryAppendCalls": 3,
+    "observedStreams": [
+      {
+        "20965c71-6352-4586-a596-e635afa82c18": [
+          0,
+          319,
+          699,
+          1111
+        ]
+      }
+    ]
+  },
+  {
+    "file": "rooms-natural-claude-v2-run2.json",
+    "sha256": "bbc53fd507a362c50919a2a6833ac2ea5f13efd60b04b5502c657961836b45e7",
+    "provider": "claude-code",
+    "model": "claude-opus-5-5",
+    "checksPassed": 15,
+    "steeringReceipts": [
+      {
+        "accepted": true,
+        "delivery": "sent"
+      }
+    ],
+    "actualStoryAppendCalls": 3,
+    "observedStreams": [
+      {
+        "5283668c-3bc4-43a9-802f-ea99131cf9d9": [
+          0,
+          498,
+          1017,
+          1643
+        ]
+      }
+    ]
+  }
+]

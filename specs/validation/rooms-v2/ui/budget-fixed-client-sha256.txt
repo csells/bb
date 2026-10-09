@@ -1,0 +1,4 @@
+9b414acdf21fb54d1ed9294374c18c844ed04f65724e0d882529fb37dc47e17e  apps/rooms/dist/web/index.html
+e59fd45b95f5be3946d06d8134d3ca2a3e0322061c48a88ce2a3753562a9d140  apps/rooms/dist/web/assets/index-C3KI-3U-.js
+8aaeeb8192ad304270c2bf03e0dc5d3ee84b0a103fea1b7780df3e18a941b7a6  apps/rooms/dist/web/assets/index-CiD2uzZh.css
+1e4031b1c665d238fddfc2749c3fc14e5228ffef6af34bff0c72a407fd98da04  apps/rooms/dist/server.js

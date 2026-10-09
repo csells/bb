@@ -1,0 +1,51 @@
+PASS two visible waiting replies before first token, live elapsed time, usable composer
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toHaveValue(expected) failed
+
+Locator:  getByLabel('Agent turn budget')
+Expected: ""
+Received: "1"
+Timeout:  5000ms
+
+Call log:
+  - Expect "toHaveValue" getByLabel('Agent turn budget') with timeout 5000ms
+  - waiting for getByLabel('Agent turn budget')
+    14 × locator resolved to <input min="1" step="1" value="1" max="100000" type="number" name="maxActivations" placeholder="Unlimited"/>
+       - unexpected value "1"
+
+    at captureRawStack (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js:9282:17)
+    at callMatcherAsStep (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13316:57)
+    at Object.toHaveValue (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13308:23)
+    at <anonymous> (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/pending.browser.ts:126:54) {
+  matcherResult: {
+    name: 'toHaveValue',
+    expected: '',
+    message: 'expect(locator).toHaveValue(expected) failed\n' +
+      '\n' +
+      "Locator:  getByLabel('Agent turn budget')\n" +
+      'Expected: ""\n' +
+      'Received: "1"\n' +
+      'Timeout:  5000ms\n' +
+      '\n' +
+      'Call log:\n' +
+      `  - Expect "toHaveValue" getByLabel('Agent turn budget') with timeout 5000ms\n` +
+      "  - waiting for getByLabel('Agent turn budget')\n" +
+      '    14 × locator resolved to <input min="1" step="1" value="1" max="100000" type="number" name="maxActivations" placeholder="Unlimited"/>\n' +
+      '       - unexpected value "1"\n',
+    pass: false,
+    actual: '1',
+    log: [
+      `  - Expect "toHaveValue" getByLabel('Agent turn budget') with timeout 5000ms`,
+      "  - waiting for getByLabel('Agent turn budget')",
+      '    14 × locator resolved to <input min="1" step="1" value="1" max="100000" type="number" name="maxActivations" placeholder="Unlimited"/>',
+      '       - unexpected value "1"'
+    ],
+    timeout: 5000,
+    ariaSnapshot: '- spinbutton "Agent turn budget Leave empty for unlimited turns. Reaching the budget pauses agents visibly. Resuming starts a new budget.": "1"'
+  }
+}
+
+Node.js v24.20.0

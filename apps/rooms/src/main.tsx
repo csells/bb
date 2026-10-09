@@ -1,5 +1,10 @@
 import {
   userQuestionPendingInteractionPayloadSchema,
+  pendingInteractionPayloadSchema,
+  isApprovalPendingInteractionPayload,
+  type PendingInteractionPayload,
+  type ApprovalPendingInteractionPayload,
+  type ApprovalInteractionOutcome,
   roomsActivitySchema as activitySchema,
 } from "@bb/domain";
 import React, { useEffect, useRef, useState } from "react";
@@ -27,6 +32,42 @@ async function api<T>(
 const invitation =
   new URLSearchParams(location.hash.slice(1)).get("invite") ?? "";
 if (invitation) history.replaceState(null, "", location.pathname);
+function ApprovalControls({
+  payload,
+  submit,
+}: {
+  payload: ApprovalPendingInteractionPayload;
+  submit: (body: ApprovalInteractionOutcome["resolution"]) => Promise<void>;
+}) {
+  return payload.availableDecisions.map((decision) => (
+    <button
+      key={decision}
+      onClick={() =>
+        void submit(
+          decision === "deny"
+            ? { decision }
+            : {
+                decision,
+                grantedPermissions:
+                  payload.subject.kind === "permission_grant"
+                    ? payload.subject.permissions
+                    : decision === "allow_for_session" &&
+                        (payload.subject.kind === "command" ||
+                          payload.subject.kind === "file_change")
+                      ? payload.subject.sessionGrant
+                      : null,
+              },
+        )
+      }
+    >
+      {decision === "allow_once"
+        ? "Allow once"
+        : decision === "allow_for_session"
+          ? "Allow for session"
+          : "Deny"}
+    </button>
+  ));
+}
 function Avatar({ name, agent = false }: { name: string; agent?: boolean }) {
   return (
     <span className={"avatar " + (agent ? "silicon" : "human")}>
@@ -42,7 +83,7 @@ function PendingReplies({
   decisionAgents: string[];
 }) {
   const deliveries = snapshot.deliveries.filter((d) =>
-    ["queued", "dispatching", "running"].includes(d.state),
+    ["queued", "dispatching", "running", "uncertain"].includes(d.state),
   );
   const [now, setNow] = useState(Date.now);
   const hasWork = deliveries.length > 0;
@@ -60,7 +101,9 @@ function PendingReplies({
     );
     const latest = output.at(-1);
     const needsDecision = decisionAgents.includes(agent.id);
+    const uncertain = delivery.state === "uncertain";
     if (
+      !uncertain &&
       !needsDecision &&
       !delivery.error &&
       latest?.kind === "agent" &&
@@ -74,22 +117,24 @@ function PendingReplies({
       since === undefined
         ? null
         : Math.max(0, Math.floor((now - since) / 1000));
-    const state = delivery.error
-      ? `Checking ${agent.name}’s status`
-      : needsDecision
-        ? `${agent.name} needs a decision`
-        : delivery.state === "queued"
-          ? `Queued for ${agent.name}`
-          : delivery.state === "dispatching"
-            ? `Starting ${agent.name}`
-            : output.length
-              ? `${agent.name} is working`
-              : cause?.intent === "notice"
-                ? `${agent.name} is considering your message`
-                : `${agent.name} is working on your request`;
+    const state = uncertain
+      ? `${agent.name} needs attention`
+      : delivery.error
+        ? `Checking ${agent.name}’s status`
+        : needsDecision
+          ? `${agent.name} needs a decision`
+          : delivery.state === "queued"
+            ? `Queued for ${agent.name}`
+            : delivery.state === "dispatching"
+              ? `Starting ${agent.name}`
+              : output.length
+                ? `${agent.name} is working`
+                : cause?.intent === "notice"
+                  ? `${agent.name} is considering your message`
+                  : `${agent.name} is working on your request`;
     return (
       <div
-        className="message pending-reply"
+        className={`message pending-reply${uncertain ? " attention-reply" : ""}`}
         key={delivery.id}
         data-agent-id={agent.id}
       >
@@ -97,10 +142,10 @@ function PendingReplies({
         <div className="message-body">
           <div className="pending-heading">
             <span className="pending-status" role="status">
-              <i className="pulse" aria-hidden="true" />
+              {!uncertain && <i className="pulse" aria-hidden="true" />}
               {state}
             </span>
-            {elapsed !== null && (
+            {!uncertain && elapsed !== null && (
               <span className="pending-elapsed" aria-label="Elapsed time">
                 {elapsed < 60
                   ? `${elapsed}s`
@@ -110,16 +155,20 @@ function PendingReplies({
           </div>
           {delivery.error && (
             <p className="pending-error" role="alert">
-              Unable to confirm execution status. Your request remains pending.{" "}
+              {uncertain
+                ? "Execution could not be confirmed. This request has not been retried. "
+                : "Unable to confirm execution status. Your request remains pending. "}
               {delivery.error}
             </p>
           )}
           <p>
-            {needsDecision
-              ? "Review the request below to continue."
-              : snapshot.room.paused && delivery.state === "queued"
-                ? "Agents are paused. Your message is saved."
-                : "You can keep typing. Only messages the agent chooses to share appear here."}
+            {uncertain
+              ? "The room owner can inspect Activity and resolve this interruption. Accepted follow-ups remain queued."
+              : needsDecision
+                ? "Review the request below to continue."
+                : snapshot.room.paused && delivery.state === "queued"
+                  ? "Agents are paused. Your message is saved."
+                  : "You can keep typing. Only messages the agent chooses to share appear here."}
           </p>
         </div>
       </div>
@@ -206,6 +255,11 @@ function App() {
     if (panel) setRealizedPanel(panel);
   }, [panel]);
   const [activityAgentId, setActivityAgentId] = useState("");
+  const [budgetDraft, setBudgetDraft] = useState("");
+  function openRoomControls() {
+    setBudgetDraft(snapshot?.room.maxActivations?.toString() ?? "");
+    setPanel("settings");
+  }
   const [activity, setActivity] = useState<z.infer<
     typeof activitySchema
   > | null>(null);
@@ -218,7 +272,7 @@ function App() {
     {
       agent: Agent;
       id: string;
-      payload: { kind: string; [key: string]: unknown };
+      payload: PendingInteractionPayload;
     }[]
   >([]);
   const end = useRef<HTMLDivElement>(null),
@@ -328,12 +382,18 @@ function App() {
           snapshot.agents
             .filter((a) => a.threadId)
             .map(async (agent) => {
-              const response = await api<
-                {
-                  id: string;
-                  payload: { kind: string; [key: string]: unknown };
-                }[]
-              >(`/rooms/${roomId}/agents/${agent.id}/interactions`);
+              const response = z
+                .array(
+                  z.object({
+                    id: z.string(),
+                    payload: pendingInteractionPayloadSchema,
+                  }),
+                )
+                .parse(
+                  await api<unknown>(
+                    `/rooms/${roomId}/agents/${agent.id}/interactions`,
+                  ),
+                );
               return response.map((item) => ({ ...item, agent }));
             }),
         );
@@ -549,6 +609,11 @@ function App() {
       snapshot?.deliveries.filter(
         (delivery) => delivery.agentId === agent.id,
       ) ?? [];
+    if (
+      agent.status === "uncertain" ||
+      deliveries.some((delivery) => delivery.state === "uncertain")
+    )
+      return "Needs attention";
     if (deliveries.some((delivery) => delivery.state === "running"))
       return "Working";
     if (deliveries.some((delivery) => delivery.state === "dispatching"))
@@ -556,7 +621,6 @@ function App() {
     if (deliveries.some((delivery) => delivery.state === "queued"))
       return snapshot?.room.paused ? "Paused · queued" : "Queued";
     const latest = deliveries.toSorted((a, b) => b.createdAt - a.createdAt)[0];
-    if (latest?.state === "uncertain") return "Needs attention";
     if (latest?.state === "error") return "Failed";
     if (latest?.state === "stopped") return "Stopped";
     if (latest?.outcome === "no_reply") return "No public reply";
@@ -635,10 +699,7 @@ function App() {
             {owner && (
               <>
                 <button onClick={() => setPanel("agent")}>＋ Add agent</button>
-                <button
-                  aria-label="Room controls"
-                  onClick={() => setPanel("settings")}
-                >
+                <button aria-label="Room controls" onClick={openRoomControls}>
                   ⋯
                 </button>
               </>
@@ -858,33 +919,18 @@ function App() {
               <summary>Details</summary>
               <pre>{JSON.stringify(item.payload, null, 2)}</pre>
             </details>
-            {owner && item.payload.kind === "approval" ? (
-              <>
-                <button
-                  onClick={() =>
-                    void run(async () => {
-                      await api(
-                        `/rooms/${roomId}/agents/${item.agent.id}/interactions/${item.id}`,
-                        { decision: "allow_once", grantedPermissions: null },
-                      );
-                    })
-                  }
-                >
-                  Allow once
-                </button>
-                <button
-                  onClick={() =>
-                    void run(async () => {
-                      await api(
-                        `/rooms/${roomId}/agents/${item.agent.id}/interactions/${item.id}`,
-                        { decision: "deny" },
-                      );
-                    })
-                  }
-                >
-                  Deny
-                </button>
-              </>
+            {owner && isApprovalPendingInteractionPayload(item.payload) ? (
+              <ApprovalControls
+                payload={item.payload}
+                submit={(body) =>
+                  run(async () => {
+                    await api(
+                      `/rooms/${roomId}/agents/${item.agent.id}/interactions/${item.id}`,
+                      body,
+                    );
+                  })
+                }
+              />
             ) : owner && item.payload.kind === "user_question" ? (
               <QuestionForm
                 payload={item.payload}
@@ -919,17 +965,18 @@ function App() {
                   >
                     Follow up
                   </button>
-                  {a.provider === "pi" && a.status === "working" && (
-                    <button
-                      onClick={() => {
-                        setSteering(a);
-                        setSelected([a.id]);
-                        composer.current?.focus();
-                      }}
-                    >
-                      Steer now
-                    </button>
-                  )}
+                  {["pi", "codex", "claude-code"].includes(a.provider) &&
+                    a.status === "working" && (
+                      <button
+                        onClick={() => {
+                          setSteering(a);
+                          setSelected([a.id]);
+                          composer.current?.focus();
+                        }}
+                      >
+                        Steer now
+                      </button>
+                    )}
                   <button
                     onClick={() =>
                       void run(async () => {
@@ -1124,7 +1171,7 @@ function App() {
           </div>
           {realizedPanel === "settings" && snapshot && (
             <form
-              key={snapshot.room.id + ":" + snapshot.room.maxActivations}
+              key={snapshot.room.id}
               onSubmit={(event) => {
                 event.preventDefault();
                 const form = new FormData(event.currentTarget);
@@ -1154,7 +1201,8 @@ function App() {
                   min="1"
                   max="100000"
                   step="1"
-                  defaultValue={snapshot.room.maxActivations ?? ""}
+                  value={budgetDraft}
+                  onChange={(event) => setBudgetDraft(event.target.value)}
                   placeholder="Unlimited"
                 />
                 <small>
@@ -1278,9 +1326,7 @@ function App() {
               {!activity && !activityError && (
                 <p role="status">Loading activity…</p>
               )}
-              <button onClick={() => setPanel("settings")}>
-                Back to room controls
-              </button>
+              <button onClick={openRoomControls}>Back to room controls</button>
             </section>
           )}
           {realizedPanel === "agent" && (

@@ -1515,6 +1515,20 @@ export const roomReceipts = sqliteTable(
   },
   (t) => [primaryKey({ columns: [t.scope, t.requestId] })],
 );
+export const roomSteering = sqliteTable(
+  "rooms_steering",
+  {
+    id: text("id").primaryKey(),
+    activationId: text("activation_id")
+      .notNull()
+      .references(() => roomActivations.id),
+    threadId: text("thread_id").notNull(),
+    text: text("text").notNull(),
+    state: text("state").notNull(),
+    createdAt: integer("created_at").notNull(),
+  },
+  (t) => [index("rooms_pending_steering").on(t.activationId, t.state)],
+);
 export const roomStreams = sqliteTable("rooms_streams", {
   messageId: text("message_id")
     .primaryKey()

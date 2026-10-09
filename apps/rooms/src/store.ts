@@ -53,6 +53,12 @@ const storedActivation = activationSchema.extend({
 });
 const receiptSchema = z.object({ payload: z.string(), response: z.string() });
 const countSchema = z.object({ count: z.number() });
+const steeringSchema = z.object({
+  id: z.string(),
+  activationId: z.string(),
+  threadId: z.string(),
+  text: z.string().min(1).max(20000),
+});
 const streamSchema = z.object({
   message_id: z.string(),
   activation_id: z.string(),
@@ -635,6 +641,7 @@ export class RoomsStore {
       const a = this.activation(activationId),
         d = this.delivery(a.deliveryId);
       if (!["dispatching", "running"].includes(a.state)) return;
+      this.requireSteeringSettled(activationId);
       const stopped = d.state === "stopped";
       const actualOutcome =
         this.activationPublications(activationId) > 0 ? "replied" : outcome;
@@ -658,7 +665,11 @@ export class RoomsStore {
       this.touch(a.roomId);
     });
   }
-  fenceAgent(agentId: string, reason: string) {
+  fenceAgent(
+    agentId: string,
+    reason: string,
+    scope: "all-deliveries" | "active-execution" = "all-deliveries",
+  ) {
     return this.transaction(() => {
       const a = this.agent(agentId);
       this.db
@@ -668,9 +679,9 @@ export class RoomsStore {
         .run(agentId);
       this.db
         .prepare(
-          "UPDATE rooms_deliveries SET state='stopped',error=? WHERE agent_id=? AND state IN ('queued','dispatching','running')",
+          "UPDATE rooms_deliveries SET state='stopped',error=? WHERE agent_id=? AND state IN ('queued','dispatching','running') AND (? OR state!='queued')",
         )
-        .run(reason, agentId);
+        .run(reason, agentId, scope === "all-deliveries" ? 1 : 0);
       for (const row of this.db
         .prepare(
           "SELECT id FROM rooms_activations WHERE agent_id=? AND state IN ('dispatching','running')",
@@ -679,18 +690,25 @@ export class RoomsStore {
         this.abortStreams(z.object({ id: z.string() }).parse(row).id);
       const active = this.db
         .prepare(
-          "SELECT id FROM rooms_activations WHERE agent_id=? AND state IN ('dispatching','running')",
+          "SELECT state FROM rooms_activations WHERE agent_id=? AND state IN ('dispatching','running','uncertain')",
         )
         .get(agentId);
+      const state = active
+        ? z.object({ state: z.string() }).parse(active).state
+        : null;
       this.db
         .prepare("UPDATE rooms_agents SET status=? WHERE id=?")
-        .run(active ? "stopping" : "idle", agentId);
+        .run(
+          state === "uncertain" ? "uncertain" : state ? "stopping" : "idle",
+          agentId,
+        );
       this.touch(a.roomId);
     });
   }
   markActivationUncertain(activationId: string, error: string) {
     return this.transaction(() => {
       const a = this.activation(activationId);
+      if (!["dispatching", "running", "uncertain"].includes(a.state)) return;
       this.db
         .prepare(
           "UPDATE rooms_activations SET state='uncertain',revoked=1 WHERE id=?",
@@ -712,6 +730,7 @@ export class RoomsStore {
     activationId: string,
     threadId: string,
     queuedMessageId: string,
+    cancelledSteeringIds: readonly string[] = [],
   ) {
     return this.transaction(() => {
       const activation = this.activation(activationId);
@@ -732,6 +751,8 @@ export class RoomsStore {
           threadId,
           queuedMessageId,
         });
+      for (const steeringId of cancelledSteeringIds)
+        this.settleSteering(activationId, threadId, steeringId, "cancelled");
     });
   }
   hasQueueCancellation(activationId: string, threadId: string) {
@@ -743,6 +764,109 @@ export class RoomsStore {
         .get(`queue-cancellation:${activationId}`, canonical({ threadId })) !==
       undefined
     );
+  }
+  recordSteering(
+    activationId: string,
+    threadId: string,
+    steeringId: string,
+    text: string,
+  ) {
+    return this.transaction(() => {
+      const submitted = steeringSchema.parse({
+        id: steeringId,
+        activationId,
+        threadId,
+        text,
+      });
+      const activation = this.activation(activationId);
+      if (
+        activation.state !== "running" ||
+        activation.revoked ||
+        activation.stopRequested ||
+        activation.threadId !== threadId
+      )
+        throw new RoomError(
+          409,
+          "Steering requires the active execution thread",
+        );
+      const existing = this.db
+        .prepare(
+          "SELECT id,activation_id AS activationId,thread_id AS threadId,text FROM rooms_steering WHERE id=?",
+        )
+        .get(steeringId);
+      if (existing) {
+        const steering = steeringSchema.parse(existing);
+        if (
+          steering.activationId !== activationId ||
+          steering.threadId !== threadId ||
+          steering.text !== text
+        )
+          throw new RoomError(409, "Steering belongs to another execution");
+        return steering;
+      }
+      this.db
+        .prepare(
+          "INSERT INTO rooms_steering(id,activation_id,thread_id,text,state,created_at) VALUES(?,?,?,?,'pending',?)",
+        )
+        .run(steeringId, activationId, threadId, text, Date.now());
+      return submitted;
+    });
+  }
+  pendingSteerings(activationId: string) {
+    return this.db
+      .prepare(
+        "SELECT id,activation_id AS activationId,thread_id AS threadId,text FROM rooms_steering WHERE activation_id=? AND state='pending' ORDER BY created_at,id",
+      )
+      .all(activationId)
+      .map((row) => steeringSchema.parse(row));
+  }
+  settleSteering(
+    activationId: string,
+    threadId: string,
+    steeringId: string,
+    outcome: "settled" | "cancelled",
+  ) {
+    return this.transaction(() => {
+      const activation = this.activation(activationId);
+      if (activation.threadId !== threadId)
+        throw new RoomError(
+          409,
+          "Steering belongs to another execution thread",
+        );
+      if (
+        outcome === "cancelled" &&
+        (!activation.revoked || !activation.stopRequested)
+      )
+        throw new RoomError(
+          409,
+          "Fence the activation before cancelling steering",
+        );
+      const row = this.db
+        .prepare(
+          "SELECT state FROM rooms_steering WHERE id=? AND activation_id=? AND thread_id=?",
+        )
+        .get(steeringId, activationId, threadId);
+      if (!row)
+        throw new RoomError(409, "Steering does not belong to this execution");
+      const { state } = z
+        .object({ state: z.enum(["pending", "settled", "cancelled"]) })
+        .parse(row);
+      if (state !== "pending" && state !== outcome)
+        throw new RoomError(
+          409,
+          "Steering already has another terminal outcome",
+        );
+      this.db
+        .prepare("UPDATE rooms_steering SET state=? WHERE id=?")
+        .run(outcome, steeringId);
+    });
+  }
+  private requireSteeringSettled(activationId: string) {
+    if (this.pendingSteerings(activationId).length)
+      throw new RoomError(
+        409,
+        "Steering admission is unresolved; the execution remains reserved",
+      );
   }
   uncertainActivations(agentId: string) {
     return this.db
@@ -764,6 +888,7 @@ export class RoomsStore {
           z.object({ id: z.string(), delivery_id: z.string() }).parse(row),
         );
       for (const activation of uncertain) {
+        this.requireSteeringSettled(activation.id);
         this.db
           .prepare(
             "UPDATE rooms_activations SET state='stopped',revoked=1,stop_requested=1 WHERE id=? AND state='uncertain'",

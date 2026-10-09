@@ -1,0 +1,51 @@
+PASS two visible waiting replies before first token, live elapsed time, usable composer
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toContainText(expected) failed
+
+Locator: locator('.participant').filter({ hasText: 'Builder' })
+Expected substring: "Needs attention"
+Received string:    "✳BuilderQueued"
+Timeout: 5000ms
+
+Call log:
+  - Expect "toContainText" locator('.participant').filter({ hasText: 'Builder' }) with timeout 5000ms
+  - waiting for locator('.participant').filter({ hasText: 'Builder' })
+    14 × locator resolved to <button class="participant " aria-pressed="false" title="Choose Builder as a recipient">…</button>
+       - unexpected value "✳BuilderQueued"
+
+    at captureRawStack (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js:9282:17)
+    at callMatcherAsStep (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13316:57)
+    at Object.toContainText (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13308:23)
+    at <anonymous> (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/pending.browser.ts:122:77) {
+  matcherResult: {
+    name: 'toContainText',
+    expected: 'Needs attention',
+    message: 'expect(locator).toContainText(expected) failed\n' +
+      '\n' +
+      "Locator: locator('.participant').filter({ hasText: 'Builder' })\n" +
+      'Expected substring: "Needs attention"\n' +
+      'Received string:    "✳BuilderQueued"\n' +
+      'Timeout: 5000ms\n' +
+      '\n' +
+      'Call log:\n' +
+      `  - Expect "toContainText" locator('.participant').filter({ hasText: 'Builder' }) with timeout 5000ms\n` +
+      "  - waiting for locator('.participant').filter({ hasText: 'Builder' })\n" +
+      '    14 × locator resolved to <button class="participant " aria-pressed="false" title="Choose Builder as a recipient">…</button>\n' +
+      '       - unexpected value "✳BuilderQueued"\n',
+    pass: false,
+    actual: '✳BuilderQueued',
+    log: [
+      `  - Expect "toContainText" locator('.participant').filter({ hasText: 'Builder' }) with timeout 5000ms`,
+      "  - waiting for locator('.participant').filter({ hasText: 'Builder' })",
+      '    14 × locator resolved to <button class="participant " aria-pressed="false" title="Choose Builder as a recipient">…</button>',
+      '       - unexpected value "✳BuilderQueued"'
+    ],
+    timeout: 5000,
+    ariaSnapshot: '- button "✳ Builder Queued"'
+  }
+}
+
+Node.js v24.20.0

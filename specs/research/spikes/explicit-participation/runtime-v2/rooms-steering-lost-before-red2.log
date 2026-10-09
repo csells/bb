@@ -1,0 +1,6 @@
+PASS two independently authenticated human participants
+Error: lost steering acknowledgment retains an uncertain activation after original native completion and gateway restart
+    at check (file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:63:25)
+    at file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:324:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+Evidence: /Users/admin/rooms-steering-lost-before-red2.json

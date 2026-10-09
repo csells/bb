@@ -4,12 +4,36 @@ export function inspectAdmission(
   events: readonly ThreadEventRow[],
   activationId: string,
 ) {
-  const marker = `\nActivation: ${activationId}\n`;
+  return inspectMarkedAdmission(events, [`\nActivation: ${activationId}\n`]);
+}
+
+export function inspectSteeringAdmission(
+  events: readonly ThreadEventRow[],
+  activationId: string,
+  steeringId: string,
+  expectedText: string,
+) {
+  return inspectMarkedAdmission(
+    events,
+    [],
+    `\nActivation: ${activationId}\nSteering: ${steeringId}\n${expectedText}`,
+  );
+}
+
+function inspectMarkedAdmission(
+  events: readonly ThreadEventRow[],
+  markers: readonly string[],
+  exactText?: string,
+) {
   const requests = events.filter(
     (event) =>
       event.type === "client/turn/requested" &&
       event.data.input.some(
-        (input) => input.type === "text" && input.text.includes(marker),
+        (input) =>
+          input.type === "text" &&
+          (exactText === undefined
+            ? markers.every((marker) => input.text.includes(marker))
+            : input.text === exactText),
       ),
   );
   const requestIds: string[] = [];

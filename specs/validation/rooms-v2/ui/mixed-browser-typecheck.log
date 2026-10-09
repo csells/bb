@@ -1,0 +1,27 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running typecheck in 1 packages
+   • Remote caching disabled
+
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold: 
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold: 
+@bb/templates:generate:templates: cache hit, replaying logs c34ddd17b9ae631a
+@bb/templates:generate:templates: 
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates: 
+@bb/rooms:typecheck: cache miss, executing f85018012d962afc
+@bb/rooms:typecheck: 
+@bb/rooms:typecheck: > @bb/rooms@0.1.0 typecheck /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:typecheck: > tsc --noEmit
+@bb/rooms:typecheck: 
+
+ Tasks:    3 successful, 3 total
+Cached:    2 cached, 3 total
+  Time:    2.228s 
+

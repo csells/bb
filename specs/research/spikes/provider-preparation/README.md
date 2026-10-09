@@ -15,9 +15,15 @@ The second command fixed npm11's warning that Claude's package postinstall was n
 
 BB's checked-in Codex provider requires at least0.136.0 (rewind requires0.143.0), so0.159.1 satisfies those declared version floors. Account/model availability remains unverified. Official [Codex installation guidance](https://help.openai.com/en/articles/11096431) supports npm installation. Official [Claude setup](https://code.claude.com/docs/en/setup#install-with-npm) supports npm, requires Node22+, and installs a native platform binary. Registry `bb-rooms-stage` revision8 records the CLI versions, `not_authenticated` state, in-progress replacement, failed natural local-model qualification, replacement data path, and pending owner-claim repointing. Historical prototype notes are explicitly superseded and preserved. The parent will update final metadata after acceptance.
 
-## Authentication procedure, only after explicit approval
+## Approved authentication transfer — October 9, 2026
 
-This procedure has not been executed. It copies only provider authentication needed by the disposable runtime; it does not copy source histories, projects, plugins, hooks, or general CLI configuration.
+Chris explicitly approved using Codex and Claude and copying their authentication into this disposable VM. Both transfers completed over pinned SSH standard input; values were held only in process memory and never printed or written into the repository. Codex used the configured host auth cache; Claude used the host macOS Keychain credential item. Both guest files have mode0600 beneath mode0700 directories. The source credentials and source configuration were not changed.
+
+Both guest CLIs report authenticated, and BB model discovery succeeded for `codex/gpt-6.1-sol` and `claude-code/claude-opus-5-5`. Real participation verification is running; authentication and model enumeration alone do not prove usable streaming or tools. [Sanitized checkpoint](authentication-checkpoint.json). Task-added authentication remains private in the preview VM and must be removed at teardown.
+
+## Authentication transfer procedure
+
+This procedure was executed after the approval above. It copies only provider authentication needed by the disposable runtime; it does not copy source histories, projects, plugins, hooks, or general CLI configuration.
 
 1. Confirm the user's approval covers copying existing Codex/Claude authentication into this VM. Resolve the source Codex auth-cache path from its configured home, normally `/Users/csells/.codex/auth.json`. Confirm the file exists without displaying its contents.
 2. Send the Codex file over the existing pinned SSH transport as standard input, writing to a mode0600 temporary file under mode0700 `/Users/admin/.codex`; validate JSON without logging fields, then atomically rename to `auth.json`. Do not pass tokens in command arguments, print subprocess stdout containing credentials, or place an intermediate file in the repository. Official [Codex authentication documentation](https://developers.openai.com/codex/auth#fallback-authenticate-locally-and-copy-your-auth-cache) explicitly describes this headless cache-copy method. If source auth resides only in the OS credential store, stop this file-copy branch rather than changing the user's source configuration.

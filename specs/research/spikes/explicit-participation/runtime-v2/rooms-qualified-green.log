@@ -1,0 +1,96 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running build, typecheck, test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 9b2010826d0c8b67
+@bb/templates:generate:templates: cache hit, replaying logs c34ddd17b9ae631a
+@bb/templates:generate:templates: 
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates: 
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold: 
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold: 
+@bb/rooms:build: cache miss, executing ce87e5d427abf29b
+@bb/rooms:typecheck: cache miss, executing 358630b5a776c245
+@bb/rooms:build: 
+@bb/rooms:build: > @bb/rooms@0.1.0 build /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:build: > node ../../scripts/build-node-entry.mjs src/server.ts dist/server.js --clean-dist --copy-dir ../../packages/db/drizzle dist/drizzle && node ../../scripts/build-node-entry.mjs src/agent-cli-entry.ts dist/agent-cli.js && vite build
+@bb/rooms:build: 
+@bb/rooms:typecheck: 
+@bb/rooms:typecheck: > @bb/rooms@0.1.0 typecheck /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:typecheck: > tsc --noEmit
+@bb/rooms:typecheck: 
+//:ensure-native-modules: 
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules: 
+@bb/rooms:test: cache miss, executing 1bd0f1eb203df8c8
+@bb/rooms:test: 
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:test: > vitest run
+@bb/rooms:test: 
+@bb/rooms:build: vite v7.3.7 building client environment for production...
+@bb/rooms:build: transforming...
+@bb/rooms:test: 
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb/apps/rooms[39m
+@bb/rooms:test: 
+@bb/rooms:build: ../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+@bb/rooms:build: 
+@bb/rooms:build: "// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+@bb/rooms:build: 
+@bb/rooms:build: in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+@bb/rooms:build: ../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+@bb/rooms:build: 
+@bb/rooms:build: "/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+@bb/rooms:build:  * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+@bb/rooms:build:  * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+@bb/rooms:build: 
+@bb/rooms:build: in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+@bb/rooms:build: ✓ 466 modules transformed.
+@bb/rooms:build: rendering chunks...
+@bb/rooms:build: computing gzip size...
+@bb/rooms:build: dist/web/index.html                   0.40 kB │ gzip:   0.27 kB
+@bb/rooms:build: dist/web/assets/index-CiD2uzZh.css   15.02 kB │ gzip:   3.84 kB
+@bb/rooms:build: dist/web/assets/index-DGXX6iwP.js   522.39 kB │ gzip: 162.70 kB
+@bb/rooms:build: 
+@bb/rooms:build: (!) Some chunks are larger than 500 kB after minification. Consider:
+@bb/rooms:build: - Using dynamic import() to code-split the application
+@bb/rooms:build: - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+@bb/rooms:build: - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+@bb/rooms:build: ✓ built in 2.89s
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/store.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 1456[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m atomically consumes invites and binds sessions to distinct identities [33m 707[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m rejects revoked room access without invalidating other memberships [33m 426[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m deduplicates a retried human send and agent delivery [33m 322[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/recovery.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 789[2mms[22m[39m
+@bb/rooms:test:    [33m[2m✓[22m[39m rejects a human join that would collide with an existing agent handle [33m 379[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/sdk.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 245[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/agent-cli.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 21[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/admission.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/protocol.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 2914[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m retains the execution lease across restart and Stop until every steering submission settles [33m 658[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m publishes only under the capability identity and atomically validates recipients and reply scope [33m 462[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m keeps explicit silence successful without releasing an active provider lease [33m 394[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m preserves running capabilities across restart while fencing ambiguous dispatch without replay [33m 311[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m persists successful queue cancellation separately from uncertain or wrong-thread admission [33m 333[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m serializes same-agent claims across database connections while letting independent agents participate [33m 329[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/http.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 2204[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m terminates a stream when its bearer session expires even if a valid cookie is also present [33m 933[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m keeps human sessions and agent capabilities in separate authority domains [33m 337[2mms[22m[39m
+@bb/rooms:test: 
+@bb/rooms:test: [2m Test Files [22m [1m[32m7 passed[39m[22m[90m (7)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[32m26 passed[39m[22m[90m (26)[39m
+@bb/rooms:test: [2m   Start at [22m 19:42:13
+@bb/rooms:test: [2m   Duration [22m 4.25s[2m (transform 2.07s, setup 0ms, import 4.28s, tests 7.64s, environment 0ms)[22m
+@bb/rooms:test: 
+
+ Tasks:    6 successful, 6 total
+Cached:    2 cached, 6 total
+  Time:    5.634s 
+

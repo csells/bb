@@ -1,0 +1,6 @@
+PASS two independently authenticated human participants
+PASS known in-flight steering retains its active lease without fencing during a delayed successful acknowledgment
+PASS a later human request cannot acquire the agent while a steering dispatch remains unresolved
+PASS delayed successful native steering acknowledgment is accepted without revoking its capability
+PASS the original activation settles and its queued follow-up runs after the exact delayed acknowledgment
+Evidence: /Users/admin/rooms-steering-delayed-success-green.json

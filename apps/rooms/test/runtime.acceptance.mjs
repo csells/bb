@@ -5,12 +5,31 @@ import { mkdtemp, readFile, writeFile, rm, readdir } from "node:fs/promises";
 import { join, resolve } from "node:path";
 import { tmpdir } from "node:os";
 import { once } from "node:events";
+import { steeringFaultProxy } from "./steering-fault-proxy.mjs";
 
 const packageRoot = resolve(import.meta.dirname, "..");
 const data = await mkdtemp(join(tmpdir(), "rooms-runtime-acceptance-"));
 const port = Number(process.env.ROOMS_ACCEPTANCE_PORT ?? "38906");
 const origin = `http://127.0.0.1:${port}`;
 const provider = process.env.ROOMS_TEST_PROVIDER ?? "pi";
+const steeringFault = process.env.ROOMS_TEST_STEERING_FAULT ?? null;
+if (
+  steeringFault !== null &&
+  ![
+    "drop-before",
+    "crash-before",
+    "drop-after",
+    "delay-after",
+    "native-interrupt",
+  ].includes(steeringFault)
+)
+  throw new Error("Invalid steering fault mode");
+const proxy = steeringFault
+  ? await steeringFaultProxy(
+      process.env.ROOMS_BB_URL ?? "http://127.0.0.1:38886",
+      steeringFault,
+    )
+  : null;
 const controlled = process.env.ROOMS_ACCEPTANCE_CONTROLLED === "1";
 const streamOnly = process.env.ROOMS_ACCEPTANCE_STREAM_ONLY === "1";
 if (controlled && streamOnly)
@@ -18,7 +37,13 @@ if (controlled && streamOnly)
     "Controlled and natural stream-only modes are mutually exclusive",
   );
 const model =
-  process.env.ROOMS_TEST_MODEL ?? "rooms-local/qwen2.5:7b-instruct-q4_K_M";
+  process.env.ROOMS_TEST_MODEL ??
+  (provider === "pi" ? "rooms-local/qwen2.5:7b-instruct-q4_K_M" : null);
+const steering =
+  process.env.ROOMS_TEST_STEERING ??
+  (["pi", "codex", "claude-code"].includes(provider) ? "native" : "queue");
+if (!["native", "queue"].includes(steering))
+  throw new Error("ROOMS_TEST_STEERING must be native or queue");
 const output =
   process.env.ROOMS_ACCEPTANCE_EVIDENCE ?? join(data, "evidence.json");
 const sdk = createNodeBbSdk({
@@ -28,14 +53,19 @@ const evidence = {
   started: new Date().toISOString(),
   model,
   provider,
-  scope: streamOnly
-    ? "fresh-agent natural streaming"
-    : controlled
-      ? "controlled runtime lifecycle"
-      : "full natural participation",
-  qualification: controlled
-    ? "controlled runtime fixture, not autonomous model qualification"
-    : "natural model participation",
+  steering,
+  steeringFault,
+  scope: steeringFault
+    ? "actual native input lifecycle fault"
+    : streamOnly
+      ? "fresh-agent natural streaming"
+      : controlled
+        ? "controlled runtime lifecycle"
+        : "full natural participation",
+  qualification:
+    controlled || steeringFault
+      ? "controlled runtime fixture, not autonomous model qualification"
+      : "natural model participation",
   checks: [],
   observations: [],
   privateTurns: {},
@@ -51,7 +81,7 @@ function check(condition, name) {
   evidence.checks.push(name);
   console.log("PASS " + name);
 }
-async function request(path, body, session = cookie) {
+async function request(path, body, session = cookie, expectedStatus) {
   const response = await fetch(origin + path, {
     method: body === undefined ? "GET" : "POST",
     headers: {
@@ -62,26 +92,42 @@ async function request(path, body, session = cookie) {
     ...(body === undefined ? {} : { body: JSON.stringify(body) }),
   });
   const value = await response.json();
-  if (!response.ok)
+  if (
+    expectedStatus === undefined
+      ? !response.ok
+      : response.status !== expectedStatus
+  )
     throw new Error(`${path} ${response.status} ${JSON.stringify(value)}`);
-  return { value, cookie: response.headers.get("set-cookie")?.split(";")[0] };
+  return {
+    value,
+    status: response.status,
+    cookie: response.headers.get("set-cookie")?.split(";")[0],
+  };
 }
 async function start() {
   const log = createWriteStream(join(data, "gateway.log"), { flags: "a" });
   await once(log, "open");
-  server = spawn(process.execPath, [join(packageRoot, "dist/server.js")], {
-    cwd: packageRoot,
-    env: {
-      ...process.env,
-      ROOMS_DATA_DIR: data,
-      ROOMS_PUBLIC_ORIGIN: origin,
-      ROOMS_PORT: String(port),
-      ROOMS_BIND_HOST: "127.0.0.1",
+  server = spawn(
+    process.execPath,
+    [
+      process.env.ROOMS_ACCEPTANCE_SERVER_ENTRY ??
+        join(packageRoot, "dist/server.js"),
+    ],
+    {
+      cwd: packageRoot,
+      env: {
+        ...process.env,
+        ROOMS_DATA_DIR: data,
+        ROOMS_PUBLIC_ORIGIN: origin,
+        ROOMS_PORT: String(port),
+        ROOMS_BIND_HOST: "127.0.0.1",
+        ...(proxy ? { ROOMS_BB_URL: proxy.url } : {}),
+      },
+      stdio: ["ignore", log, log],
     },
-    stdio: ["ignore", log, log],
-  });
+  );
   for (let attempt = 0; attempt < 100; attempt++) {
-    if (server.exitCode !== null)
+    if (server.exitCode !== null || server.signalCode !== null)
       throw new Error(
         "Gateway startup failed: " +
           (await readFile(join(data, "gateway.log"), "utf8")),
@@ -93,9 +139,9 @@ async function start() {
   }
   throw new Error("Gateway health timed out");
 }
-async function stopServer() {
-  if (server && server.exitCode === null) {
-    server.kill("SIGTERM");
+async function stopServer(signal = "SIGTERM") {
+  if (server && server.exitCode === null && server.signalCode === null) {
+    server.kill(signal);
     await once(server, "exit");
   }
 }
@@ -187,6 +233,32 @@ async function pendingCommand(agentId, needle) {
   }
   throw new Error("Agent did not start expected real tool: " + needle);
 }
+async function pendingPublication(agentId, messageId) {
+  const deadline = Date.now() + 180000;
+  while (Date.now() < deadline) {
+    const state = await snapshot();
+    const delivery = state.deliveries.find(
+      (item) => item.messageId === messageId && item.agentId === agentId,
+    );
+    const agent = state.agents.find((item) => item.id === agentId);
+    const message = state.messages.find(
+      (item) =>
+        item.authorId === agentId &&
+        item.causeId === messageId &&
+        item.status === "streaming" &&
+        item.text.length > 0,
+    );
+    if (message && delivery.state === "running" && agent.threadId) {
+      threadIds.add(agent.threadId);
+      const thread = await sdk.threads.get({ threadId: agent.threadId });
+      if (thread.status === "active") return { state, agent, message };
+    }
+    await sleep(100);
+  }
+  throw new Error(
+    "Agent did not begin an active authored public stream for cancellation",
+  );
+}
 const shellQuote = (value) => "'" + value.replaceAll("'", "'\\''") + "'";
 function fixtureCommand(agent, statements) {
   const pattern = join(
@@ -262,6 +334,214 @@ try {
   ).value;
   scenarios: {
     let state;
+    if (steeringFault) {
+      const first = await send(
+        "For a transport recovery test, run shell sleep 20, then finish privately without posting anything to the room.",
+        [builder.id],
+      );
+      const pending = await pendingCommand(builder.id, "sleep 20");
+      const initial = pending.state.deliveries.find(
+        (delivery) => delivery.messageId === first.id,
+      );
+      if (steeringFault === "native-interrupt") {
+        const followUp = await send(
+          "No public response is needed; this independently queued request should run after the earlier native execution ends.",
+          [builder.id],
+          other.cookie,
+        );
+        check(
+          (await snapshot()).deliveries.find(
+            (delivery) => delivery.messageId === followUp.id,
+          )?.state === "queued",
+          "second human input is queued while the first native execution is active",
+        );
+        await sdk.threads.stop({ threadId: initial.threadId });
+        state = await waitComplete(followUp.id);
+        check(
+          state.deliveries.find(
+            (delivery) => delivery.messageId === followUp.id,
+          )?.state === "complete",
+          "ordinary native interruption preserves and executes separately queued human input",
+        );
+        check(
+          state.deliveries.find((delivery) => delivery.id === initial.id)
+            ?.state === "stopped",
+          "ordinary native interruption fences only its own active execution",
+        );
+        check(
+          !state.messages.some((message) => message.kind === "agent"),
+          "native interruption recovery does not publish private provider output",
+        );
+        evidence.privateTurns.fault = await sdk.threads.timeline({
+          threadId: initial.threadId,
+          includeNestedRows: "true",
+          segmentLimit: "100",
+        });
+        evidence.finalSnapshot = state;
+        evidence.finished = new Date().toISOString();
+        break scenarios;
+      }
+      const steeringCall = request(
+        `/api/rooms/${roomId}/agents/${builder.id}/steer`,
+        {
+          text: "Transport recovery observation: remember DELAYED_STEERING_INPUT privately; do not publish or ask anyone.",
+        },
+        other.cookie,
+      ).then(
+        (receipt) => ({ status: receipt.status }),
+        (error) => ({ error: String(error) }),
+      );
+      const submitted = await proxy.intercepted;
+      evidence.observations.push({
+        fault: steeringFault,
+        interceptedAt: new Date().toISOString(),
+      });
+      if (steeringFault === "crash-before") await stopServer("SIGKILL");
+      if (steeringFault !== "delay-after") await steeringCall;
+      const deadline = Date.now() + 120000;
+      while (true) {
+        const thread = await sdk.threads.get({ threadId: initial.threadId });
+        if (["idle", "error", "stopped"].includes(thread.status)) break;
+        if (Date.now() >= deadline)
+          throw new Error(
+            "Original native execution did not settle after steering fault",
+          );
+        await sleep(100);
+      }
+      if (server.exitCode !== null || server.signalCode !== null) await start();
+      await sleep(1600);
+      state = await snapshot();
+      check(
+        state.deliveries.find((delivery) => delivery.id === initial.id)
+          ?.state ===
+          (steeringFault === "delay-after" ? "running" : "uncertain"),
+        steeringFault === "delay-after"
+          ? "known in-flight steering retains its active lease without fencing during a delayed successful acknowledgment"
+          : steeringFault === "crash-before"
+            ? "lost steering acknowledgment remains uncertain after actual gateway crash and restart"
+            : "lost steering acknowledgment remains uncertain after original native completion",
+      );
+      const next = await send(
+        "No public response is needed; this is a queued follow-up after recovery.",
+        [builder.id],
+        other.cookie,
+      );
+      await sleep(700);
+      state = await snapshot();
+      check(
+        state.deliveries.find((delivery) => delivery.messageId === next.id)
+          ?.state === "queued",
+        "a later human request cannot acquire the agent while a steering dispatch remains unresolved",
+      );
+      if (steeringFault === "drop-before" || steeringFault === "crash-before") {
+        await request(
+          `/api/rooms/${roomId}/agents/${builder.id}/recover`,
+          {},
+          cookie,
+          409,
+        );
+        check(
+          (await snapshot()).deliveries.find(
+            (delivery) => delivery.id === initial.id,
+          )?.state === "uncertain",
+          "idle native execution cannot resolve a steering input that has no exact admission receipt",
+        );
+      }
+      const forwarded = await proxy.release();
+      evidence.observations.push({
+        forwarded,
+        releasedAt: new Date().toISOString(),
+      });
+      if (steeringFault === "delay-after") {
+        const receipt = await steeringCall;
+        check(
+          receipt.status === 200,
+          "delayed successful native steering acknowledgment is accepted without revoking its capability",
+        );
+        state = await waitComplete(first.id);
+        check(
+          state.deliveries.find((delivery) => delivery.id === initial.id)
+            ?.state === "complete" &&
+            state.deliveries.find((delivery) => delivery.messageId === next.id)
+              ?.state === "complete",
+          "the original activation settles and its queued follow-up runs after the exact delayed acknowledgment",
+        );
+        evidence.finalSnapshot = state;
+        evidence.finished = new Date().toISOString();
+        break scenarios;
+      }
+      const terminalDeadline = Date.now() + 120000;
+      let matched = false;
+      while (Date.now() < terminalDeadline) {
+        const events = [];
+        for (let afterSeq = "0"; ;) {
+          const page = await sdk.threads.events.list({
+            threadId: initial.threadId,
+            afterSeq,
+            order: "asc",
+            limit: "100",
+          });
+          events.push(...page);
+          if (page.length < 100) break;
+          afterSeq = String(page.at(-1).seq);
+        }
+        const nativeText = submitted.input.find(
+          (part) => part.type === "text",
+        ).text;
+        const actual = events.find(
+          (event) =>
+            event.type === "client/turn/requested" &&
+            event.data.input.some(
+              (part) => part.type === "text" && part.text === nativeText,
+            ),
+        );
+        const thread = await sdk.threads.get({ threadId: initial.threadId });
+        matched = Boolean(actual);
+        if (matched && ["idle", "error", "stopped"].includes(thread.status))
+          break;
+        if (!matched && forwarded.status >= 400) break;
+        await sleep(100);
+      }
+      if (matched) {
+        await request(`/api/rooms/${roomId}/agents/${builder.id}/recover`, {});
+        state = await waitComplete(next.id);
+        check(
+          state.deliveries.find((delivery) => delivery.id === initial.id)
+            ?.state === "stopped",
+          "only exact terminal native steering evidence permits owner recovery without replay",
+        );
+        check(
+          state.deliveries.find((delivery) => delivery.messageId === next.id)
+            ?.state === "complete",
+          "the independently queued human follow-up executes only after confirmed recovery",
+        );
+      } else {
+        await request(
+          `/api/rooms/${roomId}/agents/${builder.id}/recover`,
+          {},
+          cookie,
+          409,
+        );
+        state = await snapshot();
+        check(
+          state.deliveries.find((delivery) => delivery.id === initial.id)
+            ?.state === "uncertain",
+          "a late native rejection without durable admission proof remains fenced rather than guessing completion",
+        );
+      }
+      check(
+        !state.messages.some((message) => message.kind === "agent"),
+        "private fault-recovery execution creates no public transcript messages",
+      );
+      evidence.privateTurns.fault = await sdk.threads.timeline({
+        threadId: initial.threadId,
+        includeNestedRows: "true",
+        segmentLimit: "100",
+      });
+      evidence.finalSnapshot = state;
+      evidence.finished = new Date().toISOString();
+      break scenarios;
+    }
     if (!streamOnly) {
       const peerFixture = fixturePrompt(
         fixturePost(reviewer, "CONTROLLED_PEER_REPLY"),
@@ -415,25 +695,76 @@ try {
     const steerText = controlled
       ? fixturePrompt(fixturePost(builder, "LIGHTHOUSE_TEAM"))
       : "New information: our team's shared goal is restoring the lighthouse. Please include LIGHTHOUSE_TEAM in your public observation so I can tell this input reached you.";
-    const steerReceipt = await request(
-      `/api/rooms/${roomId}/agents/${builder.id}/steer`,
-      { text: steerText },
-      other.cookie,
-    );
-    evidence.observations.push({
-      steerHttpReceipt: steerReceipt.value,
-      acceptedAt: new Date().toISOString(),
-    });
+    if (steering === "native") {
+      const steerReceipt = await request(
+        `/api/rooms/${roomId}/agents/${builder.id}/steer`,
+        { text: steerText },
+        other.cookie,
+      );
+      evidence.observations.push({
+        steerHttpReceipt: steerReceipt.value,
+        acceptedAt: new Date().toISOString(),
+      });
+      check(
+        steerReceipt.value.accepted === true &&
+          steerReceipt.value.delivery === "sent",
+        "native steering returns a sent receipt rather than only queued acceptance",
+      );
+    } else {
+      const rejected = await request(
+        `/api/rooms/${roomId}/agents/${builder.id}/steer`,
+        { text: steerText },
+        other.cookie,
+        409,
+      );
+      evidence.observations.push({
+        unsupportedSteerReceipt: {
+          status: rejected.status,
+          body: rejected.value,
+        },
+      });
+      const afterRejection = await snapshot();
+      check(
+        !afterRejection.messages.some(
+          (message) => message.kind === "human" && message.text === steerText,
+        ),
+        "unsupported live steering is explicitly rejected without claiming accepted input",
+      );
+      const followUp = await send(steerText, [builder.id], other.cookie);
+      const queued = await snapshot();
+      check(
+        queued.deliveries.some(
+          (delivery) =>
+            delivery.messageId === followUp.id && delivery.state === "queued",
+        ) &&
+          queued.deliveries.some(
+            (delivery) =>
+              delivery.messageId === steerTask.id &&
+              delivery.state === "running",
+          ),
+        "second human follow-up is durably queued while the actual provider tool is running",
+      );
+      evidence.observations.push({
+        queuedFollowUp: {
+          messageId: followUp.id,
+          acceptedAt: new Date().toISOString(),
+        },
+      });
+    }
     state = await waitComplete(steerTask.id);
     check(
       state.messages.some((m) => m.kind === "human" && m.text === steerText),
-      "second human steering input is durably visible in the room",
+      steering === "native"
+        ? "second human steering input is durably visible in the room"
+        : "second human queued follow-up is durably visible in the room",
     );
     check(
       state.messages.some(
         (m) => m.kind === "agent" && m.text.includes("LIGHTHOUSE_TEAM"),
       ),
-      "real running agent observed native steering and explicitly published its effect",
+      steering === "native"
+        ? "real running agent observed native steering and explicitly published its effect"
+        : "real agent later observed its queued follow-up and explicitly published its effect",
     );
     evidence.privateTurns.steer = await sdk.threads.timeline({
       threadId: builderThread,
@@ -445,10 +776,12 @@ try {
         ? fixturePrompt(
             "sleep 30 && " + fixturePost(builder, "SHOULD_NOT_PUBLISH"),
           )
-        : "For a cancellation check, first run shell sleep 30, then publish SHOULD_NOT_PUBLISH. Wait until the command completes before doing anything public.",
+        : "For a cancellation check, begin one public stream and compose twenty short original paragraphs about restoring a lighthouse, with each paragraph in its own separate append tool call. Develop the paragraphs one at a time. Only after all twenty paragraphs are appended and the stream is committed, publish a separate message SHOULD_NOT_PUBLISH. A human will use Stop while you are composing; do not finish early or pre-compose all the paragraphs in one command.",
       [builder.id],
     );
-    const pending = await pendingCommand(builder.id, "sleep 30");
+    const pending = controlled
+      ? await pendingCommand(builder.id, "sleep 30")
+      : await pendingPublication(builder.id, cancellation.id);
     const canceledDelivery = pending.state.deliveries.find(
       (d) => d.messageId === cancellation.id,
     );
@@ -496,6 +829,12 @@ try {
       ),
       "canceled real execution published no final output",
     );
+    if (!controlled)
+      check(
+        state.messages.find((message) => message.id === pending.message.id)
+          ?.status === "stopped",
+        "Stop preserves selected partial text as an aborted stream while real composition is active",
+      );
     if (controlled) {
       const privateFinals = Object.values(evidence.privateTurns).flatMap(
         (timeline) =>
@@ -544,6 +883,7 @@ try {
   process.exitCode = 1;
 } finally {
   await stopServer();
+  await proxy?.close();
   for (const threadId of threadIds) {
     try {
       const thread = await sdk.threads.get({ threadId });

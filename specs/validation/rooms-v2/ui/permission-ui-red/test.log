@@ -1,0 +1,51 @@
+PASS two visible waiting replies before first token, live elapsed time, usable composer
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(received).toEqual(expected) // deep equality
+
+- Expected  - 6
++ Received  + 1
+
+  Object {
+    "decision": "allow_once",
+-   "grantedPermissions": Object {
+-     "fileSystem": null,
+-     "network": Object {
+-       "enabled": true,
+-     },
+-   },
++   "grantedPermissions": null,
+  }
+    at captureRawStack (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js:9282:17)
+    at callMatcherAsStep (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13316:57)
+    at Object.toEqual (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13308:23)
+    at <anonymous> (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/pending.browser.ts:123:37) {
+  matcherResult: {
+    actual: { decision: 'allow_once', grantedPermissions: null },
+    expected: {
+      decision: 'allow_once',
+      grantedPermissions: { network: { enabled: true }, fileSystem: null }
+    },
+    message: 'expect(received).toEqual(expected) // deep equality\n' +
+      '\n' +
+      '- Expected  - 6\n' +
+      '+ Received  + 1\n' +
+      '\n' +
+      '  Object {\n' +
+      '    "decision": "allow_once",\n' +
+      '-   "grantedPermissions": Object {\n' +
+      '-     "fileSystem": null,\n' +
+      '-     "network": Object {\n' +
+      '-       "enabled": true,\n' +
+      '-     },\n' +
+      '-   },\n' +
+      '+   "grantedPermissions": null,\n' +
+      '  }',
+    name: 'toEqual',
+    pass: false
+  }
+}
+
+Node.js v24.20.0

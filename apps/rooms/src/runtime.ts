@@ -5,7 +5,7 @@ import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { type Agent, type Delivery } from "./contracts.js";
 import { RoomsStore, RoomError } from "./store.js";
-import { inspectAdmission } from "./admission.js";
+import { inspectAdmission, inspectSteeringAdmission } from "./admission.js";
 
 const input = (text: string) => [{ type: "text" as const, text, mentions: [] }];
 const quote = (value: string) => "'" + value.replaceAll("'", "'\\''") + "'";
@@ -107,7 +107,7 @@ export class RoomRuntime {
       activationId + ".json",
     );
   }
-  private async admission(threadId: string, activationId: string) {
+  private async events(threadId: string) {
     const events: ThreadEventRow[] = [];
     let afterSeq = "0";
     while (true) {
@@ -127,7 +127,34 @@ export class RoomRuntime {
       if (page.length < 100) break;
       afterSeq = String(page[page.length - 1].seq);
     }
-    return inspectAdmission(events, activationId);
+    return events;
+  }
+  private async cancelQueued(threadId: string, activationId: string) {
+    for (const queued of await this.queued(threadId, activationId)) {
+      const cancelledSteeringIds = this.store
+        .pendingSteerings(activationId)
+        .filter(
+          (steering) =>
+            steering.threadId === threadId &&
+            queued.content.some(
+              (part) =>
+                part.type === "text" &&
+                part.text ===
+                  `\nActivation: ${activationId}\nSteering: ${steering.id}\n${steering.text}`,
+            ),
+        )
+        .map((steering) => steering.id);
+      await this.sdk.threads.queuedMessages.delete({
+        threadId,
+        queuedMessageId: queued.id,
+      });
+      this.store.recordQueueCancellation(
+        activationId,
+        threadId,
+        queued.id,
+        cancelledSteeringIds,
+      );
+    }
   }
   private async queued(threadId: string, activationId: string) {
     const marker = `\nActivation: ${activationId}\n`;
@@ -363,7 +390,36 @@ If you choose to answer publicly, execute your command with the bash tool now. P
       );
       return;
     }
-    const proof = await this.admission(activation.threadId, activation.id);
+    const events = await this.events(activation.threadId);
+    for (const steering of this.store.pendingSteerings(activation.id)) {
+      const steeringProof = inspectSteeringAdmission(
+        events,
+        activation.id,
+        steering.id,
+        steering.text,
+      );
+      if (steeringProof.state === "settled") {
+        this.store.settleSteering(
+          activation.id,
+          steering.threadId,
+          steering.id,
+          "settled",
+        );
+      } else if (steeringProof.state === "missing") {
+        this.store.markActivationUncertain(
+          activation.id,
+          "A steering dispatch has no confirmed admission receipt. Its text is retained; execution remains fenced without replay until its exact outcome is confirmed.",
+        );
+        return;
+      } else {
+        this.receiptPending(
+          delivery.id,
+          "Waiting for the exact steering input to reach a confirmed completion receipt. This activation remains reserved without replay.",
+        );
+        return;
+      }
+    }
+    const proof = inspectAdmission(events, activation.id);
     if (
       proof.state !== "settled" &&
       !(
@@ -386,7 +442,11 @@ If you choose to answer publicly, execute your command with the bash tool now. P
         ? "replied"
         : "no_reply";
     if (proof.terminalOutcome === "interrupted")
-      this.store.fenceAgent(agent.id, "Private execution was interrupted");
+      this.store.fenceAgent(
+        agent.id,
+        "Private execution was interrupted",
+        "active-execution",
+      );
     this.store.finishActivation(
       activation.id,
       outcome,
@@ -407,37 +467,14 @@ If you choose to answer publicly, execute your command with the bash tool now. P
       .map((delivery) => this.store.activationForDelivery(delivery.id))
       .filter((activation) => activation !== null);
     for (const activation of activations)
-      for (const queued of await this.queued(agent.threadId, activation.id)) {
-        await this.sdk.threads.queuedMessages.delete({
-          threadId: agent.threadId,
-          queuedMessageId: queued.id,
-        });
-        this.store.recordQueueCancellation(
-          activation.id,
-          agent.threadId,
-          queued.id,
-        );
-      }
+      await this.cancelQueued(agent.threadId, activation.id);
     await this.sdk.threads.stop({ threadId: agent.threadId });
     const deadline = Date.now() + 15000;
     while (Date.now() < deadline) {
       const thread = await this.sdk.threads.get({ threadId: agent.threadId });
       if (["idle", "error", "stopped"].includes(thread.status)) {
         for (const activation of activations)
-          for (const queued of await this.queued(
-            agent.threadId,
-            activation.id,
-          )) {
-            await this.sdk.threads.queuedMessages.delete({
-              threadId: agent.threadId,
-              queuedMessageId: queued.id,
-            });
-            this.store.recordQueueCancellation(
-              activation.id,
-              agent.threadId,
-              queued.id,
-            );
-          }
+          await this.cancelQueued(agent.threadId, activation.id);
         this.tick();
         return;
       }
@@ -450,7 +487,7 @@ If you choose to answer publicly, execute your command with the bash tool now. P
   }
   async steer(agentId: string, text: string) {
     const agent = this.store.agent(agentId);
-    if (agent.provider !== "pi")
+    if (!["pi", "codex", "claude-code"].includes(agent.provider))
       throw new RoomError(
         409,
         "Live steering is not verified for this provider; queue a follow-up instead",
@@ -477,11 +514,46 @@ If you choose to answer publicly, execute your command with the bash tool now. P
           409,
           "The agent is no longer working; queue a follow-up instead",
         );
-      return await this.sdk.threads.send({
-        threadId: activation.threadId,
-        input: input(`\nActivation: ${activation.id}\n${text}`),
-        mode: "steer",
-      });
+      const steeringId = crypto.randomUUID();
+      this.store.recordSteering(
+        activation.id,
+        activation.threadId,
+        steeringId,
+        text,
+      );
+      let receipt;
+      try {
+        receipt = await this.sdk.threads.send({
+          threadId: activation.threadId,
+          input: input(
+            `\nActivation: ${activation.id}\nSteering: ${steeringId}\n${text}`,
+          ),
+          mode: "steer",
+        });
+      } catch (error) {
+        if (
+          this.store
+            .pendingSteerings(activation.id)
+            .some((item) => item.id === steeringId)
+        )
+          this.store.markActivationUncertain(
+            activation.id,
+            "The steering acknowledgment was lost. Its text is retained and may still reach the provider; this activation remains fenced without replay. " +
+              (error instanceof Error ? error.message : String(error)),
+          );
+        throw new RoomError(
+          409,
+          "Steering transport failed. The retained input will not be replayed; inspect Activity to confirm its exact outcome.",
+        );
+      }
+      if (
+        this.store.activationForDelivery(activation.deliveryId)?.stopRequested
+      ) {
+        await this.cancelQueued(activation.threadId, activation.id);
+        await this.sdk.threads.stop({ threadId: activation.threadId });
+        await this.cancelQueued(activation.threadId, activation.id);
+      }
+      return receipt;
     } finally {
       this.steering.delete(agentId);
     }
@@ -537,6 +609,7 @@ If you choose to answer publicly, execute your command with the bash tool now. P
       this.store.fenceAgent(
         agentId,
         "Owner requested interrupted-dispatch recovery",
+        "active-execution",
       );
       const threadIds = new Set<string>();
       for (const archived of [false, true]) {
@@ -554,17 +627,7 @@ If you choose to answer publicly, execute your command with the bash tool now. P
       }
       for (const threadId of threadIds) {
         for (const activation of uncertain)
-          for (const queued of await this.queued(threadId, activation.id)) {
-            await this.sdk.threads.queuedMessages.delete({
-              threadId,
-              queuedMessageId: queued.id,
-            });
-            this.store.recordQueueCancellation(
-              activation.id,
-              threadId,
-              queued.id,
-            );
-          }
+          await this.cancelQueued(threadId, activation.id);
         const thread = await this.sdk.threads.get({ threadId });
         if (!["idle", "error", "stopped"].includes(thread.status))
           await this.sdk.threads.stop({ threadId });
@@ -590,7 +653,29 @@ If you choose to answer publicly, execute your command with the bash tool now. P
       for (const activation of uncertain) {
         let settled = false;
         for (const threadId of threadIds) {
-          const proof = await this.admission(threadId, activation.id);
+          const events = await this.events(threadId);
+          for (const steering of this.store
+            .pendingSteerings(activation.id)
+            .filter((item) => item.threadId === threadId)) {
+            const proof = inspectSteeringAdmission(
+              events,
+              activation.id,
+              steering.id,
+              steering.text,
+            );
+            if (proof.state !== "settled")
+              throw new RoomError(
+                409,
+                "A retained steering input has no exact terminal admission receipt. Its activation remains fenced; it will not be replayed.",
+              );
+            this.store.settleSteering(
+              activation.id,
+              threadId,
+              steering.id,
+              "settled",
+            );
+          }
+          const proof = inspectAdmission(events, activation.id);
           if (proof.state === "pending")
             throw new RoomError(
               409,

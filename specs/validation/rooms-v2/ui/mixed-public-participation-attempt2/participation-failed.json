@@ -1,0 +1,32 @@
+{
+  "roomId": "1025b149-8dfe-4c92-9460-09535a3c6977",
+  "agents": [
+    {
+      "name": "Atlas",
+      "handle": "atlas",
+      "provider": "codex",
+      "model": "gpt-6.1-sol",
+      "instructions": "Bring a thoughtful, practical perspective. Participate in the room as yourself."
+    },
+    {
+      "name": "Nova",
+      "handle": "nova",
+      "provider": "claude-code",
+      "model": "claude-opus-5-5",
+      "instructions": "Bring an imaginative, questioning perspective. Participate in the room as yourself."
+    }
+  ],
+  "claims": [
+    "Two separately authenticated human browser sessions joined through one-time invitation",
+    "Concurrent human messages preserve authorship and an identical retried post appears once",
+    "Structured recipients route a request without textual mentions; both browsers show pending work and remain writable while paused",
+    "Two real agents independently published replies to a natural request and settled pending status",
+    "Raw narrative mentions do not wake agents without structured addressing",
+    "An optional natural context notice completed without a public acknowledgment or endless pending indicator",
+    "A natural peer request produced an authenticated Atlas request and independent Nova publication",
+    "A second human can send an addressed follow-up while an agent is running; it remains durably queued",
+    "Stop cancels the selected agent activation and removes its pending reply"
+  ],
+  "failures": [],
+  "error": "Error: expect(received).toBeNull()\n\nReceived: 1\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate"
+}

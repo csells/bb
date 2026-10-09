@@ -1,0 +1,114 @@
+{
+  "at": "2026-10-09T20:08:30.015Z",
+  "removedQaRooms": [
+    {
+      "id": "075d932b-efb7-4648-aded-73501f66bb76",
+      "name": "Shared room acceptance mv1ea3t7"
+    },
+    {
+      "id": "1025b149-8dfe-4c92-9460-09535a3c6977",
+      "name": "Shared room acceptance mv1dn1ps"
+    },
+    {
+      "id": "10f3e6c2-2e22-4fcc-9eba-64b2a64b0b74",
+      "name": "Participation QA entry"
+    },
+    {
+      "id": "3ad8e389-46cd-4b72-8935-dfee942f5ec8",
+      "name": "Participation QA retry3"
+    },
+    {
+      "id": "4a1d41f1-925f-4b52-b9c3-f199688052c5",
+      "name": "Acceptance mv1a3vxz"
+    },
+    {
+      "id": "4ed9e516-4553-4302-8345-2c5a8f620ee3",
+      "name": "Mixed provider browser QA"
+    },
+    {
+      "id": "4f6f361d-54e8-4772-b9d8-68c110f1048c",
+      "name": "Shared room acceptance mv1b9jnl"
+    },
+    {
+      "id": "599172a2-8591-45a1-823f-658fb506b64d",
+      "name": "Claude stream approval browser QA"
+    },
+    {
+      "id": "5eb86866-4a6c-4f0c-acb3-39814c8d44d7",
+      "name": "Mixed provider stream browser QA"
+    },
+    {
+      "id": "648f83bf-a8e3-49c7-a61f-ce4c21a310a0",
+      "name": "Acceptance mv197f9u"
+    },
+    {
+      "id": "66f56af3-aafa-4c0e-9811-3b8796e270e7",
+      "name": "Shared room acceptance mv1dxkwu"
+    },
+    {
+      "id": "742b7fd7-f776-4777-97db-7e3cc1d3e51e",
+      "name": "Participation QA retry4"
+    },
+    {
+      "id": "9de2d490-b1d3-409f-b421-f96cb7e45cbf",
+      "name": "Mixed provider browser QA retry2"
+    },
+    {
+      "id": "9fa8fa06-f7df-49cf-be2f-8d22397918d2",
+      "name": "Acceptance mv1991j1"
+    },
+    {
+      "id": "a4b410de-f30c-4525-8ced-bfb7db0e005c",
+      "name": "Mixed provider browser QA retry3"
+    },
+    {
+      "id": "b2d05c29-323e-40b2-a43e-f4a9c5c0c281",
+      "name": "Shared room acceptance mv1dk5fl"
+    },
+    {
+      "id": "bdecceba-aaff-487d-a063-3bdd308a619b",
+      "name": "Shared room acceptance mv1dsxpz"
+    },
+    {
+      "id": "c55dfec3-1d5e-4fa4-aa8b-babd087d4cb6",
+      "name": "Shared room acceptance mv1b6zxm"
+    },
+    {
+      "id": "c7a2f9fe-fd07-45ad-b3a2-c88928e1efe2",
+      "name": "Participation QA retry"
+    },
+    {
+      "id": "d681b420-111a-4a3b-861c-6eab2615d4a2",
+      "name": "Shared room acceptance mv1benuf"
+    },
+    {
+      "id": "f6796c30-6659-4ca9-93d9-7993d0d92c83",
+      "name": "CLI acceptance"
+    }
+  ],
+  "archivedQaThreads": [
+    "thr_8e2c26bmsk",
+    "thr_zj2az6t2ps",
+    "thr_4u38stxhp4",
+    "thr_aqhqdu5umw",
+    "thr_xbjdz3v2fw",
+    "thr_smkpr9apxf",
+    "thr_3e9k48gpjk",
+    "thr_u4af6uufsp",
+    "thr_3u7qekksnq",
+    "thr_99chke5dph",
+    "thr_dy4ix9iutj",
+    "thr_xmpxwryuri",
+    "thr_ntkpk9t9s5"
+  ],
+  "removedOrphanQaUsers": 21,
+  "workshopId": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+  "workshopPreserved": true,
+  "remainingRooms": [
+    {
+      "id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+      "name": "Workshop"
+    }
+  ],
+  "activeDeliveries": 0
+}

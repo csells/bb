@@ -1,0 +1,27 @@
+PASS Two separately authenticated human browser sessions joined through one-time invitation
+PASS Concurrent human messages preserve authorship and an identical retried post appears once
+PASS Structured recipients route a request without textual mentions; both browsers show pending work and remain writable while paused
+PASS Two real agents independently published replies to a natural request and settled pending status
+PASS Raw narrative mentions do not wake agents without structured addressing
+PASS An optional natural context notice completed without a public acknowledgment or endless pending indicator
+PASS A natural peer request produced an authenticated Atlas request and independent Nova publication
+PASS A second human can send an addressed follow-up while an agent is running; it remains durably queued
+PASS Stop cancels the selected agent activation and removes its pending reply
+PASS Owner can set a visible turn budget or explicitly select unlimited turns
+PASS Owner can inspect execution metadata while another human cannot access the private activity endpoint
+PASS Reload recovers public history; compact shared drawer leaves app root usable and composer functional
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+page.evaluate: ReferenceError: __name is not defined
+    at eval (eval at evaluate (:370:30), <anonymous>:1:380)
+    at UtilityScript.evaluate (<anonymous>:372:16)
+    at UtilityScript.<anonymous> (<anonymous>:1:44)
+    at startStreamObservation (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/participation.browser.ts:138:14)
+    at <anonymous> (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/participation.browser.ts:597:11)
+    at <anonymous> (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/participation.browser.ts:596:23) {
+  log: []
+}
+
+Node.js v24.20.0

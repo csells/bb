@@ -1,0 +1,8 @@
+PASS two independently authenticated human participants
+PASS lost steering acknowledgment retains an uncertain activation after original native completion and gateway restart
+PASS a later human request cannot acquire the agent while a steering dispatch remains unresolved
+PASS idle native execution cannot resolve a steering input that has no exact admission receipt
+PASS only exact terminal native steering evidence permits owner recovery without replay
+PASS the independently queued human follow-up executes only after confirmed recovery
+PASS private fault-recovery execution creates no public transcript messages
+Evidence: /Users/admin/rooms-steering-lost-before-green2.json

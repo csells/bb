@@ -1,0 +1,15 @@
+PASS two independently authenticated human participants
+PASS independent real agents chose and published their own contributions
+PASS a real discussion continued beyond two peer handoffs before becoming idle
+PASS Builder runs in a top-level BB thread
+PASS Reviewer runs in a top-level BB thread
+PASS a second human notice can complete with successful no-reply silence
+PASS model-authored public text grew across separately observed stream revisions
+PASS the real model made at least three explicit public append tool calls
+PASS gateway restart reattached the same accepted activation and BB thread
+PASS gateway restart produced one explicit publication without replaying execution
+Error: /api/rooms/4006708a-68bd-421c-a494-ae0cc8bc7667/agents/9ba1b800-515f-4ec8-bfe0-545126ae473a/steer 409 {"error":"Live steering is not verified for this provider; queue a follow-up instead"}
+    at request (file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:76:11)
+    at process.processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at async file:///Users/admin/code/Forks/get-bb/bb/apps/rooms/test/runtime.acceptance.mjs:433:28
+Evidence: /Users/admin/rooms-natural-codex-v2-run1.json
