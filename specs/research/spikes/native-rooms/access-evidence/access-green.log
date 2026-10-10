@@ -1,0 +1,40 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing a8f5a77b223ed1b6
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs dd658dba3aae478d
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates: cache hit, replaying logs 0d44d75830f661da
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/rooms:test: cache miss, executing db71cafc0169a862
+@bb/rooms:test:
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:test: > vitest run "test/native-access.test.ts"
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms[39m
+@bb/rooms:test:
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/native-access.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 229[2mms[22m[39m
+@bb/rooms:test:
+@bb/rooms:test: [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+@bb/rooms:test: [2m   Start at [22m 18:01:25
+@bb/rooms:test: [2m   Duration [22m 4.16s[2m (transform 2.84s, setup 0ms, import 3.78s, tests 229ms, environment 0ms)[22m
+@bb/rooms:test:
+
+ Tasks:    4 successful, 4 total
+Cached:    2 cached, 4 total
+  Time:    6.128s

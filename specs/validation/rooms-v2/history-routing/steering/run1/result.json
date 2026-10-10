@@ -1,0 +1,15 @@
+{
+  "mode": "controlled native steering lifecycle",
+  "origin": "http://127.0.0.1:38906",
+  "roomId": "31a7362b-632b-49e9-83fb-ab4e6610680c",
+  "prompt": "@atlas For a controlled live-input check, run the shell command sleep 20 before publishing one short observation about teamwork. A human may supply new information while the tool runs; incorporate it. Nova, this is an observation-only control check for you: do not post anything in response to this task or its follow-up.",
+  "steerText": "New information for Atlas: our team's shared goal is restoring the lighthouse. Include STEERING_OBSERVED_mv1kbwdk in your public observation so we can confirm this input reached your current work. Nova, continue observing silently; no reply is needed.",
+  "claims": [
+    "Two independently authenticated humans joined the isolated room through invitations",
+    "Second human native steering was accepted as sent during a real pending Atlas tool and its effect appeared in Atlas's original activation",
+    "Steering publication addressed Atlas without creating a second Atlas delivery; Nova received exactly one optional notice and stayed silent",
+    "Both humans observed the steering input and independently attributed agent effect; all work settled without duplicate target activation"
+  ],
+  "errors": [],
+  "completed": "2026-10-09T22:55:12.174Z"
+}

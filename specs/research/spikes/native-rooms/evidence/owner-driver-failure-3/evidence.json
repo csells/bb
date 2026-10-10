@@ -1,0 +1,9 @@
+{
+  "steps": [
+    "Existing owner password opens full native BB and preserved Workshop",
+    "Original Atlas and Nova bindings open their actual native threads"
+  ],
+  "errors": [],
+  "passed": false,
+  "failure": "Error: expect(locator).toBeVisible() failed\n\nLocator: getByRole('heading', { name: 'Workshop', exact: true })\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n  - Expect \"toBeVisible\" getByRole('heading', { name: 'Workshop', exact: true }) with timeout 5000ms\n  - waiting for getByRole('heading', { name: 'Workshop', exact: true })\n\n    at captureRawStack (/Users/admin/code/Forks/get-bb/bb-native-rooms/node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js:9282:17)\n    at callMatcherAsStep (/Users/admin/code/Forks/get-bb/bb-native-rooms/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13316:57)\n    at Object.toBeVisible (/Users/admin/code/Forks/get-bb/bb-native-rooms/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13308:23)\n    at /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/owner-hosted.browser.mjs:42:78"
+}

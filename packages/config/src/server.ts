@@ -30,6 +30,7 @@ import {
   BB_APP_UPDATE_MODE_ENV,
   BB_TELEMETRY_ENV,
   BB_PERF_DIAGNOSTICS_ENV,
+  BB_ROOMS_SEPARATE_SERVICE_ENV,
   DEFAULT_BB_APP_URL,
   DEFAULT_BB_APP_SURFACE,
   DEFAULT_BB_APP_VERSION,
@@ -65,6 +66,7 @@ export interface ServerConfig
   BB_APP_UPDATE_MODE?: AppUpdateMode;
   BB_TELEMETRY: boolean;
   BB_PERF_DIAGNOSTICS: boolean;
+  BB_ROOMS_SEPARATE_SERVICE: boolean;
   featureFlags: FeatureFlags;
 }
 
@@ -162,6 +164,12 @@ export function loadServerConfig(
     BB_PERF_DIAGNOSTICS: readEnvVarWithDefault({
       context: loader.context,
       definition: BB_PERF_DIAGNOSTICS_ENV,
+      env: loader.env,
+      defaultValue: false,
+    }),
+    BB_ROOMS_SEPARATE_SERVICE: readEnvVarWithDefault({
+      context: loader.context,
+      definition: BB_ROOMS_SEPARATE_SERVICE_ENV,
       env: loader.env,
       defaultValue: false,
     }),

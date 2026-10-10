@@ -1,0 +1,156 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test, typecheck, build in 1 packages
+   • Remote caching disabled
+
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:templates: cache hit, replaying logs 6aae00c7f020387c
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+//:ensure-native-modules: cache bypass, force executing 0547b2598e8be1b7
+@bb/rooms:typecheck: cache miss, executing 499d3b96331477c3
+@bb/rooms:typecheck:
+@bb/rooms:typecheck: > @bb/rooms@0.1.0 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:typecheck: > tsc --noEmit
+@bb/rooms:typecheck:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/rooms:build: cache miss, executing 150e962853e032d5
+@bb/rooms:build:
+@bb/rooms:build: > @bb/rooms@0.1.0 build /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:build: > node ../../scripts/build-node-entry.mjs src/server.ts dist/server.js --clean-dist --copy-dir ../../packages/db/drizzle dist/drizzle && node ../../scripts/build-node-entry.mjs src/agent-cli-entry.ts dist/agent-cli.js && vite build
+@bb/rooms:build:
+@bb/rooms:build: vite v7.3.7 building client environment for production...
+@bb/rooms:build: transforming...
+@bb/rooms:build: ../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+@bb/rooms:build:
+@bb/rooms:build: "// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+@bb/rooms:build:
+@bb/rooms:build: in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+@bb/rooms:build: ../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+@bb/rooms:build:
+@bb/rooms:build: "/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+@bb/rooms:build:  * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+@bb/rooms:build:  * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+@bb/rooms:build:
+@bb/rooms:build: in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+@bb/rooms:build: ✓ 466 modules transformed.
+@bb/rooms:build: rendering chunks...
+@bb/rooms:build: computing gzip size...
+@bb/rooms:build: dist/web/index.html                   0.40 kB │ gzip:   0.27 kB
+@bb/rooms:build: dist/web/assets/index-CDXewShl.css   15.30 kB │ gzip:   3.89 kB
+@bb/rooms:build: dist/web/assets/index-Bx7wGJ24.js   524.17 kB │ gzip: 163.18 kB
+@bb/rooms:build:
+@bb/rooms:build: (!) Some chunks are larger than 500 kB after minification. Consider:
+@bb/rooms:build: - Using dynamic import() to code-split the application
+@bb/rooms:build: - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+@bb/rooms:build: - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+@bb/rooms:build: ✓ built in 11.80s
+@bb/rooms:test: cache miss, executing 85397cf343118de6
+@bb/rooms:test:
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:test: > vitest run
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms[39m
+@bb/rooms:test:
+@bb/rooms:test: [90mstderr[2m | test/native-machine-access.test.ts[2m > [22m[2mpreserves BB enrollment and machine authentication without granting browser or loopback access
+@bb/rooms:test: [22m[39m2026-10-10T18:51:57.601Z ERROR [Better Auth]: Failed to validate API key: [APIError: Invalid API key.] {
+@bb/rooms:test:   status: [32m'UNAUTHORIZED'[39m,
+@bb/rooms:test:   body: { message: [32m'Invalid API key.'[39m, code: [32m'INVALID_API_KEY'[39m },
+@bb/rooms:test:   headers: {},
+@bb/rooms:test:   statusCode: [33m401[39m
+@bb/rooms:test: }
+@bb/rooms:test:
+@bb/rooms:test: [90mstderr[2m | test/native-machine-access.test.ts[2m > [22m[2mpreserves BB enrollment and machine authentication without granting browser or loopback access
+@bb/rooms:test: [22m[39m2026-10-10T18:51:57.616Z ERROR [Better Auth]: Failed to validate API key: [APIError: Invalid API key.] {
+@bb/rooms:test:   status: [32m'UNAUTHORIZED'[39m,
+@bb/rooms:test:   body: { message: [32m'Invalid API key.'[39m, code: [32m'INVALID_API_KEY'[39m },
+@bb/rooms:test:   headers: {},
+@bb/rooms:test:   statusCode: [33m401[39m
+@bb/rooms:test: }
+@bb/rooms:test:
+@bb/rooms:test: [90mstderr[2m | test/native-machine-access.test.ts[2m > [22m[2mpreserves BB enrollment and machine authentication without granting browser or loopback access
+@bb/rooms:test: [22m[39m2026-10-10T18:51:58.111Z ERROR [Better Auth]: Failed to validate API key: [APIError: API Key has reached its usage limit] {
+@bb/rooms:test:   status: [32m'TOO_MANY_REQUESTS'[39m,
+@bb/rooms:test:   body: {
+@bb/rooms:test:     message: [32m'API Key has reached its usage limit'[39m,
+@bb/rooms:test:     code: [32m'USAGE_EXCEEDED'[39m
+@bb/rooms:test:   },
+@bb/rooms:test:   headers: {},
+@bb/rooms:test:   statusCode: [33m429[39m
+@bb/rooms:test: }
+@bb/rooms:test:
+@bb/rooms:test: [90mstderr[2m | test/native-machine-access.test.ts[2m > [22m[2mpreserves BB enrollment and machine authentication without granting browser or loopback access
+@bb/rooms:test: [22m[39m2026-10-10T18:51:58.335Z ERROR [Better Auth]: Failed to validate API key: [APIError: API Key is disabled] {
+@bb/rooms:test:   status: [32m'UNAUTHORIZED'[39m,
+@bb/rooms:test:   body: { message: [32m'API Key is disabled'[39m, code: [32m'KEY_DISABLED'[39m },
+@bb/rooms:test:   headers: {},
+@bb/rooms:test:   statusCode: [33m401[39m
+@bb/rooms:test: }
+@bb/rooms:test:
+@bb/rooms:test: [90mstderr[2m | test/native-machine-access.test.ts[2m > [22m[2mpreserves BB enrollment and machine authentication without granting browser or loopback access
+@bb/rooms:test: [22m[39m2026-10-10T18:51:58.421Z ERROR [Better Auth]: Failed to validate API key: [APIError: API Key is disabled] {
+@bb/rooms:test:   status: [32m'UNAUTHORIZED'[39m,
+@bb/rooms:test:   body: { message: [32m'API Key is disabled'[39m, code: [32m'KEY_DISABLED'[39m },
+@bb/rooms:test:   headers: {},
+@bb/rooms:test:   statusCode: [33m401[39m
+@bb/rooms:test: }
+@bb/rooms:test:
+@bb/rooms:test: [90mstderr[2m | test/native-machine-access.test.ts[2m > [22m[2mpreserves BB enrollment and machine authentication without granting browser or loopback access
+@bb/rooms:test: [22m[39m2026-10-10T18:51:58.450Z ERROR [Better Auth]: Failed to validate API key: [APIError: Invalid API key.] {
+@bb/rooms:test:   status: [32m'UNAUTHORIZED'[39m,
+@bb/rooms:test:   body: { message: [32m'Invalid API key.'[39m, code: [32m'INVALID_API_KEY'[39m },
+@bb/rooms:test:   headers: {},
+@bb/rooms:test:   statusCode: [33m401[39m
+@bb/rooms:test: }
+@bb/rooms:test:
+@bb/rooms:test: [90mstderr[2m | test/native-machine-access.test.ts[2m > [22m[2mpreserves BB enrollment and machine authentication without granting browser or loopback access
+@bb/rooms:test: [22m[39m2026-10-10T18:51:58.457Z ERROR [Better Auth]: Failed to validate API key: [APIError: Invalid API key.] {
+@bb/rooms:test:   status: [32m'UNAUTHORIZED'[39m,
+@bb/rooms:test:   body: { message: [32m'Invalid API key.'[39m, code: [32m'INVALID_API_KEY'[39m },
+@bb/rooms:test:   headers: {},
+@bb/rooms:test:   statusCode: [33m401[39m
+@bb/rooms:test: }
+@bb/rooms:test:
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/native-machine-access.test.ts [2m([22m[2m1 test[22m[2m)[22m[33m 2605[2mms[22m[39m
+@bb/rooms:test:    [33m[2m✓[22m[39m preserves BB enrollment and machine authentication without granting browser or loopback access [33m 2605[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/http.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 4144[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m publishes acknowledged steering to peers without dispatching it to its target again [33m 800[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m terminates a stream when its bearer session expires even if a valid cookie is also present [33m 2266[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m keeps human sessions and agent capabilities in separate authority domains [33m 389[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/native-access.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 4755[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m gates native HTTP independently from room ownership and does not relay room credentials [33m 1044[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m gates every native socket, preserves text and binary frames, and revokes live sockets at logout and expiry [33m 2924[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m allows independent room speech but rejects execution grants and revokes live room membership [33m 785[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/store.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 768[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m atomically consumes invites and binds sessions to distinct identities [33m 360[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/recovery.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 486[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/protocol.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 2581[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m binds a steering publication to its durable target and human text without replaying cancelled input [33m 460[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m delivers completed public messages once to every peer with addressed request precedence [33m 360[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m preserves running capabilities across restart while fencing ambiguous dispatch without replay [33m 397[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/agent-cli.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 9[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/admission.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/sdk.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 194[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/bindings.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 597[2mms[22m[39m
+@bb/rooms:test:
+@bb/rooms:test: [2m Test Files [22m [1m[32m10 passed[39m[22m[90m (10)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[32m38 passed[39m[22m[90m (38)[39m
+@bb/rooms:test: [2m   Start at [22m 18:51:42
+@bb/rooms:test: [2m   Duration [22m 19.42s[2m (transform 22.96s, setup 0ms, import 38.73s, tests 16.16s, environment 1ms)[22m
+@bb/rooms:test:
+
+ Tasks:    6 successful, 6 total
+Cached:    2 cached, 6 total
+  Time:    36.804s

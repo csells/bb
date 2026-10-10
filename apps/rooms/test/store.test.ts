@@ -47,8 +47,14 @@ describe("separate humans and durable room state", () => {
       model: "",
       instructions: "",
     });
-    const first = s.requestMessage(owner, room.id, "hello", "same");
-    const second = s.requestMessage(owner, room.id, "hello", "same");
+    const publication = {
+      text: "hello",
+      intent: "post" as const,
+      recipients: [],
+      replyTo: null,
+    };
+    const first = s.sendHuman(owner, room.id, publication, "same");
+    const second = s.sendHuman(owner, room.id, publication, "same");
     s.enqueue(a.id, first.message);
     s.enqueue(a.id, second.message);
     expect(second.duplicate).toBe(true);

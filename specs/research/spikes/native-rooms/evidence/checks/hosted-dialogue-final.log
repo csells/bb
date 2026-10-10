@@ -1,0 +1,15 @@
+{"step":"Created isolated dialogue fixture","at":"2026-10-10T19:05:12.983Z"}
+{"step":"Two separately signed-in humans share native BB room; agents added through native UI","at":"2026-10-10T19:05:21.559Z"}
+{"waiting":"Both independent agents publish","publicMessages":1,"active":2}
+{"waiting":"Both independent agents publish","publicMessages":1,"active":2}
+{"waiting":"Initial conversation settles","publicMessages":3,"active":3}
+{"step":"Both BB-managed providers independently publish; general topics work","at":"2026-10-10T19:06:00.348Z"}
+{"waiting":"Optional open question receives a useful answer","publicMessages":4,"active":2}
+{"waiting":"Optional room awareness settles","publicMessages":5,"active":3}
+{"step":"Second human's undirected question reaches both agents; they choose public participation","at":"2026-10-10T19:06:21.195Z"}
+{"waiting":"Visible incremental publication","publicMessages":7,"active":2}
+{"waiting":"Both public streams commit and peer deliveries settle","publicMessages":9,"active":2}
+{"waiting":"Both public streams commit and peer deliveries settle","publicMessages":9,"active":2}
+{"step":"Both agents stream independent public messages to both human browsers","at":"2026-10-10T19:07:03.616Z"}
+{"waiting":"Agents choose silence","publicMessages":10,"active":2}
+{"step":"Silence produces no public chatter; history survives both browser reloads","at":"2026-10-10T19:07:08.796Z"}

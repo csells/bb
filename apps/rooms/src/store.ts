@@ -1,4 +1,5 @@
 import { createConnection, migrate } from "@bb/db";
+import type { RoomsRoomContext } from "@bb/domain";
 import type Database from "better-sqlite3";
 import {
   createHash,
@@ -36,8 +37,8 @@ export class RoomError extends Error {
     super(message);
   }
 }
-const roomColumns = `id,name,owner_id AS ownerId,revision,paused,pause_reason AS pauseReason,max_activations AS maxActivations,activations_used AS activationsUsed`;
-const agentColumns = `id,room_id AS roomId,handle,name,provider,model,instructions,project_id AS projectId,thread_id AS threadId,status`;
+const roomColumns = `id,name,owner_id AS ownerId,project_id AS projectId,default_environment_id AS defaultEnvironmentId,section_id AS sectionId,revision,paused,pause_reason AS pauseReason,max_activations AS maxActivations,activations_used AS activationsUsed`;
+const agentColumns = `id,room_id AS roomId,handle,name,provider,model,instructions,project_id AS projectId,thread_id AS threadId,environment_id AS environmentId,status`;
 const messageColumns = `id,room_id AS roomId,author_id AS authorId,author_name AS authorName,kind,text,status,created_at AS createdAt,cause_id AS causeId,intent,recipients,reply_to AS replyTo`;
 const deliveryColumns = `id,room_id AS roomId,agent_id AS agentId,message_id AS messageId,state,error,created_at AS createdAt,started_at AS startedAt,intent,activation_id AS activationId,thread_id AS threadId,outcome`;
 const activationColumns = `id,agent_id AS agentId,room_id AS roomId,delivery_id AS deliveryId,state,thread_id AS threadId,epoch,revoked,stop_requested AS stopRequested`;
@@ -77,18 +78,50 @@ export class RoomsStore {
   transaction<T>(fn: () => T): T {
     return this.db.transaction(fn).immediate();
   }
-  createRoom(name: string, ownerId: string) {
+  createRoom(
+    name: string,
+    ownerId: string,
+    context: RoomsRoomContext = {
+      projectId: null,
+      defaultEnvironmentId: null,
+      sectionId: null,
+    },
+  ) {
     return this.transaction(() => {
       const roomId = id();
       this.db
-        .prepare("INSERT INTO rooms_rooms(id,name,owner_id) VALUES(?,?,?)")
-        .run(roomId, name, ownerId);
+        .prepare(
+          "INSERT INTO rooms_rooms(id,name,owner_id,project_id,default_environment_id,section_id) VALUES(?,?,?,?,?,?)",
+        )
+        .run(
+          roomId,
+          name,
+          ownerId,
+          context.projectId,
+          context.defaultEnvironmentId,
+          context.sectionId,
+        );
       if (ownerId)
         this.db
           .prepare("INSERT INTO rooms_members VALUES(?,?,?)")
           .run(roomId, ownerId, "owner");
       return this.room(roomId);
     });
+  }
+  setRoomContext(roomId: string, context: RoomsRoomContext) {
+    this.room(roomId);
+    this.db
+      .prepare(
+        "UPDATE rooms_rooms SET project_id=?,default_environment_id=?,section_id=? WHERE id=?",
+      )
+      .run(
+        context.projectId,
+        context.defaultEnvironmentId,
+        context.sectionId,
+        roomId,
+      );
+    this.touch(roomId);
+    return this.room(roomId);
   }
   room(roomId: string) {
     const row = this.db
@@ -260,9 +293,15 @@ export class RoomsStore {
       Agent,
       "handle" | "name" | "provider" | "model" | "instructions"
     >,
+    binding: {
+      projectId: string | null;
+      environmentId: string | null;
+      threadId: string | null;
+    } = { projectId: null, environmentId: null, threadId: null },
   ) {
     return this.transaction(() => {
       this.room(roomId);
+      this.requireAvailableThread(binding.threadId);
       if (
         this.db
           .prepare("SELECT id FROM rooms_agents WHERE room_id=? AND handle=?")
@@ -277,7 +316,7 @@ export class RoomsStore {
       const agentId = id();
       this.db
         .prepare(
-          "INSERT INTO rooms_agents(id,room_id,handle,name,provider,model,instructions) VALUES(?,?,?,?,?,?,?)",
+          "INSERT INTO rooms_agents(id,room_id,handle,name,provider,model,instructions,project_id,environment_id,thread_id) VALUES(?,?,?,?,?,?,?,?,?,?)",
         )
         .run(
           agentId,
@@ -287,18 +326,50 @@ export class RoomsStore {
           input.provider,
           input.model,
           input.instructions,
+          binding.projectId,
+          binding.environmentId,
+          binding.threadId,
         );
       this.touch(roomId);
       return this.agent(agentId);
     });
   }
+  private requireAvailableThread(
+    threadId: string | null,
+    agentId: string | null = null,
+  ) {
+    if (
+      threadId &&
+      this.db
+        .prepare(
+          "SELECT id FROM rooms_agents WHERE thread_id=? AND id IS NOT ?",
+        )
+        .get(threadId, agentId)
+    )
+      throw new RoomError(
+        409,
+        "That BB thread already belongs to a room participant",
+      );
+  }
   saveAgent(a: Agent) {
-    this.db
-      .prepare(
-        "UPDATE rooms_agents SET project_id=?,thread_id=?,status=? WHERE id=? AND room_id=?",
-      )
-      .run(a.projectId, a.threadId, a.status, a.id, a.roomId);
-    this.touch(a.roomId);
+    this.transaction(() => {
+      this.requireAvailableThread(a.threadId, a.id);
+      this.db
+        .prepare(
+          "UPDATE rooms_agents SET project_id=?,thread_id=?,environment_id=?,provider=?,model=?,status=? WHERE id=? AND room_id=?",
+        )
+        .run(
+          a.projectId,
+          a.threadId,
+          a.environmentId,
+          a.provider,
+          a.model,
+          a.status,
+          a.id,
+          a.roomId,
+        );
+      this.touch(a.roomId);
+    });
   }
   setPolicy(
     roomId: string,
@@ -391,6 +462,7 @@ export class RoomsStore {
     input: Publication,
     activationId: string | null,
     causeId: string | null,
+    nativeRecipientId: string | null = null,
   ) {
     this.validatePublication(roomId, input, author.id);
     const message = this.insertMessage(
@@ -410,15 +482,27 @@ export class RoomsStore {
       },
       activationId,
     );
-    if (input.intent !== "post")
-      for (const target of input.recipients)
-        if (
-          this.db
-            .prepare("SELECT id FROM rooms_agents WHERE id=? AND room_id=?")
-            .get(target, roomId)
-        )
-          this.enqueue(target, message);
+    this.deliverPublicMessage(message, nativeRecipientId);
     return message;
+  }
+  private deliverPublicMessage(
+    message: Message,
+    nativeRecipientId: string | null = null,
+  ) {
+    if (message.status !== "complete" || message.kind === "system") return;
+    const peers = this.db
+      .prepare("SELECT id FROM rooms_agents WHERE room_id=? AND id!=?")
+      .all(message.roomId, message.authorId)
+      .map((row) => z.object({ id: z.string() }).parse(row));
+    for (const peer of peers)
+      if (peer.id !== nativeRecipientId)
+        this.enqueue(
+          peer.id,
+          message,
+          message.intent === "request" && message.recipients.includes(peer.id)
+            ? "request"
+            : "notice",
+        );
   }
   private receipt(scope: string, requestId: string, payload: string) {
     const row = this.db
@@ -463,15 +547,56 @@ export class RoomsStore {
       return { message, duplicate: false };
     });
   }
-  requestMessage(user: User, roomId: string, text: string, requestId: string) {
-    return this.sendHuman(
-      user,
-      roomId,
-      { text, intent: "post", recipients: [], replyTo: null },
-      requestId,
-    );
+  publishAcknowledgedSteering(
+    user: User,
+    roomId: string,
+    agentId: string,
+    text: string,
+    steeringId: string,
+  ) {
+    return this.transaction(() => {
+      this.membership(roomId, user.id);
+      const payload = canonical({ userId: user.id, roomId, agentId, text });
+      const scope = `steering-publication:${steeringId}`;
+      const previous = this.receipt(scope, steeringId, payload);
+      if (previous)
+        return { message: messageSchema.parse(previous), duplicate: true };
+      const row = this.db
+        .prepare(
+          "SELECT s.text,s.state FROM rooms_steering s JOIN rooms_activations a ON a.id=s.activation_id WHERE s.id=? AND a.room_id=? AND a.agent_id=?",
+        )
+        .get(steeringId, roomId, agentId);
+      if (!row)
+        throw new RoomError(
+          409,
+          "Steering does not belong to this room participant",
+        );
+      const steering = z
+        .object({
+          text: z.string(),
+          state: z.enum(["pending", "settled", "cancelled"]),
+        })
+        .parse(row);
+      if (
+        steering.text !==
+        `Steering from human ${user.name} (@${user.handle}): ${text}`
+      )
+        throw new RoomError(409, "Steering does not match this human input");
+      if (steering.state === "cancelled")
+        throw new RoomError(409, "Steering was cancelled before publication");
+      const message = this.publish(
+        { ...user, kind: "human" },
+        roomId,
+        { text, intent: "request", recipients: [agentId], replyTo: null },
+        null,
+        null,
+        agentId,
+      );
+      this.remember(scope, steeringId, payload, message);
+      return { message, duplicate: false };
+    });
   }
-  enqueue(agentId: string, m: Message) {
+  enqueue(agentId: string, m: Message, intent: Delivery["intent"] = m.intent) {
     if (this.agent(agentId).roomId !== m.roomId)
       throw new RoomError(400, "Agent belongs to another room");
     const now = Date.now();
@@ -479,7 +604,7 @@ export class RoomsStore {
       .prepare(
         "INSERT OR IGNORE INTO rooms_deliveries(id,room_id,agent_id,message_id,state,created_at,intent) VALUES(?,?,?,?,?,?,?)",
       )
-      .run(id(), m.roomId, agentId, m.id, "queued", now, m.intent);
+      .run(id(), m.roomId, agentId, m.id, "queued", now, intent);
     this.touch(m.roomId);
   }
   deliveries(roomId: string) {
@@ -622,6 +747,35 @@ export class RoomsStore {
         .run(threadId, a.revoked ? "stopping" : "working", a.agentId);
       this.touch(a.roomId);
     });
+  }
+  recordActivationCredential(
+    activationId: string,
+    hostId: string,
+    path: string,
+  ) {
+    this.activation(activationId);
+    this.db
+      .prepare(
+        "UPDATE rooms_activations SET credential_host_id=?,credential_path=? WHERE id=?",
+      )
+      .run(hostId, path, activationId);
+  }
+  activationCredential(activationId: string) {
+    const row = this.db
+      .prepare(
+        "SELECT credential_host_id AS hostId,credential_path AS path FROM rooms_activations WHERE id=? AND credential_path IS NOT NULL",
+      )
+      .get(activationId);
+    return row
+      ? z.object({ hostId: z.string(), path: z.string() }).parse(row)
+      : null;
+  }
+  clearActivationCredential(activationId: string) {
+    this.db
+      .prepare(
+        "UPDATE rooms_activations SET credential_host_id=NULL,credential_path=NULL WHERE id=?",
+      )
+      .run(activationId);
   }
   activationPublications(activationId: string) {
     return countSchema.parse(
@@ -1156,16 +1310,7 @@ export class RoomsStore {
                 input.messageId,
               );
             const message = this.message(input.messageId);
-            if (publication.intent !== "post")
-              for (const target of publication.recipients)
-                if (
-                  this.db
-                    .prepare(
-                      "SELECT id FROM rooms_agents WHERE id=? AND room_id=?",
-                    )
-                    .get(target, a.roomId)
-                )
-                  this.enqueue(target, message);
+            this.deliverPublicMessage(message);
             this.touch(a.roomId);
             result = { message, duplicate: false };
           }

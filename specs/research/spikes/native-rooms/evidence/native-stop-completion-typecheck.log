@@ -1,0 +1,44 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/domain, @bb/server
+   • Running typecheck in 2 packages
+   • Remote caching disabled
+
+@bb/plugin-build:generate: cache hit, replaying logs 2775c74d475a5bb6
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/server:generate:bb-official-marketplace: cache hit, replaying logs b0db3a503f1a06e5
+@bb/server:generate:bb-official-marketplace: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/server:generate:bb-official-marketplace:
+@bb/server:generate:bb-official-marketplace: > @bb/server@0.0.1 generate:bb-official-marketplace /Users/admin/code/Forks/get-bb/bb/apps/server
+@bb/server:generate:bb-official-marketplace: > node --conditions=source --import tsx scripts/generate-bb-official-marketplace.ts
+@bb/server:generate:bb-official-marketplace:
+@bb/templates:generate:templates: cache hit, replaying logs 6aae00c7f020387c
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/domain:typecheck: cache miss, executing f3ba386d5123930d
+@bb/server:typecheck: cache miss, executing 6ac793122204c26e
+@bb/domain:typecheck:
+@bb/domain:typecheck: > @bb/domain@0.0.1 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/domain
+@bb/domain:typecheck: > tsc --noEmit
+@bb/domain:typecheck:
+@bb/server:typecheck:
+@bb/server:typecheck: > @bb/server@0.0.1 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/server
+@bb/server:typecheck: > tsc --noEmit
+@bb/server:typecheck:
+
+ Tasks:    6 successful, 6 total
+Cached:    4 cached, 6 total
+  Time:    7.942s

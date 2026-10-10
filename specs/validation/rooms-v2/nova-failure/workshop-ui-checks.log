@@ -1,0 +1,5 @@
+PASS Signed into the actual Workshop as Chris in a fresh isolated browser context
+PASS Actual failed Nova request displays the restored-login explanation
+PASS Ask Nova again prepares the exact original taskboard request with only Nova selected and sends nothing
+PASS Draft cleared and browser session signed out; API confirms401
+PASS browser closed and exact temporary credential file removed

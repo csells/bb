@@ -1,0 +1,3 @@
+555d2e91d6c3ba89872b2a62e66bd78d69bd21730a4c44e3a74a57925642b591  apps/rooms/dist/web/index.html
+f2198633c172580f12ae9190c7d74c6737b9570558570396bb5979a4deb2572b  apps/rooms/dist/web/assets/index-CDXewShl.css
+d6c524583d9da0d4d57b72e64684502b8b1cc4b964eb54c7e14d947fae335578  apps/rooms/dist/web/assets/index-DL4C7HQm.js

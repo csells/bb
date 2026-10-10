@@ -1,0 +1,1800 @@
+{
+  "observations": [
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 0,
+      "time": 2558
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 443,
+      "frame": 1641,
+      "time": 32260
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 0,
+      "time": 340
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Room participants",
+          "state": "open",
+          "placeholder": true,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)",
+          "height": 160,
+          "scrollHeight": 160,
+          "verticalScrollers": []
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 100,
+      "time": 2332
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Room participants",
+          "state": "open",
+          "placeholder": false,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)",
+          "height": 360,
+          "scrollHeight": 360,
+          "verticalScrollers": [
+            {
+              "height": 328,
+              "scrollHeight": 328,
+              "scrollTop": 0
+            }
+          ]
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 102,
+      "time": 2350
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Room participants",
+          "state": "closed",
+          "placeholder": false,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)",
+          "height": 360,
+          "scrollHeight": 360,
+          "verticalScrollers": [
+            {
+              "height": 328,
+              "scrollHeight": 328,
+              "scrollTop": 0
+            }
+          ]
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 185,
+      "time": 3736
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Room participants",
+          "state": "closed",
+          "placeholder": false,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 76.809479)",
+          "height": 360,
+          "scrollHeight": 360,
+          "verticalScrollers": [
+            {
+              "height": 328,
+              "scrollHeight": 328,
+              "scrollTop": 0
+            }
+          ]
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 187,
+      "time": 3762
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Room participants",
+          "state": "closed",
+          "placeholder": false,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 348.499725)",
+          "height": 360,
+          "scrollHeight": 360,
+          "verticalScrollers": [
+            {
+              "height": 328,
+              "scrollHeight": 328,
+              "scrollTop": 0
+            }
+          ]
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 191,
+      "time": 3861
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Room participants",
+          "state": "closed",
+          "placeholder": false,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 352.692963)",
+          "height": 360,
+          "scrollHeight": 360,
+          "verticalScrollers": [
+            {
+              "height": 328,
+              "scrollHeight": 328,
+              "scrollTop": 0
+            }
+          ]
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 191,
+      "time": 3874
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Room participants",
+          "state": "closed",
+          "placeholder": false,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 353.745789)",
+          "height": 360,
+          "scrollHeight": 360,
+          "verticalScrollers": [
+            {
+              "height": 328,
+              "scrollHeight": 328,
+              "scrollTop": 0
+            }
+          ]
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 191,
+      "time": 3878
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Room participants",
+          "state": "closed",
+          "placeholder": false,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 362)",
+          "height": 360,
+          "scrollHeight": 360,
+          "verticalScrollers": [
+            {
+              "height": 328,
+              "scrollHeight": 328,
+              "scrollTop": 0
+            }
+          ]
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 199,
+      "time": 3982
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Room participants",
+          "state": "closed",
+          "placeholder": false,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 362)",
+          "height": 360,
+          "scrollHeight": 360,
+          "verticalScrollers": [
+            {
+              "height": 328,
+              "scrollHeight": 328,
+              "scrollTop": 0
+            }
+          ]
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 271,
+      "time": 5651
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Room participants",
+          "state": "closed",
+          "placeholder": false,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 362)",
+          "height": 360,
+          "scrollHeight": 360,
+          "verticalScrollers": [
+            {
+              "height": 328,
+              "scrollHeight": 328,
+              "scrollTop": 0
+            }
+          ]
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 361,
+      "time": 7658
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "rootInert": false,
+      "secureContext": true,
+      "randomUUIDAvailable": true,
+      "alerts": [],
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Room participants",
+          "state": "closed",
+          "placeholder": false,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 362)",
+          "height": 360,
+          "scrollHeight": 360,
+          "verticalScrollers": [
+            {
+              "height": 328,
+              "scrollHeight": 328,
+              "scrollTop": 0
+            }
+          ]
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 380,
+      "time": 8134
+    }
+  ],
+  "requests": [
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/manifest.webmanifest",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-DDJSO-WU.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-s9Axp572.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rolldown-runtime-BM3Ffeng.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/boot-vendor-l-5dg5Fg.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SplitWorkspaceRoute-CgyRpJaa.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pane-composer-focus-DwtgB8eh.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PaneMaximizeButton-Cv_nZeEL.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/use-hover-popover-2S08W9KX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ToolsViewSplits-CuIhgEmT.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/thread-id-C3jvY96O.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/threadSecondaryPanelAtoms-4YGCo4Zr.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/atomFamily-DSTW4_8Q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useElementWidth-BZi_yNbJ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/usePanelResizeSnap-CNTb_Daj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/context-selection-BEfqiAX6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/page-shell-BwBUTOoX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/bottom-anchored-scroll-body-cq0SFuPe.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/layoutAnimationAtoms-BVbszOkx.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pierre-worker-pool-gate-CNmiAf2J.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/icon-extended-B1ZTJrM_.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/RoomsView-BCTrbpnv.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-preview-WhpoSbP4.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/image-lightbox-CTKnV3Ug.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-local-file-link-CQAj2XM1.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/absolute-file-path-YIava9TX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-prompt-mentions-g8QkQ2Jv.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-BxLmPHw1.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-BlaacqIF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ccount-BNzRl6Tr.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-B0u-pfLJ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/prompt-draft-DdA-noar.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-Cxfeq0sR.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/space-separated-tokens-B2GUlYuz.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-MHozKikj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-DT7g-wKm.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-preview-DZqXX2zZ.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rooms-query-BgHQrf9L.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/textarea-BtB2xxGC.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/favicon-32x32.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/favicon-16x16.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/preferences/ui",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/sidebar-bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/safe-mode",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/app-update",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/server/move",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/install-jobs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/update-jobs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/plugin-frontend-CHXBfcus.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/DiffHost-BF9Twm2i.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/version",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/code-rendering-D0uX_Nml.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/git-diff-patch-text-CNzrzF2G.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-4cV5_6sD.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/zwitch-BqMFTVmk.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PluginReplacementSlot-D8F1clyT.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SourceCodeHost-uFOMKs8H.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/BranchPicker-Du4lngR4.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/environment-workspace-display-Ce76ABc4.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/OptionPicker-Bi2HcmmE.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/model-load-error-message-BR7ovC6g.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/audio-input-device-preference-Dz_n-CoQ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/queued-editor-typeahead-layout-l4PRnIMw.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pasted-thread-link-candidates-BQLEZpUL.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/truncate-start-DspRAh9j.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/usePathSuggestions-Fhrt3zqa.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/environment-queries-DF1DiRRM.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keyed-listeners-Bd7eK2Oj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/app-fixed-tab-navigation-BRl_Wq5x.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/live-file-navigation-CIb6cYNo.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/permission-mode-options-BrNWKCMS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/src-BZGKs9k0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index.browser-BL6BZHjd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/timeline-path-display-DZ8kKRyF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/NewThreadComposer-BDtuDt7g.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/machine-provider-queries-Ddp1a7z_.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/machine-server-access-CrQuAe5W.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/usePromptHistoryEnabled-CxwvWR31.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useScrollOverflowState-CqMQBGlH.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/project-default-execution-options-query-kTrwqTUW.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadTimelineNavigationContext-5dXNs_OX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-file-image-routing-9JpXS5ge.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pierre-strict-mode-recovery-CuEPCM8q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/code-theme-registration-DLWMA4Lb.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/openThreadInSplit-BMgnzXQ5.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/File-BAceowUQ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/FileDiff-Cywbsv_w.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-Bwou0fCS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-DmD2Guau.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-BGCJeEbT.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701/poll",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701/events",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-html-CLbGj1ai.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-Kuzfn0G0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/zwitch-BqMFTVmk.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadDetailView-C5UlfsY9.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PluginPanelActions-foIr9yAR.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/fixed-panel-tabs-state-cUkV7Jak.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/threadRecentItems-BXw5PJnW.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useThreadTerminalController-Cio7EZDJ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/thread-terminal-queries-BEw49ngX.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/file-opener-preference-X6FifTZK.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/workspace-checkout-display-B8csNYW0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/queued-messages-layout-CeTBUPY9.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/TimelineSelectionMenu-vkBopXbI.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/TimelineDetailScroll-BoIkj51G.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/diff-stats-tally-FxEivc6J.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/event-code-block-BDIM2U00.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/thread-runtime-mutations-C6MyYz72.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/queued-message-reorder-DKkXzduP.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/InlineMessageEditorFrame-Cct7VsV6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SecondaryPanelLayout-DVBWQb0r.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/threadWorkspaceOpenPath-BKfeCV7U.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rightPanelFileVisuals-BfmKdv0X.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadStatusGlyph-CWXIMXdK.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadUnarchiveButton-DryGvdaR.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/file-path-link-CTNjEfvZ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/workspace-change-summary-CS0xmkR0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/host-mutations-6EslKf4G.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useLocalOpenTargets-gVwUzTd7.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/browser-url-C6BUVeSs.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/RootComposeView-0ORKeZns.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ProjectMachineSetupDialog-DiG6vqJY.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/onboarding-model-4dq0__Jn.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/plugin-homepage-section-BdYYKwF3.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/root-compose-create-preference-DOkH2RJC.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/CommandPaletteBody-BiWsLSD9.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PaletteShell-Bb75uYzj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/tab-pill-geGtEU_v.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ServerMoveOverlayView-BmJkt5CA.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadSecondaryPanel-Hatr1-FJ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-s9Axp572.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/FilePreview-hdSiKHMo.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/code-loading-skeletons-B_aAvJEK.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/open-in-editor-button-XYXGa5ZY.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadSecondaryPanelTabContent-fDpcczao.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/source-code-budget-B-wGViL4.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/GitDiffCardHeader-AcpC5xQo.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/panelChromeClasses-ozLvlG8N.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/use-drag-click-suppression-hoOWjDMd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/sortable.esm-DDMTHe_b.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/AppToasterView-CdlbcMa8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/zwitch-BqMFTVmk.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/QueuedMessagesList-V45qfYTU.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0c9506bfc5a60b29/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/sortable.esm-DDMTHe_b.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7fe31ca9d1583bb8/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ModelReasoningMenu-DJxH9_Ci.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/switch-BiwtenFk.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/b270cfd40c7cde3e/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0c9506bfc5a60b29/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7fe31ca9d1583bb8/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ffba9aa0775d9c63/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/b270cfd40c7cde3e/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ea392bd605e7fbd5/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ffba9aa0775d9c63/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/f7cca51f7e6b9367/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/a19c95f4ab986747/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ea392bd605e7fbd5/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/f7cca51f7e6b9367/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e6e5f81365f0608d/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c8c27c64d7ad397e/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/a19c95f4ab986747/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c754c5db5ce5ad81/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e6e5f81365f0608d/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7e0655d6cc01a757/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c8c27c64d7ad397e/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c754c5db5ce5ad81/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/60c886660a8e6357/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ce44d677932f81bf/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/push-notifications/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7e0655d6cc01a757/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e1ece7958ed337e5/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ce44d677932f81bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c9901ba77b56d108/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/60c886660a8e6357/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/bb--provider-usage/rpc/getUsage",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/thread-list/rpc/listPreferences",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/codex/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/claude-code/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c9901ba77b56d108/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e1ece7958ed337e5/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/manifest.webmanifest",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-DDJSO-WU.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-preview-DZqXX2zZ.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/favicon-32x32.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/favicon-16x16.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/preferences/ui",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/app-update",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/update-jobs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/sidebar-bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/install-jobs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/safe-mode",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/favicon-16x16.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/version",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/zwitch-BqMFTVmk.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701/poll",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701/events",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-html-CLbGj1ai.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-Kuzfn0G0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/sortable.esm-DDMTHe_b.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/server/move",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/safe-mode",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/sidebar-bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7fe31ca9d1583bb8/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0c9506bfc5a60b29/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/b270cfd40c7cde3e/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ea392bd605e7fbd5/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ffba9aa0775d9c63/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/a19c95f4ab986747/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e6e5f81365f0608d/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/f7cca51f7e6b9367/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c8c27c64d7ad397e/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c754c5db5ce5ad81/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/QueuedMessagesList-V45qfYTU.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7e0655d6cc01a757/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/60c886660a8e6357/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ce44d677932f81bf/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c9901ba77b56d108/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e1ece7958ed337e5/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/push-notifications/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/thread-list/rpc/listPreferences",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/codex/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/claude-code/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/bb--provider-usage/rpc/getUsage",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts/host_dyg8mzivvv/provider-clis/status",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts/host_dyg8mzivvv/provider-clis/status",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/rooms/31b2edb9-1a03-4561-8c6b-3335bf2af701/messages",
+      "method": "POST",
+      "status": 200
+    }
+  ]
+}

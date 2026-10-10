@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useCallback, useContext, useMemo } from "react";
 import { useStore } from "jotai";
 import {
   PERSONAL_PROJECT_ID,
@@ -40,6 +40,8 @@ import {
 import { useHosts } from "@/hooks/queries/host-queries";
 import { useArchivedThreads } from "@/hooks/queries/thread-queries";
 import { useSidebarNavigation } from "@/hooks/queries/sidebar-navigation-query";
+import { useRoomsIndex } from "@/hooks/queries/rooms-query";
+import { NativeRoomsContext } from "./native-rooms-context";
 import {
   usePinThread,
   useUnpinThread,
@@ -112,6 +114,33 @@ function toPluginSidebarThreadCached(
 export function useSidebarThreads(
   options?: Parameters<PluginSdkApp["experimental_useSidebarThreads"]>[0],
 ): PluginSidebarThreadsState {
+  const roomsEnabled = useContext(NativeRoomsContext);
+  const roomsQuery = useRoomsIndex();
+  const roomNavigation = useMemo<
+    PluginSidebarThreadsState["experimental_rooms"]
+  >(
+    () =>
+      roomsEnabled
+        ? {
+            status: roomsQuery.isError
+              ? "error"
+              : roomsQuery.data
+                ? "ready"
+                : "loading",
+            error: roomsQuery.error?.message ?? null,
+            items: roomsQuery.isError
+              ? []
+              : (roomsQuery.data?.rooms ?? []).map((room) => ({
+                  id: room.id,
+                  name: room.name,
+                  href: `/rooms/${encodeURIComponent(room.id)}`,
+                  projectId: room.projectId,
+                  sectionId: room.sectionId,
+                })),
+          }
+        : undefined,
+    [roomsEnabled, roomsQuery.data, roomsQuery.error, roomsQuery.isError],
+  );
   const lifecycles = options?.experimental_lifecycles;
   const active = !lifecycles?.length || lifecycles.includes("active");
   const includeArchived = lifecycles?.includes("archived") ?? false;
@@ -157,6 +186,7 @@ export function useSidebarThreads(
   return useMemo<PluginSidebarThreadsState>(() => {
     if (data === undefined) {
       return {
+        experimental_rooms: roomNavigation,
         experimental_archived: archiveState,
         status: query.isError ? "error" : "loading",
         threads: EMPTY_THREADS,
@@ -180,6 +210,7 @@ export function useSidebarThreads(
       }
     }
     return {
+      experimental_rooms: roomNavigation,
       experimental_archived: archiveState,
       status: !active && archiveState !== null ? archiveState.status : "ready",
       threads: [...selected.values()].map((thread) =>
@@ -196,6 +227,7 @@ export function useSidebarThreads(
       sections: data.sections,
     };
   }, [
+    roomNavigation,
     data,
     hostNamesById,
     hosts,

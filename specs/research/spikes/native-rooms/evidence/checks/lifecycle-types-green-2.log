@@ -1,0 +1,76 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/config, @bb/integration-tests, @bb/server, bb-app
+   • Running typecheck in 4 packages
+   • Remote caching disabled
+
+@bb/server:generate:bb-official-marketplace: cache hit, replaying logs b0db3a503f1a06e5
+@bb/plugin-build:generate: cache hit, replaying logs 2775c74d475a5bb6
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/server:generate:bb-official-marketplace: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/server:generate:bb-official-marketplace:
+@bb/server:generate:bb-official-marketplace: > @bb/server@0.0.1 generate:bb-official-marketplace /Users/admin/code/Forks/get-bb/bb/apps/server
+@bb/server:generate:bb-official-marketplace: > node --conditions=source --import tsx scripts/generate-bb-official-marketplace.ts
+@bb/server:generate:bb-official-marketplace:
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/templates:generate:templates: cache hit, replaying logs a76e65418faf77db
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+bb-app:typecheck: cache hit, replaying logs 12e09f2b3b1d0038
+@bb/config:typecheck: cache hit, replaying logs dcc925008e58b1cf
+@bb/config:typecheck:
+bb-app:typecheck:
+bb-app:typecheck: > bb-app@0.45.0 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/bb-app
+bb-app:typecheck: > tsc --noEmit
+bb-app:typecheck:
+@bb/config:typecheck: > @bb/config@0.0.1 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/config
+@bb/config:typecheck: > tsc --noEmit
+@bb/config:typecheck:
+@bb/server:typecheck: cache hit, replaying logs e8898995f5181a6d
+@get-bb/plugin-sdk:build:types: cache hit, replaying logs 1f2949ac7cddb1a5
+@bb/server:typecheck:
+@bb/server:typecheck: > @bb/server@0.0.1 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/server
+@bb/server:typecheck: > tsc --noEmit
+@bb/server:typecheck:
+@get-bb/plugin-sdk:build:types:
+@get-bb/plugin-sdk:build:types: > @get-bb/plugin-sdk@0.6.33 build:types /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-sdk
+@get-bb/plugin-sdk:build:types: > node scripts/build-bundled-dts.mjs
+@get-bb/plugin-sdk:build:types:
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-provider-bridge.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-provider-bridge-testing.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-provider-bridge-acp.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-environment-provider.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-machine-provider.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-app.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-host.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-composer-customization-validation.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-composer-handle.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-composer-view.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-file-navigation-validation.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-host-policy.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-plugin-app-collector.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-testing.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-testing-app.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-testing-host.d.ts
+@bb/integration-tests:typecheck: cache miss, executing c7b0baffa0d986b4
+@bb/integration-tests:typecheck:
+@bb/integration-tests:typecheck: > @bb/integration-tests@0.0.1 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/tests/integration
+@bb/integration-tests:typecheck: > tsc --noEmit
+@bb/integration-tests:typecheck:
+
+ Tasks:    9 successful, 9 total
+Cached:    8 cached, 9 total
+  Time:    7.743s

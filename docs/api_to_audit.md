@@ -2807,6 +2807,17 @@ present on thread rows. It shares the host query and realtime cache. Audit empty
 sections, machine removal, rename updates, and loading behavior before
 stabilizing this field.
 
+**Rooms (fork, October 2026).** `PluginSidebarThreadsState.experimental_rooms`
+is absent without native Rooms. Otherwise it exposes authenticated room links,
+their project/section associations, and explicit loading/error state. The core
+room index and built-in thread-list plugin share the same query and SDK-backed
+room contracts. No private transcript or operator permission is granted by a
+link. Before stabilization, verify membership revocation, shared query
+invalidation, section/project organization, compact navigation and ordinary BB
+with Rooms disabled. Core callers are `useSidebarThreads`, the room index and
+the thread-list plugin's room rows. Room links do not participate in thread
+drag/drop or thread-only bulk actions.
+
 **What it does.** Gives a plugin component the sidebar's live thread view and
 the actions that mutate it. The read hook wraps the host's own
 `useSidebarNavigation` query — the same cache and realtime subscriptions the

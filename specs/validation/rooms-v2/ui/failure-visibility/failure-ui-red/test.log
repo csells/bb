@@ -1,0 +1,89 @@
+PASS two visible waiting replies before first token, live elapsed time, usable composer
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toContainText(expected) failed
+
+Locator: locator('.conversation .failure-reply')
+Expected substring: "Reviewer couldn’t complete this request"
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toContainText" locator('.conversation .failure-reply') with timeout 5000ms
+  - waiting for locator('.conversation .failure-reply')
+
+    at captureRawStack (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js:9282:17)
+    at callMatcherAsStep (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13316:57)
+    at Object.toContainText (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13308:23)
+    at <anonymous> (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/pending.browser.ts:126:25) {
+  matcherResult: {
+    name: 'toContainText',
+    expected: 'Reviewer couldn’t complete this request',
+    message: 'expect(locator).toContainText(expected) failed\n' +
+      '\n' +
+      "Locator: locator('.conversation .failure-reply')\n" +
+      'Expected substring: "Reviewer couldn’t complete this request"\n' +
+      'Timeout: 5000ms\n' +
+      'Error: element(s) not found\n' +
+      '\n' +
+      'Call log:\n' +
+      `  - Expect "toContainText" locator('.conversation .failure-reply') with timeout 5000ms\n` +
+      "  - waiting for locator('.conversation .failure-reply')\n",
+    pass: false,
+    actual: undefined,
+    log: [
+      `  - Expect "toContainText" locator('.conversation .failure-reply') with timeout 5000ms`,
+      "  - waiting for locator('.conversation .failure-reply')"
+    ],
+    timeout: 5000,
+    ariaSnapshot: '- navigation:\n' +
+      '  - text: 𝒃𝒃 Rooms PREVIEW WORK TOGETHER\n' +
+      '  - button "Create room": ＋\n' +
+      '  - button "◈ Pending replies QA"\n' +
+      '  - text: One room. Many perspectives. Address anyone with @. AL\n' +
+      '  - strong: Alex QA\n' +
+      '  - text: "@alex"\n' +
+      '  - button "Sign out": ↪\n' +
+      '- main:\n' +
+      '  - paragraph: SHARED WORKSPACE\n' +
+      '  - heading "Pending replies QA" [level=1]\n' +
+      '  - text: Live\n' +
+      '  - button "People 1"\n' +
+      '  - button "＋ Add agent"\n' +
+      '  - button "Room controls": ⋯\n' +
+      '  - button "✳ Builder Working"\n' +
+      '  - button "✳ Reviewer Failed"\n' +
+      '  - text: AL\n' +
+      '  - article:\n' +
+      '    - text: AL\n' +
+      '    - strong: Alex QA\n' +
+      '    - time: 09:59 PM\n' +
+      '    - text: Asked Builder, Reviewer\n' +
+      '    - paragraph: "@builder @reviewer Introduce yourselves."\n' +
+      '  - text: ✳\n' +
+      '  - status: Builder is working on your request\n' +
+      '  - text: 6s\n' +
+      '  - paragraph: You can keep typing. Only messages the agent chooses to share appear here.\n' +
+      '  - text: Builder is working\n' +
+      '  - button "Follow up"\n' +
+      '  - button "Steer now"\n' +
+      '  - button "Stop"\n' +
+      '  - text: Message intent\n' +
+      '  - combobox "Message intent":\n' +
+      '    - option "Message" [selected]\n' +
+      '    - option "Ask for a response"\n' +
+      '    - option "Share context"\n' +
+      '  - text: Visible to everyone; no response requested\n' +
+      '  - textbox "Message the room":\n' +
+      '    - /placeholder: Message the room… use @ to bring someone in\n' +
+      '    - text: I can keep typing\n' +
+      '  - text: Use @ to choose participants\n' +
+      '  - button "Send message": ↑\n' +
+      '  - text: Enter to send · Shift Enter for a new line\n' +
+      '  - button "Pause new turns"'
+  }
+}
+
+Node.js v24.20.0

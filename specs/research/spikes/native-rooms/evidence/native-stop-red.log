@@ -1,0 +1,99 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/agent-runtime
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 5031ed2704c71cf1
+@bb/templates:generate:templates: cache miss, executing d9698511114492e4
+@bb/plugin-build:generate: cache miss, executing 3b4a79ff7e4bf36f
+@bb/templates:generate:plugin-scaffold: cache miss, executing cb4f6713c6fad8e2
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/agent-runtime:generate:test-bridges: cache miss, executing 39577f4124e2e0f1
+@bb/agent-runtime:generate:test-bridges:
+@bb/agent-runtime:generate:test-bridges: > @bb/agent-runtime@0.0.1 generate:test-bridges /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/agent-runtime
+@bb/agent-runtime:generate:test-bridges: > node ./scripts/build-test-bridges.mjs
+@bb/agent-runtime:generate:test-bridges:
+@bb/agent-runtime:test: cache miss, executing 535ae2a39aac3124
+@bb/agent-runtime:test:
+@bb/agent-runtime:test: > @bb/agent-runtime@0.0.1 test /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/agent-runtime
+@bb/agent-runtime:test: > vitest run --config vitest.config.ts "runtime.command-contract.test.ts" "-t" "stale scoped stop"
+@bb/agent-runtime:test:
+@bb/agent-runtime:test:
+@bb/agent-runtime:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/packages/agent-runtime[39m
+@bb/agent-runtime:test:
+@bb/agent-runtime:test:  [31m❯[39m [30m[45m @bb/agent-runtime [49m[39m src/runtime.command-contract.test.ts [2m([22m[2m20 tests[22m[2m | [22m[31m1 failed[39m[2m | [22m[33m19 skipped[39m[2m)[22m[32m 159[2mms[22m[39m
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m passes runtime workspace-write roots to the provider as provider options
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m passes a provider's declared launch spec on model list, start, and resume
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m launches the caller's bridge for archive and unarchive
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m uses a new provider process cache entry when the declared launch spec changes
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m prefixes provider rename titles and normalizes provider title events
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m does not retry a rename: the bridge owns the not-ready-rollout ladder
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m rejects unsupported thread rename instead of silently succeeding
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m 'confirms success' after a provider persists a delayed Goal clear
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m 'reconciles a stale failure' after a provider persists a delayed Goal clear
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m rejects thread resume when providerThreadId cannot be resolved
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m rejects turn start when providerThreadId cannot be resolved
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m rejects thread rename when providerThreadId cannot be resolved
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m propagates a bridge's archive and unarchive rejections verbatim
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m unarchives Codex sessions before retrying a resume
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m reports the archived-session error when unarchiving fails
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m keeps the archived-session error when the provider exits mid-recovery
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m rejects turn steer when providerThreadId cannot be resolved
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m rejects unsupported execution options before they reach the provider
+@bb/agent-runtime:test: [31m     [31m×[31m ignores a stale scoped stop and still stops the exact successor turn[39m[32m 159[2mms[22m[39m
+@bb/agent-runtime:test:      [2m[90m↓[39m[22m interrupts an active turn on stop and releases an idle thread
+@bb/agent-runtime:test:
+@bb/agent-runtime:test: [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+@bb/agent-runtime:test:
+@bb/agent-runtime:test: [41m[1m FAIL [22m[49m [30m[45m @bb/agent-runtime [49m[39m src/runtime.command-contract.test.ts[2m > [22mcreateAgentRuntime command contracts[2m > [22mignores a stale scoped stop and still stops the exact successor turn
+@bb/agent-runtime:test: [31m[1mAssertionError[22m: expected null to be 'da6e00e0f9-t2' // Object.is equality[39m
+@bb/agent-runtime:test:
+@bb/agent-runtime:test: [32m- Expected:[39m
+@bb/agent-runtime:test: "da6e00e0f9-t2"
+@bb/agent-runtime:test:
+@bb/agent-runtime:test: [31m+ Received:[39m
+@bb/agent-runtime:test: null
+@bb/agent-runtime:test:
+@bb/agent-runtime:test: [36m [2m❯[22m src/runtime.command-contract.test.ts:[2m719:45[22m[39m
+@bb/agent-runtime:test:     [90m717|[39m       [34mexpect[39m(successor)[33m.[39mnot[33m.[39m[34mtoBeNull[39m()[33m;[39m
+@bb/agent-runtime:test:     [90m718|[39m       await runtime.stopThread({ threadId: "t1", expectedTurnId: first…
+@bb/agent-runtime:test:     [90m719|[39m       [34mexpect[39m(runtime[33m.[39m[34mgetActiveTurnId[39m([32m"t1"[39m))[33m.[39m[34mtoBe[39m(successor)[33m;[39m
+@bb/agent-runtime:test:     [90m   |[39m                                             [31m^[39m
+@bb/agent-runtime:test:     [90m720|[39m       [34mexpect[39m(record[33m.[39m[34mlast[39m([32m"thread/stop"[39m))[33m.[39m[34mtoBeUndefined[39m()[33m;[39m
+@bb/agent-runtime:test:     [90m721|[39m       [34mexpect[39m(runtime[33m.[39m[34mhasThread[39m([32m"t1"[39m))[33m.[39m[34mtoBe[39m([35mtrue[39m)[33m;[39m
+@bb/agent-runtime:test:
+@bb/agent-runtime:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+@bb/agent-runtime:test:
+@bb/agent-runtime:test:
+@bb/agent-runtime:test: [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+@bb/agent-runtime:test: [2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[33m19 skipped[39m[90m (20)[39m
+@bb/agent-runtime:test: [2m   Start at [22m 18:07:22
+@bb/agent-runtime:test: [2m   Duration [22m 830ms[2m (transform 356ms, setup 0ms, import 532ms, tests 159ms, environment 0ms)[22m
+@bb/agent-runtime:test:
+@bb/agent-runtime:test:  ELIFECYCLE  Test failed. See above for more details.
+@bb/agent-runtime#test:  ERROR  command (/Users/admin/code/Forks/get-bb/bb-native-rooms/packages/agent-runtime) /opt/homebrew/bin/pnpm run test runtime.command-contract.test.ts -t stale scoped stop exited (1)
+
+ Tasks:    5 successful, 6 total
+Cached:    0 cached, 6 total
+  Time:    2.569s
+Failed:    @bb/agent-runtime#test
+
+ ERROR  run failed: command  exited (1)

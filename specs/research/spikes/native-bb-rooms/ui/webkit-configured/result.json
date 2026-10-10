@@ -1,0 +1,465 @@
+{
+  "ok": true,
+  "engine": "webkit",
+  "roomUrl": "http://127.0.0.1:38910/rooms/d884c69e-08e0-4235-b600-8d5f26c292f2",
+  "roomName": "Native room mv2quyti",
+  "sectionName": "Native section mv2quyti",
+  "steps": [
+    "Anonymous login does not initialize private BB APIs",
+    "Operator creates room in a real BB project and newly created section",
+    "Separate human identity joins through a one-time browser invitation",
+    "Both identities exchange live persisted messages; guest never boots private BB APIs",
+    "Compact room creation remains reachable without hiding or disabling the app root"
+  ],
+  "pageErrors": [],
+  "requests": {
+    "operator": [
+      {
+        "method": "GET",
+        "path": "/api/v1/rooms/session"
+      },
+      {
+        "method": "POST",
+        "path": "/api/auth/login"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/rooms/session"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/system/config"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/preferences/ui"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/server/move"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/system/app-update"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugins/install-jobs"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugins/update-jobs"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/hosts"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugins"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/system/version"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/system/providers"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/sidebar-bootstrap"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugins/safe-mode"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/system/config"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/server/move"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/hosts/host_dyg8mzivvv/provider-clis/status"
+      },
+      {
+        "method": "GET",
+        "path": "/api/me"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/projects/proj_j2hw87pd7f"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/thread-sections"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/projects/proj_j2hw87pd7f"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/projects/proj_j2hw87pd7f"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/thread-sections"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/projects/proj_j2hw87pd7f"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/thread-sections"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/projects/proj_j2hw87pd7f"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/projects/proj_fwx8qghk8z"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/thread-sections"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/environments/env_hjav59i3rz"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/projects/proj_j2hw87pd7f"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/projects"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/thread-sections"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/environments"
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/thread-sections"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/sidebar-bootstrap"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/sidebar-bootstrap"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/7fe31ca9d1583bb8/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/0c9506bfc5a60b29/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/b270cfd40c7cde3e/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/7fe31ca9d1583bb8/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/ffba9aa0775d9c63/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/0c9506bfc5a60b29/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/ea392bd605e7fbd5/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/b270cfd40c7cde3e/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/a19c95f4ab986747/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/ffba9aa0775d9c63/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/f7cca51f7e6b9367/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/ea392bd605e7fbd5/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/e6e5f81365f0608d/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/a19c95f4ab986747/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/c8c27c64d7ad397e/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/f7cca51f7e6b9367/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/c754c5db5ce5ad81/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/e6e5f81365f0608d/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/7e0655d6cc01a757/app.js"
+      },
+      {
+        "method": "POST",
+        "path": "/api/rooms"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/c8c27c64d7ad397e/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/c754c5db5ce5ad81/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/60c886660a8e6357/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/me"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/7e0655d6cc01a757/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/ce44d677932f81bf/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/60c886660a8e6357/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/c9901ba77b56d108/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/projects/proj_j2hw87pd7f"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/thread-sections"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/projects"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/thread-sections"
+      },
+      {
+        "method": "GET",
+        "path": "/api/rooms/d884c69e-08e0-4235-b600-8d5f26c292f2/poll"
+      },
+      {
+        "method": "GET",
+        "path": "/api/rooms/d884c69e-08e0-4235-b600-8d5f26c292f2/events"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugins/push-notifications/settings"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/ce44d677932f81bf/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/e1ece7958ed337e5/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.css"
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/plugins/bb--provider-usage/rpc/getUsage"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.js"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/projects/proj_j2hw87pd7f"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/thread-sections"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/c9901ba77b56d108/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/e1ece7958ed337e5/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.css"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.css"
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/plugins/thread-list/rpc/listPreferences"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/system/providers/codex/logo"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/system/providers/claude-code/logo"
+      },
+      {
+        "method": "POST",
+        "path": "/api/rooms/d884c69e-08e0-4235-b600-8d5f26c292f2/invites"
+      },
+      {
+        "method": "POST",
+        "path": "/api/rooms/d884c69e-08e0-4235-b600-8d5f26c292f2/messages"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/rooms/session"
+      },
+      {
+        "method": "POST",
+        "path": "/api/v1/plugins/thread-list/rpc/listPreferences"
+      },
+      {
+        "method": "GET",
+        "path": "/api/me"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/hosts/host_dyg8mzivvv/provider-clis/status"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/system/providers/codex/logo"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/system/providers/claude-code/logo"
+      }
+    ],
+    "guest": [
+      {
+        "method": "GET",
+        "path": "/api/v1/rooms/session"
+      },
+      {
+        "method": "POST",
+        "path": "/api/auth/login"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/rooms/session"
+      },
+      {
+        "method": "POST",
+        "path": "/api/join"
+      },
+      {
+        "method": "GET",
+        "path": "/api/me"
+      },
+      {
+        "method": "GET",
+        "path": "/api/rooms/d884c69e-08e0-4235-b600-8d5f26c292f2/poll"
+      },
+      {
+        "method": "GET",
+        "path": "/api/rooms/d884c69e-08e0-4235-b600-8d5f26c292f2/events"
+      },
+      {
+        "method": "POST",
+        "path": "/api/rooms/d884c69e-08e0-4235-b600-8d5f26c292f2/messages"
+      },
+      {
+        "method": "GET",
+        "path": "/api/v1/rooms/session"
+      },
+      {
+        "method": "GET",
+        "path": "/api/me"
+      },
+      {
+        "method": "GET",
+        "path": "/api/rooms/d884c69e-08e0-4235-b600-8d5f26c292f2/poll"
+      },
+      {
+        "method": "GET",
+        "path": "/api/rooms/d884c69e-08e0-4235-b600-8d5f26c292f2/events"
+      }
+    ]
+  }
+}

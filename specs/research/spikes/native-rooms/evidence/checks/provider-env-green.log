@@ -1,0 +1,53 @@
+• turbo 2.10.12
+
+   • Packages in scope: bb-plugin-provider-claude-code
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing be3836c713972bc2
+@bb/plugin-build:generate: cache hit, replaying logs fc2761b79973eda5
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 1ce8f41673c2ddd1
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates: cache hit, replaying logs 3c49af0a36ede8b2
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@get-bb/plugin-sdk:build: cache hit, replaying logs e2ab6ca01b6abd9a
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: > @get-bb/plugin-sdk@0.6.33 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-sdk
+@get-bb/plugin-sdk:build: > node scripts/build-runtime.mjs
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: Built 19 @get-bb/plugin-sdk runtime entries.
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+bb-plugin-provider-claude-code:test: cache miss, executing f5b56bdfaf833178
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: > bb-plugin-provider-claude-code@0.1.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/provider-claude-code
+bb-plugin-provider-claude-code:test: > vitest run --config vitest.config.ts "src/bridge/provider-maintenance.credentials.test.ts"
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/provider-claude-code[39m
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test:  [32m✓[39m [30m[42m bb-plugin-provider-claude-code [49m[39m src/bridge/provider-maintenance.credentials.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+bb-plugin-provider-claude-code:test: [2m      Tests [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+bb-plugin-provider-claude-code:test: [2m   Start at [22m 18:31:19
+bb-plugin-provider-claude-code:test: [2m   Duration [22m 252ms[2m (transform 101ms, setup 0ms, import 170ms, tests 8ms, environment 0ms)[22m
+bb-plugin-provider-claude-code:test:
+
+ Tasks:    6 successful, 6 total
+Cached:    4 cached, 6 total
+  Time:    965ms

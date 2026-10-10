@@ -1,0 +1,7 @@
+[
+  "Anonymous login does not initialize private BB APIs",
+  "Operator creates room in a real BB project and newly created section",
+  "Separate human identity joins through a one-time browser invitation",
+  "Both identities exchange live persisted messages; guest never boots private BB APIs",
+  "Compact room creation remains reachable without hiding or disabling the app root"
+]

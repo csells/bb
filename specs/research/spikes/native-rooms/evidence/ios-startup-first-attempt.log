@@ -1,0 +1,7 @@
+An error was encountered processing the command (domain=NSPOSIXErrorDomain, code=60):
+Simulator device failed to open http://127.0.0.1:38920/rooms.
+Operation timed out
+Underlying error (domain=NSPOSIXErrorDomain, code=60):
+	The operation couldn’t be completed. Operation timed out
+	Operation timed out
+specs/research/spikes/native-rooms/ios/run.sh: line 11: 44527 Terminated: 15          node proxy.mjs > "$output/proxy.log" 2>&1

@@ -1,0 +1,57 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running build, typecheck in 1 packages
+   • Remote caching disabled
+
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates: cache hit, replaying logs c34ddd17b9ae631a
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/rooms:typecheck: cache miss, executing bdd33f1dd5d6c87b
+@bb/rooms:build: cache miss, executing 5cef2d0b7e59c2f5
+@bb/rooms:typecheck:
+@bb/rooms:typecheck: > @bb/rooms@0.1.0 typecheck /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:typecheck: > tsc --noEmit
+@bb/rooms:typecheck:
+@bb/rooms:build:
+@bb/rooms:build: > @bb/rooms@0.1.0 build /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:build: > node ../../scripts/build-node-entry.mjs src/server.ts dist/server.js --clean-dist --copy-dir ../../packages/db/drizzle dist/drizzle && node ../../scripts/build-node-entry.mjs src/agent-cli-entry.ts dist/agent-cli.js && vite build
+@bb/rooms:build:
+@bb/rooms:build: vite v7.3.7 building client environment for production...
+@bb/rooms:build: transforming...
+@bb/rooms:build: ../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+@bb/rooms:build:
+@bb/rooms:build: "// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+@bb/rooms:build:
+@bb/rooms:build: in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+@bb/rooms:build: ../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+@bb/rooms:build:
+@bb/rooms:build: "/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+@bb/rooms:build:  * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+@bb/rooms:build:  * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+@bb/rooms:build:
+@bb/rooms:build: in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+@bb/rooms:build: ✓ 466 modules transformed.
+@bb/rooms:build: rendering chunks...
+@bb/rooms:build: computing gzip size...
+@bb/rooms:build: dist/web/index.html                   0.40 kB │ gzip:   0.27 kB
+@bb/rooms:build: dist/web/assets/index-CDXewShl.css   15.30 kB │ gzip:   3.89 kB
+@bb/rooms:build: dist/web/assets/index-WoS4Gv_b.js   523.46 kB │ gzip: 163.04 kB
+@bb/rooms:build:
+@bb/rooms:build: (!) Some chunks are larger than 500 kB after minification. Consider:
+@bb/rooms:build: - Using dynamic import() to code-split the application
+@bb/rooms:build: - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+@bb/rooms:build: - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+@bb/rooms:build: ✓ built in 1.40s
+
+ Tasks:    4 successful, 4 total
+Cached:    2 cached, 4 total
+  Time:    3.213s

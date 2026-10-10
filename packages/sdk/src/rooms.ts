@@ -11,6 +11,8 @@ import {
   roomsAgentCommandResultSchema,
   roomsActivitySchema,
   roomsPublicationReceiptSchema,
+  roomsCreateRoomSchema,
+  roomsRoomContextSchema,
 } from "@bb/domain";
 export interface ExperimentalRoomsClientOptions {
   baseUrl: string;
@@ -49,7 +51,11 @@ export function createExperimentalRoomsClient(
     request,
     async me() {
       return z
-        .object({ user: roomsUserSchema, rooms: z.array(roomsRoomSchema) })
+        .object({
+          user: roomsUserSchema,
+          rooms: z.array(roomsRoomSchema),
+          access: z.object({ operator: z.boolean() }).optional(),
+        })
         .parse(await request("GET", "/me"));
     },
     async room(roomId: string) {
@@ -57,8 +63,28 @@ export function createExperimentalRoomsClient(
         await request("GET", `/rooms/${encodeURIComponent(roomId)}`),
       );
     },
-    async create(name: string) {
-      return roomsRoomSchema.parse(await request("POST", "/rooms", { name }));
+    async create(input: string | z.input<typeof roomsCreateRoomSchema>) {
+      return roomsRoomSchema.parse(
+        await request(
+          "POST",
+          "/rooms",
+          roomsCreateRoomSchema.parse(
+            typeof input === "string" ? { name: input } : input,
+          ),
+        ),
+      );
+    },
+    async context(
+      roomId: string,
+      input: z.input<typeof roomsRoomContextSchema>,
+    ) {
+      return roomsRoomSchema.parse(
+        await request(
+          "PUT",
+          `/rooms/${encodeURIComponent(roomId)}/context`,
+          roomsRoomContextSchema.parse(input),
+        ),
+      );
     },
     async invite(roomId: string) {
       return z

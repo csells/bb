@@ -164,6 +164,7 @@ export async function runServer(serverConfig: ServerConfig): Promise<void> {
     inheritedSkillsRootPaths: serverConfig.BB_INHERITED_SKILLS_ROOTS,
     isDevelopment: !isProduction,
     performanceDiagnosticsAvailable: serverConfig.BB_PERF_DIAGNOSTICS,
+    roomsSeparateService: serverConfig.BB_ROOMS_SEPARATE_SERVICE,
     serverPort: serverConfig.BB_SERVER_PORT,
     sharedSkillRoots: { user: [], project: [] },
   };

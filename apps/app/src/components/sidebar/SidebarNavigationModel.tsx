@@ -20,6 +20,7 @@ import { useSetPluginEnabled } from "@/components/plugin/useSetPluginEnabled";
 import { getPluginNavPanelKey } from "@/components/plugin/pluginNavSidebarOrder";
 import { appToast } from "@/components/ui/app-toast";
 import { invalidatePluginList } from "@/hooks/cache-owners/plugin-cache-owner";
+import { useNativeRoomsEnabled } from "@/lib/native-rooms-context";
 import { appQueryClient } from "@/lib/app-query-client";
 import { usePluginNavPanelChrome } from "@/lib/plugin-nav-panel-chrome";
 import {
@@ -76,6 +77,7 @@ const HOST_ICON_NAMES: Record<
   search: "Search",
   extensions: "Plug02",
   skills: "Zap",
+  rooms: "MessageSquare",
 };
 
 export function SidebarNavigationIcon({
@@ -134,9 +136,13 @@ export function SidebarNavigationModelProvider({
   ...host
 }: SidebarNavigationHostOptions & { children: ReactNode }) {
   const panelEntries = usePluginNavPanelChrome();
+  const nativeRooms = useNativeRoomsEnabled();
   const rows = useMemo(
-    () => createSidebarNavigationRows(panelEntries),
-    [panelEntries],
+    () =>
+      createSidebarNavigationRows(panelEntries).filter(
+        (row) => row.action.kind !== "open-rooms" || nativeRooms,
+      ),
+    [panelEntries, nativeRooms],
   );
   const arrangement = useSidebarNavigationArrangement(
     rows,
@@ -260,9 +266,11 @@ export function SidebarNavigationModelProvider({
             current.commandRunner.dispatch("thread.search", null);
             return;
           case "open-extensions":
-          case "open-skills": {
+          case "open-skills":
+          case "open-rooms": {
             const routePath = getResourceNavigationRoutePath(row.action);
             if (routePath === null) return;
+            if (row.action.kind === "open-rooms") current.host.onNavigate?.();
             void current.navigate(routePath);
             return;
           }

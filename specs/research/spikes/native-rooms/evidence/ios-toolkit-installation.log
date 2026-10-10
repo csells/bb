@@ -1,0 +1,15 @@
+847f8048847a093635e3c90c4b85cfede0165d1f4a7bdf213a964d599e844538  /Users/admin/rooms-native-qa/apple-toolkit/xcode27.tar
+5136453f500b73dc3518f262d8a51e4be0c136e38a550998febf7759de6ba0fd  /Users/admin/rooms-native-qa/apple-toolkit/ios27.dmg
+Filesystem        Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk2s1s1   111Gi    12Gi    54Gi    18%    459k  571M    0%   /
+Install Started
+1%.........20.........40.........60.........80....Install Succeeded
+Xcode 27.0
+Build version 27A266a
+
+D: 36F21220-B0D8-4A9D-AC83-9280E98FEB3F iOS (27.0 - 24A434) (Ready)
+
+== Runtimes ==
+iOS 27.0 (27.0 - 24A434) - com.apple.CoreSimulator.SimRuntime.iOS-27-0
+Filesystem        Size    Used   Avail Capacity iused ifree %iused  Mounted on
+/dev/disk2s1s1   111Gi    12Gi    60Gi    17%    459k  625M    0%   /

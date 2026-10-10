@@ -1,0 +1,7 @@
+{
+  "phase": "authorization_expired_without_input",
+  "tokenCaptured": false,
+  "setupProcessesStopped": true,
+  "sourceCredentialsChanged": false,
+  "privateSetupRemoved": true
+}

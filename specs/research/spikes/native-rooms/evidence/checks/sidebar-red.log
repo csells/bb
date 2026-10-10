@@ -1,0 +1,559 @@
+• turbo 2.10.12
+
+   • Packages in scope: bb-plugin-thread-list
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 152127be891c7741
+@bb/plugin-build:generate: cache miss, executing 4b3c35942a8cf6ff
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/templates:generate:plugin-scaffold: cache miss, executing c13005252efd7000
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates: cache miss, executing 37d0c1245c774098
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@get-bb/plugin-sdk:build: cache miss, executing 458b22c19c997f7e
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: > @get-bb/plugin-sdk@0.6.33 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-sdk
+@get-bb/plugin-sdk:build: > node scripts/build-runtime.mjs
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: Built 19 @get-bb/plugin-sdk runtime entries.
+bb-plugin-thread-list:test: cache miss, executing c0487a2fde05c698
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: > bb-plugin-thread-list@0.1.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/thread-list
+bb-plugin-thread-list:test: > vitest run --config vitest.config.ts "app/list/ProjectList.rooms.test.tsx"
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/thread-list[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:  [31m❯[39m [30m[43m bb-plugin-thread-list [49m[39m app/list/ProjectList.rooms.test.tsx [2m([22m[2m2 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[32m 246[2mms[22m[39m
+bb-plugin-thread-list:test: [31m   [31m×[31m keeps rooms alongside native thread navigation in chronological mode[39m[32m 181[2mms[22m[39m
+bb-plugin-thread-list:test: [31m   [31m×[31m keeps rooms alongside native thread navigation in project mode[39m[32m 65[2mms[22m[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: [41m[1m FAIL [22m[49m [30m[43m bb-plugin-thread-list [49m[39m app/list/ProjectList.rooms.test.tsx[2m > [22mkeeps rooms alongside native thread navigation in chronological mode
+bb-plugin-thread-list:test: [31m[1mTestingLibraryElementError[22m[39m: Unable to find an accessible element with the role "link" and name "Shared design Room"
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: Here are the accessible roles:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   button:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Design":
+bb-plugin-thread-list:test:   [36m<div[39m
+bb-plugin-thread-list:test:     [33maria-describedby[39m=[32m"DndDescribedBy-0"[39m
+bb-plugin-thread-list:test:     [33maria-disabled[39m=[32m"false"[39m
+bb-plugin-thread-list:test:     [33maria-roledescription[39m=[32m"sortable"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"duration-200 flex shrink-0 items-center px-1 outline-none ring-sidebar-ring ease-linear focus-visible:ring-2 [&>[data-icon-root]]:size-4 [&>[data-icon-root]]:shrink-0 bg-sidebar bb-sidebar-hover-actions-row text-xs font-normal leading-5 text-muted-foreground pl-2 rounded-md pr-0 transition-colors select-none"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar[39m=[32m"group-label"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-sticky-tier[39m=[32m"label"[39m
+bb-plugin-thread-list:test:     [33mrole[39m=[32m"button"[39m
+bb-plugin-thread-list:test:     [33mtabindex[39m=[32m"0"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Collapse Design section":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-expanded[39m=[32m"true"[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Collapse Design section"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"bb-sidebar-hover-actions relative z-20 inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md outline-none ring-sidebar-ring focus-visible:ring-2 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active transition-none"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-hover-actions-mobile[39m=[32m"always"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-rename-anchor[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "New thread in Design section":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"New thread in Design section"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-8 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Design section actions":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-expanded[39m=[32m"false"[39m
+bb-plugin-thread-list:test:     [33maria-haspopup[39m=[32m"menu"[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Design section actions"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active select-none h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-9 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-rename-anchor[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mid[39m=[32m"radix-_r_k_"[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Open Independent threadIndependent thread Unread thread succeeded":
+bb-plugin-thread-list:test:   [36m<div[39m
+bb-plugin-thread-list:test:     [33maria-describedby[39m=[32m"DndDescribedBy-0"[39m
+bb-plugin-thread-list:test:     [33maria-disabled[39m=[32m"false"[39m
+bb-plugin-thread-list:test:     [33maria-roledescription[39m=[32m"sortable"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"bb-sidebar-hover-actions-row group/thread-row flex w-full items-center gap-2 rounded-md pr-0 text-sm transition-none relative h-[var(--bb-sidebar-row-height)] max-md:pointer-coarse:h-[var(--bb-sidebar-row-height-coarse)] cursor-pointer text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground bb-sidebar-accent-row has-[[data-state=open]]:bg-sidebar-accent has-[[data-sidebar-rename-anchor]:focus-visible]:bg-sidebar-accent select-none data-[sidebar-touch-armed=true]:!bg-transparent"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-rename-row[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mrole[39m=[32m"button"[39m
+bb-plugin-thread-list:test:     [33mstyle[39m=[32m"padding-left: 8px;"[39m
+bb-plugin-thread-list:test:     [33mtabindex[39m=[32m"0"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Archive thread":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Archive thread"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-9 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Thread actions":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-expanded[39m=[32m"false"[39m
+bb-plugin-thread-list:test:     [33maria-haspopup[39m=[32m"menu"[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Thread actions"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active select-none h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-9 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mdata-thread-actions-trigger[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mid[39m=[32m"radix-_r_o_"[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Threads":
+bb-plugin-thread-list:test:   [36m<div[39m
+bb-plugin-thread-list:test:     [33maria-describedby[39m=[32m"DndDescribedBy-0"[39m
+bb-plugin-thread-list:test:     [33maria-disabled[39m=[32m"false"[39m
+bb-plugin-thread-list:test:     [33maria-roledescription[39m=[32m"sortable"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"duration-200 flex shrink-0 items-center px-1 outline-none ring-sidebar-ring ease-linear focus-visible:ring-2 [&>[data-icon-root]]:size-4 [&>[data-icon-root]]:shrink-0 bg-sidebar bb-sidebar-hover-actions-row text-xs font-normal leading-5 text-muted-foreground pl-2 rounded-md pr-0 transition-colors select-none"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar[39m=[32m"group-label"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-sticky-tier[39m=[32m"label"[39m
+bb-plugin-thread-list:test:     [33mrole[39m=[32m"button"[39m
+bb-plugin-thread-list:test:     [33mtabindex[39m=[32m"0"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Collapse Threads section":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-expanded[39m=[32m"true"[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Collapse Threads section"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"bb-sidebar-hover-actions relative z-20 inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md outline-none ring-sidebar-ring focus-visible:ring-2 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active transition-none"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-hover-actions-mobile[39m=[32m"always"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-rename-anchor[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "New thread in Threads":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"New thread in Threads"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-8 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Threads actions":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-expanded[39m=[32m"false"[39m
+bb-plugin-thread-list:test:     [33maria-haspopup[39m=[32m"menu"[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Threads actions"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active select-none h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-9 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-rename-anchor[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mid[39m=[32m"radix-_r_1_"[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   --------------------------------------------------
+bb-plugin-thread-list:test:   link:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Open Independent thread":
+bb-plugin-thread-list:test:   [36m<a[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Open Independent thread"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"absolute inset-0 rounded-md outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-rename-anchor[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-thread-id[39m=[32m"thr_test"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-thread-shortcut-target[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mdraggable[39m=[32m"false"[39m
+bb-plugin-thread-list:test:     [33mhref[39m=[32m"/projects/proj_test/threads/thr_test"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   --------------------------------------------------
+bb-plugin-thread-list:test:   paragraph:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "":
+bb-plugin-thread-list:test:   [36m<p[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"text-xs leading-4 text-subtle-foreground/60"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   --------------------------------------------------
+bb-plugin-thread-list:test:   status:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "":
+bb-plugin-thread-list:test:   [36m<div[39m
+bb-plugin-thread-list:test:     [33maria-atomic[39m=[32m"true"[39m
+bb-plugin-thread-list:test:     [33maria-live[39m=[32m"assertive"[39m
+bb-plugin-thread-list:test:     [33mid[39m=[32m"DndLiveRegion-0"[39m
+bb-plugin-thread-list:test:     [33mrole[39m=[32m"status"[39m
+bb-plugin-thread-list:test:     [33mstyle[39m=[32m"position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip: rect(0px); clip-path: inset(100%); white-space: nowrap;"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   --------------------------------------------------
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: Ignored nodes: comments, script, style
+bb-plugin-thread-list:test: [36m<body>[39m
+bb-plugin-thread-list:test:   [36m<div>[39m
+bb-plugin-thread-list:test:     [36m<div[39m
+bb-plugin-thread-list:test:       [33mclass[39m=[32m"contents"[39m
+bb-plugin-thread-list:test:     [36m>[39m
+bb-plugin-thread-list:test:       [36m<div[39m
+bb-plugin-thread-list:test:         [33mclass[39m=[32m"relative flex w-full min-w-0 flex-col"[39m
+bb-plugin-thread-list:test:         [33mdata-sidebar[39m=[32m"group"[39m
+bb-plugin-thread-list:test:         [33mdata-sidebar-sticky-density[39m=[32m"compact-actions"[39m
+bb-plugin-thread-list:test:         [33mdata-sidebar-sticky-stack[39m=[32m""[39m
+bb-plugin-thread-list:test:       [36m>[39m
+bb-plugin-thread-list:test:         [36m<div[39m
+bb-plugin-thread-list:test:           [33mclass[39m=[32m"w-full text-sm"[39m
+bb-plugin-thread-list:test:           [33mdata-sidebar[39m=[32m"group-content"[39m
+bb-plugin-thread-list:test:         [36m>[39m
+bb-plugin-thread-list:test:           [36m<div[39m
+bb-plugin-thread-list:test:             [33mclass[39m=[32m"min-w-0 outline-none"[39m
+bb-plugin-thread-list:test:             [33mtabindex[39m=[32m"-1"[39m
+bb-plugin-thread-list:test:           [36m>[39m
+bb-plugin-thread-list:test:             [36m<div[39m
+bb-plugin-thread-list:test:               [33mclass[39m=[32m"space-y-4"[39m
+bb-plugin-thread-list:test:             [36m>[39m
+bb-plugin-thread-list:test:               [36m<div[39m
+bb-plugin-thread-list:test:                 [33mdata-sidebar-visibility-group[39m=[32m"section:sec_a"[39m
+bb-plugin-thread-list:test:               [36m>[39m
+bb-plugin-thread-list:test:                 [36m<div[39m
+bb-plugin-thread-list:test:                   [33mclass[39m=[32m"relative space-y-0.5"[39m
+bb-plugin-thread-list:test:                   [33mdata-sidebar-sticky-section[39m=[32m""[39m
+bb-plugin-thread-list:test:                 [36m>[39m
+bb-plugin-thread-list:test:                   [36m<div[39m
+bb-plugin-thread-list:test:                     [33mdata-sidebar-windowed-item[39m=[32m""[39m
+bb-plugin-thread-list:test:                     [33mstyle[39m=[32m""[39m
+bb-plugin-thread-list:test:                   [36m>[39m
+bb-plugin-thread-list:test:                     [36m<div[39m
+bb-plugin-thread-list:test:                       [33mclass[39m=[32m"group/sidebar-section relative min-w-0 rounded-md transition-colors"[39m
+bb-plugin-thread-list:test:                       [33mdata-sidebar-rename-row[39m=[32m""[39m
+bb-plugin-thread-list:test:                       [33mdata-sidebar-section-id[39m=[32m"sec_a"[39m
+bb-plugin-thread-list:test:                       [33mdata-sidebar-sticky-group[39m=[32m""[39m
+bb-plugin-thread-list:test:                     [36m>[39m
+bb-plugin-thread-list:test:                       [36m<div[39m
+bb-plugin-thread-list:test:                         [33maria-describedby[39m=[32m"DndDescribedBy-0"[39m
+bb-plugin-thread-list:test:                         [33maria-disabled[39m=[32m"false"[39m
+bb-plugin-thread-list:test:                         [33maria-roledescription[39m=[32m"sortable"[39m
+bb-plugin-thread-list:test:                         [33mclass[39m=[32m"duration-200 flex shrink-0 items-center px-1 outline-none ring-sidebar-ring ease-linear focus-visible:ring-2 [&>[data-icon-root]]:size-4 [&>[data-icon-root]]:shrink-0 bg-sidebar bb-sidebar-hover-actions-row text-xs font-normal leading-5 text-muted-foreground pl-2 rounded-md pr-0 transition-colors select-none"[39m
+bb-plugin-thread-list:test:                         [33mdata-sidebar[39m=[32m"group-label"[39m
+bb-plugin-thread-list:test:                         [33mdata-sidebar-sticky-tier[39m=[32m"label"[39m
+bb-plugin-thread-list:test:                         [33mrole[39m=[32m"button"[39m
+bb-plugin-thread-list:test:                         [33mtabindex[39m=[32m"0"[39m
+bb-plugin-thread-list:test:                       [36m>[39m
+bb-plugin-thread-list:test:                         [36m<span[39m
+bb-plugin-thread-list:test:                           [33mclass[39m=[32m"relative z-10 flex min-w-0 flex-1 items-center gap-1 text-left"[39m
+bb-plugin-thread-list:test:                         [36m>[39m
+bb-plugin-thread-list:test:                           [36m<span[39m
+bb-plugin-thread-list:test:                             [33mclass[39m=[32m"min-w-0 truncate"[39m
+bb-plugin-thread-list:test:                             [33mtitle[39m=[32m"Design"[39m
+bb-plugin-thread-list:test:                           [36m>[39m
+bb-plugin-thread-list:test:                             [0mDesign[0m
+bb-plugin-thread-list:test:                           [36m</span>[39m
+bb-plugin-thread-list:test:                           [36m<button[39m
+bb-plugin-thread-list:test:                             [33maria-expanded[39m=[32m"true"[39m
+bb-plugin-thread-list:test:                             [33maria-label[39m=[32m"Collapse Design section"[39m
+bb-plugin-thread-list:test:                             [33mclass[39m=[32m"bb-sidebar-hover-actions relative z-20 inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md outline-none ring-sidebar-ring focus-visible:ring-2 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active transition-none"[39m
+bb-plugin-thread-list:test:                             [33mdata-sidebar-hover-actions-mobile[39m=[32m"always"[39m
+bb-plugin-thread-list:test:                             [33mdata-sidebar-rename-anchor[39m=[32m""[39m
+bb-plugin-thread-list:test:                             [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:                           [36m>[39m
+bb-plugin-thread-list:test:                             [36m<span[39m
+bb-plugin-thread-list:test:                               [33maria-hidden[39m=[32m"true"[39m
+bb-plugin-thread-list:test:                               [33mclass[39m=[32m"size-3 transition-transform duration-150 rotate-90"[39m
+bb-plugin-thread-list:test:                               [33mdata-icon[39m=[32m"ChevronRight"[39m
+bb-plugin-thread-list:test:                             [36m/>[39m
+bb-plugin-thread-list:test:                           [36m</button>[39m
+bb-plugin-thread-list:test:                         [36m</span>[39m
+bb-plugin-thread-list:test:                         [36m<span[39m
+bb-plugin-thread-list:test:                           [33mclass[39m=[32m"relative z-20 inline-flex h-7 shrink-0 items-center max-md:pointer-coarse:h-9 gap-0.5"[39m
+bb-plugin-thread-list:test:                           [33mdata-sidebar-trailing-controls[39m=[32m""[39m
+bb-plugin-thread-list:test:                         [36m>[39m
+bb-plugin-thread-list:test:                           [36m<span[39m
+bb-plugin-thread-list:test:                             [33mclass[39m=[32m"inline-flex shrink-0 items-center gap-0.5 bb-sidebar-hover-actions"[39m
+bb-plugin-thread-list:test:                             [33mdata-sidebar-hover-actions-mobile[39m=[32m"always"[39m
+bb-plugin-thread-list:test:                           [36m>[39m
+bb-plugin-thread-list:test:                             [36m<span[39m
+bb-plugin-thread-list:test:                               [33mclass[39m=[32m"inline-flex shrink-0 items-center gap-0.5 max-md:pointer-coarse:gap-0"[39m
+bb-plugin-thread-list:test:                               [33mdata-sidebar-row-controls[39m=[32m""[39m
+bb-plugin-thread-list:test:                             [36m>[39m
+bb-plugin-thread-list:test:                               [36m<button[39m
+bb-plugin-thread-list:test:                                 [33maria-label[39m=[32m"New thread in Design section"[39m
+bb-plugin-thread-list:test:                                 [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-8 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:                                 [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:                                 [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:                               [36m>[39m
+bb-plugin-thread-list:test:                                 [36m<span[39m
+bb-plugin-thread-list:test:                                   [33mclass[39m=[32m"size-4 max-md:pointer-coarse:size-5"[39m
+bb-plugin-thread-list:test:                                   [33mdata-icon[39m=[32m"MessageSquarePlus"[39m
+bb-plugin-thread-list:test:                                 [36m/>[39m
+bb-plugin-thread-list:test:                               [36m</button>[39m
+bb-plugin-thread-list:test:                               [36m<button[39m
+bb-plugin-thread-list:test:                                 [33maria-expanded[39m=[32m"false"[39m
+bb-plugin-thread-list:test:                    ...
+bb-plugin-thread-list:test: [90m [2m❯[22m Object.getElementError ../../node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+bb-plugin-thread-list:test: [90m [2m❯[22m ../../node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m76:38[22m[39m
+bb-plugin-thread-list:test: [90m [2m❯[22m ../../node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m52:17[22m[39m
+bb-plugin-thread-list:test: [90m [2m❯[22m ../../node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+bb-plugin-thread-list:test: [36m [2m❯[22m app/list/ProjectList.rooms.test.tsx:[2m87:10[22m[39m
+bb-plugin-thread-list:test:     [90m 85|[39m     [34mexpect[39m(
+bb-plugin-thread-list:test:     [90m 86|[39m       screen
+bb-plugin-thread-list:test:     [90m 87|[39m         [33m.[39m[34mgetByRole[39m([32m"link"[39m[33m,[39m { name[33m:[39m [32m"Shared design Room"[39m })
+bb-plugin-thread-list:test:     [90m   |[39m          [31m^[39m
+bb-plugin-thread-list:test:     [90m 88|[39m         [33m.[39m[34mgetAttribute[39m([32m"href"[39m)[33m,[39m
+bb-plugin-thread-list:test:     [90m 89|[39m     )[33m.[39m[34mtoBe[39m([32m"/rooms/room_a"[39m)[33m;[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯[22m[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: [41m[1m FAIL [22m[49m [30m[43m bb-plugin-thread-list [49m[39m app/list/ProjectList.rooms.test.tsx[2m > [22mkeeps rooms alongside native thread navigation in project mode
+bb-plugin-thread-list:test: [31m[1mTestingLibraryElementError[22m[39m: Unable to find an accessible element with the role "link" and name "Shared design Room"
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: Here are the accessible roles:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   button:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Test project":
+bb-plugin-thread-list:test:   [36m<div[39m
+bb-plugin-thread-list:test:     [33maria-describedby[39m=[32m"DndDescribedBy-1"[39m
+bb-plugin-thread-list:test:     [33maria-disabled[39m=[32m"true"[39m
+bb-plugin-thread-list:test:     [33maria-roledescription[39m=[32m"sortable"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"duration-200 flex shrink-0 items-center px-1 outline-none ring-sidebar-ring ease-linear focus-visible:ring-2 [&>[data-icon-root]]:size-4 [&>[data-icon-root]]:shrink-0 bg-sidebar bb-sidebar-hover-actions-row text-xs font-normal leading-5 text-muted-foreground pl-2 rounded-md pr-0 transition-colors"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar[39m=[32m"group-label"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-sticky-tier[39m=[32m"label"[39m
+bb-plugin-thread-list:test:     [33mrole[39m=[32m"button"[39m
+bb-plugin-thread-list:test:     [33mtabindex[39m=[32m"0"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Collapse Test project section":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-expanded[39m=[32m"true"[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Collapse Test project section"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"bb-sidebar-hover-actions relative z-20 inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md outline-none ring-sidebar-ring focus-visible:ring-2 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active transition-none"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-hover-actions-mobile[39m=[32m"always"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-rename-anchor[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "New thread in Test project":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"New thread in Test project"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-8 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Test project actions":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-expanded[39m=[32m"false"[39m
+bb-plugin-thread-list:test:     [33maria-haspopup[39m=[32m"menu"[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Test project actions"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active select-none h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-9 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-rename-anchor[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mid[39m=[32m"radix-_r_s_"[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Open Independent threadIndependent thread Unread thread succeeded":
+bb-plugin-thread-list:test:   [36m<div[39m
+bb-plugin-thread-list:test:     [33maria-describedby[39m=[32m"DndDescribedBy-1"[39m
+bb-plugin-thread-list:test:     [33maria-disabled[39m=[32m"false"[39m
+bb-plugin-thread-list:test:     [33maria-roledescription[39m=[32m"sortable"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"bb-sidebar-hover-actions-row group/thread-row flex w-full items-center gap-2 rounded-md pr-0 text-sm transition-none relative h-[var(--bb-sidebar-row-height)] max-md:pointer-coarse:h-[var(--bb-sidebar-row-height-coarse)] cursor-pointer text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground bb-sidebar-accent-row has-[[data-state=open]]:bg-sidebar-accent has-[[data-sidebar-rename-anchor]:focus-visible]:bg-sidebar-accent select-none data-[sidebar-touch-armed=true]:!bg-transparent"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-rename-row[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mrole[39m=[32m"button"[39m
+bb-plugin-thread-list:test:     [33mstyle[39m=[32m"padding-left: 8px;"[39m
+bb-plugin-thread-list:test:     [33mtabindex[39m=[32m"0"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Archive thread":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Archive thread"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-9 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Thread actions":
+bb-plugin-thread-list:test:   [36m<button[39m
+bb-plugin-thread-list:test:     [33maria-expanded[39m=[32m"false"[39m
+bb-plugin-thread-list:test:     [33maria-haspopup[39m=[32m"menu"[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Thread actions"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active select-none h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-9 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:     [33mdata-thread-actions-trigger[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mid[39m=[32m"radix-_r_1k_"[39m
+bb-plugin-thread-list:test:     [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   --------------------------------------------------
+bb-plugin-thread-list:test:   link:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "Open Independent thread":
+bb-plugin-thread-list:test:   [36m<a[39m
+bb-plugin-thread-list:test:     [33maria-label[39m=[32m"Open Independent thread"[39m
+bb-plugin-thread-list:test:     [33mclass[39m=[32m"absolute inset-0 rounded-md outline-none"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-rename-anchor[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-thread-id[39m=[32m"thr_test"[39m
+bb-plugin-thread-list:test:     [33mdata-sidebar-thread-shortcut-target[39m=[32m""[39m
+bb-plugin-thread-list:test:     [33mdraggable[39m=[32m"false"[39m
+bb-plugin-thread-list:test:     [33mhref[39m=[32m"/projects/proj_test/threads/thr_test"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   --------------------------------------------------
+bb-plugin-thread-list:test:   status:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   Name "":
+bb-plugin-thread-list:test:   [36m<div[39m
+bb-plugin-thread-list:test:     [33maria-atomic[39m=[32m"true"[39m
+bb-plugin-thread-list:test:     [33maria-live[39m=[32m"assertive"[39m
+bb-plugin-thread-list:test:     [33mid[39m=[32m"DndLiveRegion-1"[39m
+bb-plugin-thread-list:test:     [33mrole[39m=[32m"status"[39m
+bb-plugin-thread-list:test:     [33mstyle[39m=[32m"position: fixed; top: 0px; left: 0px; width: 1px; height: 1px; margin: -1px; border: 0px; padding: 0px; overflow: hidden; clip: rect(0px); clip-path: inset(100%); white-space: nowrap;"[39m
+bb-plugin-thread-list:test:   [36m/>[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:   --------------------------------------------------
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: Ignored nodes: comments, script, style
+bb-plugin-thread-list:test: [36m<body>[39m
+bb-plugin-thread-list:test:   [36m<div>[39m
+bb-plugin-thread-list:test:     [36m<div[39m
+bb-plugin-thread-list:test:       [33mclass[39m=[32m"contents"[39m
+bb-plugin-thread-list:test:     [36m>[39m
+bb-plugin-thread-list:test:       [36m<div[39m
+bb-plugin-thread-list:test:         [33mclass[39m=[32m"relative flex w-full min-w-0 flex-col"[39m
+bb-plugin-thread-list:test:         [33mdata-sidebar[39m=[32m"group"[39m
+bb-plugin-thread-list:test:         [33mdata-sidebar-sticky-density[39m=[32m"compact-actions"[39m
+bb-plugin-thread-list:test:         [33mdata-sidebar-sticky-stack[39m=[32m""[39m
+bb-plugin-thread-list:test:       [36m>[39m
+bb-plugin-thread-list:test:         [36m<div[39m
+bb-plugin-thread-list:test:           [33mclass[39m=[32m"w-full text-sm"[39m
+bb-plugin-thread-list:test:           [33mdata-sidebar[39m=[32m"group-content"[39m
+bb-plugin-thread-list:test:         [36m>[39m
+bb-plugin-thread-list:test:           [36m<div[39m
+bb-plugin-thread-list:test:             [33mclass[39m=[32m"min-w-0 outline-none"[39m
+bb-plugin-thread-list:test:             [33mtabindex[39m=[32m"-1"[39m
+bb-plugin-thread-list:test:           [36m>[39m
+bb-plugin-thread-list:test:             [36m<div[39m
+bb-plugin-thread-list:test:               [33mclass[39m=[32m"space-y-4"[39m
+bb-plugin-thread-list:test:             [36m>[39m
+bb-plugin-thread-list:test:               [36m<div[39m
+bb-plugin-thread-list:test:                 [33mdata-sidebar-visibility-group[39m=[32m"project:proj_test"[39m
+bb-plugin-thread-list:test:               [36m>[39m
+bb-plugin-thread-list:test:                 [36m<div[39m
+bb-plugin-thread-list:test:                   [33mdata-sidebar-project-id[39m=[32m"proj_test"[39m
+bb-plugin-thread-list:test:                   [33mdata-sidebar-sticky-project-item[39m=[32m""[39m
+bb-plugin-thread-list:test:                   [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:                 [36m>[39m
+bb-plugin-thread-list:test:                   [36m<div[39m
+bb-plugin-thread-list:test:                     [33mclass[39m=[32m"group/sidebar-section relative min-w-0 rounded-md transition-colors"[39m
+bb-plugin-thread-list:test:                     [33mdata-sidebar-rename-row[39m=[32m""[39m
+bb-plugin-thread-list:test:                     [33mdata-sidebar-sticky-group[39m=[32m""[39m
+bb-plugin-thread-list:test:                   [36m>[39m
+bb-plugin-thread-list:test:                     [36m<div[39m
+bb-plugin-thread-list:test:                       [33maria-describedby[39m=[32m"DndDescribedBy-1"[39m
+bb-plugin-thread-list:test:                       [33maria-disabled[39m=[32m"true"[39m
+bb-plugin-thread-list:test:                       [33maria-roledescription[39m=[32m"sortable"[39m
+bb-plugin-thread-list:test:                       [33mclass[39m=[32m"duration-200 flex shrink-0 items-center px-1 outline-none ring-sidebar-ring ease-linear focus-visible:ring-2 [&>[data-icon-root]]:size-4 [&>[data-icon-root]]:shrink-0 bg-sidebar bb-sidebar-hover-actions-row text-xs font-normal leading-5 text-muted-foreground pl-2 rounded-md pr-0 transition-colors"[39m
+bb-plugin-thread-list:test:                       [33mdata-sidebar[39m=[32m"group-label"[39m
+bb-plugin-thread-list:test:                       [33mdata-sidebar-sticky-tier[39m=[32m"label"[39m
+bb-plugin-thread-list:test:                       [33mrole[39m=[32m"button"[39m
+bb-plugin-thread-list:test:                       [33mtabindex[39m=[32m"0"[39m
+bb-plugin-thread-list:test:                     [36m>[39m
+bb-plugin-thread-list:test:                       [36m<span[39m
+bb-plugin-thread-list:test:                         [33mclass[39m=[32m"relative z-10 flex min-w-0 flex-1 items-center gap-1 text-left"[39m
+bb-plugin-thread-list:test:                       [36m>[39m
+bb-plugin-thread-list:test:                         [36m<span[39m
+bb-plugin-thread-list:test:                           [33mclass[39m=[32m"min-w-0 truncate"[39m
+bb-plugin-thread-list:test:                           [33mtitle[39m=[32m"Test project"[39m
+bb-plugin-thread-list:test:                         [36m>[39m
+bb-plugin-thread-list:test:                           [0mTest project[0m
+bb-plugin-thread-list:test:                         [36m</span>[39m
+bb-plugin-thread-list:test:                         [36m<button[39m
+bb-plugin-thread-list:test:                           [33maria-expanded[39m=[32m"true"[39m
+bb-plugin-thread-list:test:                           [33maria-label[39m=[32m"Collapse Test project section"[39m
+bb-plugin-thread-list:test:                           [33mclass[39m=[32m"bb-sidebar-hover-actions relative z-20 inline-flex size-6 shrink-0 cursor-pointer items-center justify-center rounded-md outline-none ring-sidebar-ring focus-visible:ring-2 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active transition-none"[39m
+bb-plugin-thread-list:test:                           [33mdata-sidebar-hover-actions-mobile[39m=[32m"always"[39m
+bb-plugin-thread-list:test:                           [33mdata-sidebar-rename-anchor[39m=[32m""[39m
+bb-plugin-thread-list:test:                           [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:                         [36m>[39m
+bb-plugin-thread-list:test:                           [36m<span[39m
+bb-plugin-thread-list:test:                             [33maria-hidden[39m=[32m"true"[39m
+bb-plugin-thread-list:test:                             [33mclass[39m=[32m"size-3 transition-transform duration-150 rotate-90"[39m
+bb-plugin-thread-list:test:                             [33mdata-icon[39m=[32m"ChevronRight"[39m
+bb-plugin-thread-list:test:                           [36m/>[39m
+bb-plugin-thread-list:test:                         [36m</button>[39m
+bb-plugin-thread-list:test:                       [36m</span>[39m
+bb-plugin-thread-list:test:                       [36m<span[39m
+bb-plugin-thread-list:test:                         [33mclass[39m=[32m"relative z-20 inline-flex h-7 shrink-0 items-center max-md:pointer-coarse:h-9 gap-0.5"[39m
+bb-plugin-thread-list:test:                         [33mdata-sidebar-trailing-controls[39m=[32m""[39m
+bb-plugin-thread-list:test:                       [36m>[39m
+bb-plugin-thread-list:test:                         [36m<span[39m
+bb-plugin-thread-list:test:                           [33mclass[39m=[32m"inline-flex shrink-0 items-center gap-0.5 bb-sidebar-hover-actions"[39m
+bb-plugin-thread-list:test:                           [33mdata-sidebar-hover-actions-mobile[39m=[32m"always"[39m
+bb-plugin-thread-list:test:                         [36m>[39m
+bb-plugin-thread-list:test:                           [36m<span[39m
+bb-plugin-thread-list:test:                             [33mclass[39m=[32m"inline-flex shrink-0 items-center gap-0.5 max-md:pointer-coarse:gap-0"[39m
+bb-plugin-thread-list:test:                             [33mdata-sidebar-row-controls[39m=[32m""[39m
+bb-plugin-thread-list:test:                           [36m>[39m
+bb-plugin-thread-list:test:                             [36m<button[39m
+bb-plugin-thread-list:test:                               [33maria-label[39m=[32m"New thread in Test project"[39m
+bb-plugin-thread-list:test:                               [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hover:duration-0 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_[data-icon-root]]:pointer-events-none [&_[data-icon-root]]:size-4 [&_[data-icon-root]]:shrink-0 aria-pressed:bg-state-active aria-pressed:text-foreground aria-pressed:hover:bg-state-active h-7 w-7 max-md:pointer-coarse:h-9 max-md:pointer-coarse:w-8 text-subtle-foreground hover:text-muted-foreground data-[state=open]:text-muted-foreground hover:bg-state-hover active:bg-state-active data-[state=open]:bg-state-active data-[state=open]:hover:bg-state-active relative m-0 shrink-0 cursor-pointer rounded-md p-0 outline-none"[39m
+bb-plugin-thread-list:test:                               [33mdata-state[39m=[32m"closed"[39m
+bb-plugin-thread-list:test:                               [33mtype[39m=[32m"button"[39m
+bb-plugin-thread-list:test:                             [36m>[39m
+bb-plugin-thread-list:test:                               [36m<span[39m
+bb-plugin-thread-list:test:                                 [33mclass[39m=[32m"size-4 max-md:pointer-coarse:size-5"[39m
+bb-plugin-thread-list:test:                                 [33mdata-icon[39m=[32m"MessageSquarePlus"[39m
+bb-plugin-thread-list:test:                               [36m/>[39m
+bb-plugin-thread-list:test:                             [36m</button>[39m
+bb-plugin-thread-list:test:                             [36m<button[39m
+bb-plugin-thread-list:test:                               [33maria-expanded[39m=[32m"false"[39m
+bb-plugin-thread-list:test:                               [33maria-haspopup[39m=[32m"menu"[39m
+bb-plugin-thread-list:test:                               [33maria-label[39m=[32m"Test project actions"[39m
+bb-plugin-thread-list:test:                               [33mclass[39m=[32m"inline-flex items-center justify-center gap-2 whitespace-nowrap text-sm font-medium transition-colors duration-150 hove...
+bb-plugin-thread-list:test: [90m [2m❯[22m Object.getElementError ../../node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/config.js:[2m37:19[22m[39m
+bb-plugin-thread-list:test: [90m [2m❯[22m ../../node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m76:38[22m[39m
+bb-plugin-thread-list:test: [90m [2m❯[22m ../../node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m52:17[22m[39m
+bb-plugin-thread-list:test: [90m [2m❯[22m ../../node_modules/.pnpm/@testing-library+dom@10.4.1/node_modules/@testing-library/dom/dist/query-helpers.js:[2m95:19[22m[39m
+bb-plugin-thread-list:test: [36m [2m❯[22m app/list/ProjectList.rooms.test.tsx:[2m87:10[22m[39m
+bb-plugin-thread-list:test:     [90m 85|[39m     [34mexpect[39m(
+bb-plugin-thread-list:test:     [90m 86|[39m       screen
+bb-plugin-thread-list:test:     [90m 87|[39m         [33m.[39m[34mgetByRole[39m([32m"link"[39m[33m,[39m { name[33m:[39m [32m"Shared design Room"[39m })
+bb-plugin-thread-list:test:     [90m   |[39m          [31m^[39m
+bb-plugin-thread-list:test:     [90m 88|[39m         [33m.[39m[34mgetAttribute[39m([32m"href"[39m)[33m,[39m
+bb-plugin-thread-list:test:     [90m 89|[39m     )[33m.[39m[34mtoBe[39m([32m"/rooms/room_a"[39m)[33m;[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯[22m[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+bb-plugin-thread-list:test: [2m      Tests [22m [1m[31m2 failed[39m[22m[90m (2)[39m
+bb-plugin-thread-list:test: [2m   Start at [22m 18:15:17
+bb-plugin-thread-list:test: [2m   Duration [22m 1.49s[2m (transform 331ms, setup 0ms, import 616ms, tests 246ms, environment 558ms)[22m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:  ELIFECYCLE  Test failed. See above for more details.
+bb-plugin-thread-list#test:  ERROR  command (/Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/thread-list) /opt/homebrew/bin/pnpm run test app/list/ProjectList.rooms.test.tsx exited (1)
+
+ Tasks:    5 successful, 6 total
+Cached:    0 cached, 6 total
+  Time:    3.31s
+Failed:    bb-plugin-thread-list#test
+
+ ERROR  run failed: command  exited (1)

@@ -81,6 +81,150 @@ const publication: Publication = {
   replyTo: null,
 };
 describe("explicit authenticated participation", () => {
+  it("binds a steering publication to its durable target and human text without replaying cancelled input", () => {
+    const { store, room, human, second, a, b, ca } = setup();
+    const text = "Use the revised plan";
+    store.recordSteering(
+      ca.activation.id,
+      "thread-alpha",
+      "steer-publication",
+      `Steering from human ${human.name} (@${human.handle}): ${text}`,
+    );
+    for (const [actor, target, content] of [
+      [second, a.id, text],
+      [human, b.id, text],
+      [human, a.id, "Changed input"],
+    ] as const) {
+      expect(() =>
+        store.publishAcknowledgedSteering(
+          actor,
+          room.id,
+          target,
+          content,
+          "steer-publication",
+        ),
+      ).toThrow();
+    }
+    expect(store.messages(room.id)).toHaveLength(1);
+    store.fenceAgent(a.id, "Stopped after acknowledgement");
+    const receipt = store.publishAcknowledgedSteering(
+      human,
+      room.id,
+      a.id,
+      text,
+      "steer-publication",
+    );
+    expect(
+      store.publishAcknowledgedSteering(
+        human,
+        room.id,
+        a.id,
+        text,
+        "steer-publication",
+      ),
+    ).toMatchObject({
+      message: { id: receipt.message.id },
+      duplicate: true,
+    });
+    expect(
+      store
+        .deliveries(room.id)
+        .filter((d) => d.messageId === receipt.message.id),
+    ).toEqual([expect.objectContaining({ agentId: b.id, intent: "notice" })]);
+    expect(store.pendingSteerings(ca.activation.id)).toHaveLength(1);
+    const next = setup();
+    next.store.recordSteering(
+      next.ca.activation.id,
+      "thread-alpha",
+      "cancelled-steer",
+      `Steering from human ${next.human.name} (@${next.human.handle}): ${text}`,
+    );
+    next.store.fenceAgent(
+      next.a.id,
+      "Cancelled before acknowledgement returned",
+    );
+    next.store.settleSteering(
+      next.ca.activation.id,
+      "thread-alpha",
+      "cancelled-steer",
+      "cancelled",
+    );
+    expect(() =>
+      next.store.publishAcknowledgedSteering(
+        next.human,
+        next.room.id,
+        next.a.id,
+        text,
+        "cancelled-steer",
+      ),
+    ).toThrow("cancelled");
+    expect(next.store.messages(next.room.id)).toHaveLength(1);
+    expect(
+      next.store
+        .work()
+        .filter((d) => d.agentId === next.a.id && d.state === "queued"),
+    ).toEqual([]);
+  });
+  it("delivers completed public messages once to every peer with addressed request precedence", () => {
+    const { store, room, human, second, a, b, ca, command } = setup();
+    const c = store.addAgent(room.id, {
+      handle: "charlie",
+      name: "Charlie",
+      provider: "pi",
+      model: "test",
+      instructions: "",
+    });
+    const otherRoom = store.createRoom("Other", human.id);
+    store.addAgent(otherRoom.id, {
+      handle: "elsewhere",
+      name: "Elsewhere",
+      provider: "pi",
+      model: "test",
+      instructions: "",
+    });
+    for (const author of [human, second]) {
+      for (const intent of ["post", "notice", "request"] as const) {
+        const input = { ...publication, intent, recipients: [a.id] };
+        const requestId = `${author.id}-${intent}`;
+        const receipt = store.sendHuman(author, room.id, input, requestId);
+        expect(
+          store.sendHuman(author, room.id, input, requestId),
+        ).toMatchObject({
+          message: { id: receipt.message.id },
+          duplicate: true,
+        });
+        const deliveries = store
+          .deliveries(room.id)
+          .filter((d) => d.messageId === receipt.message.id);
+        expect(deliveries).toHaveLength(3);
+        expect(deliveries).toEqual(
+          expect.arrayContaining([
+            expect.objectContaining({
+              agentId: a.id,
+              intent: intent === "request" ? "request" : "notice",
+            }),
+            expect.objectContaining({ agentId: b.id, intent: "notice" }),
+            expect.objectContaining({ agentId: c.id, intent: "notice" }),
+          ]),
+        );
+      }
+    }
+    const receipt = z
+      .object({ message: z.object({ id: z.string() }) })
+      .parse(command(ca.token, "post", publication, "room-question"));
+    command(ca.token, "post", publication, "room-question");
+    const deliveries = store
+      .deliveries(room.id)
+      .filter((d) => d.messageId === receipt.message.id);
+    expect(deliveries).toHaveLength(2);
+    expect(deliveries).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ agentId: b.id, intent: "notice" }),
+        expect.objectContaining({ agentId: c.id, intent: "notice" }),
+      ]),
+    );
+    expect(store.deliveries(otherRoom.id)).toEqual([]);
+  });
   it("retains the execution lease across restart and Stop until every steering submission settles", () => {
     const directory = mkdtempSync(join(tmpdir(), "rooms-steering-"));
     directories.push(directory);
@@ -271,7 +415,7 @@ describe("explicit authenticated participation", () => {
       ),
     ).toThrow("different request");
     expect(store.messages(room.id)).toHaveLength(2);
-    expect(store.deliveries(room.id)).toHaveLength(2);
+    expect(store.deliveries(room.id)).toHaveLength(3);
   });
   it("keeps explicit silence successful without releasing an active provider lease", () => {
     const { store, room, second, a, ca, da, command } = setup();
@@ -289,6 +433,7 @@ describe("explicit authenticated participation", () => {
     const queued = store
       .work()
       .find((d) => d.agentId === a.id && d.state === "queued")!;
+    const deliveriesBeforeSilence = store.deliveries(room.id);
     expect(
       command(ca.token, "settle", { outcome: "no_reply" }, "silent"),
     ).toEqual({ outcome: "no_reply" });
@@ -304,9 +449,33 @@ describe("explicit authenticated participation", () => {
     });
     expect(store.beginActivation(queued.id)).not.toBeNull();
     expect(store.messages(room.id)).toHaveLength(2);
+    expect(store.deliveries(room.id).map((d) => d.id)).toEqual(
+      deliveriesBeforeSilence.map((d) => d.id),
+    );
   });
   it("streams selected public content with ordered retries and one notification at commit", () => {
     const { store, room, b, ca, cb, command } = setup();
+    const c = store.addAgent(room.id, {
+      handle: "charlie",
+      name: "Charlie",
+      provider: "pi",
+      model: "test",
+      instructions: "",
+    });
+    const aborted = z
+      .object({ messageId: z.string() })
+      .parse(command(ca.token, "stream.begin", {}, "aborted-begin"));
+    command(ca.token, "stream.append", {
+      ...aborted,
+      sequence: 0,
+      text: "Aborted",
+    });
+    command(ca.token, "stream.abort", aborted);
+    expect(
+      store
+        .deliveries(room.id)
+        .filter((d) => d.messageId === aborted.messageId),
+    ).toEqual([]);
     const begun = command(ca.token, "stream.begin", {}, "begin");
     expect(begun).toEqual(command(ca.token, "stream.begin", {}, "begin"));
     const { messageId } = z.object({ messageId: z.string() }).parse(begun);
@@ -353,7 +522,7 @@ describe("explicit authenticated participation", () => {
     expect(store.deliveries(room.id)).toHaveLength(2);
     const commit = {
       messageId,
-      intent: "notice",
+      intent: "request",
       recipients: [b.id],
       replyTo: null,
     };
@@ -375,7 +544,16 @@ describe("explicit authenticated participation", () => {
         text: "late",
       }),
     ).toThrow("terminal");
-    expect(store.deliveries(room.id)).toHaveLength(3);
+    const deliveries = store
+      .deliveries(room.id)
+      .filter((d) => d.messageId === messageId);
+    expect(deliveries).toHaveLength(2);
+    expect(deliveries).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ agentId: b.id, intent: "request" }),
+        expect.objectContaining({ agentId: c.id, intent: "notice" }),
+      ]),
+    );
     expect(store.message(messageId).status).toBe("complete");
   });
   it("preserves running capabilities across restart while fencing ambiguous dispatch without replay", () => {

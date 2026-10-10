@@ -47,3 +47,5 @@ sendAt?, reason? })`.
 - Use `bb thread cancel-plan <id>` to exit an active Plan turn without
   optimistically clearing its banner. Use `bb thread clear-goal <id>` to clear
   a thread's durable active Goal when supported by its provider. Both wait for provider confirmation.
+
+For callers acting on a previously observed turn, use `bb thread stop ID --expected-turn TURN_ID` or SDK `threads.stop({ threadId, expectedTurnId })`. A stale turn is ignored at the server and execution runtime; this scoped operation leaves successors and idle runtimes alone. General Stop retains its thread-wide behavior.

@@ -1,0 +1,123 @@
+{
+  "apply": true,
+  "roomIds": [
+    "7a2ce44b-4551-4034-9afb-9389b3ff0d15",
+    "2e7c82fe-b58e-4e0a-affb-23d417118968"
+  ],
+  "projectId": "proj_adqtsuub4t",
+  "startedAt": "2026-10-10T19:14:47.385Z",
+  "steps": [
+    "Archived both exact fixture native threads through the SDK",
+    "Removed only exact fixture Rooms rows, receipt scopes, and guest in one transaction",
+    "SDK project deletion completed for the isolated fixture project",
+    "Removed exact fixture workspace and private copies; Chris and Workshop preserved"
+  ],
+  "baseline": {
+    "roomTables": {
+      "rooms_rooms": 1,
+      "rooms_messages": 7,
+      "rooms_agents": 2,
+      "rooms_members": 1
+    },
+    "nativeThreads": [
+      {
+        "threadId": "thr_fbhp67gj3i",
+        "changedColumns": [
+          "last_read_at",
+          "updated_at"
+        ]
+      },
+      {
+        "threadId": "thr_ghwyvj3ihy",
+        "changedColumns": []
+      }
+    ],
+    "differences": [],
+    "roomRevision": {
+      "backup": 1243,
+      "beforeCleanup": 1255
+    }
+  },
+  "threadIds": [
+    "thr_4igh4k29tw",
+    "thr_8kcsry49wg"
+  ],
+  "counts": {
+    "rooms_rooms": 2,
+    "rooms_agents": 2,
+    "rooms_messages": 10,
+    "rooms_deliveries": 14,
+    "rooms_activations": 14,
+    "rooms_members": 4,
+    "rooms_invites": 2,
+    "rooms_streams": 2,
+    "rooms_chunks": 6,
+    "rooms_steering": 0
+  },
+  "fixtureMessages": [
+    {
+      "id": "984f3c55-3cd5-47ea-9fd6-befeaed87b9a",
+      "sha256": "fe5f8ff8db3bef01059e4c140d608566f190ec1e8a765d1b8639aeaccc58eb1d",
+      "activationId": null
+    },
+    {
+      "id": "e921ca0f-69ba-493c-9bff-e538eba19264",
+      "sha256": "7be2b772c29af9b7d4cbba81ac449932487f07d1e6183a1ca6f13cf42bb41ee7",
+      "activationId": "296096b8-2e97-4d66-acdd-eca5d886fd5d"
+    },
+    {
+      "id": "dfbe35a7-26e8-4178-918f-afbcfd42a1d2",
+      "sha256": "db7dd9b751c2035599a9d5ef6d0c115f00b836adf788edfaf287e61a7c265894",
+      "activationId": "2bd69dd1-e05a-4d9c-987f-f6d8b0ad1e80"
+    },
+    {
+      "id": "2e8748b3-f61a-4526-bfe5-7c8c94784dcf",
+      "sha256": "57a0f0da0f3869160d02bae2e371ae2bb8a9a6397cdbb998176d091fee8998e0",
+      "activationId": null
+    },
+    {
+      "id": "afa1e6f2-9ff0-4e37-a29e-fcee66b42684",
+      "sha256": "e0df0b13a7e887db55916d3eaec14e09c4f6530e30e07e0241f9551677c2dca0",
+      "activationId": "398986c9-54f5-4412-9266-8e7531870d40"
+    },
+    {
+      "id": "696b8657-e688-4837-8b0d-db773e5e5803",
+      "sha256": "fcfc51b0294cf63961f335d9d539720e1bd80cf4b3d731e3f43412a5d15869da",
+      "activationId": "2f9f6e4c-3310-4375-b7b2-8dddb1c1347b"
+    },
+    {
+      "id": "58e68c80-6cbb-439c-b1f0-4823b7b69e57",
+      "sha256": "d88bab1a7a19be3818061ec316117b19a1426bc62368ba221f508194abed17c6",
+      "activationId": null
+    },
+    {
+      "id": "992fe86a-1a7b-4a87-9e75-486e43a30b0c",
+      "sha256": "4b5883146a9387e873f65bb11a54eca054aa1f8b6548cc45bb2163996d98678f",
+      "activationId": "a412da96-b283-4d37-a81d-6adfa6888db1"
+    },
+    {
+      "id": "981ea635-69dc-4292-a436-7b2700ef9576",
+      "sha256": "1702604369b22c3ec12482e431e31a95dc53f6771d1e21dfebf5a6ece0007c5e",
+      "activationId": "95c53a4e-1698-412c-8af6-1fc861a7e781"
+    },
+    {
+      "id": "bfe2a121-9554-4d39-bc46-31430407e886",
+      "sha256": "1383ceb7bce332b1234b67e514d8a8345fc112ecdd15d61dfe58821071f4ee2d",
+      "activationId": null
+    }
+  ],
+  "removeUserId": "52d49f25-75e1-4ab0-8377-cc1ff1f9784b",
+  "preservedOwnerSessions": 5,
+  "removeWorkspace": "/Users/admin/rooms-native-qa/hosted-native-20261010-2/project",
+  "removePrivateFile": "/Users/admin/rooms-native-qa/hosted-native-20261010-2/fixture-private.json",
+  "gatewayConfigurationChangeNeeded": false,
+  "privateParticipationDirectories": [
+    "/Users/admin/rooms-bb-data/thread-storage/.rooms/7a2ce44b-4551-4034-9afb-9389b3ff0d15",
+    "/Users/admin/rooms-bb-data/thread-storage/.rooms/2e7c82fe-b58e-4e0a-affb-23d417118968"
+  ],
+  "removedReceipts": 20,
+  "removedGuestSessions": 2,
+  "passed": true,
+  "workshopRevisionAfter": 1255,
+  "completedAt": "2026-10-10T19:14:55.141Z"
+}

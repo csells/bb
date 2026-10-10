@@ -1,0 +1,182 @@
+{
+  "observedAt": "2026-10-10T19:15:00Z",
+  "sourceDatabase": "/Users/admin/rooms-data/rooms.sqlite",
+  "originalEvidence": {
+    "agent-fixture.json": {
+      "roomId": "137bcec8-5f99-48a1-8b35-c9fde2cfd3f1",
+      "stamp": "mv172o04"
+    },
+    "controls-result.json": {
+      "roomId": "10441bea-65d2-42fd-87b0-196b365e08e8",
+      "passed": [
+        "handoff",
+        "steering",
+        "stop",
+        "restart"
+      ],
+      "at": "2026-10-09T15:57:16.632Z"
+    },
+    "discussion-result.json": {
+      "roomId": "61220b12-3a92-4773-b8d7-1a0c1ff2c629"
+    }
+  },
+  "threads": [
+    {
+      "id": "thr_cb85bjgkia",
+      "title": "Reviewer in Agent acceptance mv152h3b",
+      "project_id": "proj_fs9ypnd4wi",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "411a7452-31e3-40ef-b533-fbbdf07a55a1",
+      "originalAgentId": "01b45d0b-c7e7-4b22-926a-8fc67a00b86f",
+      "matchedEarlierEvidenceFiles": [],
+      "action": "preserved; archival not authorized"
+    },
+    {
+      "id": "thr_37wctcs63p",
+      "title": "Builder in Agent acceptance mv152h3b",
+      "project_id": "proj_ubtf2n2w5s",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "411a7452-31e3-40ef-b533-fbbdf07a55a1",
+      "originalAgentId": "e539b4c6-11f8-496d-940a-a4567071b486",
+      "matchedEarlierEvidenceFiles": [],
+      "action": "preserved; archival not authorized"
+    },
+    {
+      "id": "thr_454jfah9wz",
+      "title": "Reviewer in Agent acceptance mv155ld1",
+      "project_id": "proj_7q3q3r5t4u",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "10441bea-65d2-42fd-87b0-196b365e08e8",
+      "originalAgentId": "d30a97ee-538f-46f5-a0ea-42b1adf2a95f",
+      "matchedEarlierEvidenceFiles": [
+        "controls-result.json"
+      ],
+      "action": "preserved; archival not authorized"
+    },
+    {
+      "id": "thr_nbmiektvi6",
+      "title": "Builder in Agent acceptance mv155ld1",
+      "project_id": "proj_9amy846q8e",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "10441bea-65d2-42fd-87b0-196b365e08e8",
+      "originalAgentId": "dd103167-663d-4883-a060-f7326eefa96f",
+      "matchedEarlierEvidenceFiles": [
+        "controls-result.json"
+      ],
+      "action": "preserved; archival not authorized"
+    },
+    {
+      "id": "thr_vkurvjzxu5",
+      "title": "Builder in Agent acceptance mv172o04",
+      "project_id": "proj_hrhuw4y8i8",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "137bcec8-5f99-48a1-8b35-c9fde2cfd3f1",
+      "originalAgentId": "26687e96-feb7-4303-abfd-e136fffde1c0",
+      "matchedEarlierEvidenceFiles": [
+        "agent-fixture.json"
+      ],
+      "action": "preserved; archival not authorized"
+    },
+    {
+      "id": "thr_wz7t6ndjg9",
+      "title": "Reviewer in Agent acceptance mv172o04",
+      "project_id": "proj_turrzwe7kp",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "137bcec8-5f99-48a1-8b35-c9fde2cfd3f1",
+      "originalAgentId": "a0a85a3d-ecdf-45da-9f4b-782fbfabe826",
+      "matchedEarlierEvidenceFiles": [
+        "agent-fixture.json"
+      ],
+      "action": "preserved; archival not authorized"
+    },
+    {
+      "id": "thr_sjhw6an357",
+      "title": "Builder in Open discussion QA 1791564453384",
+      "project_id": "proj_fuk3uv78u9",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "ca70f6bd-a37a-472e-8ce7-d729dc46416f",
+      "originalAgentId": "99d02450-58ea-4da3-91d9-7e53975b7f11",
+      "matchedEarlierEvidenceFiles": [],
+      "action": "preserved; archival not authorized"
+    },
+    {
+      "id": "thr_tfmmpt3285",
+      "title": "Reviewer in Open discussion QA 1791564453384",
+      "project_id": "proj_mh5qff4s4n",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "ca70f6bd-a37a-472e-8ce7-d729dc46416f",
+      "originalAgentId": "342386c7-acfa-4a51-bac0-6fd4c9d65cb2",
+      "matchedEarlierEvidenceFiles": [],
+      "action": "preserved; archival not authorized"
+    },
+    {
+      "id": "thr_u34tqbki4g",
+      "title": "Builder in Open discussion QA 1791564706843",
+      "project_id": "proj_bjgh6nmfdh",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "61220b12-3a92-4773-b8d7-1a0c1ff2c629",
+      "originalAgentId": "f4af6485-7db8-4f4c-961e-f5ee662a577a",
+      "matchedEarlierEvidenceFiles": [
+        "discussion-result.json"
+      ],
+      "action": "preserved; archival not authorized"
+    },
+    {
+      "id": "thr_yi3r263mzb",
+      "title": "Reviewer in Open discussion QA 1791564706843",
+      "project_id": "proj_m6b9vyyer4",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "61220b12-3a92-4773-b8d7-1a0c1ff2c629",
+      "originalAgentId": "2391db58-f617-47a2-84d4-2eafa7ff67e5",
+      "matchedEarlierEvidenceFiles": [
+        "discussion-result.json"
+      ],
+      "action": "preserved; archival not authorized"
+    },
+    {
+      "id": "thr_82i87acia5",
+      "title": "Builder in Workshop",
+      "project_id": "proj_tmfsgh2bmk",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "af38cfb9-98c2-4489-ac84-9762a16abc2e",
+      "originalAgentId": "7b8bbb74-523a-4e05-8e93-7e3d80f935a7",
+      "matchedEarlierEvidenceFiles": [],
+      "action": "preserved; archival not authorized"
+    },
+    {
+      "id": "thr_iscfnx47fd",
+      "title": "Reviewer in Workshop",
+      "project_id": "proj_kvuhmcbqpf",
+      "status": "idle",
+      "archived_at": null,
+      "deleted_at": null,
+      "originalRoomId": "af38cfb9-98c2-4489-ac84-9762a16abc2e",
+      "originalAgentId": "a37bf48b-ac1b-4e5b-ad8e-34d28c1139ce",
+      "matchedEarlierEvidenceFiles": [],
+      "action": "preserved; archival not authorized"
+    }
+  ],
+  "note": "All12 preserved. Earlier explicitly recorded V2 cleanup thread IDs remain archived; these belong to original preview."
+}

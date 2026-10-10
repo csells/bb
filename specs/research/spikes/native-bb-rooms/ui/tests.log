@@ -1,0 +1,52 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/app
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 91020561fd9d56cd
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 310bd2355b621186
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates: cache hit, replaying logs bd024827c6a206a6
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/plugin-build:generate: cache hit, replaying logs 6b9bbbd8d86115a8
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/app:test: cache miss, executing bf7d70c47a3588b1
+@bb/app:test:
+@bb/app:test: > @bb/app@0.0.1 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/app
+@bb/app:test: > node scripts/generate-pwa-icons.mjs --check && vitest run --config vitest.config.ts "src/views/rooms/RoomsSessionGate.test.tsx" "src/components/sidebar/AppNavRail.test.tsx" "src/components/plugin/pluginNavSidebarOrder.test.ts" "src/lib/route-paths.test.ts" "src/components/layout/AppLayoutSidebar.test.tsx"
+@bb/app:test:
+@bb/app:test:
+@bb/app:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/app[39m
+@bb/app:test:
+@bb/app:test:  [32m✓[39m [30m[45m @bb/app:isolated [49m[39m src/components/layout/AppLayoutSidebar.test.tsx [2m([22m[2m3 tests[22m[2m)[22m[32m 189[2mms[22m[39m
+@bb/app:test:  [32m✓[39m [30m[46m @bb/app [49m[39m src/lib/route-paths.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+@bb/app:test:  [32m✓[39m [30m[46m @bb/app [49m[39m src/components/plugin/pluginNavSidebarOrder.test.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+@bb/app:test:  [32m✓[39m [30m[45m @bb/app:isolated [49m[39m src/components/sidebar/AppNavRail.test.tsx [2m([22m[2m16 tests[22m[2m)[22m[33m 606[2mms[22m[39m
+@bb/app:test:  [32m✓[39m [30m[45m @bb/app:isolated [49m[39m src/views/rooms/RoomsSessionGate.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 5173[2mms[22m[39m
+@bb/app:test:      [33m[2m✓[22m[39m unmounts the operator workspace when its authenticated session is revoked [33m 5016[2mms[22m[39m
+@bb/app:test:
+@bb/app:test: [2m Test Files [22m [1m[32m5 passed[39m[22m[90m (5)[39m
+@bb/app:test: [2m      Tests [22m [1m[32m56 passed[39m[22m[90m (56)[39m
+@bb/app:test: [2m   Start at [22m 18:02:50
+@bb/app:test: [2m   Duration [22m 7.10s[2m (transform 2.51s, setup 393ms, import 3.73s, tests 5.98s, environment 1.51s)[22m
+@bb/app:test:
+
+ Tasks:    5 successful, 5 total
+Cached:    3 cached, 5 total
+  Time:    8.264s

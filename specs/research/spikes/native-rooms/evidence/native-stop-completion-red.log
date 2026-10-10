@@ -1,0 +1,139 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/server
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing e7e267c7a5cff11b
+@bb/plugin-build:generate: cache miss, executing 39555cc26b2522e9
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/server:generate:bb-official-marketplace: cache miss, executing 0bc9445facea2f01
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/templates:generate:templates: cache miss, executing 0692715f5f90446c
+@bb/server:generate:bb-official-marketplace:
+@bb/server:generate:bb-official-marketplace: > @bb/server@0.0.1 generate:bb-official-marketplace /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/server
+@bb/server:generate:bb-official-marketplace: > node --conditions=source --import tsx scripts/generate-bb-official-marketplace.ts
+@bb/server:generate:bb-official-marketplace:
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/templates:generate:plugin-scaffold: cache miss, executing 801f8d74525f2cf7
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@get-bb/plugin-sdk:build: cache miss, executing 2b687dca7a5ffc08
+@get-bb/plugin-sdk:build:types: cache miss, executing 77d59b9784238a6b
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: > @get-bb/plugin-sdk@0.6.33 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-sdk
+@get-bb/plugin-sdk:build: > node scripts/build-runtime.mjs
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build:types:
+@get-bb/plugin-sdk:build:types: > @get-bb/plugin-sdk@0.6.33 build:types /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-sdk
+@get-bb/plugin-sdk:build:types: > node scripts/build-bundled-dts.mjs
+@get-bb/plugin-sdk:build:types:
+@get-bb/plugin-sdk:build: Built 19 @get-bb/plugin-sdk runtime entries.
+@bb/agent-runtime:generate:test-bridges: cache miss, executing ca901f1040a57116
+@bb/agent-runtime:generate:test-bridges:
+@bb/agent-runtime:generate:test-bridges: > @bb/agent-runtime@0.0.1 generate:test-bridges /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/agent-runtime
+@bb/agent-runtime:generate:test-bridges: > node ./scripts/build-test-bridges.mjs
+@bb/agent-runtime:generate:test-bridges:
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-provider-bridge.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-provider-bridge-testing.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-provider-bridge-acp.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-environment-provider.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-machine-provider.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-app.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-host.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-composer-customization-validation.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-composer-handle.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-composer-view.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-file-navigation-validation.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-host-policy.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-plugin-app-collector.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-testing.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-testing-app.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-testing-host.d.ts
+@bb/server:test: cache miss, executing bdb99839357043cb
+@bb/server:test:
+@bb/server:test: > @bb/server@0.0.1 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/server
+@bb/server:test: > vitest run --config vitest.config.ts "test/public/public-thread-stop-runtime.test.ts"
+@bb/server:test:
+@bb/server:test:
+@bb/server:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/server[39m
+@bb/server:test:
+@bb/server:test:  [31m❯[39m [30m[45m @bb/server [49m[39m test/public/public-thread-stop-runtime.test.ts [2m([22m[2m28 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 1476[2mms[22m[39m
+@bb/server:test: [31m     [31m×[31m settles matching scoped provider interruption without settling a successor (false)[39m[32m 47[2mms[22m[39m
+@bb/server:test:      [32m✓[39m settles matching scoped provider interruption without settling a successor (true)[32m 45[2mms[22m[39m
+@bb/server:test:      [32m✓[39m ignores a stale scoped stop without changing a successor or its pending question[32m 19[2mms[22m[39m
+@bb/server:test:      [32m✓[39m carries scoped stop identity to the host and ignores its late report after a successor starts[32m 34[2mms[22m[39m
+@bb/server:test:      [32m✓[39m releases and dismisses a question when the runtime ends during a failed interrupt[32m 39[2mms[22m[39m
+@bb/server:test:      [32m✓[39m settles a stranded question only once an idle runtime is stopped (released)[32m 33[2mms[22m[39m
+@bb/server:test:      [32m✓[39m settles a stranded question only once an idle runtime is stopped (retained)[32m 42[2mms[22m[39m
+@bb/server:test:      [32m✓[39m settles a stranded question only once an idle runtime is stopped (failed)[32m 33[2mms[22m[39m
+@bb/server:test:      [32m✓[39m interrupts a turn the daemon kept when the server believed the thread was idle[32m 30[2mms[22m[39m
+@bb/server:test:      [32m✓[39m interrupts a turn the daemon kept when the server believed the thread was error[32m 30[2mms[22m[39m
+@bb/server:test:      [32m✓[39m clears context after interrupting a turn the daemon kept[32m 34[2mms[22m[39m
+@bb/server:test:      [32m✓[39m shares one release and one interrupt across concurrent stops of a kept turn[32m 32[2mms[22m[39m
+@bb/server:test:      [32m✓[39m leaves a kept turn stopping when the escalated interrupt fails[32m 37[2mms[22m[39m
+@bb/server:test:      [32m✓[39m interrupts a turn that starts while an explicit stop's release is pending[32m 91[2mms[22m[39m
+@bb/server:test:      [32m✓[39m makes a stop that joins a pending release wait for the escalated interrupt[32m 109[2mms[22m[39m
+@bb/server:test:      [32m✓[39m still dispatches an interrupt requested while an explicit stop's release is pending[32m 54[2mms[22m[39m
+@bb/server:test:      [32m✓[39m rejects a caller that requires a stopped thread when the escalated interrupt fails[32m 32[2mms[22m[39m
+@bb/server:test:      [32m✓[39m keeps background work running after a retained release and failed interrupt[32m 61[2mms[22m[39m
+@bb/server:test:      [32m✓[39m settles background commands terminated by an idle runtime release[32m 34[2mms[22m[39m
+@bb/server:test:      [32m✓[39m waits for an active runtime release and settles the thread[32m 29[2mms[22m[39m
+@bb/server:test:      [32m✓[39m keeps a startup-parked message paused after a manual stop until explicitly sent[32m 44[2mms[22m[39m
+@bb/server:test:      [32m✓[39m accepts Send now while the stop is still in flight and dispatches when it lands[32m 36[2mms[22m[39m
+@bb/server:test:      [32m✓[39m keeps rows the user did not ask for behind the manual-stop pause when one is sent now[32m 35[2mms[22m[39m
+@bb/server:test:      [32m✓[39m keeps the queue editable while a stop is in flight[32m 41[2mms[22m[39m
+@bb/server:test:      [32m✓[39m still releases the runtime when the turn completes during the stop[32m 29[2mms[22m[39m
+@bb/server:test:      [32m✓[39m makes concurrent stops share one release and one result[32m 83[2mms[22m[39m
+@bb/server:test:      [32m✓[39m reports a failed release to the caller[32m 29[2mms[22m[39m
+@bb/server:test:      [32m✓[39m reports success when the release cannot reach a disconnected host[32m 18[2mms[22m[39m
+@bb/server:test:
+@bb/server:test: [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+@bb/server:test:
+@bb/server:test: [41m[1m FAIL [22m[49m [30m[45m @bb/server [49m[39m test/public/public-thread-stop-runtime.test.ts[2m > [22mthread runtime stop[2m > [22msettles matching scoped provider interruption without settling a successor (false)
+@bb/server:test: [31m[1mAssertionError[22m: expected 'active' to be 'idle' // Object.is equality[39m
+@bb/server:test:
+@bb/server:test: Expected: [32m"[7midl[27me"[39m
+@bb/server:test: Received: [31m"[7mactiv[27me"[39m
+@bb/server:test:
+@bb/server:test: [36m [2m❯[22m test/public/public-thread-stop-runtime.test.ts:[2m97:58[22m[39m
+@bb/server:test:     [90m 95|[39m         await reportQueuedCommandSuccess(harness, command, { providerC…
+@bb/server:test:     [90m 96|[39m         [34mexpect[39m(([35mawait[39m responsePromise)[33m.[39mstatus)[33m.[39m[34mtoBe[39m([34m200[39m)[33m;[39m
+@bb/server:test:     [90m 97|[39m         expect(getThread(harness.db, thread.id)?.status).toBe(successo…
+@bb/server:test:     [90m   |[39m                                                          [31m^[39m
+@bb/server:test:     [90m 98|[39m         expect(harness.deps.pendingInteractions.listPendingThreadInter…
+@bb/server:test:     [90m 99|[39m       })[33m;[39m
+@bb/server:test: [90m [2m❯[22m withTestHarness test/helpers/test-app.ts:[2m372:12[22m[39m
+@bb/server:test: [90m [2m❯[22m test/public/public-thread-stop-runtime.test.ts:[2m40:7[22m[39m
+@bb/server:test:
+@bb/server:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+@bb/server:test:
+@bb/server:test:
+@bb/server:test: [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+@bb/server:test: [2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m27 passed[39m[22m[90m (28)[39m
+@bb/server:test: [2m   Start at [22m 18:28:59
+@bb/server:test: [2m   Duration [22m 4.56s[2m (transform 2.15s, setup 802ms, import 2.19s, tests 1.48s, environment 0ms)[22m
+@bb/server:test:
+@bb/server:test:  ELIFECYCLE  Test failed. See above for more details.
+@bb/server#test:  ERROR  command (/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/server) /opt/homebrew/bin/pnpm run test test/public/public-thread-stop-runtime.test.ts exited (1)
+
+ Tasks:    8 successful, 9 total
+Cached:    0 cached, 9 total
+  Time:    18.885s
+Failed:    @bb/server#test
+
+ ERROR  run failed: command  exited (1)

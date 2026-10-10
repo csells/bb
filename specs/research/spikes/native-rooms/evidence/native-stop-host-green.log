@@ -1,0 +1,53 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/host-daemon
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing a5d835c464830978
+@bb/plugin-build:generate: cache miss, executing 6c6f77782faa0f14
+@bb/templates:generate:templates: cache miss, executing ed5d65e55645aa96
+@bb/templates:generate:plugin-scaffold: cache miss, executing 42c997c7fb0ed7a8
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@get-bb/plugin-sdk:build: cache miss, executing 5fbad22ef551d709
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: > @get-bb/plugin-sdk@0.6.33 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-sdk
+@get-bb/plugin-sdk:build: > node scripts/build-runtime.mjs
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: Built 19 @get-bb/plugin-sdk runtime entries.
+@bb/host-daemon:test: cache miss, executing ec73458c44f86991
+@bb/host-daemon:test:
+@bb/host-daemon:test: > @bb/host-daemon@0.0.1 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/host-daemon
+@bb/host-daemon:test: > vitest run --config vitest.config.ts "command-dispatch.test.ts"
+@bb/host-daemon:test:
+@bb/host-daemon:test:
+@bb/host-daemon:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/host-daemon[39m
+@bb/host-daemon:test:
+@bb/host-daemon:test:  [32m✓[39m [30m[45m @bb/host-daemon [49m[39m src/command-dispatch.test.ts [2m([22m[2m39 tests[22m[2m)[22m[32m 173[2mms[22m[39m
+@bb/host-daemon:test:
+@bb/host-daemon:test: [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+@bb/host-daemon:test: [2m      Tests [22m [1m[32m39 passed[39m[22m[90m (39)[39m
+@bb/host-daemon:test: [2m   Start at [22m 18:07:45
+@bb/host-daemon:test: [2m   Duration [22m 990ms[2m (transform 513ms, setup 0ms, import 738ms, tests 173ms, environment 0ms)[22m
+@bb/host-daemon:test:
+
+ Tasks:    6 successful, 6 total
+Cached:    0 cached, 6 total
+  Time:    2.181s

@@ -905,6 +905,43 @@ describe("dispatchCommand", () => {
     );
   });
 
+  it("does not release another environment while delivering a scoped stop", async () => {
+    const oldRuntime = createRuntime();
+    const manager = new RuntimeManager({
+      createRuntime: () => oldRuntime,
+      provisionWorkspace: async () => createWorkspace("/tmp/bb-scoped-old"),
+    });
+    await manager.ensureEnvironment({
+      environmentId: "env-old",
+      workspacePath: "/tmp/bb-scoped-old",
+    });
+    oldRuntime.setActiveTurn("thread-1", "successor-turn");
+    const result = await dispatchCommand(
+      {
+        type: "thread.stop",
+        intent: "interrupt",
+        environmentId: "env-new",
+        threadId: "thread-1",
+        expectedTurnId: "room-turn",
+      },
+      {
+        dataDir: "/tmp/bb-data",
+        logger: silentLogger,
+        eventSink: { emit: vi.fn(), flush: vi.fn(async () => undefined) },
+        fetchProjectAttachment: async () => {
+          throw new Error("Unexpected project attachment fetch");
+        },
+        fetchPluginHostArtifact: fetchDispatchTestArtifact,
+        ...unexpectedProviderMaintenance,
+        runtimeManager: manager,
+        threadStorageRootPath: "/tmp/bb-thread-storage",
+      },
+    );
+    expect(result).toEqual({ providerCheckpointId: null });
+    expect(oldRuntime.stopThread).not.toHaveBeenCalled();
+    expect(oldRuntime.getActiveTurnId("thread-1")).toBe("successor-turn");
+  });
+
   it("stops the old owner when the moved thread has no runtime yet", async () => {
     const oldRuntime = createRuntime();
     const manager = new RuntimeManager({

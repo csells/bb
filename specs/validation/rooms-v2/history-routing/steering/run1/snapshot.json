@@ -1,0 +1,162 @@
+{
+  "room": {
+    "id": "31a7362b-632b-49e9-83fb-ab4e6610680c",
+    "name": "Room-wide steering regression mv1kbwdk",
+    "ownerId": "ec4bc41d-1cbf-4c4e-8f56-ae0b73fc059c",
+    "revision": 29,
+    "paused": false,
+    "pauseReason": null,
+    "maxActivations": null,
+    "activationsUsed": 4
+  },
+  "members": [
+    {
+      "id": "1414a11d-5466-4305-b39d-57ca96ad1751",
+      "handle": "morgan_mv1kbwdk",
+      "name": "Morgan",
+      "role": "member"
+    },
+    {
+      "id": "ec4bc41d-1cbf-4c4e-8f56-ae0b73fc059c",
+      "handle": "avery_mv1kbwdk",
+      "name": "Avery",
+      "role": "owner"
+    }
+  ],
+  "agents": [
+    {
+      "id": "8bb77146-2d5f-4045-a27b-88c7403524c6",
+      "roomId": "31a7362b-632b-49e9-83fb-ab4e6610680c",
+      "handle": "atlas",
+      "name": "Atlas",
+      "provider": "codex",
+      "model": "gpt-6.1-sol",
+      "instructions": "Bring a thoughtful, practical perspective. Participate in the room as yourself.",
+      "projectId": "proj_mha2jafbsv",
+      "threadId": "thr_zkfhg5t5sr",
+      "status": "idle"
+    },
+    {
+      "id": "38f5ceae-6f03-43bb-a9fc-b9bc3d462575",
+      "roomId": "31a7362b-632b-49e9-83fb-ab4e6610680c",
+      "handle": "nova",
+      "name": "Nova",
+      "provider": "claude-code",
+      "model": "claude-opus-5-5",
+      "instructions": "Bring an imaginative, questioning perspective. Participate in the room as yourself.",
+      "projectId": "proj_n7cw2bpbwk",
+      "threadId": "thr_yse3gwp42a",
+      "status": "idle"
+    }
+  ],
+  "messages": [
+    {
+      "id": "ee39fbce-bf2c-4976-a2a6-19e33f368ad2",
+      "roomId": "31a7362b-632b-49e9-83fb-ab4e6610680c",
+      "authorId": "ec4bc41d-1cbf-4c4e-8f56-ae0b73fc059c",
+      "authorName": "Avery",
+      "kind": "human",
+      "text": "@atlas For a controlled live-input check, run the shell command sleep 20 before publishing one short observation about teamwork. A human may supply new information while the tool runs; incorporate it. Nova, this is an observation-only control check for you: do not post anything in response to this task or its follow-up.",
+      "status": "complete",
+      "createdAt": 1791586478612,
+      "causeId": null,
+      "intent": "request",
+      "recipients": [
+        "8bb77146-2d5f-4045-a27b-88c7403524c6"
+      ],
+      "replyTo": null
+    },
+    {
+      "id": "77891c11-1de6-4a9e-a60a-cf6ed478c27d",
+      "roomId": "31a7362b-632b-49e9-83fb-ab4e6610680c",
+      "authorId": "1414a11d-5466-4305-b39d-57ca96ad1751",
+      "authorName": "Morgan",
+      "kind": "human",
+      "text": "New information for Atlas: our team's shared goal is restoring the lighthouse. Include STEERING_OBSERVED_mv1kbwdk in your public observation so we can confirm this input reached your current work. Nova, continue observing silently; no reply is needed.",
+      "status": "complete",
+      "createdAt": 1791586484244,
+      "causeId": null,
+      "intent": "request",
+      "recipients": [
+        "8bb77146-2d5f-4045-a27b-88c7403524c6"
+      ],
+      "replyTo": null
+    },
+    {
+      "id": "4d323a22-9717-4f80-988e-79e98bff4f93",
+      "roomId": "31a7362b-632b-49e9-83fb-ab4e6610680c",
+      "authorId": "8bb77146-2d5f-4045-a27b-88c7403524c6",
+      "authorName": "Atlas",
+      "kind": "agent",
+      "text": "STEERING_OBSERVED_mv1kbwdk: Restoring the lighthouse gives our teamwork a clear shared goal; explicit ownership and regular progress updates will help us coordinate the work.",
+      "status": "complete",
+      "createdAt": 1791586507951,
+      "causeId": "ee39fbce-bf2c-4976-a2a6-19e33f368ad2",
+      "intent": "post",
+      "recipients": [],
+      "replyTo": null
+    }
+  ],
+  "deliveries": [
+    {
+      "id": "a07ae4e0-b0cb-4965-aee7-b725ebdd64be",
+      "roomId": "31a7362b-632b-49e9-83fb-ab4e6610680c",
+      "agentId": "38f5ceae-6f03-43bb-a9fc-b9bc3d462575",
+      "messageId": "4d323a22-9717-4f80-988e-79e98bff4f93",
+      "state": "complete",
+      "error": null,
+      "createdAt": 1791586507951,
+      "startedAt": 1791586507954,
+      "intent": "notice",
+      "activationId": "d655f633-5c5e-4ab1-9ea5-99fee17c69ad",
+      "threadId": "thr_yse3gwp42a",
+      "outcome": "no_reply"
+    },
+    {
+      "id": "72abb50d-6ba1-4cdd-bc4a-4a50305da33a",
+      "roomId": "31a7362b-632b-49e9-83fb-ab4e6610680c",
+      "agentId": "38f5ceae-6f03-43bb-a9fc-b9bc3d462575",
+      "messageId": "77891c11-1de6-4a9e-a60a-cf6ed478c27d",
+      "state": "complete",
+      "error": null,
+      "createdAt": 1791586484244,
+      "startedAt": 1791586484681,
+      "intent": "notice",
+      "activationId": "b97724e4-ce83-42a6-8ed0-b8f6b14e2284",
+      "threadId": "thr_yse3gwp42a",
+      "outcome": "no_reply"
+    },
+    {
+      "id": "29210757-6051-48c4-a2ae-40ea8c55a86b",
+      "roomId": "31a7362b-632b-49e9-83fb-ab4e6610680c",
+      "agentId": "38f5ceae-6f03-43bb-a9fc-b9bc3d462575",
+      "messageId": "ee39fbce-bf2c-4976-a2a6-19e33f368ad2",
+      "state": "complete",
+      "error": null,
+      "createdAt": 1791586478612,
+      "startedAt": 1791586478614,
+      "intent": "notice",
+      "activationId": "334a33db-0f7f-4d2c-8771-7ad3fbd466fb",
+      "threadId": "thr_yse3gwp42a",
+      "outcome": "no_reply"
+    },
+    {
+      "id": "5b67b3ab-787b-4f4f-86ad-bcf786fc57c2",
+      "roomId": "31a7362b-632b-49e9-83fb-ab4e6610680c",
+      "agentId": "8bb77146-2d5f-4045-a27b-88c7403524c6",
+      "messageId": "ee39fbce-bf2c-4976-a2a6-19e33f368ad2",
+      "state": "complete",
+      "error": null,
+      "createdAt": 1791586478612,
+      "startedAt": 1791586478613,
+      "intent": "request",
+      "activationId": "c205a6fa-555c-45ec-a099-0b4b38dbf2dd",
+      "threadId": "thr_zkfhg5t5sr",
+      "outcome": "replied"
+    }
+  ],
+  "online": [
+    "ec4bc41d-1cbf-4c4e-8f56-ae0b73fc059c",
+    "1414a11d-5466-4305-b39d-57ca96ad1751"
+  ]
+}

@@ -1,0 +1,4 @@
+PASS Unaddressed human question reached both agents as optional notices; each independently contributed in both human browsers
+PASS Targeted request remained request for Atlas and optional notice for Nova; Atlas's recipient-free question reached Nova once, produced her own answer, and did not wake Atlas itself
+PASS Both browsers observed naturally authored public stream growth; incomplete chunks scheduled nobody and final commit scheduled exactly one peer notice
+PASS Both agents processed an unaddressed closing notice without public posts and the whole room became quiescent

@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "corePort": 38886,
+  "checks": [
+    {
+      "operation": "export",
+      "status": 409,
+      "code": "rooms_separate_service_lifecycle_unavailable"
+    },
+    {
+      "operation": "move/check",
+      "status": 409,
+      "code": "rooms_separate_service_lifecycle_unavailable"
+    },
+    {
+      "operation": "move",
+      "status": 409,
+      "code": "rooms_separate_service_lifecycle_unavailable"
+    }
+  ]
+}

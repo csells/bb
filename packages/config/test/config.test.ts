@@ -307,6 +307,7 @@ describe("consumer-specific config", () => {
     });
 
     expect(serverConfig.BB_PERF_DIAGNOSTICS).toBe(false);
+    expect(serverConfig.BB_ROOMS_SEPARATE_SERVICE).toBe(false);
     expect(serverConfig.BB_SERVER_PORT).toBe(4444);
     expect(serverConfig.BB_HOST_DAEMON_PORT).toBe(5555);
     expect(serverConfig.databasePath).toBe(path.resolve("/tmp/bb-data/bb.db"));
@@ -331,6 +332,24 @@ describe("consumer-specific config", () => {
         env: createServerRuntimeEnv({ BB_PERF_DIAGNOSTICS: "typo" }),
       }),
     ).toThrow("BB_PERF_DIAGNOSTICS must be a boolean");
+  });
+
+  it("validates the separate Rooms service lifecycle setting", () => {
+    expect(
+      loadServerConfig({
+        env: createServerRuntimeEnv({ BB_ROOMS_SEPARATE_SERVICE: "true" }),
+      }).BB_ROOMS_SEPARATE_SERVICE,
+    ).toBe(true);
+    expect(
+      loadServerConfig({
+        env: createServerRuntimeEnv({ BB_ROOMS_SEPARATE_SERVICE: "false" }),
+      }).BB_ROOMS_SEPARATE_SERVICE,
+    ).toBe(false);
+    expect(() =>
+      loadServerConfig({
+        env: createServerRuntimeEnv({ BB_ROOMS_SEPARATE_SERVICE: "typo" }),
+      }),
+    ).toThrow("BB_ROOMS_SEPARATE_SERVICE must be a boolean");
   });
 
   it("carries the launcher's server launch id only when it is set", () => {

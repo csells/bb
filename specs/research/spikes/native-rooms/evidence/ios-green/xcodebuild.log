@@ -1,0 +1,359 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild test -project NativeRoomsSafari.xcodeproj -scheme NativeRoomsSafari -destination "platform=iOS Simulator,id=83FA0D08-ECCA-4DF7-806A-2A86F01B7173" -derivedDataPath /Users/admin/rooms-native-qa/ios-safari-run3/derived -resultBundlePath /Users/admin/rooms-native-qa/ios-safari-run5/native-rooms-safari.xcresult -parallel-testing-enabled NO -collect-test-diagnostics never
+
+Writing result bundle at path:
+	/Users/admin/rooms-native-qa/ios-safari-run5/native-rooms-safari.xcresult
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (2 targets)
+    Target 'NativeRoomsSafariUITests' in project 'NativeRoomsSafari'
+        ➜ Explicit dependency on target 'NativeRoomsSafari' in project 'NativeRoomsSafari'
+    Target 'NativeRoomsSafari' in project 'NativeRoomsSafari' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: 631c1fa8ae8191a39a50b0a7aa27aace
+Build description path: /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/XCBuildData/631c1fa8ae8191a39a50b0a7aa27aace.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk /Users/admin/rooms-native-qa/ios-safari-run3/derived/SDKStatCaches.noindex/iphonesimulator27.0-24A430-8dc58220667be655e1bcc261a7455254.sdkstatcache
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios/NativeRoomsSafari.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -o /Users/admin/rooms-native-qa/ios-safari-run3/derived/SDKStatCaches.noindex/iphonesimulator27.0-24A430-8dc58220667be655e1bcc261a7455254.sdkstatcache
+
+ProcessInfoPlistFile /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafari.app/Info.plist /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafari.build/empty-NativeRoomsSafari.plist (in target 'NativeRoomsSafari' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    builtin-infoPlistUtility /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafari.build/empty-NativeRoomsSafari.plist -producttype com.apple.product-type.application -genpkginfo /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafari.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -o /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafari.app/Info.plist
+
+SwiftDriver NativeRoomsSafariUITests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name NativeRoomsSafariUITests -Onone @/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -target arm64-apple-ios26.0-simulator -g -module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/Developer/Library/Frameworks -parse-as-library -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/admin/rooms-native-qa/ios-safari-run3/derived/SDKStatCaches.noindex/iphonesimulator27.0-24A430-8dc58220667be655e1bcc261a7455254.sdkstatcache -output-file-map /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/ModuleCache.noindex -sdk-module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/admin/rooms-native-qa/ios-safari-run3/derived/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-generated-files.hmap -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-own-target-headers.hmap -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-project-headers.hmap -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/DerivedSources-normal/arm64 -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/DerivedSources/arm64 -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests-Swift.h -working-directory /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios -experimental-emit-module-separately -disable-cmo
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ NativeRoomsSafariUITests (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+
+SwiftCompile normal arm64 (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+
+
+SwiftCompile normal arm64 Compiling\ NativeRoomsSafariTests.swift /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios/UITests/NativeRoomsSafariTests.swift (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+
+SwiftCompile normal arm64 /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios/UITests/NativeRoomsSafariTests.swift (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    builtin-SwiftPerFileCompile NativeRoomsSafariTests.swift
+
+SwiftDriverJobDiscovery normal arm64 Compiling NativeRoomsSafariTests.swift (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+
+SwiftDriver\ Compilation NativeRoomsSafariUITests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name NativeRoomsSafariUITests -Onone @/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -target arm64-apple-ios26.0-simulator -g -module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/Developer/Library/Frameworks -parse-as-library -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/admin/rooms-native-qa/ios-safari-run3/derived/SDKStatCaches.noindex/iphonesimulator27.0-24A430-8dc58220667be655e1bcc261a7455254.sdkstatcache -output-file-map /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/ModuleCache.noindex -sdk-module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/admin/rooms-native-qa/ios-safari-run3/derived/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-generated-files.hmap -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-own-target-headers.hmap -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-project-headers.hmap -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/DerivedSources-normal/arm64 -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/DerivedSources/arm64 -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests-Swift.h -working-directory /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for NativeRoomsSafariUITests (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+
+SwiftDriver\ Compilation\ Requirements NativeRoomsSafariUITests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name NativeRoomsSafariUITests -Onone @/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-bare-slash-regex -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -target arm64-apple-ios26.0-simulator -g -module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/Developer/Library/Frameworks -parse-as-library -c -j4 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /Users/admin/rooms-native-qa/ios-safari-run3/derived/SDKStatCaches.noindex/iphonesimulator27.0-24A430-8dc58220667be655e1bcc261a7455254.sdkstatcache -output-file-map /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests-OutputFileMap.json -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/ModuleCache.noindex -sdk-module-cache-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/SDKExplicitPrecompiledModules -emit-dependencies -emit-module -emit-module-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.swiftmodule -serialize-diagnostics -dependency-scan-serialize-diagnostics-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests-dependency-scan.dia -validate-clang-modules-once -clang-build-session-file /Users/admin/rooms-native-qa/ios-safari-run3/derived/ModuleCache.noindex/Session.modulevalidation -Xcc -fmodules-prune-interval\=86400 -Xcc -fmodules-prune-after\=345600 -emit-const-values -const-gather-protocols-list /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests_const_extract_protocols.json -Xcc -iquote -Xcc /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-generated-files.hmap -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-own-target-headers.hmap -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-all-target-headers.hmap -Xcc -iquote -Xcc /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests-project-headers.hmap -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/include -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/DerivedSources-normal/arm64 -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/DerivedSources/arm64 -Xcc -I/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests-Swift.h -working-directory /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios -experimental-emit-module-separately -disable-cmo
+
+Copy /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests.swiftmodule/arm64-apple-ios-simulator.swiftmodule /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.swiftmodule (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.swiftmodule /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+Copy /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.swiftsourceinfo (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.swiftsourceinfo /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+Copy /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests.swiftmodule/arm64-apple-ios-simulator.abi.json /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.abi.json (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.abi.json /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Ld /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest/NativeRoomsSafariUITests normal (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios26.0-simulator -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk -O0 -Xlinker -no_warn_duplicate_libraries -L/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk/Developer/Library/Frameworks -filelist /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.LinkFileList -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.swiftmodule -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport -o /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest/NativeRoomsSafariUITests
+
+ExtractAppIntentsMetadata (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name NativeRoomsSafariUITests --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator27.0.sdk --xcode-version 27A266a --platform-family iOS --deployment-target 26.0 --bundle-identifier lab.rooms.native.NativeRoomsSafariUITests --output /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest --target-triple arm64-apple-ios26.0-simulator --binary-file /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest/NativeRoomsSafariUITests --dependency-file /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests_dependency_info.dat --stringsdata-file /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.SwiftFileList --metadata-file-list /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests.DependencyMetadataFileList --static-metadata-file-list /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/NativeRoomsSafariUITests.DependencyStaticMetadataFileList --swift-const-vals-list /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/Objects-normal/arm64/NativeRoomsSafariUITests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --no-app-shortcuts-localization
+2026-10-10 19:05:21.685 appintentsmetadataprocessor[50488:598408] Starting appintentsmetadataprocessor export
+2026-10-10 19:05:21.693 appintentsmetadataprocessor[50488:598408] warning: Metadata extraction skipped, no AppIntents.framework dependency found
+
+ProcessInfoPlistFile /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest/Info.plist /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/empty-NativeRoomsSafariUITests.plist (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    builtin-infoPlistUtility /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/empty-NativeRoomsSafariUITests.plist -producttype com.apple.product-type.bundle.ui-testing -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/ProductTypeInfoPlistAdditions.plist -o /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest/Info.plist
+
+CopySwiftLibs /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest (in target 'NativeRoomsSafariUITests' from project 'NativeRoomsSafari')
+    cd /Users/admin/code/Forks/get-bb/bb-native-rooms/specs/research/spikes/native-rooms/ios
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest/NativeRoomsSafariUITests --scan-folder /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest/Frameworks --scan-folder /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest/PlugIns --scan-folder /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest/SystemExtensions --scan-folder /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Products/Debug-iphonesimulator/NativeRoomsSafariUITests-Runner.app/PlugIns/NativeRoomsSafariUITests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/NativeRoomsSafari.build/Debug-iphonesimulator/NativeRoomsSafariUITests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+PruneExplicitPrecompiledModules /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/admin/rooms-native-qa/ios-safari-run3/derived/Build/Intermediates.noindex/ExplicitPrecompiledModules
+
+PruneExplicitPrecompiledModules /Users/admin/rooms-native-qa/ios-safari-run3/derived/SDKExplicitPrecompiledModules
+
+2026-10-10 19:05:46.974860+0000 NativeRoomsSafariUITests-Runner[50935:601008] [Default] Running tests...
+objc[50935]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x105fcc398) and /Library/Developer/CoreSimulator/Volumes/iOS_24A434/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 27.0.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x106fd8310). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'All tests' started at 2026-10-10 19:06:08.908.
+Test Suite 'NativeRoomsSafariUITests.xctest' started at 2026-10-10 19:06:08.916.
+Test Suite 'NativeRoomsSafariTests' started at 2026-10-10 19:06:08.916.
+Test Case '-[NativeRoomsSafariUITests.NativeRoomsSafariTests testPersistentNativeRoomDrawer]' started.
+    t =     0.00s Start Test at 2026-10-10 19:06:08.918
+    t =     4.21s Set Up
+    t =     4.21s Open com.apple.mobilesafari
+    t =     4.21s     Activate com.apple.mobilesafari
+    t =     5.48s         Wait for com.apple.mobilesafari to idle
+    t =     5.93s Waiting 15.0s for "Address" TextField to exist
+    t =     6.99s     Checking `Expect predicate `existsNoRetry == 1` for object "Address" TextField`
+    t =     7.00s         Checking existence of `"Address" TextField`
+    t =     7.93s Tap "Address" TextField
+    t =     7.93s     Wait for com.apple.mobilesafari to idle
+    t =     7.94s     Find the "Address" TextField
+    t =     7.95s     Check for interrupting elements affecting "TabBarItemTitle" TextField
+    t =     9.22s     Synthesize event
+    t =     9.80s     Wait for com.apple.mobilesafari to idle
+    t =    12.19s Type 'http://127.0.0.1:3...' into "TabBarItemTitle" TextField
+    t =    12.19s     Wait for com.apple.mobilesafari to idle
+    t =    12.21s     Find the "TabBarItemTitle" TextField
+    t =    12.28s     Check for interrupting elements affecting "URL" TextField
+    t =    12.67s     Synthesize event
+    t =    13.62s     Wait for com.apple.mobilesafari to idle
+    t =    14.11s Waiting 40.0s for "New room" Button to exist
+    t =    15.12s     Checking `Expect predicate `existsNoRetry == 1` for object "New room" Button`
+    t =    15.12s         Checking existence of `"New room" Button`
+    t =    15.35s         Capturing element debug description
+    t =    16.20s     Checking `Expect predicate `existsNoRetry == 1` for object "New room" Button`
+    t =    16.20s         Checking existence of `"New room" Button`
+    t =    16.24s Tap "New room" Button
+    t =    16.24s     Wait for com.apple.mobilesafari to idle
+    t =    16.25s     Find the "New room" Button
+    t =    16.30s     Check for interrupting elements affecting "New room" Button
+    t =    16.36s     Synthesize event
+    t =    16.74s     Wait for com.apple.mobilesafari to idle
+    t =    16.74s Waiting 10.0s for "Room name" TextField to exist
+    t =    17.81s     Checking `Expect predicate `existsNoRetry == 1` for object "Room name" TextField`
+    t =    17.82s         Checking existence of `"Room name" TextField`
+    t =    18.58s Tap "Room name" TextField
+    t =    18.58s     Wait for com.apple.mobilesafari to idle
+    t =    18.59s     Find the "Room name" TextField
+    t =    18.62s     Check for interrupting elements affecting "Design review" TextField
+    t =    18.65s     Synthesize event
+    t =    19.08s     Wait for com.apple.mobilesafari to idle
+    t =    19.08s Type 'iOS Safari room 17...' into "Design review" TextField
+    t =    19.08s     Wait for com.apple.mobilesafari to idle
+    t =    19.08s     Find the "Design review" TextField
+    t =    19.39s     Check for interrupting elements affecting "Design review" TextField
+    t =    23.64s     Synthesize event
+    t =    24.39s     Wait for com.apple.mobilesafari to idle
+    t =    24.40s Find the Application 'com.apple.mobilesafari'
+    t =    25.44s Added attachment named '01-native-room-drawer-keyboard'
+    t =    25.44s Tap "Close Create room" Button
+    t =    25.44s     Wait for com.apple.mobilesafari to idle
+    t =    25.45s     Find the "Close Create room" Button
+    t =    25.89s     Check for interrupting elements affecting "Close Create room" Button
+    t =    25.94s     Synthesize event
+    t =    26.25s     Wait for com.apple.mobilesafari to idle
+    t =    26.38s Tap "New room" Button
+    t =    26.38s     Wait for com.apple.mobilesafari to idle
+    t =    26.39s     Find the "New room" Button
+    t =    26.80s     Check for interrupting elements affecting "New room" Button
+    t =    26.95s     Synthesize event
+    t =    27.26s     Wait for com.apple.mobilesafari to idle
+    t =    27.26s Waiting 10.0s for "Design review" TextField to exist
+    t =    28.33s     Checking `Expect predicate `existsNoRetry == 1` for object "Design review" TextField`
+    t =    28.44s         Checking existence of `"Design review" TextField`
+    t =    28.46s Find the "Design review" TextField
+    t =    28.49s Tap "Close Create room" Button
+    t =    28.49s     Wait for com.apple.mobilesafari to idle
+    t =    28.49s     Find the "Close Create room" Button
+    t =    28.55s     Check for interrupting elements affecting "Close Create room" Button
+    t =    28.57s     Synthesize event
+    t =    28.87s     Wait for com.apple.mobilesafari to idle
+    t =    28.87s Tap "New room" Button
+    t =    28.87s     Wait for com.apple.mobilesafari to idle
+    t =    28.88s     Find the "New room" Button
+    t =    28.92s     Check for interrupting elements affecting "New room" Button
+    t =    28.96s     Synthesize event
+    t =    29.25s     Wait for com.apple.mobilesafari to idle
+    t =    29.26s Find the "Design review" TextField
+    t =    29.29s Press Application 'com.apple.mobilesafari'[0.50, 0.42] for 0.0 seconds, then drag to Application 'com.apple.mobilesafari'[0.50, 0.23] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds
+    t =    29.29s     Wait for com.apple.mobilesafari to idle
+    t =    29.29s     Find the Application 'com.apple.mobilesafari'
+    t =    29.31s     Check for interrupting elements affecting "Safari" Application
+    t =    29.33s     Synthesize event
+    t =    29.33s         Find the Application 'com.apple.mobilesafari'
+    t =    29.35s         Find the Application 'com.apple.mobilesafari'
+    t =    29.36s         Find the Application 'com.apple.mobilesafari'
+    t =    29.38s         Find the Application 'com.apple.mobilesafari'
+    t =    29.39s         Find the Application 'com.apple.mobilesafari'
+    t =    29.96s     Wait for com.apple.mobilesafari to idle
+    t =    30.47s Tap "New section" Button
+    t =    30.47s     Wait for com.apple.mobilesafari to idle
+    t =    30.47s     Find the "New section" Button
+    t =    30.50s     Check for interrupting elements affecting "New section" Button
+    t =    30.53s     Synthesize event
+    t =    30.82s     Wait for com.apple.mobilesafari to idle
+    t =    30.82s Waiting 10.0s for "New section name" TextField to exist
+    t =    31.88s     Checking `Expect predicate `existsNoRetry == 1` for object "New section name" TextField`
+    t =    31.88s         Checking existence of `"New section name" TextField`
+    t =    31.91s Tap "New section name" TextField
+    t =    31.91s     Wait for com.apple.mobilesafari to idle
+    t =    31.92s     Find the "New section name" TextField
+    t =    31.94s     Check for interrupting elements affecting "Section name" TextField
+    t =    31.97s     Synthesize event
+    t =    32.26s     Wait for com.apple.mobilesafari to idle
+    t =    32.38s Type 'iOS Safari section...' into "Section name" TextField
+    t =    32.38s     Wait for com.apple.mobilesafari to idle
+    t =    32.75s     Find the "Section name" TextField
+    t =    32.85s     Check for interrupting elements affecting "Section name" TextField
+    t =    32.89s     Synthesize event
+    t =    33.58s     Wait for com.apple.mobilesafari to idle
+    t =    33.60s Press Application 'com.apple.mobilesafari'[0.50, 0.42] for 0.0 seconds, then drag to Application 'com.apple.mobilesafari'[0.50, 0.23] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds
+    t =    33.60s     Wait for com.apple.mobilesafari to idle
+    t =    33.60s     Find the Application 'com.apple.mobilesafari'
+    t =    33.64s     Check for interrupting elements affecting "Safari" Application
+    t =    33.68s     Synthesize event
+    t =    33.69s         Find the Application 'com.apple.mobilesafari'
+    t =    33.72s         Find the Application 'com.apple.mobilesafari'
+    t =    33.76s         Find the Application 'com.apple.mobilesafari'
+    t =    33.80s         Find the Application 'com.apple.mobilesafari'
+    t =    33.83s         Find the Application 'com.apple.mobilesafari'
+    t =    34.42s     Wait for com.apple.mobilesafari to idle
+    t =    34.80s Press Application 'com.apple.mobilesafari'[0.50, 0.42] for 0.0 seconds, then drag to Application 'com.apple.mobilesafari'[0.50, 0.23] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds
+    t =    34.80s     Wait for com.apple.mobilesafari to idle
+    t =    34.81s     Find the Application 'com.apple.mobilesafari'
+    t =    34.83s     Check for interrupting elements affecting "Safari" Application
+    t =    34.86s     Synthesize event
+    t =    34.86s         Find the Application 'com.apple.mobilesafari'
+    t =    34.88s         Find the Application 'com.apple.mobilesafari'
+    t =    34.91s         Find the Application 'com.apple.mobilesafari'
+    t =    34.94s         Find the Application 'com.apple.mobilesafari'
+    t =    34.96s         Find the Application 'com.apple.mobilesafari'
+    t =    35.55s     Wait for com.apple.mobilesafari to idle
+    t =    37.19s Find the Application 'com.apple.mobilesafari'
+    t =    37.35s Added attachment named '02-section-action-with-keyboard'
+    t =    37.35s Tap "Add section" Button
+    t =    37.35s     Wait for com.apple.mobilesafari to idle
+    t =    37.36s     Find the "Add section" Button
+    t =    37.59s     Check for interrupting elements affecting "Add section" Button
+    t =    37.63s     Synthesize event
+    t =    38.03s     Wait for com.apple.mobilesafari to idle
+    t =    38.23s Waiting 10.0s for "New section" Button to exist
+    t =    39.28s     Checking `Expect predicate `existsNoRetry == 1` for object "New section" Button`
+    t =    39.28s         Checking existence of `"New section" Button`
+    t =    39.31s Find the Application 'com.apple.mobilesafari'
+    t =    39.41s Added attachment named '02-native-room-section-created'
+    t =    39.41s Press Application 'com.apple.mobilesafari'[0.50, 0.42] for 0.0 seconds, then drag to Application 'com.apple.mobilesafari'[0.50, 0.23] with velocity of 500.00 pixels per second, and then hold for 0.0 seconds
+    t =    39.41s     Wait for com.apple.mobilesafari to idle
+    t =    39.42s     Find the Application 'com.apple.mobilesafari'
+    t =    39.44s     Check for interrupting elements affecting "Safari" Application
+    t =    39.46s     Synthesize event
+    t =    39.47s         Find the Application 'com.apple.mobilesafari'
+    t =    39.49s         Find the Application 'com.apple.mobilesafari'
+    t =    39.51s         Find the Application 'com.apple.mobilesafari'
+    t =    39.53s         Find the Application 'com.apple.mobilesafari'
+    t =    39.56s         Find the Application 'com.apple.mobilesafari'
+    t =    40.13s     Wait for com.apple.mobilesafari to idle
+    t =    40.55s Tap "Create room" Button
+    t =    40.55s     Wait for com.apple.mobilesafari to idle
+    t =    40.56s     Find the "Create room" Button
+    t =    40.59s     Check for interrupting elements affecting "Create room" Button
+    t =    40.63s     Synthesize event
+    t =    40.95s     Wait for com.apple.mobilesafari to idle
+    t =    41.05s Waiting 20.0s for "iOS Safari room 1791659187" StaticText to exist
+    t =    42.10s     Checking `Expect predicate `existsNoRetry == 1` for object "iOS Safari room 1791659187" StaticText`
+    t =    42.10s         Checking existence of `"iOS Safari room 1791659187" StaticText`
+    t =    42.13s Find the Application 'com.apple.mobilesafari'
+    t =    42.22s Added attachment named '03-native-room-created'
+    t =    42.22s Tap "New room" Button
+    t =    42.22s     Wait for com.apple.mobilesafari to idle
+    t =    42.22s     Find the "New room" Button
+    t =    42.25s     Check for interrupting elements affecting "New room" Button
+    t =    42.29s     Synthesize event
+    t =    42.57s     Wait for com.apple.mobilesafari to idle
+    t =    42.58s Waiting 10.0s for "Design review" TextField to exist
+    t =    43.63s     Checking `Expect predicate `existsNoRetry == 1` for object "Design review" TextField`
+    t =    43.64s         Checking existence of `"Design review" TextField`
+    t =    43.67s Find the "Design review" TextField
+    t =    43.69s Tap "Close Create room" Button
+    t =    43.69s     Wait for com.apple.mobilesafari to idle
+    t =    43.70s     Find the "Close Create room" Button
+    t =    43.72s     Check for interrupting elements affecting "Close Create room" Button
+    t =    43.75s     Synthesize event
+    t =    44.05s     Wait for com.apple.mobilesafari to idle
+    t =    44.06s Tap "Room participants" Button
+    t =    44.06s     Wait for com.apple.mobilesafari to idle
+    t =    44.06s     Find the "Room participants" Button
+    t =    44.09s     Check for interrupting elements affecting "Room participants" Button
+    t =    44.13s     Synthesize event
+    t =    44.42s     Wait for com.apple.mobilesafari to idle
+    t =    44.42s Waiting 10.0s for "Close Room participants" Button to exist
+    t =    45.48s     Checking `Expect predicate `existsNoRetry == 1` for object "Close Room participants" Button`
+    t =    45.48s         Checking existence of `"Close Room participants" Button`
+    t =    45.51s Find the Application 'com.apple.mobilesafari'
+    t =    45.61s Added attachment named '04-native-participants-drawer'
+    t =    45.61s Tap "Close Room participants" Button
+    t =    45.61s     Wait for com.apple.mobilesafari to idle
+    t =    45.61s     Find the "Close Room participants" Button
+    t =    45.63s     Check for interrupting elements affecting "Close Room participants" Button
+    t =    45.66s     Synthesize event
+    t =    45.96s     Wait for com.apple.mobilesafari to idle
+    t =    45.96s Waiting 10.0s for "Message the room" TextView to exist
+    t =    47.00s     Checking `Expect predicate `existsNoRetry == 1` for object "Message the room" TextView`
+    t =    47.00s         Checking existence of `"Message the room" TextView`
+    t =    47.04s Tap "Message the room" TextView
+    t =    47.04s     Wait for com.apple.mobilesafari to idle
+    t =    47.05s     Find the "Message the room" TextView
+    t =    47.08s     Check for interrupting elements affecting "Message the room… use @ to ask someone" TextView
+    t =    47.12s     Synthesize event
+    t =    47.41s     Wait for com.apple.mobilesafari to idle
+    t =    47.88s Type 'Message from actua...' into "Message the room… use @ to ask someone" TextView
+    t =    47.88s     Wait for com.apple.mobilesafari to idle
+    t =    47.91s     Find the "Message the room… use @ to ask someone" TextView
+    t =    47.96s     Check for interrupting elements affecting "Message the room… use @ to ask someone" TextView
+    t =    48.00s     Synthesize event
+    t =    48.89s     Wait for com.apple.mobilesafari to idle
+    t =    48.89s Tap "Send message" Button
+    t =    48.89s     Wait for com.apple.mobilesafari to idle
+    t =    48.90s     Find the "Send message" Button
+    t =    48.95s     Check for interrupting elements affecting "Send message" Button
+    t =    48.99s     Synthesize event
+    t =    49.29s     Wait for com.apple.mobilesafari to idle
+    t =    49.59s Waiting 20.0s for "Message from actual iOS Safari 1791659187" StaticText to exist
+    t =    50.63s     Checking `Expect predicate `existsNoRetry == 1` for object "Message from actual iOS Safari 1791659187" StaticText`
+    t =    50.63s         Checking existence of `"Message from actual iOS Safari 1791659187" StaticText`
+    t =    50.66s Find the Application 'com.apple.mobilesafari'
+    t =    50.76s Added attachment named '05-native-room-message'
+    t =    50.92s Tear Down
+Test Case '-[NativeRoomsSafariUITests.NativeRoomsSafariTests testPersistentNativeRoomDrawer]' passed (51.366 seconds).
+Test Suite 'NativeRoomsSafariTests' passed at 2026-10-10 19:07:00.286.
+	 Executed 1 test, with 0 failures (0 unexpected) in 51.366 (51.370) seconds
+Test Suite 'NativeRoomsSafariUITests.xctest' passed at 2026-10-10 19:07:00.289.
+	 Executed 1 test, with 0 failures (0 unexpected) in 51.366 (51.374) seconds
+Test Suite 'All tests' passed at 2026-10-10 19:07:00.290.
+	 Executed 1 test, with 0 failures (0 unexpected) in 51.366 (51.382) seconds
+2026-10-10 19:07:00.875 xcodebuild[50442:597994] [MT] IDETestOperationsObserverDebug: 99.104 elapsed -- Testing started completed.
+2026-10-10 19:07:00.875 xcodebuild[50442:597994] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-10 19:07:00.875 xcodebuild[50442:597994] [MT] IDETestOperationsObserverDebug: 99.104 sec, +99.104 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/admin/rooms-native-qa/ios-safari-run5/native-rooms-safari.xcresult
+
+** TEST SUCCEEDED **
+
+Testing started

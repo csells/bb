@@ -1,0 +1,64 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 49ad704d9c068c53
+@bb/templates:generate:templates: cache miss, executing 69e1acefa834e38d
+@bb/templates:generate:plugin-scaffold: cache miss, executing fbe4ca59f5b2c462
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/rooms:test: cache miss, executing 8dbc777a4bfba8b8
+@bb/rooms:test:
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:test: > vitest run "test/native-access.test.ts" "-t" "gates every native socket"
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms[39m
+@bb/rooms:test:
+@bb/rooms:test:  [31m❯[39m [30m[45m @bb/rooms [49m[39m test/native-access.test.ts [2m([22m[2m3 tests[22m[2m | [22m[31m1 failed[39m[2m | [22m[33m2 skipped[39m[2m)[22m[33m 5021[2mms[22m[39m
+@bb/rooms:test:      [2m[90m↓[39m[22m gates native HTTP independently from room ownership and does not relay room credentials
+@bb/rooms:test: [31m     [31m×[31m gates every native socket, preserves text and binary frames, and revokes live sockets at logout and expiry[39m[33m 5020[2mms[22m[39m
+@bb/rooms:test:      [2m[90m↓[39m[22m allows independent room speech but rejects execution grants and revokes live room membership
+@bb/rooms:test:
+@bb/rooms:test: [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+@bb/rooms:test:
+@bb/rooms:test: [41m[1m FAIL [22m[49m [30m[45m @bb/rooms [49m[39m test/native-access.test.ts[2m > [22mnative BB room access[2m > [22mgates every native socket, preserves text and binary frames, and revokes live sockets at logout and expiry
+@bb/rooms:test: [31m[1mError[22m: Test timed out in 5000ms.
+@bb/rooms:test: If this is a long-running test, pass a timeout value as the last argument or configure it globally with "testTimeout".[39m
+@bb/rooms:test: [36m [2m❯[22m test/native-access.test.ts:[2m111:3[22m[39m
+@bb/rooms:test:     [90m109|[39m     [34mexpect[39m(h[33m.[39mupstreamRequests)[33m.[39m[34mtoHaveLength[39m([34m1[39m)[33m;[39m
+@bb/rooms:test:     [90m110|[39m   })[33m;[39m
+@bb/rooms:test:     [90m111|[39m   it("gates every native socket, preserves text and binary frames, and…
+@bb/rooms:test:     [90m   |[39m   [31m^[39m
+@bb/rooms:test:     [90m112|[39m     [35mconst[39m h [33m=[39m [35mawait[39m [34msetup[39m()[33m;[39m
+@bb/rooms:test:     [90m113|[39m     const paths = ["/ws", "/ws/terminals/private-terminal", "/api/v1/p…
+@bb/rooms:test:
+@bb/rooms:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[33m2 skipped[39m[90m (3)[39m
+@bb/rooms:test: [2m   Start at [22m 18:03:08
+@bb/rooms:test: [2m   Duration [22m 6.19s[2m (transform 681ms, setup 0ms, import 1.07s, tests 5.02s, environment 0ms)[22m
+@bb/rooms:test:
+@bb/rooms:test:  ELIFECYCLE  Test failed. See above for more details.
+@bb/rooms#test:  ERROR  command (/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms) /opt/homebrew/bin/pnpm run test test/native-access.test.ts -t gates every native socket exited (1)
+
+ Tasks:    3 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    7.082s
+Failed:    @bb/rooms#test
+
+ ERROR  run failed: command  exited (1)

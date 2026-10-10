@@ -1,0 +1,208 @@
+{
+  "verifiedAt": "2026-10-10T19:03:19.931882+00:00",
+  "expectedRoomId": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+  "sourceDatabasesOpenedReadOnly": true,
+  "destinationDatabasesOpenedReadOnly": true,
+  "historyReplayDetected": false,
+  "roomTables": [
+    {
+      "table": "rooms_activations",
+      "existingRows": 9,
+      "beforeSha256": "f0aac34d47509214aee58e5b9271d671937f445a864488dbaf70adb7d39d44d0",
+      "afterSha256": "f0aac34d47509214aee58e5b9271d671937f445a864488dbaf70adb7d39d44d0",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_agents",
+      "existingRows": 2,
+      "beforeSha256": "07477250f2dae5118135aed3161b09346951b654f77e98374633767a433eb52f",
+      "afterSha256": "07477250f2dae5118135aed3161b09346951b654f77e98374633767a433eb52f",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_chunks",
+      "existingRows": 0,
+      "beforeSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "afterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_deliveries",
+      "existingRows": 9,
+      "beforeSha256": "36379b057f46d19fd07c6cd8d08f8fbcb66816baf25f536e59f54a315ddd0068",
+      "afterSha256": "36379b057f46d19fd07c6cd8d08f8fbcb66816baf25f536e59f54a315ddd0068",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_invites",
+      "existingRows": 1,
+      "beforeSha256": "89d6cb26791f83e8f340997221788f08a1c1579dd80dff9741a2a6dbf2c6ba11",
+      "afterSha256": "89d6cb26791f83e8f340997221788f08a1c1579dd80dff9741a2a6dbf2c6ba11",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_members",
+      "existingRows": 1,
+      "beforeSha256": "8a432a2ff92e99b66aef5e606deb3a90f494e5270283f0e06e046e7d5d0c86ee",
+      "afterSha256": "8a432a2ff92e99b66aef5e606deb3a90f494e5270283f0e06e046e7d5d0c86ee",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_messages",
+      "existingRows": 7,
+      "beforeSha256": "9007e27d2c32cd4a11f21691c386e8fb3f2d4be921517b1efbfea6e929b91668",
+      "afterSha256": "9007e27d2c32cd4a11f21691c386e8fb3f2d4be921517b1efbfea6e929b91668",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_receipts",
+      "existingRows": 7,
+      "beforeSha256": "da1635812966317d515340d470120b2b7f73616010d2c09cdf796ba5e5bb9fcb",
+      "afterSha256": "da1635812966317d515340d470120b2b7f73616010d2c09cdf796ba5e5bb9fcb",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_rooms",
+      "existingRows": 1,
+      "beforeSha256": "eb9ce824e9d2646ca147e0c3d4e16c32ebb5b2cbd24e18e78d8554164c883046",
+      "afterSha256": "eb9ce824e9d2646ca147e0c3d4e16c32ebb5b2cbd24e18e78d8554164c883046",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_sessions",
+      "existingRows": 6,
+      "beforeSha256": "993976e79ef19f1a11ac2ff2176540aa21d714b24191216081a2ed41bcc7863f",
+      "afterSha256": "993976e79ef19f1a11ac2ff2176540aa21d714b24191216081a2ed41bcc7863f",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_steering",
+      "existingRows": 0,
+      "beforeSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "afterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_streams",
+      "existingRows": 0,
+      "beforeSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "afterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "preserved": true,
+      "additionalRows": 0
+    },
+    {
+      "table": "rooms_users",
+      "existingRows": 4,
+      "beforeSha256": "93cbaef7998f33c07e6583ee20c3921fd6568c4683389cd8ce21152760cdd6b4",
+      "afterSha256": "93cbaef7998f33c07e6583ee20c3921fd6568c4683389cd8ce21152760cdd6b4",
+      "preserved": true,
+      "additionalRows": 0
+    }
+  ],
+  "nativeBindings": [
+    {
+      "binding": {
+        "id": "94b11fb6-b685-4d40-be5d-e3f5774c6f8a",
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "handle": "atlas",
+        "provider": "codex",
+        "project_id": "proj_izypxtcyp3",
+        "thread_id": "thr_fbhp67gj3i"
+      },
+      "thread": {
+        "table": "threads",
+        "existingRows": 1,
+        "beforeSha256": "734a874131ee1865072476fcdd9974ee11c4f7b00ab87a732a6ba47705d4ca95",
+        "afterSha256": "734a874131ee1865072476fcdd9974ee11c4f7b00ab87a732a6ba47705d4ca95",
+        "preserved": true
+      },
+      "history": {
+        "table": "events",
+        "existingRows": 82,
+        "beforeSha256": "799a66c44138fa62a31bbad1406797a4aecad314b8b028d3049cfd4da394f3bb",
+        "afterSha256": "799a66c44138fa62a31bbad1406797a4aecad314b8b028d3049cfd4da394f3bb",
+        "preserved": true
+      },
+      "project": {
+        "table": "projects",
+        "existingRows": 1,
+        "beforeSha256": "9b513967c6c2c9f16873f48d0e7ebf7c510fd053a2e6a06c3c696c4609faae40",
+        "afterSha256": "9b513967c6c2c9f16873f48d0e7ebf7c510fd053a2e6a06c3c696c4609faae40",
+        "preserved": true
+      },
+      "executionDefaults": {
+        "table": "project_execution_defaults",
+        "existingRows": 0,
+        "beforeSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "afterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "preserved": true
+      },
+      "environment": {
+        "table": "environments",
+        "existingRows": 1,
+        "beforeSha256": "08dfead76308645caa2fc26778469e0c801b77b061bb49dcb523d1c295f99626",
+        "afterSha256": "08dfead76308645caa2fc26778469e0c801b77b061bb49dcb523d1c295f99626",
+        "preserved": true
+      },
+      "additionalEventTypes": []
+    },
+    {
+      "binding": {
+        "id": "c080caf1-25a0-444c-a671-fcd241963482",
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "handle": "nova",
+        "provider": "claude-code",
+        "project_id": "proj_i7ciwcjdfg",
+        "thread_id": "thr_ghwyvj3ihy"
+      },
+      "thread": {
+        "table": "threads",
+        "existingRows": 1,
+        "beforeSha256": "2eb574a7ff8fd14ca6469e45393489618de9e9fe7debb5eb8ef0e06c6d1e64b9",
+        "afterSha256": "2eb574a7ff8fd14ca6469e45393489618de9e9fe7debb5eb8ef0e06c6d1e64b9",
+        "preserved": true
+      },
+      "history": {
+        "table": "events",
+        "existingRows": 75,
+        "beforeSha256": "5b48b3f11956a79c32294cc5e4f38ce3a9872b945d90c4781e4bac264022f88f",
+        "afterSha256": "5b48b3f11956a79c32294cc5e4f38ce3a9872b945d90c4781e4bac264022f88f",
+        "preserved": true
+      },
+      "project": {
+        "table": "projects",
+        "existingRows": 1,
+        "beforeSha256": "bf2aa8870dd5c7197d4bde108b28ece2e1c9d6bb4d70dddbd78a71789c6523cc",
+        "afterSha256": "bf2aa8870dd5c7197d4bde108b28ece2e1c9d6bb4d70dddbd78a71789c6523cc",
+        "preserved": true
+      },
+      "executionDefaults": {
+        "table": "project_execution_defaults",
+        "existingRows": 0,
+        "beforeSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "afterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "preserved": true
+      },
+      "environment": {
+        "table": "environments",
+        "existingRows": 1,
+        "beforeSha256": "c0dca4be3a3350909936ef2b3fcaea29b84d4d24f037a297e26c70e4298c2ea7",
+        "afterSha256": "c0dca4be3a3350909936ef2b3fcaea29b84d4d24f037a297e26c70e4298c2ea7",
+        "preserved": true
+      },
+      "additionalEventTypes": []
+    }
+  ],
+  "ok": true
+}

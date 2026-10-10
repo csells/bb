@@ -1,0 +1,201 @@
+{
+  "verifiedAt": "2026-10-10T18:22:47.400Z",
+  "source": "/Users/admin/rooms-v2-data/rooms.sqlite",
+  "isolatedCopy": "/Users/admin/rooms-native-qa/migration-rehearsal.sqlite",
+  "migration": {
+    "name": "0145_native_rooms_bindings",
+    "sha256": "5dbc41de81c1d3a8af4bcfcbe2c083410da5db40a4745478d61a5bef305cf134"
+  },
+  "sqliteIntegrity": "ok",
+  "foreignKeyViolations": 0,
+  "runtimeStarted": false,
+  "dispatcherStarted": false,
+  "oldColumnsPreserved": true,
+  "addedColumnsAllNull": true,
+  "tables": [
+    {
+      "table": "rooms_activations",
+      "rows": 9,
+      "beforeSha256": "93e22136983d697af184d025658d70fd13849714c3db8bdcdbaa4f96092ba9a2",
+      "afterSha256": "93e22136983d697af184d025658d70fd13849714c3db8bdcdbaa4f96092ba9a2",
+      "identical": true
+    },
+    {
+      "table": "rooms_agents",
+      "rows": 2,
+      "beforeSha256": "0efbc04039f1b43e8504fa838c7805aa8ae98c5520d5868fdb748904b0ec8df6",
+      "afterSha256": "0efbc04039f1b43e8504fa838c7805aa8ae98c5520d5868fdb748904b0ec8df6",
+      "identical": true
+    },
+    {
+      "table": "rooms_chunks",
+      "rows": 0,
+      "beforeSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "afterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "identical": true
+    },
+    {
+      "table": "rooms_deliveries",
+      "rows": 9,
+      "beforeSha256": "a8aabab052e5060bda580fbd1df38aa62e308ea42f5b04ae994f0ee373af9b48",
+      "afterSha256": "a8aabab052e5060bda580fbd1df38aa62e308ea42f5b04ae994f0ee373af9b48",
+      "identical": true
+    },
+    {
+      "table": "rooms_invites",
+      "rows": 1,
+      "beforeSha256": "518f7f66720860f82ad58ef6fca20143f84fe524a9a6fd3ddd57a2e2318e8573",
+      "afterSha256": "518f7f66720860f82ad58ef6fca20143f84fe524a9a6fd3ddd57a2e2318e8573",
+      "identical": true
+    },
+    {
+      "table": "rooms_members",
+      "rows": 1,
+      "beforeSha256": "673ebe8ff0193529fe452f7082987a7601bcbb4884be5d70280e231c55b86fb8",
+      "afterSha256": "673ebe8ff0193529fe452f7082987a7601bcbb4884be5d70280e231c55b86fb8",
+      "identical": true
+    },
+    {
+      "table": "rooms_messages",
+      "rows": 7,
+      "beforeSha256": "f7caa28bb850b14c887bce0ba3bbe7f1e34230bfb1dd4065f81667769e51815f",
+      "afterSha256": "f7caa28bb850b14c887bce0ba3bbe7f1e34230bfb1dd4065f81667769e51815f",
+      "identical": true
+    },
+    {
+      "table": "rooms_receipts",
+      "rows": 7,
+      "beforeSha256": "c575ed4ea8f56e4590630f14fc10630859a142e918db6833bb18b23da389de66",
+      "afterSha256": "c575ed4ea8f56e4590630f14fc10630859a142e918db6833bb18b23da389de66",
+      "identical": true
+    },
+    {
+      "table": "rooms_rooms",
+      "rows": 1,
+      "beforeSha256": "5caa464eaf58bb8a6dcba53242ff6707df9de3651eacee8bfdae76f90632dce0",
+      "afterSha256": "5caa464eaf58bb8a6dcba53242ff6707df9de3651eacee8bfdae76f90632dce0",
+      "identical": true
+    },
+    {
+      "table": "rooms_sessions",
+      "rows": 6,
+      "beforeSha256": "1b1bf5a13d808f68f2daec694436cf0df4138af433175fab4a5b5edabc3e078f",
+      "afterSha256": "1b1bf5a13d808f68f2daec694436cf0df4138af433175fab4a5b5edabc3e078f",
+      "identical": true
+    },
+    {
+      "table": "rooms_steering",
+      "rows": 0,
+      "beforeSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "afterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "identical": true
+    },
+    {
+      "table": "rooms_streams",
+      "rows": 0,
+      "beforeSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "afterSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "identical": true
+    },
+    {
+      "table": "rooms_users",
+      "rows": 4,
+      "beforeSha256": "2c05eef565e8f1dbe81df6d8f9ac61c29b8c3c6bba05f1037b7d07e84c158735",
+      "afterSha256": "2c05eef565e8f1dbe81df6d8f9ac61c29b8c3c6bba05f1037b7d07e84c158735",
+      "identical": true
+    }
+  ],
+  "identities": {
+    "rooms": [
+      {
+        "id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "owner_id": "3c4d1b06-3411-408b-8889-5582b2da1e6d"
+      }
+    ],
+    "humans": [
+      {
+        "id": "16b0ba2e-4056-47bb-abd6-7d8ad57ed9c9",
+        "handle": "blair_mv197f9u"
+      },
+      {
+        "id": "3c4d1b06-3411-408b-8889-5582b2da1e6d",
+        "handle": "csells"
+      },
+      {
+        "id": "50177708-86f1-4fcc-9359-70ed938b3ce8",
+        "handle": "blair_mv1991j1"
+      },
+      {
+        "id": "6deefdde-26bc-4708-8de0-9dfa2e7e03a5",
+        "handle": "blair_mv1a3vxz"
+      }
+    ],
+    "memberships": [
+      {
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "user_id": "3c4d1b06-3411-408b-8889-5582b2da1e6d",
+        "role": "owner"
+      }
+    ],
+    "messages": [
+      {
+        "id": "a2db7f9f-5899-4a9b-9ca5-b9bcfc3bf254",
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "seq": 107,
+        "author_id": "3c4d1b06-3411-408b-8889-5582b2da1e6d"
+      },
+      {
+        "id": "024262f7-2ecb-4e81-a78f-c50b5f1c2f91",
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "seq": 108,
+        "author_id": "94b11fb6-b685-4d40-be5d-e3f5774c6f8a"
+      },
+      {
+        "id": "167cbd54-2176-49ba-bd12-03293308ae0e",
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "seq": 112,
+        "author_id": "3c4d1b06-3411-408b-8889-5582b2da1e6d"
+      },
+      {
+        "id": "4bedefa9-b54a-4565-8e7c-77798867baee",
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "seq": 113,
+        "author_id": "c080caf1-25a0-444c-a671-fcd241963482"
+      },
+      {
+        "id": "76a6bfb9-6f0f-4838-be69-2f0416928fce",
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "seq": 114,
+        "author_id": "94b11fb6-b685-4d40-be5d-e3f5774c6f8a"
+      },
+      {
+        "id": "1833ec65-e588-4d14-b6c7-ecf117265b25",
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "seq": 115,
+        "author_id": "3c4d1b06-3411-408b-8889-5582b2da1e6d"
+      },
+      {
+        "id": "0f4ab283-26c3-4d64-95d4-2254a6589077",
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "seq": 116,
+        "author_id": "3c4d1b06-3411-408b-8889-5582b2da1e6d"
+      }
+    ],
+    "bindings": [
+      {
+        "id": "94b11fb6-b685-4d40-be5d-e3f5774c6f8a",
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "handle": "atlas",
+        "project_id": "proj_izypxtcyp3",
+        "thread_id": "thr_fbhp67gj3i"
+      },
+      {
+        "id": "c080caf1-25a0-444c-a671-fcd241963482",
+        "room_id": "606b2f3e-4501-45f4-a4fd-83bae65f447a",
+        "handle": "nova",
+        "project_id": "proj_i7ciwcjdfg",
+        "thread_id": "thr_ghwyvj3ihy"
+      }
+    ]
+  }
+}

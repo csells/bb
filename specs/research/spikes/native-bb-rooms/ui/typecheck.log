@@ -1,0 +1,33 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/app
+   • Running typecheck in 1 packages
+   • Remote caching disabled
+
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:templates: cache hit, replaying logs 2c62b39e00704c77
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/plugin-build:generate: cache hit, replaying logs 281642095dcb4370
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/app:typecheck: cache miss, executing 013ad43aba27d181
+@bb/app:typecheck:
+@bb/app:typecheck: > @bb/app@0.0.1 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/app
+@bb/app:typecheck: > tsc --noEmit && tsc --noEmit -p tsconfig.node.json
+@bb/app:typecheck:
+
+ Tasks:    4 successful, 4 total
+Cached:    3 cached, 4 total
+  Time:    6.52s

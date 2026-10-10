@@ -1,0 +1,30 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/config
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 08019ee58014d63c
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/config:test: cache miss, executing e0100a55df605f78
+@bb/config:test:
+@bb/config:test: > @bb/config@0.0.1 test /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/config
+@bb/config:test: > vitest run --config vitest.config.ts "test/config.test.ts"
+@bb/config:test:
+@bb/config:test:
+@bb/config:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/packages/config[39m
+@bb/config:test:
+@bb/config:test:  [32m✓[39m [30m[42m @bb/config [49m[39m test/config.test.ts [2m([22m[2m50 tests[22m[2m | [22m[33m1 skipped[39m[2m)[22m[32m 21[2mms[22m[39m
+@bb/config:test:
+@bb/config:test: [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+@bb/config:test: [2m      Tests [22m [1m[32m49 passed[39m[22m[2m | [22m[33m1 skipped[39m[90m (50)[39m
+@bb/config:test: [2m   Start at [22m 18:58:29
+@bb/config:test: [2m   Duration [22m 405ms[2m (transform 212ms, setup 0ms, import 304ms, tests 21ms, environment 0ms)[22m
+@bb/config:test:
+
+ Tasks:    2 successful, 2 total
+Cached:    0 cached, 2 total
+  Time:    1.089s

@@ -112,6 +112,11 @@ BB_HOST_DAEMON_PORT only for an intentional non-default target.
   until `bb server allow-connect`. On the computer a server moved away from,
   `bb server install-machine-service` installs the persistent, self-updating
   machine service (macOS and Linux only; needs Node.js 22.19+ on the PATH).
+- Native Rooms with a separate database/service requires
+  `BB_ROOMS_SEPARATE_SERVICE=true` in the BB server environment. Core refuses
+  `bb server export` and move checks/starts because they cannot preserve the
+  combined application. This startup-only setting defaults to false for
+  ordinary BB; do not unset it to bypass the refusal.
 - Use `bb machine suspend|resume <id-or-name>` only for providers that expose
   suspend and resume. Resume waits for pending suspension and is a no-op
   when already active. Use `bb machine retry-cleanup <id-or-name>` to retry a
@@ -214,4 +219,6 @@ ACP agents in the ACP providers plugin settings.
 
 ## Rooms fork preview
 
-For shared human/agent conversations, use `bb rooms --help`. The gateway URL and a private token file are required. `bb rooms --server URL --token-file PATH login --credentials-file PATH` saves a human session without printing it. Room membership restricts subsequent operations. `send ROOM --message-file PATH` defaults to a public post without activation. Use `--intent request --to PARTICIPANT_IDS` to ask selected participants, or `--intent notice` for optional context; text mentions alone do not dispatch. `--reply-to` and `--request-id` preserve reply/retry identity. `policy ROOM --file PATH` sets visible pause/budget controls. Owners use `activity ROOM AGENT` to inspect private execution status and `recover ROOM AGENT` to stop and release an uncertain dispatch without replay. Follow-ups queue; explicit `steer` and `stop` affect active work. Agents use a separate activation-scoped CLI and must explicitly publish; `agent-command --file PATH` exposes that same protocol. Never print tokens or copy provider credentials without authorization. See `docs/rooms.md` in the fork.
+Rooms appear inside BB's normal navigation. `create NAME --project ID --environment ID --section ID` associates a room with native work context. `context ROOM --file PATH` updates JSON fields `projectId`, `defaultEnvironmentId`, and `sectionId` without moving existing participant threads. `agent-add ROOM --file PATH` accepts either provider/model configuration or an existing `threadId` with the participant's handle/name. Native context, agent setup, private activity and execution controls require full BB operator permission; owning a room alone does not grant it. Agents publish using a CLI installed in private host storage, without rewriting project instructions.
+
+For shared human/agent conversations, use `bb rooms --help`. The gateway URL and a private token file are required. `bb rooms --server URL --token-file PATH login --credentials-file PATH` saves a human session without printing it. Room membership restricts subsequent operations. `send ROOM --message-file PATH` defaults to a public post delivered as optional context to all other room agents. Use `--intent request --to PARTICIPANT_IDS` to ask selected participants while others follow as optional context. `--intent notice` permits silence; text mentions alone do not create a directed request. `--reply-to` and `--request-id` preserve reply/retry identity. `policy ROOM --file PATH` sets visible pause/budget controls. Owners use `activity ROOM AGENT` to inspect private execution status and `recover ROOM AGENT` to stop and release an uncertain dispatch without replay. Follow-ups queue; explicit `steer` and `stop` affect active work. Agents use a separate activation-scoped CLI and must explicitly publish; `agent-command --file PATH` exposes that same protocol. Never print tokens or copy provider credentials without authorization. See `docs/rooms.md` in the fork.

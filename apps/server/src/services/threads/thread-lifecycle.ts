@@ -1031,6 +1031,8 @@ export async function prepareReadyThreadTurnCommand(
 export function settleThreadStopCommandResult(
   args: SettleThreadStopCommandResultArgs,
 ): CommandResultSideEffectsResult {
+  if (args.command.expectedTurnId !== undefined)
+    return emptyCommandResultSideEffects();
   if (args.report.ok && args.report.result.activeTurnRetained !== true) {
     settleDanglingBackgroundTasksForStoppedThreadInTransaction(args.deps, {
       threadId: args.command.threadId,
@@ -1560,8 +1562,25 @@ export async function stopThreadForCurrentState(
   deps: RequestThreadStopForCurrentStateDeps,
   thread: RequestThreadStopForCurrentStateThread,
   environment: RequestThreadStopForCurrentStateEnvironment | null,
-  options?: { requireStopped: true },
+  options?: { requireStopped?: true; expectedTurnId?: string },
 ): Promise<void> {
+  if (options?.expectedTurnId !== undefined) {
+    if (
+      environment === null ||
+      getActiveTurnId(deps, thread.id) !== options.expectedTurnId
+    )
+      return;
+    const outcome = await runAwaitedThreadStopCommand(deps, {
+      command: buildThreadStopCommand({
+        ...manualThreadStopArgs(thread.id, environment),
+        intent: "interrupt",
+        expectedTurnId: options.expectedTurnId,
+      }),
+      hostId: environment.hostId,
+    });
+    if (outcome.failure !== null) throw outcome.failure.error;
+    return;
+  }
   await revokeThreadDesktopBrowserControl(deps, thread.id);
   const failure = await threadStopRequestDeduper.run(thread.id, () =>
     stopThreadUntilSettled(deps, thread.id, environment),

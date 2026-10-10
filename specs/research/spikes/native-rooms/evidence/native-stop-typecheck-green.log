@@ -1,0 +1,59 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/agent-runtime, @bb/cli, @bb/host-daemon, @bb/rooms, @bb/server
+   • Running typecheck in 5 packages
+   • Remote caching disabled
+
+@bb/templates:generate:templates: cache hit, replaying logs 6aae00c7f020387c
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/plugin-build:generate: cache hit, replaying logs 281642095dcb4370
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/server:generate:bb-official-marketplace: cache hit, replaying logs b0db3a503f1a06e5
+@bb/server:generate:bb-official-marketplace: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/server:generate:bb-official-marketplace:
+@bb/server:generate:bb-official-marketplace: > @bb/server@0.0.1 generate:bb-official-marketplace /Users/admin/code/Forks/get-bb/bb/apps/server
+@bb/server:generate:bb-official-marketplace: > node --conditions=source --import tsx scripts/generate-bb-official-marketplace.ts
+@bb/server:generate:bb-official-marketplace:
+@bb/rooms:typecheck: cache miss, executing a2858655b8842f50
+@bb/cli:typecheck: cache miss, executing 767d6e095d0ab5be
+@bb/cli:typecheck:
+@bb/cli:typecheck: > @bb/cli@0.0.1 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/cli
+@bb/cli:typecheck: > tsc --noEmit
+@bb/cli:typecheck:
+@bb/rooms:typecheck:
+@bb/rooms:typecheck: > @bb/rooms@0.1.0 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:typecheck: > tsc --noEmit
+@bb/rooms:typecheck:
+@bb/agent-runtime:typecheck: cache miss, executing 210c62dfce045c72
+@bb/agent-runtime:typecheck:
+@bb/agent-runtime:typecheck: > @bb/agent-runtime@0.0.1 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/agent-runtime
+@bb/agent-runtime:typecheck: > tsc --noEmit
+@bb/agent-runtime:typecheck:
+@bb/host-daemon:typecheck: cache miss, executing ef1564275cce947d
+@bb/host-daemon:typecheck:
+@bb/host-daemon:typecheck: > @bb/host-daemon@0.0.1 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/host-daemon
+@bb/host-daemon:typecheck: > tsc --noEmit
+@bb/host-daemon:typecheck:
+@bb/server:typecheck: cache miss, executing e410bcedc8fdc6ad
+@bb/server:typecheck:
+@bb/server:typecheck: > @bb/server@0.0.1 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/server
+@bb/server:typecheck: > tsc --noEmit
+@bb/server:typecheck:
+
+ Tasks:    9 successful, 9 total
+Cached:    4 cached, 9 total
+  Time:    15.279s

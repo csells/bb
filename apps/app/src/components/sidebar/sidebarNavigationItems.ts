@@ -23,6 +23,7 @@ export type SidebarNavigationAction =
   | { kind: "search-threads" }
   | { kind: "open-extensions" }
   | { kind: "open-skills" }
+  | { kind: "open-rooms" }
   | {
       kind: "open-plugin-panel";
       pluginId: string;
@@ -30,7 +31,10 @@ export type SidebarNavigationAction =
     };
 
 export type SidebarNavigationItemIcon =
-  | { kind: "host"; name: "new-thread" | "search" | "extensions" | "skills" }
+  | {
+      kind: "host";
+      name: "new-thread" | "search" | "extensions" | "skills" | "rooms";
+    }
   | { kind: "plugin"; pluginId: string; icon: string | null };
 
 export interface SidebarNavigationItem {
@@ -65,6 +69,7 @@ export const SEARCH_THREADS_NAVIGATION_ITEM_ID =
   BUILT_IN_SIDEBAR_NAVIGATION_KEYS.searchThreads;
 export const PLUGINS_NAVIGATION_ITEM_ID =
   BUILT_IN_SIDEBAR_NAVIGATION_KEYS.extensions;
+export const ROOMS_NAVIGATION_ITEM_ID = BUILT_IN_SIDEBAR_NAVIGATION_KEYS.rooms;
 export const SKILLS_NAVIGATION_ITEM_ID =
   BUILT_IN_SIDEBAR_NAVIGATION_KEYS.skills;
 
@@ -108,6 +113,7 @@ const HOST_ROWS: readonly SidebarNavigationRow[] = [
   hostRow(SEARCH_THREADS_NAVIGATION_ITEM_ID, "Search threads", "search", {
     kind: "search-threads",
   }),
+  hostRow(ROOMS_NAVIGATION_ITEM_ID, "Rooms", "rooms", { kind: "open-rooms" }),
   hostRow(PLUGINS_NAVIGATION_ITEM_ID, "Plugins", "extensions", {
     kind: "open-extensions",
   }),
@@ -232,6 +238,8 @@ export function resolveActiveSidebarNavigationItemId({
   pathname: string;
 }): string | null {
   if (pathname === "/") return NEW_THREAD_NAVIGATION_ITEM_ID;
+  if (pathname === "/rooms" || pathname.startsWith("/rooms/"))
+    return ROOMS_NAVIGATION_ITEM_ID;
   if (isToolsRoutePath(pathname)) {
     return pathname === getSkillsRoutePath() ||
       pathname.startsWith(`${getSkillsRoutePath()}/`)
@@ -257,5 +265,6 @@ export function getResourceNavigationRoutePath(
 ): string | null {
   if (action.kind === "open-extensions") return getPluginsRoutePath();
   if (action.kind === "open-skills") return getSkillsRoutePath();
+  if (action.kind === "open-rooms") return "/rooms";
   return null;
 }

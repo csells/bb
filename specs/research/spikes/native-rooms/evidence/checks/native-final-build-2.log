@@ -1,0 +1,340 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/app, @bb/cli, @bb/host-daemon, @bb/rooms, @bb/scripts, @bb/server, bb-app
+   • Running build in 7 packages
+   • Remote caching disabled
+
+@bb/server:generate:bb-official-marketplace: cache hit, replaying logs b0db3a503f1a06e5
+@bb/server:generate:bb-official-marketplace: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/server:generate:bb-official-marketplace:
+@bb/server:generate:bb-official-marketplace: > @bb/server@0.0.1 generate:bb-official-marketplace /Users/admin/code/Forks/get-bb/bb/apps/server
+@bb/server:generate:bb-official-marketplace: > node --conditions=source --import tsx scripts/generate-bb-official-marketplace.ts
+@bb/server:generate:bb-official-marketplace:
+@bb/plugin-build:generate: cache hit, replaying logs 2775c74d475a5bb6
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates: cache hit, replaying logs a76e65418faf77db
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/scripts:build: cache miss, executing a68be5a421edee90
+@bb/sdk:build: cache miss, executing fdc200dbdb9df3bd
+@bb/scripts:build:
+@bb/scripts:build: > @bb/scripts@0.0.1 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/scripts
+@bb/scripts:build: > node ../../scripts/build-package.mjs
+@bb/scripts:build:
+@bb/sdk:build:
+@bb/sdk:build: > @bb/sdk@0.0.1 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/sdk
+@bb/sdk:build: > node ../../scripts/build-package.mjs
+@bb/sdk:build:
+@bb/scripts:build: @bb/scripts: built 4 entries
+@get-bb/plugin-sdk:build: cache miss, executing e3f904b5bf18b3d9
+@bb/sdk:build: @bb/sdk: built 4 entries
+@bb/rooms:build: cache miss, executing 6a286e041c69fc85
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: > @get-bb/plugin-sdk@0.6.33 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-sdk
+@get-bb/plugin-sdk:build: > node scripts/build-runtime.mjs
+@get-bb/plugin-sdk:build:
+@bb/rooms:build:
+@bb/rooms:build: > @bb/rooms@0.1.0 build /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:build: > node ../../scripts/build-node-entry.mjs src/server.ts dist/server.js --clean-dist --copy-dir ../../packages/db/drizzle dist/drizzle && node ../../scripts/build-node-entry.mjs src/agent-cli-entry.ts dist/agent-cli.js && vite build
+@bb/rooms:build:
+@get-bb/plugin-sdk:build: Built 19 @get-bb/plugin-sdk runtime entries.
+@bb/plugin-build:build: cache miss, executing 92a49396176ec3b5
+@bb/plugin-build:build:
+@bb/plugin-build:build: > @bb/plugin-build@0.0.1 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:build: > node ../../scripts/build-node-entry.mjs src/cli.ts dist/cli.js --clean-dist
+@bb/plugin-build:build:
+@bb/cli:build: cache miss, executing 0e6106e54a79fdb0
+@bb/rooms:build: vite v7.3.7 building client environment for production...
+@bb/rooms:build: transforming...
+@bb/cli:build:
+@bb/cli:build: > @bb/cli@0.0.1 build /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/cli
+@bb/cli:build: > node ../../scripts/build-node-entry.mjs src/index.ts dist/index.js --clean-dist --split
+@bb/cli:build:
+@bb/rooms:build: ../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js (400:0): A comment
+@bb/rooms:build:
+@bb/rooms:build: "// Wrapped in a `@__PURE__` IIFE: esbuild never tree-shakes a top-level initializer that contains a member access on `Number`, so the bare object literal survived into every bundle."
+@bb/rooms:build:
+@bb/rooms:build: in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/util.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+@bb/rooms:build: ../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js (74:0): A comment
+@bb/rooms:build:
+@bb/rooms:build: "/** Anchors a pattern source. The interpolation lives here rather than at the call site because
+@bb/rooms:build:  * esbuild will not drop a `@__PURE__` call whose own argument interpolates a variable, but it
+@bb/rooms:build:  * will drop `anchor(dateSource)`. Keeping it inline pinned `date` into every bundle. */"
+@bb/rooms:build:
+@bb/rooms:build: in "../../node_modules/.pnpm/zod@4.6.5/node_modules/zod/v4/core/regexes.js" contains an annotation that Rollup cannot interpret due to the position of the comment. The comment will be removed to avoid issues.
+bb-plugin-workflows:prepare:bundled: cache miss, executing be7eeb814bbe12a2
+bb-plugin-workflows:prepare:bundled:
+bb-plugin-workflows:prepare:bundled: > bb-plugin-workflows@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/workflows
+bb-plugin-workflows:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-workflows:prepare:bundled:
+bb-plugin-ask-user-question:prepare:bundled: cache miss, executing 00bb56449396a30d
+@bb/rooms:build: ✓ 466 modules transformed.
+@bb/rooms:build: rendering chunks...
+@bb/rooms:build: computing gzip size...
+bb-plugin-ask-user-question:prepare:bundled:
+bb-plugin-ask-user-question:prepare:bundled: > bb-plugin-ask-user-question@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/ask-user-question
+bb-plugin-ask-user-question:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-ask-user-question:prepare:bundled:
+@bb/rooms:build: dist/web/index.html                   0.40 kB │ gzip:   0.27 kB
+@bb/rooms:build: dist/web/assets/index-CDXewShl.css   15.30 kB │ gzip:   3.89 kB
+@bb/rooms:build: dist/web/assets/index-Bx7wGJ24.js   524.17 kB │ gzip: 163.18 kB
+@bb/rooms:build: ✓ built in 1.37s
+@bb/rooms:build:
+@bb/rooms:build: (!) Some chunks are larger than 500 kB after minification. Consider:
+@bb/rooms:build: - Using dynamic import() to code-split the application
+@bb/rooms:build: - Use build.rollupOptions.output.manualChunks to improve chunking: https://rollupjs.org/configuration-options/#output-manualchunks
+@bb/rooms:build: - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+bb-plugin-automations:prepare:bundled: cache miss, executing eb578153d1f50d0e
+bb-plugin-bb-guide:prepare:bundled: cache miss, executing 17c9d9c72e650b12
+bb-plugin-automations:prepare:bundled:
+bb-plugin-automations:prepare:bundled: > bb-plugin-automations@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/automations
+bb-plugin-automations:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-automations:prepare:bundled:
+bb-plugin-bb-guide:prepare:bundled:
+bb-plugin-bb-guide:prepare:bundled: > bb-plugin-bb-guide@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/bb-guide
+bb-plugin-bb-guide:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-bb-guide:prepare:bundled:
+bb-plugin-environment-modal-sandbox:prepare:bundled: cache miss, executing 04eb47721625c31d
+bb-plugin-account-pool:prepare:bundled: cache miss, executing 02b7d14b49009657
+bb-plugin-environment-modal-sandbox:prepare:bundled:
+bb-plugin-environment-modal-sandbox:prepare:bundled: > bb-plugin-environment-modal-sandbox@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/environment-modal-sandbox
+bb-plugin-environment-modal-sandbox:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-environment-modal-sandbox:prepare:bundled:
+bb-plugin-account-pool:prepare:bundled:
+bb-plugin-account-pool:prepare:bundled: > bb-plugin-account-pool@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/account-pool
+bb-plugin-account-pool:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-account-pool:prepare:bundled:
+bb-plugin-provider-pi:prepare:bundled: cache miss, executing 52f100238ddcb489
+bb-plugin-secrets:prepare:bundled: cache miss, executing a46c3ea25c17bb7d
+bb-plugin-provider-pi:prepare:bundled:
+bb-plugin-provider-pi:prepare:bundled: > bb-plugin-provider-pi@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/provider-pi
+bb-plugin-provider-pi:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-provider-pi:prepare:bundled:
+bb-plugin-secrets:prepare:bundled:
+bb-plugin-secrets:prepare:bundled: > bb-plugin-secrets@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/secrets
+bb-plugin-secrets:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-secrets:prepare:bundled:
+bb-plugin-theme-preview:prepare:bundled: cache miss, executing 11864f15c90aa042
+bb-plugin-thread-list:prepare:bundled: cache miss, executing 4fa13a14ea5af472
+bb-plugin-theme-preview:prepare:bundled:
+bb-plugin-theme-preview:prepare:bundled: > bb-plugin-theme-preview@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/theme-preview
+bb-plugin-theme-preview:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-theme-preview:prepare:bundled:
+bb-plugin-thread-list:prepare:bundled:
+bb-plugin-thread-list:prepare:bundled: > bb-plugin-thread-list@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/thread-list
+bb-plugin-thread-list:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-thread-list:prepare:bundled:
+bb-plugin-agent-annotations:prepare:bundled: cache miss, executing 531f50053f758849
+bb-plugin-bb--prompt-library:prepare:bundled: cache miss, executing 6baca5e3bb611fa6
+bb-plugin-agent-annotations:prepare:bundled:
+bb-plugin-agent-annotations:prepare:bundled: > bb-plugin-agent-annotations@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/agent-annotations
+bb-plugin-agent-annotations:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-agent-annotations:prepare:bundled:
+bb-plugin-bb--prompt-library:prepare:bundled:
+bb-plugin-bb--prompt-library:prepare:bundled: > bb-plugin-bb--prompt-library@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/prompt-library
+bb-plugin-bb--prompt-library:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-bb--prompt-library:prepare:bundled:
+bb-plugin-bb--provider-usage:prepare:bundled: cache miss, executing c327e8b5715d233c
+bb-plugin-bb--storage-retention:prepare:bundled: cache miss, executing 9df0af9d12c60fb0
+bb-plugin-bb--provider-usage:prepare:bundled:
+bb-plugin-bb--provider-usage:prepare:bundled: > bb-plugin-bb--provider-usage@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/provider-usage
+bb-plugin-bb--provider-usage:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-bb--provider-usage:prepare:bundled:
+bb-plugin-bb--storage-retention:prepare:bundled:
+bb-plugin-bb--storage-retention:prepare:bundled: > bb-plugin-bb--storage-retention@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/storage-retention
+bb-plugin-bb--storage-retention:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-bb--storage-retention:prepare:bundled:
+bb-plugin-bb-account:prepare:bundled: cache miss, executing be3b983210bb8751
+bb-plugin-bb-ai:prepare:bundled: cache miss, executing c77eb0ee5cea4b23
+bb-plugin-bb-account:prepare:bundled:
+bb-plugin-bb-account:prepare:bundled: > bb-plugin-bb-account@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/bb-account
+bb-plugin-bb-account:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-bb-account:prepare:bundled:
+bb-plugin-bb-ai:prepare:bundled:
+bb-plugin-bb-ai:prepare:bundled: > bb-plugin-bb-ai@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/bb-ai
+bb-plugin-bb-ai:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-bb-ai:prepare:bundled:
+bb-plugin-concurrency-limit:prepare:bundled: cache miss, executing f36f28840f93027f
+bb-plugin-browser-automation:prepare:bundled: cache miss, executing 563551e9ee2328e2
+bb-plugin-concurrency-limit:prepare:bundled:
+bb-plugin-concurrency-limit:prepare:bundled: > bb-plugin-concurrency-limit@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/concurrency-limit
+bb-plugin-concurrency-limit:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-concurrency-limit:prepare:bundled:
+bb-plugin-browser-automation:prepare:bundled:
+bb-plugin-browser-automation:prepare:bundled: > bb-plugin-browser-automation@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/browser-automation
+bb-plugin-browser-automation:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-browser-automation:prepare:bundled:
+bb-plugin-custom-instructions:prepare:bundled: cache miss, executing 896e50b1c25266ce
+bb-plugin-drafts:prepare:bundled: cache miss, executing 0d1050050e3c22dc
+bb-plugin-custom-instructions:prepare:bundled:
+bb-plugin-custom-instructions:prepare:bundled: > bb-plugin-custom-instructions@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/custom-instructions
+bb-plugin-custom-instructions:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-custom-instructions:prepare:bundled:
+bb-plugin-drafts:prepare:bundled:
+bb-plugin-drafts:prepare:bundled: > bb-plugin-drafts@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/drafts
+bb-plugin-drafts:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-drafts:prepare:bundled:
+bb-plugin-environment-personal-workspace:prepare:bundled: cache miss, executing 2c4e6e746540a2c0
+bb-plugin-github:prepare:bundled: cache miss, executing 1681a5363d1eae6b
+bb-plugin-environment-personal-workspace:prepare:bundled:
+bb-plugin-environment-personal-workspace:prepare:bundled: > bb-plugin-environment-personal-workspace@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/environment-personal-workspace
+bb-plugin-environment-personal-workspace:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-environment-personal-workspace:prepare:bundled:
+bb-plugin-github:prepare:bundled:
+bb-plugin-github:prepare:bundled: > bb-plugin-github@0.2.1 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/github
+bb-plugin-github:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-github:prepare:bundled:
+bb-plugin-inline-vis:prepare:bundled: cache miss, executing 141576c0b9b2923d
+bb-plugin-keep-awake:prepare:bundled: cache miss, executing af7bd703a224a814
+bb-plugin-inline-vis:prepare:bundled:
+bb-plugin-inline-vis:prepare:bundled: > bb-plugin-inline-vis@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/inline-vis
+bb-plugin-inline-vis:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-inline-vis:prepare:bundled:
+bb-plugin-keep-awake:prepare:bundled:
+bb-plugin-keep-awake:prepare:bundled: > bb-plugin-keep-awake@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/keep-awake
+bb-plugin-keep-awake:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-keep-awake:prepare:bundled:
+bb-plugin-memory:prepare:bundled: cache miss, executing 43760a4b111e7100
+bb-plugin-monaco-editor:prepare:bundled: cache miss, executing 78ccdb729a7adfc2
+bb-plugin-memory:prepare:bundled:
+bb-plugin-memory:prepare:bundled: > bb-plugin-memory@0.2.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/memory
+bb-plugin-memory:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-memory:prepare:bundled:
+bb-plugin-pdf-preview:prepare:bundled: cache miss, executing 9dc955a87f92673d
+bb-plugin-monaco-editor:prepare:bundled:
+bb-plugin-monaco-editor:prepare:bundled: > bb-plugin-monaco-editor@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/monaco-editor
+bb-plugin-monaco-editor:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-monaco-editor:prepare:bundled:
+bb-plugin-pdf-preview:prepare:bundled:
+bb-plugin-pdf-preview:prepare:bundled: > bb-plugin-pdf-preview@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/pdf-preview
+bb-plugin-pdf-preview:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-pdf-preview:prepare:bundled:
+bb-plugin-plugin-api-docs:prepare:bundled: cache miss, executing 94ec9d6266076971
+bb-plugin-monaco-editor:prepare:bundled: monaco: built /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/.bundled-stage-dmk2lr/dist/monaco (4.56 MB editor + worker)
+bb-plugin-plugin-api-tester:prepare:bundled: cache miss, executing fd39106ad860b65b
+bb-plugin-plugin-api-docs:prepare:bundled:
+bb-plugin-plugin-api-docs:prepare:bundled: > bb-plugin-plugin-api-docs@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/plugin-api-docs
+bb-plugin-plugin-api-docs:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-plugin-api-docs:prepare:bundled:
+bb-plugin-plugin-api-tester:prepare:bundled:
+bb-plugin-plugin-api-tester:prepare:bundled: > bb-plugin-plugin-api-tester@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/plugin-api-tester
+bb-plugin-plugin-api-tester:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-plugin-api-tester:prepare:bundled:
+bb-plugin-provider-acp:prepare:bundled: cache miss, executing 8e2b21ac4122d680
+bb-plugin-push-notifications:prepare:bundled: cache miss, executing d570248845c838b2
+bb-plugin-provider-acp:prepare:bundled:
+bb-plugin-provider-acp:prepare:bundled: > bb-plugin-provider-acp@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/provider-acp
+bb-plugin-provider-acp:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-provider-acp:prepare:bundled:
+bb-plugin-push-notifications:prepare:bundled:
+bb-plugin-push-notifications:prepare:bundled: > bb-plugin-push-notifications@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/push-notifications
+bb-plugin-push-notifications:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-push-notifications:prepare:bundled:
+bb-plugin-provider-claude-code:prepare:bundled: cache miss, executing 426da63f9b201f84
+bb-plugin-provider-codex:prepare:bundled: cache miss, executing 81c8d8fe948fa9d9
+bb-plugin-provider-claude-code:prepare:bundled:
+bb-plugin-provider-claude-code:prepare:bundled: > bb-plugin-provider-claude-code@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/provider-claude-code
+bb-plugin-provider-claude-code:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-provider-claude-code:prepare:bundled:
+bb-plugin-provider-codex:prepare:bundled:
+bb-plugin-provider-codex:prepare:bundled: > bb-plugin-provider-codex@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/provider-codex
+bb-plugin-provider-codex:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-provider-codex:prepare:bundled:
+bb-plugin-provider-retry:prepare:bundled: cache miss, executing 1a98648911073f12
+bb-plugin-side-chat:prepare:bundled: cache miss, executing 69d3eda53639c305
+bb-plugin-provider-retry:prepare:bundled:
+bb-plugin-provider-retry:prepare:bundled: > bb-plugin-provider-retry@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/provider-retry
+bb-plugin-provider-retry:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-provider-retry:prepare:bundled:
+bb-plugin-side-chat:prepare:bundled:
+bb-plugin-side-chat:prepare:bundled: > bb-plugin-side-chat@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/side-chat
+bb-plugin-side-chat:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-side-chat:prepare:bundled:
+bb-plugin-scheduled-send:prepare:bundled: cache miss, executing 54ee93d354796096
+bb-plugin-simple-notes:prepare:bundled: cache miss, executing 5bd691de3e637d86
+bb-plugin-scheduled-send:prepare:bundled:
+bb-plugin-scheduled-send:prepare:bundled: > bb-plugin-scheduled-send@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/scheduled-send
+bb-plugin-scheduled-send:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-scheduled-send:prepare:bundled:
+bb-plugin-simple-notes:prepare:bundled:
+bb-plugin-simple-notes:prepare:bundled: > bb-plugin-simple-notes@0.2.3 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/docs
+bb-plugin-simple-notes:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-simple-notes:prepare:bundled:
+bb-plugin-tasks:prepare:bundled: cache miss, executing 45d568e575e498a6
+bb-plugin-tasks:prepare:bundled:
+bb-plugin-tasks:prepare:bundled: > bb-plugin-tasks@0.1.2 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/tasks
+bb-plugin-tasks:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-tasks:prepare:bundled:
+bb-plugin-environment-project-checkout:prepare:bundled: cache miss, executing 4e6c71eb6e703204
+bb-plugin-environment-project-checkout:prepare:bundled:
+bb-plugin-environment-project-checkout:prepare:bundled: > bb-plugin-environment-project-checkout@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/environment-project-checkout
+bb-plugin-environment-project-checkout:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-environment-project-checkout:prepare:bundled:
+bb-plugin-environment-git-worktree:prepare:bundled: cache miss, executing eee6c5f976155ca6
+@bb/app:build: cache miss, executing 57e110f0aa2ec023
+bb-plugin-environment-git-worktree:prepare:bundled:
+bb-plugin-environment-git-worktree:prepare:bundled: > bb-plugin-environment-git-worktree@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/environment-git-worktree
+bb-plugin-environment-git-worktree:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-environment-git-worktree:prepare:bundled:
+@bb/app:build:
+@bb/app:build: > @bb/app@0.0.1 build /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/app
+@bb/app:build: > node scripts/generate-pwa-icons.mjs && vite build --logLevel warn && node ../../scripts/precompress-app-dist.mjs dist
+@bb/app:build:
+bb-plugin-connect:prepare:bundled: cache miss, executing 350e394c3e0455e9
+bb-plugin-connect:prepare:bundled:
+bb-plugin-connect:prepare:bundled: > bb-plugin-connect@0.1.0 prepare:bundled /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/connect
+bb-plugin-connect:prepare:bundled: > bb-plugin-build prepare-bundled
+bb-plugin-connect:prepare:bundled:
+@bb/server:build: cache miss, executing 36cfc8be96f15711
+@bb/app:build:
+@bb/app:build:  WARN  advancedChunks option is deprecated, please use codeSplitting instead.
+@bb/app:build:
+@bb/server:build:
+@bb/server:build: > @bb/server@0.0.1 build /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/server
+@bb/server:build: > node ../../scripts/build-node-entry.mjs src/index.ts dist/index.js --clean-dist --external ./start-server.js --copy-dir ../../packages/db/drizzle dist/drizzle --copy-dir src/assets dist/assets && node --import tsx scripts/copy-builtin-skills.ts && node ../../scripts/build-node-entry.mjs src/start-server.ts dist/start-server.js && node ../../scripts/build-node-entry.mjs ../../packages/plugin-sdk/src/index.ts dist/plugin-sdk-runtime.js && node ../../scripts/build-node-entry.mjs src/services/plugins/zod-runtime.ts dist/zod-runtime.js
+@bb/server:build:
+@bb/host-daemon:build: cache miss, executing c97ca5542986f021
+@bb/app:build: React Compiler cache: 1272 hits, 0 misses
+@bb/host-daemon:build:
+@bb/host-daemon:build: > @bb/host-daemon@0.0.1 build /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/host-daemon
+@bb/host-daemon:build: > node ../../scripts/build-node-entry.mjs src/index.ts dist/index.js --clean-dist --external ./start-host-daemon.js && node ../../scripts/build-node-entry.mjs src/start-host-daemon.ts dist/start-host-daemon.js && node ../../scripts/build-node-entry.mjs src/plugin-host-worker.ts dist/plugin-host-worker.js && node ./scripts/build-bundles.mjs
+@bb/host-daemon:build:
+@bb/host-daemon:build: daemon: 1430329 bytes
+@bb/host-daemon:build: provider bridge worker: 13009 bytes
+@bb/host-daemon:build: plugin host worker: 199634 bytes
+@bb/host-daemon:build: bb cli: 5455 bytes
+@bb/host-daemon:build: parcel watcher child: 2057 bytes
+@bb/bundled-plugins:build: cache miss, executing 31bec032c72d9b85
+@bb/bundled-plugins:build:
+@bb/bundled-plugins:build: > @bb/bundled-plugins@0.0.1 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/bundled-plugins
+@bb/bundled-plugins:build: > cd ../.. && node --conditions=source --import tsx packages/bundled-plugins/build.ts
+@bb/bundled-plugins:build:
+@bb/app:build: [plugin builtin:vite-reporter]
+@bb/app:build: (!) Some chunks are larger than 500 kB after minification. Consider:
+@bb/app:build: - Using dynamic import() to code-split the application
+@bb/app:build: - Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+@bb/app:build: - Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+@bb/app:build: precompressed 501 files (501 br, 501 gzip) in /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/app/dist
+bb-app:build: cache miss, executing 92f3e80a4a1f1e44
+bb-app:build:
+bb-app:build: > bb-app@0.45.0 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/bb-app
+bb-app:build: > node scripts/build.mjs
+bb-app:build:
+bb-app:build: bb-app: built package assets
+
+ Tasks:    56 successful, 56 total
+Cached:    4 cached, 56 total
+  Time:    44.379s

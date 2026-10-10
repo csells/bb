@@ -1,0 +1,17 @@
+{
+  "room": {
+    "id": "31b2edb9-1a03-4561-8c6b-3335bf2af701",
+    "name": "iOS Safari room 1791659187",
+    "section_id": "sec_6cw2gipfcc"
+  },
+  "messages": [
+    {
+      "id": "988587eb-e27f-42e9-b2c5-278477848d00",
+      "room_id": "31b2edb9-1a03-4561-8c6b-3335bf2af701",
+      "kind": "human",
+      "author_id": "301a4c9f-1208-4e77-b0cc-b6207a062852",
+      "text": "Actual iOS Send button 1791659775"
+    }
+  ],
+  "persistedHumanMessage": true
+}

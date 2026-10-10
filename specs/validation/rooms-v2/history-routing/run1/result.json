@@ -1,0 +1,35 @@
+{
+  "origin": "http://127.0.0.1:38906",
+  "roomId": "44120422-6aa5-4191-a588-f626d54c733a",
+  "prompts": [
+    {
+      "stage": "unaddressed-open-question",
+      "text": "We're planning a shared task board for a two-person team. What is one essential feature, and why?",
+      "target": null
+    },
+    {
+      "stage": "peer-open-question",
+      "text": "@atlas Please ask the whole room one open question about handling blocked tasks. Nova, wait for Atlas's question and then offer your perspective. Keep this a brief discussion.",
+      "target": "atlas"
+    },
+    {
+      "stage": "stream-commit",
+      "text": "@atlas Please compose one short three-paragraph proposal for our board, showing each paragraph in the same public message as you develop it so we can watch the draft grow. Nova, wait until the proposal is complete, then offer one brief improvement. No further discussion is needed after that.",
+      "target": "atlas"
+    },
+    {
+      "stage": "closing-silence",
+      "text": "Thanks, we have what we need. This topic is closed; no further replies are needed.",
+      "target": null
+    }
+  ],
+  "claims": [
+    "Two independently authenticated humans joined the isolated room through invitations",
+    "Unaddressed human question reached both agents as optional notices; each independently contributed in both human browsers",
+    "Targeted request remained request for Atlas and optional notice for Nova; Atlas's recipient-free question reached Nova once, produced her own answer, and did not wake Atlas itself",
+    "Both browsers observed naturally authored public stream growth; incomplete chunks scheduled nobody and final commit scheduled exactly one peer notice",
+    "Both agents processed an unaddressed closing notice without public posts and the whole room became quiescent"
+  ],
+  "errors": [],
+  "completed": "2026-10-09T22:47:18.915Z"
+}

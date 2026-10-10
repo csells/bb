@@ -381,6 +381,13 @@ export async function getClaudeProviderHealth(): Promise<ProviderHealthResult> {
     return healthResult("not_installed");
   }
   const version = await readCliVersion(command);
+  if (process.env.CLAUDE_CODE_OAUTH_TOKEN?.trim()) {
+    return healthResult("ready", {
+      installedVersion: version,
+      statusMessage:
+        "Uses CLAUDE_CODE_OAUTH_TOKEN. Token validity is checked when making requests; account details and expiry are unavailable.",
+    });
+  }
   try {
     const [credentials, email] = await Promise.all([
       readCredentials(),
@@ -528,6 +535,7 @@ export async function getClaudeProviderUsage(): Promise<ProviderUsageResult> {
   if ((await resolveExecutablePath(command)) === null) {
     return { supported: true, usage: { status: "not_installed" } };
   }
+  if (process.env.CLAUDE_CODE_OAUTH_TOKEN?.trim()) return { supported: false };
   const [credentials, account] = await Promise.all([
     readCredentials(),
     readAccount(),

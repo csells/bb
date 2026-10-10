@@ -595,7 +595,10 @@ export function AppLayout({ children }: AppLayoutProps) {
   const startWidthRef = useRef(0);
   const liveWidthRef = useRef(0);
   const animationFrameRef = useRef<number | null>(null);
-  const showHeader = !isThreadView && !isRootView && pluginPanelMatch === null;
+  const isRoomsView =
+    location.pathname === "/rooms" || location.pathname.startsWith("/rooms/");
+  const showHeader =
+    !isThreadView && !isRootView && !isRoomsView && pluginPanelMatch === null;
   const [desktopInfo] = useState(getBbDesktopInfo);
   const desktopWindowState = useDesktopWindowState();
   const usesDesktopChrome = shouldUseMacosDesktopChrome(desktopInfo);

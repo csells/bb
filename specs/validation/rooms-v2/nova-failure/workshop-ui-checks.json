@@ -1,0 +1,11 @@
+{
+  "checks": [
+    "Signed into the actual Workshop as Chris in a fresh isolated browser context",
+    "Actual failed Nova request displays the restored-login explanation",
+    "Ask Nova again prepares the exact original taskboard request with only Nova selected and sends nothing",
+    "Draft cleared and browser session signed out; API confirms401"
+  ],
+  "unexpectedPublications": 0,
+  "browserClosed": true,
+  "temporaryCredentialRemoved": true
+}

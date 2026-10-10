@@ -1,0 +1,67 @@
+import assert from "node:assert/strict";
+import { readFile, writeFile, mkdir } from "node:fs/promises";
+import { createRequire } from "node:module";
+import { join } from "node:path";
+
+const require = createRequire(new URL("../../../../apps/rooms/package.json", import.meta.url));
+const { chromium, expect: baseExpect } = require("@playwright/test");
+const expect = baseExpect.configure({ timeout: 30000 });
+const account = JSON.parse(await readFile("/Users/admin/rooms-native-qa/preview-owner-private.json", "utf8"));
+const url = "https://diary-butler-leone-heavy.trycloudflare.com";
+const roomId = "606b2f3e-4501-45f4-a4fd-83bae65f447a";
+const output = process.env.ROOMS_OWNER_QA_OUTPUT;
+assert(output);
+await mkdir(output, { recursive: true });
+const browser = await chromium.launch({ headless: true });
+const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
+const page = await context.newPage();
+const evidence = { steps: [], errors: [], passed: false };
+const clean = (value) => String(value).replaceAll(account.password, "[redacted]");
+page.on("pageerror", (error) => evidence.errors.push(clean(error.message)));
+try {
+  await page.goto(url + "/rooms/" + roomId);
+  await page.getByLabel("Handle", { exact: true }).fill(account.handle);
+  await page.getByLabel("Password", { exact: true }).fill(account.password);
+  await page.getByRole("button", { name: "Sign in", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Workshop", exact: true })).toBeVisible({ timeout: 30000 });
+  const me = await context.request.get(url + "/api/me");
+  const identity = await me.json();
+  assert.equal(identity.user.handle, "csells");
+  assert.equal(identity.access.operator, true);
+  evidence.steps.push("Existing owner password opens full native BB and preserved Workshop");
+  await page.getByRole("button", { name: "Room participants", exact: true }).click();
+  const participants = page.getByRole("dialog", { name: "Room participants", exact: true });
+  const atlas = participants.getByRole("link", { name: "Open Atlas’s thread", exact: true });
+  const nova = participants.getByRole("link", { name: "Open Nova’s thread", exact: true });
+  await expect(atlas).toHaveAttribute("href", /thr_fbhp67gj3i/);
+  await expect(nova).toHaveAttribute("href", /thr_ghwyvj3ihy/);
+  await atlas.click();
+  await expect(page).toHaveURL(/thr_fbhp67gj3i/);
+  await expect(page.getByText("AUTHENTICATION_OK", { exact: true })).toBeVisible();
+  await page.screenshot({ path: join(output, "atlas-native-thread.png"), fullPage: true });
+  evidence.steps.push("Original Atlas thread opens in native BB; Atlas and Nova links retain their existing thread IDs");
+  await page.goto(url + "/rooms/" + roomId);
+  await expect(page.getByRole("heading", { name: "Workshop", exact: true })).toBeVisible();
+  await expect(page.getByText("Nova in Workshop", { exact: true })).toBeVisible();
+  await page.screenshot({ path: join(output, "workshop-native.png"), fullPage: true });
+  await page.getByRole("button", { name: "New room", exact: true }).click();
+  const createRoom = page.getByRole("dialog", { name: "Create room", exact: true });
+  await expect(createRoom.getByLabel("Room name", { exact: true })).toBeVisible();
+  const project = createRoom.getByRole("combobox", { name: /^Project/ });
+  await expect(project).toBeVisible();
+  await expect(project.locator("option")).not.toHaveCount(1);
+  await expect(createRoom.getByRole("button", { name: "New section", exact: true })).toBeVisible();
+  await page.screenshot({ path: join(output, "new-room-native.png"), fullPage: true });
+  evidence.steps.push("Visible native room creation includes project context and section creation");
+  assert.deepEqual(evidence.errors, []);
+  evidence.passed = true;
+} catch (error) {
+  evidence.failure = clean(error.stack ?? error);
+  await page.screenshot({ path: join(output, "failure.png"), fullPage: true });
+  throw error;
+} finally {
+  await context.request.post(url + "/api/logout", { headers: { "X-Rooms-Request": "1", Origin: url } }).catch(() => {});
+  await writeFile(join(output, "evidence.json"), JSON.stringify(evidence, null, 2));
+  await context.close();
+  await browser.close();
+}

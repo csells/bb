@@ -1,0 +1,70 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing d2ebb0bbcf7e9be7
+@bb/templates:generate:templates: cache miss, executing 5f5804ad0233ced5
+@bb/templates:generate:plugin-scaffold: cache miss, executing 089899b173ad71a8
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/rooms:test: cache miss, executing 4bbb6a8f3da43e49
+@bb/rooms:test:
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:test: > vitest run "test/native-access.test.ts" "-t" "gates native HTTP"
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms[39m
+@bb/rooms:test:
+@bb/rooms:test:  [31m❯[39m [30m[45m @bb/rooms [49m[39m test/native-access.test.ts [2m([22m[2m3 tests[22m[2m | [22m[31m1 failed[39m[2m | [22m[33m2 skipped[39m[2m)[22m[32m 220[2mms[22m[39m
+@bb/rooms:test: [31m     [31m×[31m gates native HTTP independently from room ownership and does not relay room credentials[39m[32m 220[2mms[22m[39m
+@bb/rooms:test:      [2m[90m↓[39m[22m gates every native socket, preserves text and binary frames, and revokes live sockets at logout and expiry
+@bb/rooms:test:      [2m[90m↓[39m[22m allows independent room speech but rejects execution grants and revokes live room membership
+@bb/rooms:test:
+@bb/rooms:test: [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+@bb/rooms:test:
+@bb/rooms:test: [41m[1m FAIL [22m[49m [30m[45m @bb/rooms [49m[39m test/native-access.test.ts[2m > [22mnative BB room access[2m > [22mgates native HTTP independently from room ownership and does not relay room credentials
+@bb/rooms:test: [31m[1mAssertionError[22m: expected { host: '127.0.0.1:57520', …(11) } to not have property "x-bb-cloud-dev-host"[39m
+@bb/rooms:test:
+@bb/rooms:test: [32m- Expected:[39m
+@bb/rooms:test: undefined
+@bb/rooms:test:
+@bb/rooms:test: [31m+ Received:[39m
+@bb/rooms:test: "attacker"
+@bb/rooms:test:
+@bb/rooms:test: [36m [2m❯[22m test/native-access.test.ts:[2m211:47[22m[39m
+@bb/rooms:test:     [90m209|[39m     expect(h.upstreamRequests[0].headers).not.toHaveProperty("authoriz…
+@bb/rooms:test:     [90m210|[39m     expect(h.upstreamRequests[0].headers).not.toHaveProperty("x-bb-gat…
+@bb/rooms:test:     [90m211|[39m     expect(h.upstreamRequests[0].headers).not.toHaveProperty("x-bb-clo…
+@bb/rooms:test:     [90m   |[39m                                               [31m^[39m
+@bb/rooms:test:     [90m212|[39m     expect(h.upstreamRequests[0].headers).not.toHaveProperty("x-forwar…
+@bb/rooms:test:     [90m213|[39m     [34mexpect[39m(h[33m.[39mupstreamRequests[[34m0[39m][33m.[39mheaders[33m.[39mcookie)[33m.[39m[34mtoBe[39m(
+@bb/rooms:test:
+@bb/rooms:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[33m2 skipped[39m[90m (3)[39m
+@bb/rooms:test: [2m   Start at [22m 18:12:59
+@bb/rooms:test: [2m   Duration [22m 1.75s[2m (transform 819ms, setup 0ms, import 1.41s, tests 220ms, environment 0ms)[22m
+@bb/rooms:test:
+@bb/rooms:test:  ELIFECYCLE  Test failed. See above for more details.
+@bb/rooms#test:  ERROR  command (/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms) /opt/homebrew/bin/pnpm run test test/native-access.test.ts -t gates native HTTP exited (1)
+
+ Tasks:    3 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    2.866s
+Failed:    @bb/rooms#test
+
+ ERROR  run failed: command  exited (1)

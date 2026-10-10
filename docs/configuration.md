@@ -126,6 +126,7 @@ set of startup-only server or launcher env entries is:
 - `BB_LOG_LEVEL`, `BB_MANAGED_DEV_BUILTIN_PLUGIN_HOT_RELOAD`,
   `BB_MARKETPLACE_URL`, `BB_POSTHOG_API_KEY`, and `BB_TELEMETRY`
 - `BB_SERVER_BIND_HOST`, `BB_SERVER_PORT`, and all `BB_FF_*` feature flags
+- `BB_ROOMS_SEPARATE_SERVICE` for the native Rooms preview
 
 Setting or unsetting one still runs the reload for any other pending changes,
 but the running processes keep their current values. Apply it with a full
@@ -2135,6 +2136,14 @@ new-thread and follow-up composers. Starred text and mentions persist in the
 plugin database. See the [Prompt Library skill](../plugins/prompt-library/skills/prompt-library/SKILL.md)
 for CLI and SDK commands.
 
-## Rooms gateway (fork preview)
+## Native Rooms access (fork preview)
 
-`ROOMS_DATA_DIR` is a required private absolute directory containing room SQLite data and the initial owner invitation. `ROOMS_PUBLIC_ORIGIN` is a required comma-separated allowlist of exact browser origins, with the public HTTPS origin first. `ROOMS_BB_URL` defaults to `http://127.0.0.1:38886` and must point to the private execution server. `ROOMS_BIND_HOST` defaults to `0.0.0.0`; `ROOMS_PORT` defaults to `38900`. `ROOMS_AGENT_ORIGIN` is the HTTP(S) gateway origin reachable from agent workspaces, defaulting to `http://127.0.0.1:ROOMS_PORT`; it is written into private activation credentials, not public invitation URLs. The preview assumes gateway and execution workspaces are on the same machine. See [Rooms](rooms.md) for authentication, deployment and trust boundaries.
+Set `BB_ROOMS_SEPARATE_SERVICE=true` on the **BB core server**, as well as configuring the gateway below. This validated boolean defaults to `false` for ordinary BB. Set it in the launcher environment or with `bb-app env set BB_ROOMS_SEPARATE_SERVICE true`, then fully restart BB. While enabled, core returns HTTP 409 with code `rooms_separate_service_lifecycle_unavailable` for normal server export and move check/start, through the UI, SDK and CLI. The standard archive cannot preserve the separate room database and lifecycle. Read-only move status and cancellation remain available. Do not disable this guard while the separate service owns room data; combined export and migration are not implemented yet.
+
+`ROOMS_DATA_DIR` is a required private absolute directory containing room SQLite data and the initial owner invitation. `ROOMS_PUBLIC_ORIGIN` is a required comma-separated allowlist of exact browser origins, with the public HTTPS origin first. `ROOMS_BB_URL` defaults to `http://127.0.0.1:38886` and must point to the private execution server. `ROOMS_BIND_HOST` defaults to `0.0.0.0`; `ROOMS_PORT` defaults to `38900`.
+
+`ROOMS_NATIVE_APP_DIR` enables native mode and points to the actual `apps/app/dist` build. `ROOMS_OPERATOR_USER_IDS` is a comma-separated list of existing human IDs explicitly authorized for full BB access. Room ownership never grants this permission. Native mode requires a loopback HTTP `ROOMS_BB_URL`; only authorized operator HTTP and WebSocket requests reach it. Keep the core and daemon private. Without `ROOMS_NATIVE_APP_DIR`, the legacy standalone client remains available for private account setup and migration tooling.
+
+`ROOMS_AGENT_ORIGIN` is the HTTP(S) gateway origin reachable from execution hosts, defaulting to `http://127.0.0.1:ROOMS_PORT`; it is written into private activation credentials. A loopback origin requires `ROOMS_LOCAL_HOST_ID`, the BB host ID on that same machine. Remote agents need a reachable origin. Provider sessions still execute through BB on their selected host. See [Rooms](rooms.md) for authentication, deployment and trust boundaries.
+
+The Rooms origin allowlist does not configure BB's local helper. If an operator uses a local BB helper from the gateway, register the exact gateway origin in that helper's `BB_DATA_DIR/client.json` under `servers`, preserving existing entries and SSH host mappings. An origin without SSH mappings can use `"https://rooms.example": {"hosts": {}}`. Add the exact loopback gateway origin for local browser testing too. The helper reloads this file within one second; changing it needs no daemon restart. An unregistered gateway origin receives HTTP 403 from the helper's `/status` endpoint. Use the browser's actual origin, including its port; temporary tunnel hostname changes require updating the entry. This local helper configuration belongs on the operator's browsing machine, not on an unrelated remote execution host.

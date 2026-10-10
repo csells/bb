@@ -122,6 +122,8 @@ const ABSOLUTE_HTTP_URL_PATTERN = /^https?:\/\//iu;
 
 export function isRoutePath({ path }: IsRoutePathArgs): boolean {
   const pathname = stripRoutePathSuffix(path);
+  if (matchPath("/rooms", pathname) || matchPath("/rooms/:roomId", pathname))
+    return true;
   return ROUTE_PATTERNS.some(
     (pattern) => matchPath(pattern, pathname) !== null,
   );

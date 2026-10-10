@@ -1,3 +1,4 @@
+import { stopThreadQuerySchema, type StopThreadQuery } from "./api/threads.js";
 import {
   machineEnvironmentSetSchema,
   machineEnvironmentDeleteSchema,
@@ -1524,7 +1525,7 @@ export const publicApiRoutes = {
     stop: defineRoute({
       path: "/threads/:id/stop",
       method: "post",
-      request: noRequest<PathId>(),
+      request: queryRequest<PathId, StopThreadQuery>(stopThreadQuerySchema),
       response: jsonResponse<{ ok: true }>(),
     }),
     compact: defineRoute({

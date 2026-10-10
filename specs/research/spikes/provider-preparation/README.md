@@ -31,3 +31,7 @@ This procedure was executed after the approval above. It copies only provider au
 4. Run `PATH=/opt/homebrew/bin:$PATH codex login status` inside the VM. Run Claude `auth status`, parsing its output to report only `loggedIn` and `authMethod`. Do not run a source-machine login/logout or copy refreshed VM tokens back. Failure or expiry is a reported authentication failure, not permission to replace the source account's login.
 5. Let the integration owner verify BB provider discovery and actual account model access inside the candidate VM, then execute real room participation acceptance. Installing a CLI or recognizing its credentials does not establish tool-use correctness.
 6. At teardown remove the two task-added authentication files and any task-created Keychain entries before discarding the VM. Preserve the source machine's credentials and stable services. Record removal in the staging registry and exclude authentication from exported logs/artifacts.
+
+## October10 credential restoration
+
+Chris explicitly reauthorized copying the Mac mini's working credentials after Nova and Atlas failed. Both were transferred privately and verified through real BB-managed participation, including the original Workshop provider sessions. See the [recovery evidence](../../../validation/rooms-v2/nova-failure/credential-recovery/README.md). This restores current access; it does not qualify unattended expiration/refresh.

@@ -643,7 +643,9 @@ export interface ThreadsArea {
    * cannot confirm it, the thread remains stopping. Inspect its status before
    * treating the stop as confirmed.
    */
-  stop(args: ThreadActionArgs): Promise<ThreadStopResult>;
+  stop(
+    args: ThreadActionArgs & { expectedTurnId?: string },
+  ): Promise<ThreadStopResult>;
   tabs: ThreadTabsArea;
   context(args: ThreadStatusArgs): Promise<ThreadContextResult>;
   timeline(args: ThreadTimelineArgs): Promise<ThreadTimelineResult>;
@@ -1408,6 +1410,7 @@ export function createThreadsArea(args: CreateSdkAreaArgs): ThreadsArea {
       await transport.readVoid(
         transport.api.v1.threads[":id"].stop.$post({
           param: { id: input.threadId },
+          query: { expectedTurnId: input.expectedTurnId },
         }),
       );
       return { ok: true };

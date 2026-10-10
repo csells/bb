@@ -935,7 +935,9 @@ function TestDiff({
   );
 }
 
-type TestClipboard = (content: ExperimentalClipboardContent) => Promise<boolean>;
+type TestClipboard = (
+  content: ExperimentalClipboardContent,
+) => Promise<boolean>;
 
 let activeClipboard: TestClipboard | null = null;
 
@@ -1791,6 +1793,7 @@ export function renderSlot<
     Object.entries(options.sidebarShortcuts ?? {}),
   );
   const sidebarThreads: PluginSidebarThreadsState = {
+    experimental_rooms: options.sidebarThreads?.experimental_rooms,
     experimental_archived:
       options.sidebarThreads?.experimental_archived ?? null,
     status: options.sidebarThreads?.status ?? "ready",

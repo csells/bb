@@ -281,6 +281,13 @@ export const BB_PERF_DIAGNOSTICS_ENV = defineEnvVar<boolean>({
   parse: parseBooleanEnvValue,
 });
 
+export const BB_ROOMS_SEPARATE_SERVICE_ENV = defineEnvVar<boolean>({
+  description:
+    "Native Rooms runs as a separate service and database. Refuse normal server export and move because they cannot preserve the combined application. Defaults to false. Requires restart.",
+  name: "BB_ROOMS_SEPARATE_SERVICE",
+  parse: parseBooleanEnvValue,
+});
+
 export const BB_TELEMETRY_ENV = defineEnvVar<boolean>({
   description:
     "Anonymous usage telemetry (app starts, thread creation counts, user message counts, and plugin installs, tagged with app version, install kind, and OS and Node versions). Set to false to opt out.",

@@ -1,0 +1,42 @@
+{
+  "gateway": "http://127.0.0.1:38910",
+  "steps": [
+    {
+      "command": "create",
+      "exitCode": 0
+    },
+    {
+      "command": "context",
+      "exitCode": 0
+    },
+    {
+      "command": "list",
+      "exitCode": 0
+    },
+    {
+      "command": "show",
+      "exitCode": 0
+    },
+    {
+      "command": "policy",
+      "exitCode": 0
+    },
+    {
+      "command": "agent-add",
+      "exitCode": 0
+    },
+    {
+      "command": "show",
+      "exitCode": 0
+    }
+  ],
+  "roomId": "89a9d75e-b4f9-42ce-a00b-aff6d7be4044",
+  "threadId": "thr_vsqzx8gq5b",
+  "providerTurnStarted": false,
+  "attachedAuthoritativeContext": true,
+  "passed": true,
+  "roomRemoved": true,
+  "threadRemoved": true,
+  "sectionsRemoved": true,
+  "fixtureRemoved": true
+}

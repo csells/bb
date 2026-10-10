@@ -1,0 +1,6 @@
+PASS Fresh owner browser signed into actual Workshop
+PASS Historical Nova failure remains immediately after its original request and before newer conversation, with controls retained
+PASS Newer Atlas and Nova replies follow the failure; scrolling to latest leaves the failure outside the viewport
+PASS Composer untouched and no room mutation or message submission attempted
+PASS Signed out with API401
+PASS browser closed and exact credential fixture removed

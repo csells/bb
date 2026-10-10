@@ -1,0 +1,81 @@
+New thread
+Bindings acceptance
+Native binding acceptance
+Room
+Fresh Claude in Native binding acceptance
+Fresh Codex in Native binding acceptance
+Native section mv2q9wsp
+Native room mv2q9wsp
+Room
+Native section mv2qb53j
+Native room mv2qb53j
+Room
+Native section mv2qsax3
+Native room mv2qsax3
+Room
+Threads
+Native dialogue mv2qcfhj
+Room
+Native dialogue acceptance
+Room
+Native acceptance
+Room
+Existing native thread for room binding
+Atlas in Native dialogue mv2qcfhj
+Nova in Native dialogue mv2qcfhj
+Mobile apps
+Provider usage
+Report a bug
+More
+Rooms
+/
+Native room mv2qsax3
+New room
+2
+Live
+Native Rooms QA · Section: Native section mv2qsax3
+Add agent
+Room controls
+Native owner
+06:43 PM
+
+Operator greeting mv2qsax3
+
+Native member
+06:43 PM
+
+Guest greeting mv2qsax3
+
+@
+Everyone follows along; reply when useful
+Toggle Sidebar
+Create room
+Create room
+Room name
+Project
+Environment
+Section
+New section
+
+New agents use this project and environment. Existing threads keep their own work context. Sections are the same sections used by BB’s thread sidebar.
+
+A room shares a conversation. Agent work stays in BB projects, environments and threads.
+
+Create room
+Room participants
+Room participants
+Signed in as Native owner
+Sign out
+
+Native owner
+
+@nativeowner · owner · Online
+
+Native member
+
+@nativemember · member · Online
+
+Remove
+Create invitation
+Invitation link
+Add agent

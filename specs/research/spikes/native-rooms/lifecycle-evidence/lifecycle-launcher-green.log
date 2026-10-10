@@ -1,0 +1,40 @@
+• turbo 2.10.12
+
+   • Packages in scope: bb-app
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 8e9f72d41514409c
+@bb/templates:generate:templates: cache miss, executing f95d6979c53a5531
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/templates:generate:plugin-scaffold: cache miss, executing 196579d354d5f189
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+bb-app:test: cache miss, executing d0da9e7fbfb4ca10
+bb-app:test:
+bb-app:test: > bb-app@0.45.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/bb-app
+bb-app:test: > vitest run --config vitest.config.ts "test/index.test.ts" "-t" "startup-only managed env key"
+bb-app:test:
+bb-app:test:
+bb-app:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/packages/bb-app[39m
+bb-app:test:
+bb-app:test:  [32m✓[39m [30m[42m bb-app:isolated [49m[39m test/index.test.ts [2m([22m[2m63 tests[22m[2m | [22m[33m62 skipped[39m[2m)[22m[32m 81[2mms[22m[39m
+bb-app:test:
+bb-app:test: [2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+bb-app:test: [2m      Tests [22m [1m[32m1 passed[39m[22m[2m | [22m[33m62 skipped[39m[90m (63)[39m
+bb-app:test: [2m   Start at [22m 18:58:31
+bb-app:test: [2m   Duration [22m 662ms[2m (transform 328ms, setup 0ms, import 497ms, tests 81ms, environment 0ms)[22m
+bb-app:test:
+
+ Tasks:    4 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    1.622s

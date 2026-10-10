@@ -1,0 +1,9 @@
+{
+  "steps": [
+    "Existing owner password opens full native BB and preserved Workshop",
+    "Original Atlas thread opens in native BB; Atlas and Nova links retain their existing thread IDs",
+    "Visible native room creation includes project context and section creation"
+  ],
+  "errors": [],
+  "passed": true
+}

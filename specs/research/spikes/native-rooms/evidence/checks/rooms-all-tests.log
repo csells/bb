@@ -1,0 +1,53 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 0547b2598e8be1b7
+@bb/templates:generate:templates: cache hit, replaying logs 6aae00c7f020387c
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/rooms:test: cache miss, executing 48c4c30041032064
+@bb/rooms:test:
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:test: > vitest run
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms[39m
+@bb/rooms:test:
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/protocol.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1674[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m binds a steering publication to its durable target and human text without replaying cancelled input [33m 330[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/http.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 1696[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m terminates a stream when its bearer session expires even if a valid cookie is also present [33m 641[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/store.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 620[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/native-access.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 2157[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m gates every native socket, preserves text and binary frames, and revokes live sockets at logout and expiry [33m 1152[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m allows independent room speech but rejects execution grants and revokes live room membership [33m 788[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/recovery.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 488[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/agent-cli.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 26[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/admission.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/sdk.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 131[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/bindings.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 464[2mms[22m[39m
+@bb/rooms:test:
+@bb/rooms:test: [2m Test Files [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[32m37 passed[39m[22m[90m (37)[39m
+@bb/rooms:test: [2m   Start at [22m 18:25:13
+@bb/rooms:test: [2m   Duration [22m 3.78s[2m (transform 1.89s, setup 0ms, import 3.33s, tests 7.26s, environment 0ms)[22m
+@bb/rooms:test:
+
+ Tasks:    4 successful, 4 total
+Cached:    2 cached, 4 total
+  Time:    4.571s

@@ -28,14 +28,14 @@ export const agentCliHelp = `room --activation FILE COMMAND [OPTIONS]
 
 read                         Read room participants, public messages and this delivery
 post --text TEXT [--to HANDLE]
-                             Publish your contribution without waking anyone
+                             Publish for everyone; other agents decide whether to respond
 request --to HANDLE --text TEXT
                              Publish and queue a request; peer answers arrive in a later activation
 stream begin                 Takes no message ID; creates and returns a new stream ID
 stream append --message ID --sequence N --text TEXT
                              Append your next public chunk; sequences start at zero
 stream commit --message ID [--to HANDLE] [--intent post|request|notice]
-                             Finish the message and notify recipients once
+                             Finish the message and notify other agents once
 stream abort --message ID    Mark your unfinished public message interrupted
 settle --outcome no_reply|replied
                              Say you are done; ending the private turn also settles

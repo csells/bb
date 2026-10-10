@@ -1,0 +1,30 @@
+{
+  "gateway": "http://127.0.0.1:38910",
+  "fixtureDirectory": "/Users/admin/rooms-native-qa/machine-fixture-dd9c80cfd6ba4f00a6e69ef7eb84d7f8",
+  "steps": [
+    {
+      "step": "direct_access_configured"
+    },
+    {
+      "step": "generated_installer_retrieved",
+      "status": 200,
+      "serverUrl": "http://127.0.0.1:38910"
+    },
+    {
+      "step": "installer_artifact_verified",
+      "bytes": 1412632,
+      "sha256": "a56b91f660e81c938c1503c903516f07a36d2059ea29ce3435a56dfeb7be4a9f",
+      "protocolVersion": 231
+    }
+  ],
+  "hostId": "host_iuf5z33gc7",
+  "passed": false,
+  "failure": {
+    "phase": "enroll_cli",
+    "type": "RuntimeError"
+  },
+  "daemonStopped": true,
+  "hostRemoved": true,
+  "settingsRestored": true,
+  "fixtureRemoved": true
+}

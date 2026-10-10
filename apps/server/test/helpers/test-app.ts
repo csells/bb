@@ -234,6 +234,7 @@ export async function createTestAppHarness(
     dataDir,
     featureFlags: defaultFeatureFlags,
     performanceDiagnosticsAvailable: false,
+    roomsSeparateService: false,
     hostDaemonPort: 3001,
     marketplaceUrl: "https://marketplace.invalid/marketplace.json",
     inheritedSkillsRootPaths: [],

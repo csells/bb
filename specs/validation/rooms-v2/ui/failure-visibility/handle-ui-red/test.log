@@ -1,0 +1,36 @@
+PASS two visible waiting replies before first token, live elapsed time, usable composer
+PASS failed requests retain their reason after reload, preserve drafts, and expose owner-only activity
+PASS an arriving room snapshot cannot overwrite an in-progress unlimited budget draft
+PASS uncertain execution stays visibly needs attention after reload despite newer queued follow-ups, without an active-work indicator
+PASS permission grants submit the requested profile and only provider-offered decisions are shown
+PASS Codex, Claude and Pi expose steering while working and display the actual sent or queued receipt
+PASS temporary status failure stays pending, remains writable and recovers
+PASS queued and starting states
+PASS actual streaming text replaces only its agent’s waiting reply
+PASS public streaming does not conceal a temporary status failure
+PASS waiting continues between outputs and clears on stop/error
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(received).toBe(expected) // Object.is equality
+
+Expected: true
+Received: false
+    at captureRawStack (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js:9282:17)
+    at callMatcherAsStep (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13316:57)
+    at Object.toBe (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13308:23)
+    at <anonymous> (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/pending.browser.ts:500:7) {
+  matcherResult: {
+    actual: false,
+    expected: true,
+    message: 'expect(received).toBe(expected) // Object.is equality\n' +
+      '\n' +
+      'Expected: true\n' +
+      'Received: false',
+    name: 'toBe',
+    pass: false
+  }
+}
+
+Node.js v24.20.0

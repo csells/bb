@@ -1,0 +1,52 @@
+PASS two visible waiting replies before first token, live elapsed time, usable composer
+node:internal/modules/run_main:107
+    triggerUncaughtException(
+    ^
+
+ExpectError: expect(locator).toHaveValue(expected) failed
+
+Locator:  getByLabel('Message the room')
+Expected: "@builder @reviewer Introduce yourselves."
+Received: ""
+Timeout:  5000ms
+
+Call log:
+  - Expect "toHaveValue" getByLabel('Message the room') with timeout 5000ms
+  - waiting for getByLabel('Message the room')
+    14 × locator resolved to <textarea aria-label="Message the room" placeholder="Message the room… use @ to bring someone in"></textarea>
+       - unexpected value ""
+
+    at captureRawStack (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright-core@1.64.0/node_modules/playwright-core/lib/coreBundle.js:9282:17)
+    at callMatcherAsStep (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13316:57)
+    at Object.toHaveValue (/Users/admin/code/Forks/get-bb/bb/node_modules/.pnpm/playwright@1.64.0/node_modules/playwright/lib/matchers/expect.js:13308:23)
+    at <anonymous> (/Users/admin/code/Forks/get-bb/bb/apps/rooms/test/pending.browser.ts:143:53) {
+  matcherResult: {
+    name: 'toHaveValue',
+    expected: '@builder @reviewer Introduce yourselves.',
+    message: 'expect(locator).toHaveValue(expected) failed\n' +
+      '\n' +
+      "Locator:  getByLabel('Message the room')\n" +
+      'Expected: "@builder @reviewer Introduce yourselves."\n' +
+      'Received: ""\n' +
+      'Timeout:  5000ms\n' +
+      '\n' +
+      'Call log:\n' +
+      `  - Expect "toHaveValue" getByLabel('Message the room') with timeout 5000ms\n` +
+      "  - waiting for getByLabel('Message the room')\n" +
+      '    14 × locator resolved to <textarea aria-label="Message the room" placeholder="Message the room… use @ to bring someone in"></textarea>\n' +
+      '       - unexpected value ""\n',
+    pass: false,
+    actual: '',
+    log: [
+      `  - Expect "toHaveValue" getByLabel('Message the room') with timeout 5000ms`,
+      "  - waiting for getByLabel('Message the room')",
+      '    14 × locator resolved to <textarea aria-label="Message the room" placeholder="Message the room… use @ to bring someone in"></textarea>',
+      '       - unexpected value ""'
+    ],
+    timeout: 5000,
+    ariaSnapshot: '- textbox "Message the room":\n' +
+      '  - /placeholder: Message the room… use @ to bring someone in'
+  }
+}
+
+Node.js v24.20.0

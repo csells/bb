@@ -1016,6 +1016,13 @@
       "when": 1791573932085,
       "tag": "0144_high_young_avengers",
       "breakpoints": true
+    },
+    {
+      "idx": 145,
+      "version": "6",
+      "when": 1791655017129,
+      "tag": "0145_native_rooms_bindings",
+      "breakpoints": true
     }
   ]
 }

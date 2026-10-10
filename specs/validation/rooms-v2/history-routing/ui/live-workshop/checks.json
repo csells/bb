@@ -1,0 +1,12 @@
+{
+  "checks": [
+    "Fresh owner browser signed into actual Workshop",
+    "Historical Nova failure remains immediately after its original request and before newer conversation, with controls retained",
+    "Newer Atlas and Nova replies follow the failure; scrolling to latest leaves the failure outside the viewport",
+    "Composer untouched and no room mutation or message submission attempted",
+    "Signed out with API401"
+  ],
+  "forbiddenWrites": [],
+  "browserClosed": true,
+  "temporaryCredentialRemoved": true
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "9D81F8B7-C443-4E9F-AEAB-86B102A262F2",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "72D894B7-1CD0-4E23-B9C8-33A2D4A88127.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "composer-published-Send button_0_709ACA13-69D2-40CD-BFF8-AC55BEAF1F63.png",
+        "timestamp" : 1791659781.5
+      }
+    ],
+    "testIdentifier" : "NativeRoomsSafariTests/testComposerPublishesAfterDrawer()",
+    "testIdentifierURL" : "test://com.apple.xcode/NativeRoomsSafari/NativeRoomsSafariUITests/NativeRoomsSafariTests/testComposerPublishesAfterDrawer"
+  }
+]

@@ -198,6 +198,7 @@ async function startIntegrationServer(
     sharedSkillRoots: { user: [], project: [] },
     isDevelopment: false,
     performanceDiagnosticsAvailable: false,
+    roomsSeparateService: false,
   };
   const terminalSessions = new TerminalSessionLifecycle({
     attachTimeoutMs: 50,

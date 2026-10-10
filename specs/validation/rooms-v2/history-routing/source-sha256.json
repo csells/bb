@@ -1,0 +1,21 @@
+{
+  "base": "e091800aba8c0e1cf5919dd2eca75b00ab4cbb82",
+  "sourceState": "uncommitted local worktree changes",
+  "vmSourceMatches": true,
+  "files": {
+    "apps/rooms/src/admission.ts": "3a52396c746aa8bb43d40b25b5ba5784f427e06006b47fb1823a4a04fd2a9196",
+    "apps/rooms/src/agent-cli.ts": "ae562cb0f16581f16367c9980a82c0f9fb3317f9c82bf67b72e0f5237b906b54",
+    "apps/rooms/src/app.ts": "296f7225e1505e89129dc62275ab69758e2142070571013b87d3bc83a8a9419d",
+    "apps/rooms/src/main.tsx": "f0c7d4096211c4334b9cb8fb2264500f8cb82cdcbded9dff50664a04c5e81970",
+    "apps/rooms/src/runtime.ts": "0c4a29963c65aac895604b2e4cdfacbaaac97cbc6acd3b65d7f1f5f654bdd432",
+    "apps/rooms/src/store.ts": "9c9b8b43936a5ebae167ea14b49db92c02a370129ceecee69593c3e4db03cf0d",
+    "apps/rooms/src/style.css": "991a3a37cc6e7a11a47d90e0689280addf9dcd4f2514edb4ca2fbb27a6294dd3",
+    "apps/rooms/test/admission.test.ts": "33b699a19a24df3805a3cadde0b20c4cc45781afbbae415a7c0125fe9cf83f94",
+    "apps/rooms/test/http.test.ts": "3e7b3bb5d915aa757d72c247233950d632e2c877fd218cba878089e3ebd3fa27",
+    "apps/rooms/test/participation.browser.ts": "771225cd6cf01903adb514336fa68271b52ee18d1f08492b86eaa909be6926af",
+    "apps/rooms/test/pending.browser.ts": "f0e69efa3d7693312ef95b263ad6100b5775265cd1f9beedec36f7f62cac13cd",
+    "apps/rooms/test/protocol.test.ts": "d0c654cff7e006d5a1f08c3e878835315772d97c14b395d9e0c87b7b6b98904a",
+    "apps/rooms/test/recovery.test.ts": "cbbc66280ba886d7d55be41ad600d53d4cb939e2601c109547bcf340702a56bf",
+    "apps/rooms/test/store.test.ts": "93bedc0e7c7556f6bdaa0bfc540abc7657e8be10b6fba4743d64095b525fe4b3"
+  }
+}

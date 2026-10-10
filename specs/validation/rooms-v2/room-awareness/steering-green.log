@@ -1,0 +1,44 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing d399754d2c1c095a
+@bb/templates:generate:plugin-scaffold: cache miss, executing 11e3b048af73240f
+@bb/templates:generate:templates: cache miss, executing 120442c0c37c06f9
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/rooms:test: cache miss, executing 607b7ecbd28d984c
+@bb/rooms:test:
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:test: > vitest run "test/http.test.ts" "test/protocol.test.ts" "test/recovery.test.ts"
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb/apps/rooms[39m
+@bb/rooms:test:
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/recovery.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 388[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/protocol.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1498[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m binds a steering publication to its durable target and human text without replaying cancelled input [33m 315[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/http.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 1408[2mms[22m[39m
+@bb/rooms:test:      [33m[2m✓[22m[39m terminates a stream when its bearer session expires even if a valid cookie is also present [33m 644[2mms[22m[39m
+@bb/rooms:test:
+@bb/rooms:test: [2m Test Files [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[32m20 passed[39m[22m[90m (20)[39m
+@bb/rooms:test: [2m   Start at [22m 22:49:59
+@bb/rooms:test: [2m   Duration [22m 2.56s[2m (transform 1.69s, setup 0ms, import 2.82s, tests 3.29s, environment 0ms)[22m
+@bb/rooms:test:
+
+ Tasks:    4 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    3.247s

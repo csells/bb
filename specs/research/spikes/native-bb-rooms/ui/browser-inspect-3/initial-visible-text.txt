@@ -1,0 +1,27 @@
+New thread
+Bindings acceptance
+Native binding acceptance
+Room
+Fresh Claude in Native binding acceptance
+Fresh Codex in Native binding acceptance
+Threads
+Native acceptance
+Room
+Existing native thread for room binding
+Mobile apps
+Provider usage
+Report a bug
+More
+Rooms
+New room
+Account
+Rooms
+
+Shared conversations with people and independent agents. Your projects, sections and agent threads stay in BB’s sidebar.
+
+Native binding acceptance
+Native rooms bindings acceptance · /Users/admin/rooms-native-qa/bindings-acceptance · Section: Bindings acceptance
+Native acceptance
+Native Rooms QA
+Create room
+Toggle Sidebar

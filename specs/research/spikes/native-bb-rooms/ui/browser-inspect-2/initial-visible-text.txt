@@ -1,0 +1,31 @@
+1
+Agent
+2
+Projects
+3
+Plugins
+4
+Devices
+Skip setup
+Connect a coding agent
+
+bb runs the agents you already use. You need one that is installed and signed in on this computer.
+
+On Managed’s Virtual Machine
+Check again
+Codex
+csells999@gmail.com
+Ready
+Claude Code
+csells@sellsbrothers.com · Max (20x)
+Ready
+Pi
+Signed in
+Ready
+Cursor
+Not installed
+Install
+
+Don't see your agent? bb picks up other ACP agents, such as opencode, once they are installed.
+
+Continue

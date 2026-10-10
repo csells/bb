@@ -105,6 +105,46 @@ function seedTopology(harness: TestAppHarness): void {
 }
 
 describe("server move routes", () => {
+  it.each([
+    ["export", undefined],
+    ["move/check", { targetHostId: NEW, serverUrl: DIRECT_URL }],
+    [
+      "move",
+      {
+        targetHostId: NEW,
+        serverUrl: DIRECT_URL,
+        stopRunningWork: true,
+        archiveExistingTargetServerData: false,
+      },
+    ],
+  ])("refuses %s when Rooms uses a separate service", (operation, body) =>
+    withTestHarness({ roomsSeparateService: true }, async (harness) => {
+      seedTopology(harness);
+      const response =
+        body === undefined
+          ? await postExport(harness)
+          : await postJson(harness, `${API}/server/${operation}`, body);
+      expect(response.status).toBe(409);
+      expect(await readJson(response)).toMatchObject({
+        code: "rooms_separate_service_lifecycle_unavailable",
+        message: expect.stringContaining(
+          "room data and lifecycle are separate",
+        ),
+        retryable: false,
+      });
+      expect(response.headers.get("content-disposition")).toBeNull();
+      expect(await readdir(harness.config.dataDir)).not.toContain(
+        "server-export",
+      );
+      expect(await readdir(harness.config.dataDir)).not.toContain(
+        "server-move",
+      );
+      const status = await harness.app.request(`${API}/server/move`);
+      expect(status.status).toBe(200);
+      expect(await readJson(status)).toEqual({ move: null, lastMove: null });
+    }),
+  );
+
   it("refuses to check, start, export, or delete old copies while the serverMove experiment is off", () =>
     withTestHarness(async (harness) => {
       seedTopology(harness);

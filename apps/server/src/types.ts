@@ -32,6 +32,7 @@ export interface ServerRuntimeConfig {
   inheritedSkillsRootPaths: string[];
   isDevelopment: boolean;
   performanceDiagnosticsAvailable: boolean;
+  roomsSeparateService: boolean;
   marketplaceUrl: string;
   serverPort: number;
   sharedSkillRoots: ProviderNativeSkillRoots;

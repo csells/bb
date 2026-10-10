@@ -1,0 +1,22 @@
+[
+  {
+    "stage": "unaddressed-open-question",
+    "text": "We're planning a shared task board for a two-person team. What is one essential feature, and why?",
+    "target": null
+  },
+  {
+    "stage": "peer-open-question",
+    "text": "@atlas Please ask the whole room one open question about handling blocked tasks. Nova, wait for Atlas's question and then offer your perspective. Keep this a brief discussion.",
+    "target": "atlas"
+  },
+  {
+    "stage": "stream-commit",
+    "text": "@atlas Please compose one short three-paragraph proposal for our board, showing each paragraph in the same public message as you develop it so we can watch the draft grow. Nova, wait until the proposal is complete, then offer one brief improvement. No further discussion is needed after that.",
+    "target": "atlas"
+  },
+  {
+    "stage": "closing-silence",
+    "text": "Thanks, we have what we need. This topic is closed; no further replies are needed.",
+    "target": null
+  }
+]

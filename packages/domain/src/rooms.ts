@@ -10,6 +10,9 @@ export const roomsRoomSchema = z.object({
   id: z.string(),
   name: z.string(),
   ownerId: z.string(),
+  projectId: z.string().nullable(),
+  defaultEnvironmentId: z.string().nullable(),
+  sectionId: z.string().nullable(),
   revision: z.number(),
   paused: z.boolean(),
   pauseReason: z.string().nullable(),
@@ -26,6 +29,7 @@ export const roomsAgentSchema = z.object({
   instructions: z.string(),
   projectId: z.string().nullable(),
   threadId: z.string().nullable(),
+  environmentId: z.string().nullable(),
   status: z.string(),
 });
 export const roomsMessageSchema = z.object({
@@ -92,15 +96,40 @@ export const roomsSnapshotSchema = z.object({
   online: z.array(z.string()),
 });
 export type RoomsSnapshot = z.infer<typeof roomsSnapshotSchema>;
-export const roomsCreateAgentSchema = z
+export const roomsRoomContextSchema = z
   .object({
-    handle: roomsHandle,
-    name: z.string().trim().min(1).max(80),
-    provider: z.enum(["codex", "claude-code", "pi"]),
-    model: z.string().max(100).default(""),
-    instructions: z.string().max(4000).default(""),
+    projectId: z.string().min(1).nullable().default(null),
+    defaultEnvironmentId: z.string().min(1).nullable().default(null),
+    sectionId: z.string().min(1).nullable().default(null),
   })
-  .strict();
+  .strict()
+  .refine(
+    (value) => value.defaultEnvironmentId === null || value.projectId !== null,
+    {
+      message: "An environment requires a project",
+      path: ["defaultEnvironmentId"],
+    },
+  );
+export const roomsCreateRoomSchema = roomsRoomContextSchema.safeExtend({
+  name: z.string().trim().min(1).max(100),
+});
+export type RoomsRoomContext = z.infer<typeof roomsRoomContextSchema>;
+export type RoomsCreateRoom = z.infer<typeof roomsCreateRoomSchema>;
+const roomsAgentIdentitySchema = z.object({
+  handle: roomsHandle,
+  name: z.string().trim().min(1).max(80),
+  instructions: z.string().max(4000).default(""),
+});
+export const roomsCreateAgentSchema = z.union([
+  roomsAgentIdentitySchema
+    .extend({
+      provider: z.enum(["codex", "claude-code", "pi"]),
+      model: z.string().max(100).default(""),
+    })
+    .strict(),
+  roomsAgentIdentitySchema.extend({ threadId: z.string().min(1) }).strict(),
+]);
+export type RoomsCreateAgent = z.infer<typeof roomsCreateAgentSchema>;
 export const roomsPublicationSchema = z
   .object({
     text: z.string().trim().min(1).max(16000),

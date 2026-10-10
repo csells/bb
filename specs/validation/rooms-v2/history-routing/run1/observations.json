@@ -1,0 +1,2471 @@
+[
+  {
+    "stage": "unaddressed-open-question",
+    "at": "2026-10-09T22:46:02.701Z",
+    "deliveries": [
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "dispatching",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "dispatching",
+        "outcome": null,
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "unaddressed-open-question",
+    "at": "2026-10-09T22:46:03.007Z",
+    "deliveries": [
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "unaddressed-open-question",
+    "at": "2026-10-09T22:46:11.338Z",
+    "deliveries": [
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "queued",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "queued",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "unaddressed-open-question",
+    "at": "2026-10-09T22:46:13.821Z",
+    "deliveries": [
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "queued",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "queued",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "unaddressed-open-question",
+    "at": "2026-10-09T22:46:14.440Z",
+    "deliveries": [
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "unaddressed-open-question",
+    "at": "2026-10-09T22:46:17.214Z",
+    "deliveries": [
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "unaddressed-open-question",
+    "at": "2026-10-09T22:46:19.081Z",
+    "deliveries": [
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "unaddressed-open-question",
+    "at": "2026-10-09T22:46:22.783Z",
+    "deliveries": [
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "unaddressed-open-question",
+    "at": "2026-10-09T22:46:23.402Z",
+    "deliveries": [
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "peer-open-question",
+    "at": "2026-10-09T22:46:25.073Z",
+    "deliveries": [
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "dispatching",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "peer-open-question",
+    "at": "2026-10-09T22:46:25.382Z",
+    "deliveries": [
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "peer-open-question",
+    "at": "2026-10-09T22:46:28.484Z",
+    "deliveries": [
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "peer-open-question",
+    "at": "2026-10-09T22:46:29.403Z",
+    "deliveries": [
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "peer-open-question",
+    "at": "2026-10-09T22:46:31.889Z",
+    "deliveries": [
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "peer-open-question",
+    "at": "2026-10-09T22:46:35.978Z",
+    "deliveries": [
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "peer-open-question",
+    "at": "2026-10-09T22:46:38.473Z",
+    "deliveries": [
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "peer-open-question",
+    "at": "2026-10-09T22:46:41.005Z",
+    "deliveries": [
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "stream-commit",
+    "at": "2026-10-09T22:46:42.717Z",
+    "deliveries": [
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "dispatching",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "stream-commit",
+    "at": "2026-10-09T22:46:43.026Z",
+    "deliveries": [
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "stream-commit",
+    "at": "2026-10-09T22:46:46.447Z",
+    "deliveries": [
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "stream-commit",
+    "at": "2026-10-09T22:47:03.984Z",
+    "deliveries": [
+      {
+        "id": "23ded190-7b5b-4f79-b8d9-8ff72c7dc3c5",
+        "messageId": "ba19d717-c1c4-47eb-abb6-77cf5c86f2ea",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "stream-commit",
+    "at": "2026-10-09T22:47:08.671Z",
+    "deliveries": [
+      {
+        "id": "23ded190-7b5b-4f79-b8d9-8ff72c7dc3c5",
+        "messageId": "ba19d717-c1c4-47eb-abb6-77cf5c86f2ea",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "stream-commit",
+    "at": "2026-10-09T22:47:10.238Z",
+    "deliveries": [
+      {
+        "id": "4f9a66d2-ade3-4d46-869a-9598daedf0fb",
+        "messageId": "8bbb8981-4174-455e-ac7b-1f7b15e5be17",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "23ded190-7b5b-4f79-b8d9-8ff72c7dc3c5",
+        "messageId": "ba19d717-c1c4-47eb-abb6-77cf5c86f2ea",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "stream-commit",
+    "at": "2026-10-09T22:47:12.750Z",
+    "deliveries": [
+      {
+        "id": "4f9a66d2-ade3-4d46-869a-9598daedf0fb",
+        "messageId": "8bbb8981-4174-455e-ac7b-1f7b15e5be17",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "23ded190-7b5b-4f79-b8d9-8ff72c7dc3c5",
+        "messageId": "ba19d717-c1c4-47eb-abb6-77cf5c86f2ea",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "stream-commit",
+    "at": "2026-10-09T22:47:13.067Z",
+    "deliveries": [
+      {
+        "id": "4f9a66d2-ade3-4d46-869a-9598daedf0fb",
+        "messageId": "8bbb8981-4174-455e-ac7b-1f7b15e5be17",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "23ded190-7b5b-4f79-b8d9-8ff72c7dc3c5",
+        "messageId": "ba19d717-c1c4-47eb-abb6-77cf5c86f2ea",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "closing-silence",
+    "at": "2026-10-09T22:47:14.713Z",
+    "deliveries": [
+      {
+        "id": "70685460-f39c-411e-8261-2accd1ae573c",
+        "messageId": "128b12ef-54f2-4a5f-8bf8-a808e248fea2",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "dispatching",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "5ba55a4f-ac87-4cff-87ab-6b2ed5040ffb",
+        "messageId": "128b12ef-54f2-4a5f-8bf8-a808e248fea2",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "dispatching",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "4f9a66d2-ade3-4d46-869a-9598daedf0fb",
+        "messageId": "8bbb8981-4174-455e-ac7b-1f7b15e5be17",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "23ded190-7b5b-4f79-b8d9-8ff72c7dc3c5",
+        "messageId": "ba19d717-c1c4-47eb-abb6-77cf5c86f2ea",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "closing-silence",
+    "at": "2026-10-09T22:47:15.022Z",
+    "deliveries": [
+      {
+        "id": "70685460-f39c-411e-8261-2accd1ae573c",
+        "messageId": "128b12ef-54f2-4a5f-8bf8-a808e248fea2",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "5ba55a4f-ac87-4cff-87ab-6b2ed5040ffb",
+        "messageId": "128b12ef-54f2-4a5f-8bf8-a808e248fea2",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "4f9a66d2-ade3-4d46-869a-9598daedf0fb",
+        "messageId": "8bbb8981-4174-455e-ac7b-1f7b15e5be17",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "23ded190-7b5b-4f79-b8d9-8ff72c7dc3c5",
+        "messageId": "ba19d717-c1c4-47eb-abb6-77cf5c86f2ea",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "closing-silence",
+    "at": "2026-10-09T22:47:16.586Z",
+    "deliveries": [
+      {
+        "id": "70685460-f39c-411e-8261-2accd1ae573c",
+        "messageId": "128b12ef-54f2-4a5f-8bf8-a808e248fea2",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "running",
+        "outcome": null,
+        "error": null
+      },
+      {
+        "id": "5ba55a4f-ac87-4cff-87ab-6b2ed5040ffb",
+        "messageId": "128b12ef-54f2-4a5f-8bf8-a808e248fea2",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "4f9a66d2-ade3-4d46-869a-9598daedf0fb",
+        "messageId": "8bbb8981-4174-455e-ac7b-1f7b15e5be17",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "23ded190-7b5b-4f79-b8d9-8ff72c7dc3c5",
+        "messageId": "ba19d717-c1c4-47eb-abb6-77cf5c86f2ea",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  },
+  {
+    "stage": "closing-silence",
+    "at": "2026-10-09T22:47:17.205Z",
+    "deliveries": [
+      {
+        "id": "70685460-f39c-411e-8261-2accd1ae573c",
+        "messageId": "128b12ef-54f2-4a5f-8bf8-a808e248fea2",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "5ba55a4f-ac87-4cff-87ab-6b2ed5040ffb",
+        "messageId": "128b12ef-54f2-4a5f-8bf8-a808e248fea2",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "4f9a66d2-ade3-4d46-869a-9598daedf0fb",
+        "messageId": "8bbb8981-4174-455e-ac7b-1f7b15e5be17",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "23ded190-7b5b-4f79-b8d9-8ff72c7dc3c5",
+        "messageId": "ba19d717-c1c4-47eb-abb6-77cf5c86f2ea",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "b57ebd8d-f292-4272-9809-711d958eaa8c",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9bec0a63-cca4-4873-8dac-34b06551b707",
+        "messageId": "53b8548c-6699-44a7-b06c-bdc43d318945",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "92af2301-b892-412c-a7ae-89202f371c0b",
+        "messageId": "e1e429d1-4437-4660-8718-0b7182854a48",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "ba5680bc-d3e6-4b23-aead-b480778bef5d",
+        "messageId": "49697d06-997b-455f-8736-afbed0fe31a8",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "ade931e0-668b-484c-a236-11bc4a2b621f",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "39c00dfb-59ef-4945-815a-1f6e8c9161b6",
+        "messageId": "11f2e1ba-a02c-42d1-b535-abe76bb6b4d9",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "request",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "4f39431b-cef1-4136-ba5b-6f7f5dbd63c4",
+        "messageId": "b95a629d-890b-40e8-aaf4-8073baf866d0",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "f3f55359-61d3-4d51-90ea-a853086df0dc",
+        "messageId": "5727fe5a-a93d-4de1-8d51-6baece2e54d9",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "no_reply",
+        "error": null
+      },
+      {
+        "id": "9b7b9d2a-e985-441a-a574-2a621f0594c6",
+        "messageId": "78ea9773-5837-4a4f-afb4-3a020bd157a7",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "19c68c60-235b-4709-81f4-feedd59081e3",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "6d28ff83-ca79-4021-b9f2-7a0950728de6",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      },
+      {
+        "id": "a5d2bc23-cf71-4f57-80a5-53735468b282",
+        "messageId": "d3d8fb33-8953-41dc-b2c9-d0529524346d",
+        "agentId": "765fddbc-37b5-44e2-9798-bc934a00f0b7",
+        "intent": "notice",
+        "state": "complete",
+        "outcome": "replied",
+        "error": null
+      }
+    ]
+  }
+]

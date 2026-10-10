@@ -6,8 +6,10 @@ import { z } from "zod";
 import {
   pendingInteractionResolutionSchema,
   roomsActivitySchema,
+  roomsCreateRoomSchema,
+  roomsRoomContextSchema,
 } from "@bb/domain";
-import { RoomsStore, RoomError, id } from "./store.js";
+import { RoomsStore, RoomError } from "./store.js";
 import { RoomRuntime } from "./runtime.js";
 import {
   createAgentSchema,
@@ -17,6 +19,7 @@ import {
   type User,
 } from "./contracts.js";
 import { executeAgentCommand } from "./protocol.js";
+import type { NativeRoomsAccess } from "./native-access.js";
 const sessionToken = (c: Parameters<typeof getCookie>[0]) => {
   const authorization = c.req.header("Authorization");
   return authorization?.startsWith("Bearer ")
@@ -27,8 +30,37 @@ export function createRoomsApp(
   store: RoomsStore,
   runtime: RoomRuntime,
   origin: string,
+  options: { nativeAccess?: NativeRoomsAccess } = {},
 ) {
   const app = new Hono<{ Variables: { user: User } }>();
+  const native = options.nativeAccess;
+  if (native) {
+    app.get("/api/v1/rooms/session", (c) => {
+      c.header("Cache-Control", "no-store");
+      c.header("X-Content-Type-Options", "nosniff");
+      return c.json(native.session(c.req.raw.headers));
+    });
+    app.all("/api/v1/*", (c) => native.proxyHttp(c.req.raw));
+    for (const path of [
+      "/health",
+      "/install.sh",
+      "/install.ps1",
+      "/install/*",
+      "/internal/*",
+    ])
+      app.all(path, (c) => native.proxyMachineHttp(c.req.raw));
+    app.use("*", async (c, next) => {
+      if (
+        /^\/(?:internal|ws)(?:\/|$)/u.test(c.req.path) ||
+        /^\/install(?:\/|\.|$)/u.test(c.req.path)
+      )
+        throw new RoomError(
+          403,
+          "This interface is not exposed to room browsers",
+        );
+      await next();
+    });
+  }
   const pollOnline = new Map<string, Map<string, number>>();
   const allowedOrigins = new Set(origin.split(","));
   const online = new Map<string, Map<string, number>>();
@@ -38,10 +70,11 @@ export function createRoomsApp(
     c.header("X-Content-Type-Options", "nosniff");
     c.header("Referrer-Policy", "no-referrer");
     c.header("Cache-Control", "no-store");
-    c.header(
-      "Content-Security-Policy",
-      "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'",
-    );
+    if (!native)
+      c.header(
+        "Content-Security-Policy",
+        "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; connect-src 'self'; frame-ancestors 'none'",
+      );
     if (!["GET", "HEAD"].includes(c.req.method)) {
       if (c.req.header("X-Rooms-Request") !== "1")
         throw new RoomError(403, "Missing request protection");
@@ -137,7 +170,11 @@ export function createRoomsApp(
     await next();
   });
   app.get("/api/me", (c) =>
-    c.json({ user: c.get("user"), rooms: store.rooms(c.get("user").id) }),
+    c.json({
+      user: c.get("user"),
+      rooms: store.rooms(c.get("user").id),
+      access: { operator: native?.isOperator(c.get("user").id) ?? false },
+    }),
   );
   app.post("/api/logout", (c) => {
     store.logout(sessionToken(c));
@@ -152,11 +189,10 @@ export function createRoomsApp(
     return c.json(store.acceptInvite(b.invite, c.get("user")));
   });
   app.post("/api/rooms", async (c) => {
-    const b = z
-      .object({ name: z.string().trim().min(1).max(100) })
-      .strict()
-      .parse(await c.req.json());
-    return c.json(store.createRoom(b.name, c.get("user").id));
+    const b = roomsCreateRoomSchema.parse(await c.req.json());
+    if (b.projectId || b.defaultEnvironmentId || b.sectionId)
+      native?.requireOperator(c.get("user").id);
+    return c.json(await runtime.createRoom(b, c.get("user").id));
   });
   app.use("/api/rooms/:roomId/*", async (c, next) => {
     store.membership(c.req.param("roomId")!, c.get("user").id);
@@ -245,8 +281,16 @@ export function createRoomsApp(
   app.post("/api/rooms/:roomId/agents", async (c) => {
     const roomId = c.req.param("roomId");
     store.membership(roomId, c.get("user").id, true);
+    native?.requireOperator(c.get("user").id);
     const b = createAgentSchema.parse(await c.req.json());
-    return c.json(store.addAgent(roomId, b));
+    return c.json(await runtime.addAgent(roomId, b));
+  });
+  app.put("/api/rooms/:roomId/context", async (c) => {
+    const roomId = c.req.param("roomId");
+    store.membership(roomId, c.get("user").id, true);
+    native?.requireOperator(c.get("user").id);
+    const b = roomsRoomContextSchema.parse(await c.req.json());
+    return c.json(await runtime.setRoomContext(roomId, b));
   });
   app.put("/api/rooms/:roomId/policy", async (c) => {
     const roomId = c.req.param("roomId");
@@ -279,10 +323,12 @@ export function createRoomsApp(
     await next();
   });
   app.post("/api/rooms/:roomId/agents/:agentId/stop", async (c) => {
+    native?.requireOperator(c.get("user").id);
     await runtime.stop(c.req.param("agentId"));
     return c.json({ ok: true });
   });
   app.post("/api/rooms/:roomId/agents/:agentId/steer", async (c) => {
+    native?.requireOperator(c.get("user").id);
     const b = z
       .object({ text: z.string().trim().min(1).max(16000) })
       .strict()
@@ -292,27 +338,37 @@ export function createRoomsApp(
       c.req.param("agentId"),
       `Steering from human ${u.name} (@${u.handle}): ${b.text}`,
     );
-    store.requestMessage(u, c.req.param("roomId"), b.text, id());
+    store.publishAcknowledgedSteering(
+      u,
+      c.req.param("roomId"),
+      c.req.param("agentId"),
+      b.text,
+      receipt.steeringId,
+    );
     return c.json({ accepted: true, delivery: receipt.delivery });
   });
   app.get("/api/rooms/:roomId/agents/:agentId/interactions", async (c) => {
     store.membership(c.req.param("roomId"), c.get("user").id, true);
+    native?.requireOperator(c.get("user").id);
     return c.json(await runtime.interactions(c.req.param("agentId")));
   });
   app.get("/api/rooms/:roomId/agents/:agentId/activity", async (c) => {
     store.membership(c.req.param("roomId"), c.get("user").id, true);
+    native?.requireOperator(c.get("user").id);
     return c.json(
       roomsActivitySchema.parse(await runtime.activity(c.req.param("agentId"))),
     );
   });
   app.post("/api/rooms/:roomId/agents/:agentId/recover", async (c) => {
     store.membership(c.req.param("roomId"), c.get("user").id, true);
+    native?.requireOperator(c.get("user").id);
     return c.json(await runtime.recover(c.req.param("agentId")));
   });
   app.post(
     "/api/rooms/:roomId/agents/:agentId/interactions/:interactionId",
     async (c) => {
       store.membership(c.req.param("roomId"), c.get("user").id, true);
+      native?.requireOperator(c.get("user").id);
       const a = store.agent(c.req.param("agentId"));
       if (!a.threadId) throw new RoomError(409, "Agent has not started");
       const resolution = pendingInteractionResolutionSchema.parse(
@@ -327,9 +383,10 @@ export function createRoomsApp(
       );
     },
   );
-  app.get("/api/providers", async (c) =>
-    c.json(await runtime.sdk.providers.list()),
-  );
+  app.get("/api/providers", async (c) => {
+    native?.requireOperator(c.get("user").id);
+    return c.json(await runtime.sdk.providers.list());
+  });
   app.all("/api/*", (c) => c.json({ error: "Endpoint not found" }, 404));
   return app;
 }

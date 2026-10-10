@@ -1,4 +1,27 @@
-import type { ThreadEventRow } from "@bb/domain";
+import type { ProviderErrorCategory, ThreadEventRow } from "@bb/domain";
+
+function providerFailure(
+  diagnostic: string,
+  category: ProviderErrorCategory | undefined,
+) {
+  if (
+    category === "unauthorized" ||
+    /failed to authenticate|oauth session expired/iu.test(diagnostic)
+  )
+    return "The provider login expired or was rejected. The room owner needs to reconnect this provider before trying again.";
+  if (category === "rate-limit")
+    return "The provider's usage limit was reached. Wait for it to reset before trying again.";
+  if (category === "billing" || category === "budget-exceeded")
+    return "The provider could not continue because of an account or spending limit. The room owner needs to check the provider account.";
+  if (
+    category === "overloaded" ||
+    category === "connection-failed" ||
+    category === "stream-disconnected" ||
+    category === "internal"
+  )
+    return "The provider connection failed or the service is temporarily unavailable. Try again when the service recovers.";
+  return null;
+}
 
 export function inspectAdmission(
   events: readonly ThreadEventRow[],
@@ -88,7 +111,29 @@ function inspectMarkedAdmission(
         (status === "interrupted" && terminalOutcome !== "failed")
       )
         terminalOutcome = status;
-      error ??= completion.data.error?.message ?? null;
+      if (status === "failed" && error === null) {
+        const diagnostics = related.filter(
+          (event) =>
+            event.type === "provider/error" &&
+            event.seq > acceptance.seq &&
+            event.seq < completion.seq &&
+            event.scope.kind === "turn" &&
+            event.scope.turnId === turnId &&
+            event.data.willRetry !== true,
+        );
+        for (const diagnostic of diagnostics.toReversed()) {
+          if (diagnostic.type !== "provider/error") continue;
+          error = providerFailure(
+            `${diagnostic.data.message}\n${diagnostic.data.detail ?? ""}`,
+            diagnostic.data.errorInfo?.category,
+          );
+          if (error !== null) break;
+        }
+        if (error === null && completion.data.error)
+          error =
+            providerFailure(completion.data.error.message, undefined) ??
+            "The provider could not complete this request. The room owner can inspect its private session for details.";
+      }
     }
   }
   const state =

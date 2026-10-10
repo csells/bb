@@ -1,0 +1,19 @@
+{
+  "passed": true,
+  "observations": 118,
+  "allRootsAccessible": true,
+  "noHorizontalOverflow": true,
+  "initialRealizationFrames": 2,
+  "initialRealizationMilliseconds": 32,
+  "createDrawerNodeIds": [
+    1
+  ],
+  "maximumInternalScrollTop": 393,
+  "createDrawerContentContained": true,
+  "successfulSectionCreates": 1,
+  "successfulRoomCreates": 1,
+  "requestErrors": [],
+  "scope": "Drawer accessibility, deferred realization, persistence, keyboard scrolling, section creation and room creation",
+  "messageSendVerified": false,
+  "messageSendNote": "Initial StaticText assertion matched the still-populated composer. Independent database inspection caught the false positive; focused publication check runs separately."
+}

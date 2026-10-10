@@ -1,0 +1,62 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "A423DD7F-3156-44B0-A232-D0348EE2E0B9.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "05-native-room-message_0_8CD9741E-8D0A-48E2-8C21-BB06978E247D.png",
+        "timestamp" : 1791659219.674
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "587ECB49-167D-49FE-88AE-842B79F7C8E1.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "04-native-participants-drawer_0_544EDD74-1A57-4FBD-958E-1EA8DF057277.png",
+        "timestamp" : 1791659214.521
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "03AB1A4C-2113-4045-828C-1F2D7FD62837.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "03-native-room-created_0_57B549A2-53EB-4131-80D6-B9344EE24EF2.png",
+        "timestamp" : 1791659211.136
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "7F282223-8664-4AA8-83D5-D5750655C1D7.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "02-native-room-section-created_0_16FC2080-3A08-482E-89C5-0D28347BCBF3.png",
+        "timestamp" : 1791659208.325
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "1043C620-6E27-46AB-8EED-701B8983BE69.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "02-section-action-with-keyboard_0_D7169C90-149B-4462-9195-3BF390F2AB60.png",
+        "timestamp" : 1791659206.267
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "ACC1F283-ECA0-470A-8F57-22EA7A59B443.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "01-native-room-drawer-keyboard_0_3E262FCA-7F7B-4393-B9A9-E853DF6A8A5D.png",
+        "timestamp" : 1791659194.356
+      }
+    ],
+    "testIdentifier" : "NativeRoomsSafariTests/testPersistentNativeRoomDrawer()",
+    "testIdentifierURL" : "test://com.apple.xcode/NativeRoomsSafari/NativeRoomsSafariUITests/NativeRoomsSafariTests/testPersistentNativeRoomDrawer"
+  }
+]

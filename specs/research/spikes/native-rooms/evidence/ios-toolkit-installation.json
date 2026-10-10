@@ -1,0 +1,29 @@
+{
+  "startedAt": "2026-10-10T18:40:25.751878+00:00",
+  "destination": "/Users/admin/rooms-native-qa/apple-toolkit",
+  "files": [
+    {
+      "file": "xcode27.tar",
+      "bytes": 10382888960,
+      "sha256": "847f8048847a093635e3c90c4b85cfede0165d1f4a7bdf213a964d599e844538"
+    },
+    {
+      "file": "ios27.dmg",
+      "bytes": 8067000161,
+      "sha256": "5136453f500b73dc3518f262d8a51e4be0c136e38a550998febf7759de6ba0fd"
+    }
+  ],
+  "completedAt": "2026-10-10T18:43:30.600976+00:00",
+  "xcode": {
+    "version": "27.0",
+    "build": "27A266a"
+  },
+  "runtime": {
+    "version": "27.0",
+    "build": "24A434",
+    "identifier": "com.apple.CoreSimulator.SimRuntime.iOS-27-0"
+  },
+  "xcodegen": "2.46.0",
+  "executionBoundary": "Xcode, simulator, test runner, proxy and candidate all execute inside existing disposable task VM. Stable source host only archived/transferred read-only installed toolkit files.",
+  "transferCleanup": "Owned tar and DMG removed after verified extraction/import; installed toolkit remains until VM teardown."
+}

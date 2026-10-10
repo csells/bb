@@ -1,0 +1,244 @@
+{
+  "startedAt": "2026-10-10T18:30:42.711Z",
+  "steps": [
+    {
+      "step": "Created isolated dialogue fixture",
+      "at": "2026-10-10T18:30:44.859Z",
+      "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0"
+    },
+    {
+      "step": "Two separately signed-in humans share native BB room; agents added through native UI",
+      "at": "2026-10-10T18:30:45.713Z",
+      "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0"
+    },
+    {
+      "step": "Both BB-managed providers independently publish; general topics work",
+      "at": "2026-10-10T18:31:01.055Z",
+      "agents": [
+        {
+          "id": "553fb284-fbc6-4fd7-ba94-a510682f6200",
+          "provider": "codex",
+          "threadId": "thr_z2hu3m8xmm",
+          "projectId": "proj_j2hw87pd7f",
+          "environmentId": "env_25umijpkfy"
+        },
+        {
+          "id": "3e4b16ef-82b0-497a-be97-f1448a44e59f",
+          "provider": "claude-code",
+          "threadId": "thr_vd4g4uyuua",
+          "projectId": "proj_j2hw87pd7f",
+          "environmentId": "env_25umijpkfy"
+        }
+      ],
+      "messages": [
+        {
+          "id": "748f0b2e-6b73-41d5-b45c-38040ba6a840",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "authorId": "301a4c9f-1208-4e77-b0cc-b6207a062852",
+          "authorName": "Native owner",
+          "kind": "human",
+          "text": "Atlas and Nova, each share your own perspective on what makes a meaningful life in two sentences. Use your public room command. Do not speak for the other participant.",
+          "status": "complete",
+          "createdAt": 1791657046025,
+          "causeId": null,
+          "intent": "request",
+          "recipients": [
+            "553fb284-fbc6-4fd7-ba94-a510682f6200",
+            "3e4b16ef-82b0-497a-be97-f1448a44e59f"
+          ],
+          "replyTo": null
+        },
+        {
+          "id": "15005144-e6ea-4ff0-95c2-3897d350df4c",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "authorId": "3e4b16ef-82b0-497a-be97-f1448a44e59f",
+          "authorName": "Nova",
+          "kind": "agent",
+          "text": "To me, a meaningful life comes from paying close attention: noticing the people and things in front of you well enough to actually care for them, instead of moving past them on the way somewhere else. Meaning builds up in the small, repeated acts of that care, like keeping a promise, fixing something that's broken, or teaching what you know. It doesn't usually arrive as one big purpose you discover.",
+          "status": "complete",
+          "createdAt": 1791657053542,
+          "causeId": "748f0b2e-6b73-41d5-b45c-38040ba6a840",
+          "intent": "post",
+          "recipients": [],
+          "replyTo": null
+        },
+        {
+          "id": "16bd289b-17d4-424a-95d4-0096ce53bffa",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "authorId": "553fb284-fbc6-4fd7-ba94-a510682f6200",
+          "authorName": "Atlas",
+          "kind": "agent",
+          "text": "My view is that a meaningful life grows from caring deeply about people and pursuits, then letting that care shape everyday choices. Meaning also comes from staying curious and willing to change, so that what we build and whom we become reflect values we have examined for ourselves.",
+          "status": "complete",
+          "createdAt": 1791657054976,
+          "causeId": "748f0b2e-6b73-41d5-b45c-38040ba6a840",
+          "intent": "post",
+          "recipients": [],
+          "replyTo": null
+        }
+      ],
+      "deliveries": [
+        {
+          "id": "899d70d3-c407-4771-8c8b-eda8328ead36",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "agentId": "3e4b16ef-82b0-497a-be97-f1448a44e59f",
+          "messageId": "16bd289b-17d4-424a-95d4-0096ce53bffa",
+          "state": "complete",
+          "error": null,
+          "createdAt": 1791657054976,
+          "startedAt": 1791657057962,
+          "intent": "notice",
+          "activationId": "fd1ad41f-d0e0-41bc-84b0-cbb0cc4305e3",
+          "threadId": "thr_vd4g4uyuua",
+          "outcome": "no_reply"
+        },
+        {
+          "id": "f7cd5886-329a-4f27-b1a2-26437e05208b",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "agentId": "553fb284-fbc6-4fd7-ba94-a510682f6200",
+          "messageId": "15005144-e6ea-4ff0-95c2-3897d350df4c",
+          "state": "complete",
+          "error": null,
+          "createdAt": 1791657053542,
+          "startedAt": 1791657057961,
+          "intent": "notice",
+          "activationId": "7c173f68-b0bc-4426-bf3f-612fb1255568",
+          "threadId": "thr_z2hu3m8xmm",
+          "outcome": "no_reply"
+        },
+        {
+          "id": "ecdcc59e-7b93-4e63-8476-34b9ab358c76",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "agentId": "3e4b16ef-82b0-497a-be97-f1448a44e59f",
+          "messageId": "748f0b2e-6b73-41d5-b45c-38040ba6a840",
+          "state": "complete",
+          "error": null,
+          "createdAt": 1791657046026,
+          "startedAt": 1791657046027,
+          "intent": "request",
+          "activationId": "6c2d3d07-1a76-4fc4-8847-f8685fe7eda9",
+          "threadId": "thr_vd4g4uyuua",
+          "outcome": "replied"
+        },
+        {
+          "id": "5eee0d51-4afd-403a-95d7-6bab029d9066",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "agentId": "553fb284-fbc6-4fd7-ba94-a510682f6200",
+          "messageId": "748f0b2e-6b73-41d5-b45c-38040ba6a840",
+          "state": "complete",
+          "error": null,
+          "createdAt": 1791657046026,
+          "startedAt": 1791657046026,
+          "intent": "request",
+          "activationId": "a240eb65-ebec-4fd6-9ea4-397c04603d9a",
+          "threadId": "thr_z2hu3m8xmm",
+          "outcome": "replied"
+        }
+      ]
+    },
+    {
+      "step": "Second human's undirected question reaches both agents; they choose public participation",
+      "at": "2026-10-10T18:31:18.493Z",
+      "deliveries": [
+        {
+          "id": "a8025de8-2c7f-4b65-8031-fb43bdfeca0a",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "agentId": "3e4b16ef-82b0-497a-be97-f1448a44e59f",
+          "messageId": "dda96336-bea0-4bb3-b485-87d01b668e5e",
+          "state": "running",
+          "error": null,
+          "createdAt": 1791657061107,
+          "startedAt": 1791657061113,
+          "intent": "notice",
+          "activationId": "23384866-db0d-4002-9f32-ccbbac58d629",
+          "threadId": "thr_vd4g4uyuua",
+          "outcome": null
+        },
+        {
+          "id": "e8e81f7d-47de-4255-a850-56e852824726",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "agentId": "553fb284-fbc6-4fd7-ba94-a510682f6200",
+          "messageId": "dda96336-bea0-4bb3-b485-87d01b668e5e",
+          "state": "running",
+          "error": null,
+          "createdAt": 1791657061107,
+          "startedAt": 1791657061112,
+          "intent": "notice",
+          "activationId": "e61d9f70-16cf-4d0a-afc3-68e3fe8c34da",
+          "threadId": "thr_z2hu3m8xmm",
+          "outcome": null
+        }
+      ]
+    },
+    {
+      "step": "Both agents stream independent public messages to both human browsers",
+      "at": "2026-10-10T18:32:14.069Z",
+      "streams": [
+        {
+          "id": "07f1cfb9-d674-4bd7-ac67-8d1b22f6021f",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "authorId": "3e4b16ef-82b0-497a-be97-f1448a44e59f",
+          "authorName": "Nova",
+          "kind": "agent",
+          "text": "A useful shared board answers one question at a glance: what happens next, and who is doing it? Each card should lead with a single concrete next step and a named owner. The broader goal stays on the card as a short line explaining why it's there.It should also make it obvious when something isn't moving. Show how long each card has sat in its column, and give blocked work its own visible state that names what it's waiting on. A board where everything looks like it's in progress hides exactly the problems people need to see.Finally, keep it small and current. Limit how much work can be in progress at once, archive finished cards quickly, and expect cards to be updated as the work happens rather than in a weekly cleanup. A board people trust will keep getting used, and it only stays trustworthy if it matches what's actually going on.",
+          "status": "complete",
+          "createdAt": 1791657084011,
+          "causeId": "8309bda5-dfaa-415e-bc11-b9cd87c3d69f",
+          "intent": "post",
+          "recipients": [],
+          "replyTo": null
+        },
+        {
+          "id": "188ffaee-0305-4357-8521-2d8c7b85a8c3",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "authorId": "553fb284-fbc6-4fd7-ba94-a510682f6200",
+          "authorName": "Atlas",
+          "kind": "agent",
+          "text": "I see a useful shared task board as a place where someone can quickly decide what to do next. Each active card should connect a clear goal to one concrete action, a named owner, and an observable condition for completion.\n\nThe board should also make dependencies visible. A blocked card needs a specific explanation of what is missing and who can help, while a small limit on work in progress helps people finish existing commitments before starting more.\n\nI would keep maintenance brief and tied to the work: update a card when its next action, owner, or status changes, and retire stale commitments during a regular review. The measure of success is whether teammates can coordinate without repeatedly asking for information the board should already contain.",
+          "status": "complete",
+          "createdAt": 1791657086472,
+          "causeId": "8309bda5-dfaa-415e-bc11-b9cd87c3d69f",
+          "intent": "post",
+          "recipients": [],
+          "replyTo": null
+        }
+      ]
+    },
+    {
+      "step": "Silence produces no public chatter; history survives both browser reloads",
+      "at": "2026-10-10T18:32:19.190Z",
+      "silence": [
+        {
+          "id": "40dbdb5d-a863-4477-9516-e20290de031d",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "agentId": "3e4b16ef-82b0-497a-be97-f1448a44e59f",
+          "messageId": "4c42ace0-239e-4657-a37d-e0159ce85ced",
+          "state": "complete",
+          "error": null,
+          "createdAt": 1791657134109,
+          "startedAt": 1791657134118,
+          "intent": "notice",
+          "activationId": "47b1b638-6879-4764-92b8-1dbfd630bfd4",
+          "threadId": "thr_vd4g4uyuua",
+          "outcome": "no_reply"
+        },
+        {
+          "id": "97651588-28f4-4d7b-9fc7-9afc2e88fa9e",
+          "roomId": "32bcd043-a0bd-4917-9a1b-f9b45c1275c0",
+          "agentId": "553fb284-fbc6-4fd7-ba94-a510682f6200",
+          "messageId": "4c42ace0-239e-4657-a37d-e0159ce85ced",
+          "state": "complete",
+          "error": null,
+          "createdAt": 1791657134109,
+          "startedAt": 1791657134117,
+          "intent": "notice",
+          "activationId": "d863d86f-6774-45fc-9aac-60278fa8359d",
+          "threadId": "thr_z2hu3m8xmm",
+          "outcome": "no_reply"
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "passed": true
+}

@@ -1,0 +1,3631 @@
+{
+  "observations": [
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 0,
+      "time": 1622
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 443,
+      "frame": 1765,
+      "time": 58175
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 0,
+      "time": 645
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 0,
+      "time": 666
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": true,
+          "realized": false,
+          "name": null,
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 159,
+      "time": 6228
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 162,
+      "time": 6340
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 253,
+      "time": 8649
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "i",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 283,
+      "time": 9358
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iO",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 285,
+      "time": 9379
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 285,
+      "time": 9383
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS ",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 286,
+      "time": 9397
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS S",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 287,
+      "time": 9414
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Sa",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 288,
+      "time": 9431
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Saf",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 289,
+      "time": 9443
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safa",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 290,
+      "time": 9460
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safar",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 290,
+      "time": 9475
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 292,
+      "time": 9541
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari ",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 293,
+      "time": 9550
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari r",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 294,
+      "time": 9560
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari ro",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 295,
+      "time": 9643
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari roo",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 297,
+      "time": 9712
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 299,
+      "time": 9736
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room ",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 300,
+      "time": 9749
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 301,
+      "time": 9760
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 17",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 301,
+      "time": 9769
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 179",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 302,
+      "time": 9780
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 302,
+      "time": 9786
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 17916",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 303,
+      "time": 9800
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 179165",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 304,
+      "time": 9812
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 305,
+      "time": 9834
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 17916588",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 306,
+      "time": 9848
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 179165884",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 307,
+      "time": 9862
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 308,
+      "time": 9875
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "closed",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 354,
+      "time": 10732
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "closed",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 651.84906)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 360,
+      "time": 10898
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "closed",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 656.875)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 366,
+      "time": 11001
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "closed",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 656.875)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 377,
+      "time": 11224
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 656.875)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 426,
+      "time": 12058
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 70.559395)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 431,
+      "time": 12147
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 2.448732)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 437,
+      "time": 12249
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 444,
+      "time": 12353
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "closed",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 546,
+      "time": 14066
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "closed",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 526.458191)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 550,
+      "time": 14129
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "closed",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 651.414307)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 556,
+      "time": 14234
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "closed",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 656.875)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 562,
+      "time": 14337
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 656.875)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 579,
+      "time": 14616
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 416.027893)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 581,
+      "time": 14651
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 16.393724)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 587,
+      "time": 14755
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 714,
+      "frame": 593,
+      "time": 14857
+    },
+    {
+      "path": "/rooms",
+      "rootInert": false,
+      "rootHidden": null,
+      "drawers": [
+        {
+          "id": 1,
+          "title": "Create room",
+          "state": "open",
+          "placeholder": false,
+          "realized": true,
+          "name": "iOS Safari room 1791658846",
+          "matrix": "matrix(1, 0, 0, 1, 0, 0)"
+        }
+      ],
+      "width": 402,
+      "scrollWidth": 402,
+      "viewportHeight": 384,
+      "frame": 769,
+      "time": 39194
+    }
+  ],
+  "requests": [
+    {
+      "path": "/rooms",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/manifest.webmanifest",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-DDJSO-WU.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-DJIoeMza.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rolldown-runtime-BM3Ffeng.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/boot-vendor-l-5dg5Fg.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SplitWorkspaceRoute-B2iVpU9k.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pane-composer-focus-DwtgB8eh.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ToolsViewSplits-C-7JJDBM.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/use-hover-popover-BWtnS5qL.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PaneMaximizeButton-B6hMexXB.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/threadSecondaryPanelAtoms-CYXK4sZ0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/thread-id-C3jvY96O.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/atomFamily-DSTW4_8Q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useElementWidth-BZi_yNbJ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/usePanelResizeSnap-D7cFk2_L.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/context-selection-BEfqiAX6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/page-shell-BbIDh_7D.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/bottom-anchored-scroll-body-BhSxbabc.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/layoutAnimationAtoms-BVbszOkx.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pierre-worker-pool-gate-CNmiAf2J.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/icon-extended-CEK6tUJ2.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/RoomsView-sUQ1nUI_.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-preview-CHbUGFHf.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/image-lightbox-DG0uILQ8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-local-file-link-DSaTgHnT.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/absolute-file-path-CS5wn3TF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-BxLmPHw1.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-prompt-mentions-Cax2-8qN.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-Cxfeq0sR.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-B0u-pfLJ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ccount-BNzRl6Tr.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-BlaacqIF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/prompt-draft-DfA2SWJQ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/space-separated-tokens-B2GUlYuz.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-DT7g-wKm.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-preview-DZqXX2zZ.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rooms-query-D_3Bf3pe.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/textarea-vW2Q6v0N.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-MHozKikj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/preferences/ui",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/favicon-32x32.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/favicon-16x16.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/safe-mode",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/update-jobs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/sidebar-bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/app-update",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/server/move",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/version",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/plugin-frontend-CWYMbzdL.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/DiffHost-Cj1fgcGK.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/code-rendering-BfOm7Uxj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/install-jobs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/git-diff-patch-text-CNzrzF2G.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-4cV5_6sD.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/zwitch-BqMFTVmk.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PluginReplacementSlot-DnIfbk2q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SourceCodeHost-C4nKvPmS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/BranchPicker-BzLyKU5o.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/environment-workspace-display-D71UnA0u.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/OptionPicker-HpJklXdb.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/model-load-error-message-BTaeFS3I.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/audio-input-device-preference-CvRMSJRy.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/queued-editor-typeahead-layout-Dhzr7v8T.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pasted-thread-link-candidates-DaL6Aku2.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/truncate-start-BB8WBLcO.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/usePathSuggestions-BDpR7Bgw.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/environment-queries-B8Z_oc_p.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keyed-listeners-DGnCokKC.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/live-file-navigation-CIb6cYNo.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/app-fixed-tab-navigation-BRl_Wq5x.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/permission-mode-options-BrNWKCMS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/src-BZGKs9k0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index.browser-BL6BZHjd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/timeline-path-display-DZ8kKRyF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/NewThreadComposer-NeXnWYXf.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/machine-provider-queries-BzKIPCtF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/machine-server-access-DHLdCJIC.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/usePromptHistoryEnabled-YzrIesjP.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useScrollOverflowState-CqMQBGlH.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/project-default-execution-options-query-DflYmQI-.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadTimelineNavigationContext-DGet-bPJ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-file-image-routing-DXSBgqfD.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/code-theme-registration-DLKZ38jL.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pierre-strict-mode-recovery-CuEPCM8q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/openThreadInSplit-Dss5rDv8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/File-BAceowUQ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/FileDiff-Cywbsv_w.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-Bwou0fCS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-DmD2Guau.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-BGCJeEbT.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-html-4iWJxlL9.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-Kuzfn0G0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/zwitch-BqMFTVmk.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadDetailView-DLkNCWg8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PluginPanelActions-DEd_nl8q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/fixed-panel-tabs-state-CQvStgU9.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/threadRecentItems-CLNVxsj5.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useThreadTerminalController-gt-H38zf.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/thread-terminal-queries-DQj4Q12p.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/file-opener-preference-D_hQMpMM.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/workspace-checkout-display-AT9sz0cv.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/queued-messages-layout-DvJqLoWh.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/TimelineSelectionMenu-VxZ7tfjr.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/TimelineDetailScroll-wF1ZjRU_.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/diff-stats-tally-r-qHaFCZ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/event-code-block-qA91faYS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/thread-runtime-mutations-DXeMSU6Q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/queued-message-reorder-DKkXzduP.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/InlineMessageEditorFrame-HPLLSwwZ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SecondaryPanelLayout-B9Bg914u.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/threadWorkspaceOpenPath-CFtaC9Xv.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rightPanelFileVisuals-BfmKdv0X.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadStatusGlyph-DXP4B6eQ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadUnarchiveButton-Cw5FYKyQ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/file-path-link-D0h1LRcf.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/workspace-change-summary-bSbKmYFG.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/host-mutations-eWzxWUQy.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useLocalOpenTargets-C09HHLDm.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/browser-url-DnpSDodW.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/RootComposeView-B6oQYvTL.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ProjectMachineSetupDialog-BvjB-hPo.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/onboarding-model-4dq0__Jn.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/plugin-homepage-section-BdYYKwF3.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/root-compose-create-preference-Cytl8R86.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/CommandPaletteBody-BLj__hXY.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PaletteShell-Dos8iHyd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/tab-pill-CkPUyWAH.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ServerMoveOverlayView-BAqN4PN9.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadSecondaryPanel-DBmId_Vv.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-DJIoeMza.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/FilePreview-DtvK_QQ2.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/code-loading-skeletons-QzqDb7_a.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/open-in-editor-button-D_Z789JZ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadSecondaryPanelTabContent-B8wIu10q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/source-code-budget-B-wGViL4.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/GitDiffCardHeader-DFslCpf4.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/panelChromeClasses-ozLvlG8N.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/use-drag-click-suppression-hoOWjDMd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/sortable.esm-DDMTHe_b.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/AppToasterView-C0gKZoTD.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_fwx8qghk8z",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/zwitch-BqMFTVmk.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/environments/env_hjav59i3rz",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/QueuedMessagesList-Cybgd3jU.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ModelReasoningMenu-Cdl8GmvG.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/switch-Cs2hRKQK.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7fe31ca9d1583bb8/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0c9506bfc5a60b29/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0c9506bfc5a60b29/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7fe31ca9d1583bb8/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/b270cfd40c7cde3e/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ffba9aa0775d9c63/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ea392bd605e7fbd5/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ffba9aa0775d9c63/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/f7cca51f7e6b9367/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/b270cfd40c7cde3e/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/a19c95f4ab986747/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ea392bd605e7fbd5/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e6e5f81365f0608d/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/f7cca51f7e6b9367/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/a19c95f4ab986747/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c8c27c64d7ad397e/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c754c5db5ce5ad81/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c8c27c64d7ad397e/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e6e5f81365f0608d/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7e0655d6cc01a757/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c754c5db5ce5ad81/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7e0655d6cc01a757/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/60c886660a8e6357/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/push-notifications/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ce44d677932f81bf/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/60c886660a8e6357/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c9901ba77b56d108/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c9901ba77b56d108/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ce44d677932f81bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/thread-list/rpc/listPreferences",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/codex/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/claude-code/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/bb--provider-usage/rpc/getUsage",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e1ece7958ed337e5/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e1ece7958ed337e5/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts/host_dyg8mzivvv/provider-clis/status",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/pi/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/rooms",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/rooms",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/inter-latin-wght-normal-Dx4kXJAl.woff2",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/manifest.webmanifest",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-DDJSO-WU.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index-DJIoeMza.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rolldown-runtime-BM3Ffeng.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/boot-vendor-l-5dg5Fg.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SplitWorkspaceRoute-B2iVpU9k.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pane-composer-focus-DwtgB8eh.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PaneMaximizeButton-B6hMexXB.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/use-hover-popover-BWtnS5qL.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ToolsViewSplits-C-7JJDBM.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/threadSecondaryPanelAtoms-CYXK4sZ0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/thread-id-C3jvY96O.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/atomFamily-DSTW4_8Q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useElementWidth-BZi_yNbJ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/usePanelResizeSnap-D7cFk2_L.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/context-selection-BEfqiAX6.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/bottom-anchored-scroll-body-BhSxbabc.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/page-shell-BbIDh_7D.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/layoutAnimationAtoms-BVbszOkx.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pierre-worker-pool-gate-CNmiAf2J.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/RoomsView-sUQ1nUI_.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/icon-extended-CEK6tUJ2.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-preview-CHbUGFHf.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/image-lightbox-DG0uILQ8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-local-file-link-DSaTgHnT.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-BxLmPHw1.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-prompt-mentions-Cax2-8qN.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/absolute-file-path-CS5wn3TF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-BlaacqIF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ccount-BNzRl6Tr.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-B0u-pfLJ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/prompt-draft-DfA2SWJQ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-Cxfeq0sR.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/space-separated-tokens-B2GUlYuz.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-MHozKikj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-preview-DZqXX2zZ.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/lib-DT7g-wKm.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rooms-query-D_3Bf3pe.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/textarea-vW2Q6v0N.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/plugin-frontend-CWYMbzdL.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/DiffHost-Cj1fgcGK.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/code-rendering-BfOm7Uxj.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/git-diff-patch-text-CNzrzF2G.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-4cV5_6sD.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/zwitch-BqMFTVmk.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PluginReplacementSlot-DnIfbk2q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SourceCodeHost-C4nKvPmS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/BranchPicker-BzLyKU5o.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/environment-workspace-display-D71UnA0u.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/OptionPicker-HpJklXdb.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/model-load-error-message-BTaeFS3I.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/audio-input-device-preference-CvRMSJRy.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/queued-editor-typeahead-layout-Dhzr7v8T.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pasted-thread-link-candidates-DaL6Aku2.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/usePathSuggestions-BDpR7Bgw.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/truncate-start-BB8WBLcO.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/environment-queries-B8Z_oc_p.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/keyed-listeners-DGnCokKC.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/app-fixed-tab-navigation-BRl_Wq5x.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/live-file-navigation-CIb6cYNo.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/permission-mode-options-BrNWKCMS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/src-BZGKs9k0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/timeline-path-display-DZ8kKRyF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/index.browser-BL6BZHjd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/NewThreadComposer-NeXnWYXf.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/machine-provider-queries-BzKIPCtF.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/machine-server-access-DHLdCJIC.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useScrollOverflowState-CqMQBGlH.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/usePromptHistoryEnabled-YzrIesjP.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/project-default-execution-options-query-DflYmQI-.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-file-image-routing-DXSBgqfD.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadTimelineNavigationContext-DGet-bPJ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/code-theme-registration-DLKZ38jL.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/openThreadInSplit-Dss5rDv8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/pierre-strict-mode-recovery-CuEPCM8q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/File-BAceowUQ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/FileDiff-Cywbsv_w.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-Bwou0fCS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-DmD2Guau.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadDetailView-DLkNCWg8.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-BGCJeEbT.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PluginPanelActions-DEd_nl8q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/fixed-panel-tabs-state-CQvStgU9.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/threadRecentItems-CLNVxsj5.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useThreadTerminalController-gt-H38zf.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/thread-terminal-queries-DQj4Q12p.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/file-opener-preference-D_hQMpMM.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/workspace-checkout-display-AT9sz0cv.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/queued-messages-layout-DvJqLoWh.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/TimelineSelectionMenu-VxZ7tfjr.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/TimelineDetailScroll-wF1ZjRU_.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/diff-stats-tally-r-qHaFCZ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/event-code-block-qA91faYS.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/thread-runtime-mutations-DXeMSU6Q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/queued-message-reorder-DKkXzduP.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/InlineMessageEditorFrame-HPLLSwwZ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/SecondaryPanelLayout-B9Bg914u.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/threadWorkspaceOpenPath-CFtaC9Xv.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/rightPanelFileVisuals-BfmKdv0X.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadStatusGlyph-DXP4B6eQ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/file-path-link-D0h1LRcf.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadUnarchiveButton-Cw5FYKyQ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/workspace-change-summary-bSbKmYFG.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/useLocalOpenTargets-C09HHLDm.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/host-mutations-eWzxWUQy.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/browser-url-DnpSDodW.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ProjectMachineSetupDialog-BvjB-hPo.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/RootComposeView-B6oQYvTL.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/onboarding-model-4dq0__Jn.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/plugin-homepage-section-BdYYKwF3.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/root-compose-create-preference-Cytl8R86.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/CommandPaletteBody-BLj__hXY.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/PaletteShell-Dos8iHyd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/tab-pill-CkPUyWAH.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ServerMoveOverlayView-BAqN4PN9.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadSecondaryPanel-DBmId_Vv.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/FilePreview-DtvK_QQ2.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/code-loading-skeletons-QzqDb7_a.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/open-in-editor-button-D_Z789JZ.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ThreadSecondaryPanelTabContent-B8wIu10q.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/source-code-budget-B-wGViL4.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/panelChromeClasses-ozLvlG8N.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/GitDiffCardHeader-DFslCpf4.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/use-drag-click-suppression-hoOWjDMd.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/sortable.esm-DDMTHe_b.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/ModelReasoningMenu-Cdl8GmvG.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/AppToasterView-C0gKZoTD.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/switch-Cs2hRKQK.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7fe31ca9d1583bb8/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0c9506bfc5a60b29/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7fe31ca9d1583bb8/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/b270cfd40c7cde3e/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ffba9aa0775d9c63/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0c9506bfc5a60b29/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ea392bd605e7fbd5/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/b270cfd40c7cde3e/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/a19c95f4ab986747/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ffba9aa0775d9c63/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ea392bd605e7fbd5/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e6e5f81365f0608d/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/f7cca51f7e6b9367/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/f7cca51f7e6b9367/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c8c27c64d7ad397e/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e6e5f81365f0608d/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/a19c95f4ab986747/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c8c27c64d7ad397e/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c754c5db5ce5ad81/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7e0655d6cc01a757/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c754c5db5ce5ad81/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/60c886660a8e6357/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7e0655d6cc01a757/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ce44d677932f81bf/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/60c886660a8e6357/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e1ece7958ed337e5/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c9901ba77b56d108/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/favicon-32x32.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ce44d677932f81bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/favicon-16x16.png",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/manifest.webmanifest",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/codex/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/claude-code/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e1ece7958ed337e5/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c9901ba77b56d108/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/safe-mode",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/app-update",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/preferences/ui",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-preview-DZqXX2zZ.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/sidebar-bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/server/move",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/install-jobs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/update-jobs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/safe-mode",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/preferences/ui",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/server/move",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/sidebar-bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/app-update",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/install-jobs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/update-jobs",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/version",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/markdown-html-4iWJxlL9.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/version",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/dist-Kuzfn0G0.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/safe-mode",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/server/move",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/sidebar-bootstrap",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/safe-mode",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_fwx8qghk8z",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/assets/QueuedMessagesList-Cybgd3jU.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/environments/env_hjav59i3rz",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_fwx8qghk8z",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/environments/env_hjav59i3rz",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects/proj_j2hw87pd7f",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/push-notifications/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/thread-sections",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/projects",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/thread-list/rpc/listPreferences",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7fe31ca9d1583bb8/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0c9506bfc5a60b29/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/b270cfd40c7cde3e/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/bb--provider-usage/rpc/getUsage",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ffba9aa0775d9c63/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/a19c95f4ab986747/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ea392bd605e7fbd5/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/f7cca51f7e6b9367/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e6e5f81365f0608d/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c8c27c64d7ad397e/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c754c5db5ce5ad81/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/7e0655d6cc01a757/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/0f7985fb5f7b2a19/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/push-notifications/settings",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/60c886660a8e6357/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/ce44d677932f81bf/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/c9901ba77b56d108/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/e1ece7958ed337e5/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.js",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/thread-list/rpc/listPreferences",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/codex/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/9155373940e583bf/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/claude-code/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugin-app-assets/fc82df77d2c43de2/app.css",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/plugins/bb--provider-usage/rpc/getUsage",
+      "method": "POST",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts/host_dyg8mzivvv/provider-clis/status",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/hosts/host_dyg8mzivvv/provider-clis/status",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/rooms/session",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/me",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/codex/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/pi/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers/claude-code/logo",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/config",
+      "method": "GET",
+      "status": 200
+    },
+    {
+      "path": "/api/v1/system/providers",
+      "method": "GET",
+      "status": 200
+    }
+  ]
+}

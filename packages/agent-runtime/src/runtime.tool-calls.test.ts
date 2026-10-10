@@ -55,7 +55,7 @@ describe("createAgentRuntime tool calls", () => {
     rmSync(tmpDir, { recursive: true, force: true });
   });
 
-  it("aborts a pending tool handler when the thread is stopped", async () => {
+  it("preserves a pending tool for stale scoped stop and aborts it for thread stop", async () => {
     const events: ThreadEvent[] = [];
     let signal: AbortSignal | undefined;
     let finish!: (result: ToolCallResponse) => void;
@@ -86,6 +86,11 @@ describe("createAgentRuntime tool calls", () => {
         options: fullRuntimeOptions,
       });
       await vi.waitFor(() => expect(finish).toBeDefined());
+      expect(signal?.aborted).toBe(false);
+      await runtime.stopThread({
+        threadId: "t1",
+        expectedTurnId: "previous-turn",
+      });
       expect(signal?.aborted).toBe(false);
       await runtime.stopThread({ threadId: "t1" });
       expect(signal?.aborted).toBe(true);

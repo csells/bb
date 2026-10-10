@@ -1,0 +1,49 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/app
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing f1ea88c1d05dc54d
+@bb/templates:generate:plugin-scaffold: cache miss, executing 9923712b766eca23
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/templates:generate:templates: cache miss, executing e0b103c64f3ef3f4
+@bb/plugin-build:generate: cache miss, executing 85c2ad07adac24e2
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/app:test: cache miss, executing 4d6713f8f3bf04e0
+@bb/app:test:
+@bb/app:test: > @bb/app@0.0.1 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/app
+@bb/app:test: > node scripts/generate-pwa-icons.mjs --check && vitest run --config vitest.config.ts "src/components/ui/responsive-overlay.test.tsx" "src/views/rooms/RoomsView.test.tsx"
+@bb/app:test:
+@bb/app:test:
+@bb/app:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/app[39m
+@bb/app:test:
+@bb/app:test:  [32m✓[39m [30m[45m @bb/app:isolated [49m[39m src/components/ui/responsive-overlay.test.tsx [2m([22m[2m30 tests[22m[2m)[22m[32m 252[2mms[22m[39m
+@bb/app:test:  [32m✓[39m [30m[45m @bb/app:isolated [49m[39m src/views/rooms/RoomsView.test.tsx [2m([22m[2m5 tests[22m[2m)[22m[33m 2303[2mms[22m[39m
+@bb/app:test:    [33m[2m✓[22m[39m shows pending native input to the operator and returns to working when it is resolved [33m 2031[2mms[22m[39m
+@bb/app:test:
+@bb/app:test: [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+@bb/app:test: [2m      Tests [22m [1m[32m35 passed[39m[22m[90m (35)[39m
+@bb/app:test: [2m   Start at [22m 19:04:28
+@bb/app:test: [2m   Duration [22m 4.49s[2m (transform 1.10s, setup 282ms, import 1.63s, tests 2.56s, environment 1.24s)[22m
+@bb/app:test:
+
+ Tasks:    5 successful, 5 total
+Cached:    0 cached, 5 total
+  Time:    6.88s

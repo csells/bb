@@ -7,6 +7,7 @@ import {
   roomsIntentSchema,
   roomsPolicyInputSchema,
   roomsAgentCommandSchema,
+  roomsRoomContextSchema,
 } from "@bb/domain";
 import { action } from "../action.js";
 const printJson = (value: unknown): void => {
@@ -67,11 +68,53 @@ export function registerRoomsCommands(program: Command) {
     );
   rooms
     .command("create <name>")
-    .description("Create a room")
+    .description(
+      "Create a room, optionally in an existing BB project and section",
+    )
+    .option("--project <id>", "Existing BB project")
+    .option("--environment <id>", "Existing project environment for new agents")
+    .option("--section <id>", "Existing BB sidebar section")
     .option("--json", "JSON output")
     .action(
-      action(async (name: string) =>
-        printJson(await (await client()).create(name)),
+      action(
+        async (
+          name: string,
+          opts: { project?: string; environment?: string; section?: string },
+        ) =>
+          printJson(
+            await (
+              await client()
+            ).create({
+              name,
+              projectId: opts.project ?? null,
+              defaultEnvironmentId: opts.environment ?? null,
+              sectionId: opts.section ?? null,
+            }),
+          ),
+      ),
+    );
+  rooms
+    .command("context <room>")
+    .description(
+      "Associate a room with native BB context without moving existing agent threads",
+    )
+    .requiredOption(
+      "--file <path>",
+      "JSON with projectId, defaultEnvironmentId and sectionId; null clears a field",
+    )
+    .option("--json", "JSON output")
+    .action(
+      action(async (room: string, opts: { file: string }) =>
+        printJson(
+          await (
+            await client()
+          ).context(
+            room,
+            roomsRoomContextSchema.parse(
+              JSON.parse(await readFile(opts.file, "utf8")),
+            ),
+          ),
+        ),
       ),
     );
   rooms
@@ -171,7 +214,7 @@ export function registerRoomsCommands(program: Command) {
     .description("Add a persistent agent using a JSON configuration file")
     .requiredOption(
       "--file <path>",
-      "JSON with handle, name, provider, model and instructions",
+      "JSON with handle, name and provider/model or existing threadId; instructions optional",
     )
     .option("--json", "JSON output")
     .action(

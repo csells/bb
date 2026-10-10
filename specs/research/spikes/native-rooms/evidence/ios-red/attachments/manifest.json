@@ -1,0 +1,341 @@
+[
+  {
+    "attachments" : [
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "3A3013D7-5082-4186-99BD-5BEB017F4000.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "App UI hierarchy for com.apple_0_58D9BC31-E87F-479E-87AB-47CFB6DBC973.mobilesafari",
+        "timestamp" : 1791658889.982
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "A31FFCD3-45EC-4CA5-BCE7-7A5963AF89AE",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-10-10 at 07.01.29 PM",
+        "timestamp" : 1791658889.982
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "053EF0C6-0B69-4DDB-BBCC-AE19A14B54A6.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New section\" Button`_0_9267E8FB-F3B7-4442-A765-82AD62EC08BD.txt",
+        "timestamp" : 1791658889.833
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "E77D103E-5C17-485B-B75A-DBBAAF2085DF.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New section\" Button`_0_6FA9B39E-FE85-43A1-9073-8FD4D2AE4F31.txt",
+        "timestamp" : 1791658888.892
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "6947AC45-9195-451E-BA3D-AC2C4B00BA56.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New section\" Button`_0_896AA2CE-AE88-411B-9A41-EAF0E54E4105.txt",
+        "timestamp" : 1791658887.876
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "964B2E24-9890-45B3-A1D1-46C74B145DDB.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New section\" Button`_0_9CDCC6CE-9919-4694-99F7-894F5860FB0F.txt",
+        "timestamp" : 1791658887.283
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "68829B0B-1C4E-44ED-A8E3-31BF6FB6344E.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New section\" Button`_0_6D88EFD8-8759-4FEA-8628-83D9D80292B0.txt",
+        "timestamp" : 1791658885.904
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "905BFD49-0A12-43A0-B9A8-E431FC1C11B8.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New section\" Button`_0_27794A88-19E0-4799-9295-AF4CA27ED232.txt",
+        "timestamp" : 1791658884.815
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "FF485504-8B58-44F3-BD30-C8FE6723C5F0.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New section\" Button`_0_D0EA543D-D2F1-49D1-9042-D893D8D70226.txt",
+        "timestamp" : 1791658883.856
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "5095F3A7-D146-48F5-8A0B-2302556E4630.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New section\" Button`_0_3C0655C7-2524-4D38-B6B9-FFEC8EA47D86.txt",
+        "timestamp" : 1791658882.893
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "B2B3DAE8-DA5B-4E94-8394-48E21F3DFD70.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New section\" Button`_0_43C18D43-AD46-4B87-A32C-120A74F153E3.txt",
+        "timestamp" : 1791658881.88
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "0C27C683-6630-4B5A-B201-6D995C2BE692.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New section\" Button`_0_B0C5BD9D-72FC-447E-B0DF-B469231EB75B.txt",
+        "timestamp" : 1791658880.882
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "40C78DF2-D7F6-4E03-8933-DD66536F588A",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-10-10 at 07.01.19 PM",
+        "timestamp" : 1791658879.469
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "676BA6FC-CE90-4DF8-8D94-D782F50BA7D0",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.01.19 PM",
+        "timestamp" : 1791658879.762
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "BA689CBB-3951-41F6-BA6A-CC96D7003A2F",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-10-10 at 07.01.18 PM",
+        "timestamp" : 1791658878.687
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "2CE16E64-22B2-420C-90AA-F1F79DF255F5",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.01.19 PM",
+        "timestamp" : 1791658879.373
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "F4EEE80B-655C-4BF3-9814-6494B9CFA808",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-10-10 at 07.01.17 PM",
+        "timestamp" : 1791658877.295
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "E61D1568-2D7C-432F-92E5-EA29B59DAE98",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.01.17 PM",
+        "timestamp" : 1791658877.68
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "2536A329-1188-4EE5-AE20-1E249D2843AF.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New section name\" TextField`_0_B2803C72-9741-439C-A0F7-51672D69CB05.txt",
+        "timestamp" : 1791658866.78
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "D0DE8B64-2F10-483A-A6F4-636690CF13ED",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-10-10 at 07.00.54 PM",
+        "timestamp" : 1791658854.268
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "2FA62837-5434-4240-BE40-89849D91B21C",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.00.54 PM",
+        "timestamp" : 1791658854.579
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "D3C9F2ED-9FEA-4193-B988-559A1AD2E5A4",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-10-10 at 07.00.53 PM",
+        "timestamp" : 1791658853.46
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "571BD227-6E49-4538-A2D7-F496DC3942D2",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.00.53 PM",
+        "timestamp" : 1791658853.769
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "C051F874-BAD4-42E6-BB62-D22BD8DACDFE",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-10-10 at 07.00.52 PM",
+        "timestamp" : 1791658852.898
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "715903CD-3C91-4080-A333-15C8F1E04011",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.00.53 PM",
+        "timestamp" : 1791658853.249
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "11C846D5-85B8-469F-95D2-11A420E5F5E0",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-10-10 at 07.00.50 PM",
+        "timestamp" : 1791658850.75
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "27C2ECA2-6A08-4E13-A5BF-4A53D9AF946D",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.00.51 PM",
+        "timestamp" : 1791658851.197
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "C2482904-E5E8-4CDB-B784-FAA487103049",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "UI Snapshot 2026-10-10 at 07.00.49 PM",
+        "timestamp" : 1791658849.562
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "FE317DE4-D30D-466B-955C-32B22A90ECC8",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.00.49 PM",
+        "timestamp" : 1791658849.893
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "A3AA3C18-B7ED-4CC5-AC04-461B4E54B06D.png",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "01-native-room-drawer-keyboard_0_A9341226-7837-4E07-B3F5-5EF44E5F820B.png",
+        "timestamp" : 1791658849.147
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "2895BF4F-466F-42E1-B457-C044B1EBAF68",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.00.48 PM",
+        "timestamp" : 1791658848.909
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "836697AD-5D49-4389-ABBB-A283652D4877",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.00.47 PM",
+        "timestamp" : 1791658847.092
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "3231AC8D-B074-485D-9BC2-64D4367916E9",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.00.45 PM",
+        "timestamp" : 1791658845.335
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "C31E11B7-9274-48B6-8C19-24636F8D3F06.txt",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Debug description for `\"New room\" Button`_0_5FA4C07C-A7AE-4ED1-83A5-0E6289AFB481.txt",
+        "timestamp" : 1791658842.801
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "F4A4CD09-73EA-401F-AAF1-17BE178B54C3",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.00.38 PM",
+        "timestamp" : 1791658838.856
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "490E78B0-C030-47A0-B9E8-5E1AF351A8C2",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Synthesized Event 2026-10-10 at 07.00.12 PM",
+        "timestamp" : 1791658812.077
+      },
+      {
+        "configurationName" : "Test Scheme Action",
+        "deviceId" : "83FA0D08-ECCA-4DF7-806A-2A86F01B7173",
+        "deviceName" : "NativeRoomsSafariAcceptance",
+        "exportedFileName" : "F9527AF1-4FE2-43EC-8578-D0606B2A5DB7.mp4",
+        "isAssociatedWithFailure" : false,
+        "suggestedHumanReadableName" : "Screen Recording 2026-10-10 at 07.00.10 PM.mp4",
+        "timestamp" : 1791658810.177
+      }
+    ],
+    "testIdentifier" : "NativeRoomsSafariTests/testPersistentNativeRoomDrawer()",
+    "testIdentifierURL" : "test://com.apple.xcode/NativeRoomsSafari/NativeRoomsSafariUITests/NativeRoomsSafariTests/testPersistentNativeRoomDrawer"
+  }
+]

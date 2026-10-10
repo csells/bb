@@ -58,6 +58,17 @@ function assertServerMoveExperimentEnabled(deps: AppDeps): void {
   }
 }
 
+function assertCombinedServerLifecycleAvailable(deps: AppDeps): void {
+  if (deps.config.roomsSeparateService) {
+    throw new ApiError(
+      409,
+      "rooms_separate_service_lifecycle_unavailable",
+      "Server export and move are unavailable while Rooms runs as a separate service: room data and lifecycle are separate from BB. These operations cannot preserve the combined application yet.",
+      false,
+    );
+  }
+}
+
 export async function readLastServerMove(
   dataDir: string,
 ): Promise<LastServerMove | null> {
@@ -86,12 +97,14 @@ export function registerServerMoveRoutes(
 
   post(routes.checkMove, async (context, payload) => {
     assertServerManagementAllowed(context);
+    assertCombinedServerLifecycleAvailable(deps);
     assertServerMoveExperimentEnabled(deps);
     return context.json(await serverMove.check(payload));
   });
 
   post(routes.startMove, async (context, payload) => {
     assertServerManagementAllowed(context);
+    assertCombinedServerLifecycleAvailable(deps);
     assertServerMoveExperimentEnabled(deps);
     return context.json(await serverMove.start(payload));
   });
@@ -111,6 +124,7 @@ export function registerServerMoveRoutes(
 
   post(routes.export, async (context) => {
     assertServerManagementAllowed(context);
+    assertCombinedServerLifecycleAvailable(deps);
     assertServerMoveExperimentEnabled(deps);
     if (isServerMoveInFlight(serverMove.getStatus())) {
       throw new ApiError(

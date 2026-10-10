@@ -502,6 +502,7 @@ export async function stopThread(
 ): Promise<void> {
   const response = await api.threads[":id"].stop.$post({
     param: { id: threadId },
+    query: {},
   });
   await expectStatus(response, 200, `stop thread ${threadId}`);
 }

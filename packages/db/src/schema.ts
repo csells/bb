@@ -1374,6 +1374,9 @@ export const roomSessions = sqliteTable("rooms_sessions", {
   expires: integer("expires").notNull(),
 });
 export const sharedRooms = sqliteTable("rooms_rooms", {
+  projectId: text("project_id"),
+  defaultEnvironmentId: text("default_environment_id"),
+  sectionId: text("section_id"),
   id: text("id").primaryKey(),
   name: text("name").notNull(),
   ownerId: text("owner_id").notNull(),
@@ -1419,10 +1422,14 @@ export const roomAgents = sqliteTable(
     instructions: text("instructions").notNull(),
     projectId: text("project_id"),
     threadId: text("thread_id"),
+    environmentId: text("environment_id"),
     status: text("status").notNull().default("idle"),
     epoch: integer("epoch").notNull().default(0),
   },
-  (t) => [uniqueIndex("rooms_agent_handle").on(t.roomId, t.handle)],
+  (t) => [
+    uniqueIndex("rooms_agent_handle").on(t.roomId, t.handle),
+    uniqueIndex("rooms_agent_thread").on(t.threadId),
+  ],
 );
 export const roomMessages = sqliteTable(
   "rooms_messages",
@@ -1494,6 +1501,8 @@ export const roomActivations = sqliteTable(
     threadId: text("thread_id"),
     epoch: integer("epoch").notNull(),
     capabilityHash: text("capability_hash").notNull().unique(),
+    credentialHostId: text("credential_host_id"),
+    credentialPath: text("credential_path"),
     revoked: integer("revoked").notNull().default(0),
     requestedOutcome: text("requested_outcome"),
     stopRequested: integer("stop_requested").notNull().default(0),

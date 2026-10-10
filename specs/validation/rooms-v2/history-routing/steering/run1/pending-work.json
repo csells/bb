@@ -1,0 +1,8 @@
+{
+  "threadId": "thr_zkfhg5t5sr",
+  "workId": "thr_zkfhg5t5sr:command:da88a2d675-i2",
+  "command": "sleep 20",
+  "status": "pending",
+  "observedAt": "2026-10-09T22:54:44.204Z",
+  "activationId": "c205a6fa-555c-45ec-a099-0b4b38dbf2dd"
+}

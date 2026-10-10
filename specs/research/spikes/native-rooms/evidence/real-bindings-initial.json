@@ -1,0 +1,151 @@
+{
+  "startedAt": "2026-10-10T18:24:47.026Z",
+  "coreUrl": "http://127.0.0.1:38896",
+  "gatewayUrl": "http://127.0.0.1:38910",
+  "hostId": "host_dyg8mzivvv",
+  "workspace": "/Users/admin/rooms-native-qa/bindings-acceptance",
+  "fixtureCreated": {
+    "projectId": "proj_fwx8qghk8z",
+    "sectionId": "sec_xthphipkqi",
+    "threadId": "thr_fu2f65pm59"
+  },
+  "existingThreadAttached": {
+    "roomId": "049e699d-6b8d-48fe-a829-6b66cdf8cd13",
+    "agentId": "e551f35a-fd6b-47bc-af8f-355426027f55",
+    "threadId": "thr_fu2f65pm59",
+    "projectId": "proj_fwx8qghk8z",
+    "environmentId": "env_hjav59i3rz",
+    "providerId": "codex",
+    "nativeOptionsSha256": "89191821edfe5fb73d01fbf377462c32efceff40cf84012be7f726d5b1b03945",
+    "existingHistorySha256": "79927f99c80a8f2eb900fd82d1f278d5aa958871df5a83b86a8ae39f5726717c",
+    "existingEventCount": 22,
+    "agentsFileSha256": "2b6c4086be56b3b43253ae266070d91e9922fd96c557a1dd26a8e890b31e3b43",
+    "unchangedOptionsHistoryAndAgents": true,
+    "duplicateRejected": true
+  },
+  "providersRequested": {
+    "roomId": "049e699d-6b8d-48fe-a829-6b66cdf8cd13",
+    "agents": [
+      {
+        "id": "83dcc88d-a753-4018-a693-bf9f97f14fb8",
+        "provider": "codex"
+      },
+      {
+        "id": "7849ad52-8438-4c6a-9ada-4ed439ea8687",
+        "provider": "claude-code"
+      }
+    ],
+    "messageId": "3fb278f2-6158-4b42-98d9-f993f3574c03"
+  },
+  "independentParticipants": {
+    "bindings": [
+      {
+        "agentId": "e551f35a-fd6b-47bc-af8f-355426027f55",
+        "threadId": "thr_fu2f65pm59",
+        "providerId": "codex",
+        "projectId": "proj_fwx8qghk8z",
+        "environmentId": "env_hjav59i3rz"
+      },
+      {
+        "agentId": "83dcc88d-a753-4018-a693-bf9f97f14fb8",
+        "threadId": "thr_jc65d3xqxt",
+        "providerId": "codex",
+        "projectId": "proj_fwx8qghk8z",
+        "environmentId": "env_hjav59i3rz"
+      },
+      {
+        "agentId": "7849ad52-8438-4c6a-9ada-4ed439ea8687",
+        "threadId": "thr_wqfpyvpnqh",
+        "providerId": "claude-code",
+        "projectId": "proj_fwx8qghk8z",
+        "environmentId": "env_hjav59i3rz"
+      }
+    ],
+    "publicMessages": [
+      {
+        "id": "1bf6c907-fec8-48f2-a7dd-049aaaf53efc",
+        "roomId": "049e699d-6b8d-48fe-a829-6b66cdf8cd13",
+        "authorId": "7849ad52-8438-4c6a-9ada-4ed439ea8687",
+        "authorName": "Fresh Claude",
+        "kind": "agent",
+        "text": "I bring a reviewer's perspective to the task board: clarifying acceptance criteria, surfacing risks and dependencies early, and checking that each task is verifiably done.",
+        "status": "complete",
+        "createdAt": 1791656697760,
+        "causeId": "3fb278f2-6158-4b42-98d9-f993f3574c03",
+        "intent": "post",
+        "recipients": [],
+        "replyTo": null
+      },
+      {
+        "id": "c259cf9e-4f42-469b-8acc-4388e99d29d1",
+        "roomId": "049e699d-6b8d-48fe-a829-6b66cdf8cd13",
+        "authorId": "83dcc88d-a753-4018-a693-bf9f97f14fb8",
+        "authorName": "Fresh Codex",
+        "kind": "agent",
+        "text": "I bring an implementation perspective to a shared task board, turning goals into concrete steps with clear completion criteria.",
+        "status": "complete",
+        "createdAt": 1791656698041,
+        "causeId": "3fb278f2-6158-4b42-98d9-f993f3574c03",
+        "intent": "post",
+        "recipients": [],
+        "replyTo": null
+      }
+    ],
+    "deliveries": [
+      {
+        "id": "22ef94ec-b659-4afa-ae32-989c5113bf30",
+        "agentId": "7849ad52-8438-4c6a-9ada-4ed439ea8687",
+        "state": "complete",
+        "outcome": "no_reply"
+      },
+      {
+        "id": "031e0697-3d0b-421a-a9a3-c0add41e489b",
+        "agentId": "e551f35a-fd6b-47bc-af8f-355426027f55",
+        "state": "complete",
+        "outcome": "no_reply"
+      },
+      {
+        "id": "89ed0c46-7252-4a58-8d60-669cede3b278",
+        "agentId": "83dcc88d-a753-4018-a693-bf9f97f14fb8",
+        "state": "complete",
+        "outcome": "no_reply"
+      },
+      {
+        "id": "9b1c03d2-38e4-41d9-8e50-908f247c69f3",
+        "agentId": "e551f35a-fd6b-47bc-af8f-355426027f55",
+        "state": "complete",
+        "outcome": "no_reply"
+      },
+      {
+        "id": "281f643a-3f01-460f-877a-3bd97aa240f8",
+        "agentId": "83dcc88d-a753-4018-a693-bf9f97f14fb8",
+        "state": "complete",
+        "outcome": "replied"
+      },
+      {
+        "id": "4848aad7-fd0c-43b9-9e3c-33a98680d9c5",
+        "agentId": "7849ad52-8438-4c6a-9ada-4ed439ea8687",
+        "state": "complete",
+        "outcome": "replied"
+      },
+      {
+        "id": "baaf17ba-3da7-4d49-b38a-346482aebc6e",
+        "agentId": "e551f35a-fd6b-47bc-af8f-355426027f55",
+        "state": "complete",
+        "outcome": "no_reply"
+      }
+    ],
+    "projectIdsUnchanged": true,
+    "nativeSettingsAndAgentsFileUnchanged": true
+  },
+  "queuedRoomStopProtectedNativeWork": {
+    "threadId": "thr_fu2f65pm59",
+    "independentTurnId": "dae73d498b-t7",
+    "cancelledRoomMessageId": "07b9c260-fb0b-444f-a55f-edae5bb270b9",
+    "nativeStatusAfterRoomStop": "active"
+  },
+  "failure": {
+    "message": "Timed out: matching scoped Stop retires intended turn",
+    "at": "2026-10-10T18:25:35.317Z"
+  }
+}

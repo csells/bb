@@ -1,0 +1,92 @@
+• turbo 2.10.12
+
+   • Packages in scope: bb-plugin-provider-claude-code
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing be3836c713972bc2
+@bb/plugin-build:generate: cache miss, executing fc2761b79973eda5
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/templates:generate:templates: cache miss, executing 3c49af0a36ede8b2
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/templates:generate:plugin-scaffold: cache miss, executing 1ce8f41673c2ddd1
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@get-bb/plugin-sdk:build: cache miss, executing e2ab6ca01b6abd9a
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: > @get-bb/plugin-sdk@0.6.33 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-sdk
+@get-bb/plugin-sdk:build: > node scripts/build-runtime.mjs
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: Built 19 @get-bb/plugin-sdk runtime entries.
+bb-plugin-provider-claude-code:test: cache miss, executing cbbc13bd3f82765a
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: > bb-plugin-provider-claude-code@0.1.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/provider-claude-code
+bb-plugin-provider-claude-code:test: > vitest run --config vitest.config.ts "src/bridge/provider-maintenance.credentials.test.ts"
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/provider-claude-code[39m
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test:  [31m❯[39m [30m[42m bb-plugin-provider-claude-code [49m[39m src/bridge/provider-maintenance.credentials.test.ts [2m([22m[2m4 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 10[2mms[22m[39m
+bb-plugin-provider-claude-code:test: [31m     [31m×[31m honors an unattended OAuth token over an expired saved login without reporting unrelated subscription usage[39m[32m 8[2mms[22m[39m
+bb-plugin-provider-claude-code:test:      [32m✓[39m loads a hex-encoded Keychain credential[32m 1[2mms[22m[39m
+bb-plugin-provider-claude-code:test:      [32m✓[39m uses the credential file when the Keychain value is invalid[32m 0[2mms[22m[39m
+bb-plugin-provider-claude-code:test:      [32m✓[39m distinguishes usage-check throttling from an exhausted Claude limit[32m 0[2mms[22m[39m
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: [41m[1m FAIL [22m[49m [30m[42m bb-plugin-provider-claude-code [49m[39m src/bridge/provider-maintenance.credentials.test.ts[2m > [22mClaude Code credential loading[2m > [22mhonors an unattended OAuth token over an expired saved login without reporting unrelated subscription usage
+bb-plugin-provider-claude-code:test: [31m[1mAssertionError[22m: expected { supported: true, health: { …(9) } } to match object { supported: true, health: { …(3) } }
+bb-plugin-provider-claude-code:test: (6 matching properties omitted from actual)[39m
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: [32m- Expected[39m
+bb-plugin-provider-claude-code:test: [31m+ Received[39m
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: [2m  {[22m
+bb-plugin-provider-claude-code:test: [2m    "health": {[22m
+bb-plugin-provider-claude-code:test: [2m      "accountEmail": null,[22m
+bb-plugin-provider-claude-code:test: [2m      "planLabel": null,[22m
+bb-plugin-provider-claude-code:test: [32m-     "status": "ready",[39m
+bb-plugin-provider-claude-code:test: [31m+     "status": "expired",[39m
+bb-plugin-provider-claude-code:test: [2m    },[22m
+bb-plugin-provider-claude-code:test: [2m    "supported": true,[22m
+bb-plugin-provider-claude-code:test: [2m  }[22m
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: [36m [2m❯[22m src/bridge/provider-maintenance.credentials.test.ts:[2m99:45[22m[39m
+bb-plugin-provider-claude-code:test:     [90m 97|[39m     state[33m.[39mfile [33m=[39m expired[33m;[39m
+bb-plugin-provider-claude-code:test:     [90m 98|[39m
+bb-plugin-provider-claude-code:test:     [90m 99|[39m     [34mexpect[39m([35mawait[39m [34mgetClaudeProviderHealth[39m())[33m.[39m[34mtoMatchObject[39m({
+bb-plugin-provider-claude-code:test:     [90m   |[39m                                             [31m^[39m
+bb-plugin-provider-claude-code:test:     [90m100|[39m       supported[33m:[39m [35mtrue[39m[33m,[39m
+bb-plugin-provider-claude-code:test:     [90m101|[39m       health[33m:[39m { status[33m:[39m [32m"ready"[39m[33m,[39m accountEmail[33m:[39m [35mnull[39m[33m,[39m planLabel[33m:[39m [35mnull[39m }[33m,[39m
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test: [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+bb-plugin-provider-claude-code:test: [2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m3 passed[39m[22m[90m (4)[39m
+bb-plugin-provider-claude-code:test: [2m   Start at [22m 18:29:53
+bb-plugin-provider-claude-code:test: [2m   Duration [22m 238ms[2m (transform 95ms, setup 0ms, import 160ms, tests 10ms, environment 0ms)[22m
+bb-plugin-provider-claude-code:test:
+bb-plugin-provider-claude-code:test:  ELIFECYCLE  Test failed. See above for more details.
+bb-plugin-provider-claude-code#test:  ERROR  command (/Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/provider-claude-code) /opt/homebrew/bin/pnpm run test src/bridge/provider-maintenance.credentials.test.ts exited (1)
+
+ Tasks:    5 successful, 6 total
+Cached:    0 cached, 6 total
+  Time:    1.818s
+Failed:    bb-plugin-provider-claude-code#test
+
+ ERROR  run failed: command  exited (1)

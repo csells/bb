@@ -1,6 +1,13 @@
 import { createNodeBbSdk } from "@bb/sdk";
-import type { ThreadEventRow } from "@bb/domain";
-import { chmod, copyFile, mkdir, rm, writeFile } from "node:fs/promises";
+import {
+  roomsAgentSchema,
+  type ThreadEventRow,
+  type RoomsRoomContext,
+  type RoomsCreateRoom,
+  type RoomsCreateAgent,
+} from "@bb/domain";
+import type { ThreadSpawnArgs } from "@bb/sdk";
+import { readFile, rm } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { type Agent, type Delivery } from "./contracts.js";
@@ -22,6 +29,7 @@ export class RoomRuntime {
     readonly bbUrl: string,
     readonly workspaces: string,
     readonly roomsUrl = "http://127.0.0.1:38900",
+    readonly localHostId: string | null = null,
   ) {
     this.sdk = createNodeBbSdk({ baseUrl: bbUrl });
   }
@@ -96,16 +104,118 @@ export class RoomRuntime {
         : null;
     if (current.error !== error) this.store.saveDelivery({ ...current, error });
   }
-  private workspace(agent: Agent) {
-    return join(this.workspaces, agent.roomId, agent.id);
+  async validateContext(context: RoomsRoomContext) {
+    if (context.defaultEnvironmentId && !context.projectId)
+      throw new RoomError(400, "An environment requires a project");
+    if (context.projectId)
+      await this.sdk.projects.get({ projectId: context.projectId });
+    if (context.defaultEnvironmentId) {
+      const environment = await this.sdk.environments.get({
+        environmentId: context.defaultEnvironmentId,
+      });
+      if (environment.projectId !== context.projectId)
+        throw new RoomError(
+          400,
+          "The environment belongs to a different project",
+        );
+      if (
+        environment.status !== "ready" ||
+        environment.lifecycle.phase !== "active"
+      )
+        throw new RoomError(409, "The selected environment is not ready");
+    }
+    if (
+      context.sectionId &&
+      !(await this.sdk.threadSections.list()).some(
+        (section) => section.id === context.sectionId,
+      )
+    )
+      throw new RoomError(400, "The BB section no longer exists");
   }
-  private credentialPath(agent: Agent, activationId: string) {
-    return join(
-      this.workspace(agent),
-      ".rooms",
-      "activations",
-      activationId + ".json",
-    );
+  async createRoom(input: RoomsCreateRoom, ownerId: string) {
+    await this.validateContext(input);
+    return this.store.createRoom(input.name, ownerId, input);
+  }
+  async setRoomContext(roomId: string, context: RoomsRoomContext) {
+    this.store.room(roomId);
+    await this.validateContext(context);
+    return this.store.setRoomContext(roomId, context);
+  }
+  async addAgent(roomId: string, input: RoomsCreateAgent) {
+    const room = this.store.room(roomId);
+    if ("threadId" in input) {
+      const thread = await this.sdk.threads.get({ threadId: input.threadId });
+      if (thread.deletedAt !== null || thread.archivedAt !== null)
+        throw new RoomError(409, "Choose an active BB thread");
+      if (room.projectId && thread.projectId !== room.projectId)
+        throw new RoomError(400, "The thread belongs to a different project");
+      if (!thread.environmentId)
+        throw new RoomError(409, "The thread has no execution environment yet");
+      const environment = await this.sdk.environments.get({
+        environmentId: thread.environmentId,
+      });
+      if (
+        environment.status !== "ready" ||
+        environment.lifecycle.phase !== "active"
+      )
+        throw new RoomError(409, "The thread environment is not ready");
+      const provider = roomsAgentSchema.shape.provider.safeParse(
+        thread.providerId,
+      );
+      if (!provider.success)
+        throw new RoomError(
+          400,
+          "That provider is not supported for room participation",
+        );
+      const options = await this.sdk.threads.defaultExecutionOptions({
+        threadId: thread.id,
+      });
+      return this.store.addAgent(
+        roomId,
+        {
+          handle: input.handle,
+          name: input.name,
+          instructions: input.instructions,
+          provider: provider.data,
+          model: options?.model ?? "",
+        },
+        {
+          projectId: thread.projectId,
+          environmentId: thread.environmentId,
+          threadId: thread.id,
+        },
+      );
+    }
+    if (!room.projectId)
+      throw new RoomError(
+        409,
+        "Choose a BB project for this room before creating an agent, or attach an existing thread",
+      );
+    await this.validateContext(room);
+    return this.store.addAgent(roomId, input, {
+      projectId: room.projectId,
+      environmentId: room.defaultEnvironmentId,
+      threadId: null,
+    });
+  }
+  private async removeCredential(agent: Agent, activationId: string) {
+    const credential = this.store.activationCredential(activationId);
+    if (credential) {
+      await this.sdk.files.remove(credential);
+      this.store.clearActivationCredential(activationId);
+    } else {
+      await rm(
+        join(
+          this.workspaces,
+          agent.roomId,
+          agent.id,
+          ".rooms",
+          "activations",
+          activationId + ".json",
+        ),
+        { force: true },
+      );
+    }
   }
   private async events(threadId: string) {
     const events: ThreadEventRow[] = [];
@@ -121,6 +231,7 @@ export class RoomRuntime {
           "turn/input/accepted",
           "turn/completed",
           "client/turn/rejected",
+          "provider/error",
         ],
       });
       events.push(...page);
@@ -165,58 +276,138 @@ export class RoomRuntime {
         ),
     );
   }
-  private async install(agent: Agent, activationId: string, token: string) {
-    const directory = join(this.workspace(agent), ".rooms");
-    await mkdir(join(directory, "activations"), {
-      recursive: true,
-      mode: 0o700,
-    });
-    await chmod(directory, 0o700);
+  private async install(
+    agent: Agent,
+    activationId: string,
+    token: string,
+    hostId: string,
+  ) {
+    if (
+      ["localhost", "127.0.0.1", "[::1]"].includes(
+        new URL(this.roomsUrl).hostname,
+      ) &&
+      hostId !== this.localHostId
+    )
+      throw new RoomError(
+        409,
+        "The room command endpoint is local to another execution host; configure a reachable agent origin",
+      );
+    const host = await this.sdk.hosts.get({ hostId });
+    if (!host.threadStorageRootPath)
+      throw new RoomError(409, "The execution host has no private BB storage");
+    const directory = join(
+      host.threadStorageRootPath,
+      ".rooms",
+      agent.roomId,
+      agent.id,
+    );
     const cli = join(directory, "room.mjs");
-    await copyFile(
-      join(dirname(fileURLToPath(import.meta.url)), "agent-cli.js"),
-      cli,
-    );
-    await chmod(cli, 0o700);
-    const credential = this.credentialPath(agent, activationId);
-    await writeFile(
-      credential,
-      JSON.stringify({ endpoint: this.roomsUrl, token, activationId }),
-      { mode: 0o600, flag: "wx" },
-    );
-    const launcher = join(directory, `participate-${activationId}`);
-    await writeFile(
-      launcher,
-      `#!/bin/sh\nexec ${quote(process.execPath)} ${quote(cli)} --activation ${quote(credential)} "$@"\n`,
-      { mode: 0o700, flag: "wx" },
-    );
-    return quote(launcher);
-  }
-  private async prepare(agent: Agent) {
-    if (agent.projectId) return agent;
-    const hosts = await this.sdk.hosts.list();
-    const host = hosts.find((candidate) => candidate.status === "connected");
-    if (!host) throw new Error("The room execution machine is offline");
-    const path = this.workspace(agent);
-    await mkdir(path, { recursive: true });
-    await writeFile(
-      join(path, "AGENTS.md"),
-      `# Room participation
-
-You are an independent participant in a shared conversation with humans and other agents. You can discuss any topic the humans choose. Other participants have their own identities and sessions; never manufacture their contributions.
-
-Your assistant text and tool output are private. To contribute publicly, execute the activation-specific room command supplied in the current prompt using your bash tool. Printing a command as text does not execute it. Use post for your own contribution, request to invite an actual peer response, and stream begin/append/commit to publish selected text as you compose it. Never forward private thoughts or tool logs.
-
-A plain post does not wake other agents. Explicit requests publish and queue a delivery asynchronously; their receipt is not the peer's answer. After your intended contributions and requests are accepted, finish this activation. A later reply addressed to you arrives as a new activation. Do not repeat a successful request just because its receipt contains no peer answer. Use the current delivery and shared goals to decide what helps next. Preserve relevant goals and commitments from history, but do not repeat already completed requests. Reply only when useful, and let a conversation rest when complete. Silence is a successful choice. Do not read, display or modify credential files. The current activation command binds your author and room; older commands cannot be reused.
-`,
-    );
-    const project = await this.sdk.projects.create({
-      name: `${this.store.room(agent.roomId).name} · ${agent.name}`,
-      source: { type: "local_path", hostId: host.id, path },
+    const credential = join(directory, "activations", activationId + ".json");
+    await this.sdk.files.write({
+      hostId,
+      path: cli,
+      createParents: true,
+      mode: 0o700,
+      content: await readFile(
+        join(dirname(fileURLToPath(import.meta.url)), "agent-cli.js"),
+        "utf8",
+      ),
     });
-    const prepared = { ...this.store.agent(agent.id), projectId: project.id };
-    this.store.saveAgent(prepared);
-    return prepared;
+    this.store.recordActivationCredential(activationId, hostId, credential);
+    await this.sdk.files.write({
+      hostId,
+      path: credential,
+      createParents: true,
+      mode: 0o600,
+      expectedSha256: null,
+      content: JSON.stringify({ endpoint: this.roomsUrl, token, activationId }),
+    });
+    return `node ${quote(cli)} --activation ${quote(credential)}`;
+  }
+  private async prepare(agent: Agent): Promise<{
+    agent: Agent;
+    hostId: string;
+    environment: ThreadSpawnArgs["environment"];
+  }> {
+    if (agent.threadId) {
+      const thread = await this.sdk.threads.get({ threadId: agent.threadId });
+      if (
+        thread.deletedAt !== null ||
+        thread.archivedAt !== null ||
+        !thread.environmentId
+      )
+        throw new RoomError(
+          409,
+          "The bound BB thread has no active execution environment",
+        );
+      const environment = await this.sdk.environments.get({
+        environmentId: thread.environmentId,
+      });
+      if (
+        environment.status !== "ready" ||
+        environment.lifecycle.phase !== "active"
+      )
+        throw new RoomError(409, "The bound BB environment is not ready");
+      const provider = roomsAgentSchema.shape.provider.safeParse(
+        thread.providerId,
+      );
+      if (!provider.success)
+        throw new RoomError(
+          409,
+          "This thread provider cannot participate in rooms",
+        );
+      const options = await this.sdk.threads.defaultExecutionOptions({
+        threadId: thread.id,
+      });
+      const prepared = {
+        ...agent,
+        projectId: thread.projectId,
+        environmentId: thread.environmentId,
+        provider: provider.data,
+        model: options?.model ?? agent.model,
+      };
+      this.store.saveAgent(prepared);
+      return {
+        agent: prepared,
+        hostId: environment.hostId,
+        environment: { type: "reuse", environmentId: environment.id },
+      };
+    }
+    if (!agent.projectId)
+      throw new RoomError(
+        409,
+        "Select a BB project before starting this participant",
+      );
+    if (agent.environmentId) {
+      const environment = await this.sdk.environments.get({
+        environmentId: agent.environmentId,
+      });
+      if (
+        environment.projectId !== agent.projectId ||
+        environment.status !== "ready" ||
+        environment.lifecycle.phase !== "active"
+      )
+        throw new RoomError(409, "The selected BB environment is unavailable");
+      return {
+        agent,
+        hostId: environment.hostId,
+        environment: { type: "reuse", environmentId: environment.id },
+      };
+    }
+    const project = await this.sdk.projects.get({ projectId: agent.projectId });
+    const source =
+      project.sources.find((source) => source.isDefault) ?? project.sources[0];
+    if (!source)
+      throw new RoomError(409, "Choose an execution environment for this room");
+    return {
+      agent,
+      hostId: source.hostId,
+      environment: {
+        type: "host",
+        hostId: source.hostId,
+        workspace: { type: "unmanaged", path: source.path },
+      },
+    };
   }
   private prompt(
     agent: Agent,
@@ -258,6 +449,7 @@ A plain post does not wake other agents. Explicit requests publish and queue a d
             author: message.authorName,
             text,
             intent: message.intent,
+            recipients: message.recipients,
           },
         ];
       })
@@ -282,15 +474,22 @@ Other supported operations append to that same activation command:
   stream append --message ID --sequence 1 --text "Next public paragraph"
   stream commit --message ID
   stream abort --message ID
-The exact command is stream begin, with no message ID or text arguments. It creates and returns a new public messageId; the incoming human message ID is not the stream ID. Use the returned messageId for append and commit, increasing sequence numbers. Compose and append each public part as you develop it. Only commit wakes recipients; add --to @handle to commit if a response is useful. --text-file FILE handles longer text; --help describes other options. Lost-receipt retries need the same --request-id UUID and exact arguments.
+The exact command is stream begin, with no message ID or text arguments. It creates and returns a new public messageId; the incoming human message ID is not the stream ID. Use the returned messageId for append and commit, increasing sequence numbers. Compose and append each public part as you develop it. Only commit delivers the finished message to other agents. Add --to @handle and --intent request to commit when you specifically want that participant to answer. --text-file FILE handles longer text; --help describes other options. Lost-receipt retries need the same --request-id UUID and exact arguments.
 
-Plain post and narrative mentions never wake anyone. Explicit request publishes and queues the addressed agent independently. Its receipt acknowledges publication and queueing; it is not a synchronous peer answer. After your intended contributions and requests are accepted, end this private turn. A reply addressed back to you arrives in a later activation. Do not repeat a successful request while waiting for a peer answer. Use the current delivery and shared goals to decide what helps next. Preserve relevant goals and commitments from history, but do not repeat already completed requests. Request only when it advances the conversation; closing remarks normally use post. There is no handoff-count restriction. No response is also valid: finish privately if nothing should be posted. The runtime settles after your turn; no acknowledgment or settle command is needed. Use read when fresh room context is needed. Never print or inspect credential files, and use this activation's command rather than one from previous turns. Keep private thoughts and tool logs private.
+Current room delivery rules: every completed public human or agent message is delivered to every other agent once. A plain post reaches peers as optional context, including questions addressed to the room. Structured request recipients are explicitly asked to respond; other agents still receive optional context. Narrative mentions do not turn optional context into a directed request. Stream updates, private output and silence do not generate deliveries. These rules replace earlier wake rules in this room.
+
+For a request addressed to you, give a useful answer through the room CLI. For optional context, decide independently whether to contribute. Answer an open question when you have something useful to add. If a message is addressed to someone else, normally let them answer; do not duplicate their work or speak for them. Do not publish mere acknowledgments, repeated agreement, an announcement of silence, or a new question simply to prolong the exchange. If the discussion is resolved or nothing useful remains, finish privately with no room command.
+
+Every receipt acknowledges accepted publication and delivery, not the peer's answer. After your intended contributions and requests are accepted, end this private turn. Later public messages arrive in a new activation. Do not wait or repeat a successful request to obtain an answer. Current input is new; history supplies context and must not cause already completed requests to run again. There is no handoff-count restriction. The runtime settles after your turn; no acknowledgment or settle command is needed. Use read when fresh room context is needed. Never print or inspect credential files, and use this activation's command rather than one from previous turns. Keep private thoughts and tool logs private.
 
 Activation: ${activationId}
 Participants: ${JSON.stringify(participants)}
 Recent public messages: ${JSON.stringify(history)}
 Delivery intent: ${delivery.intent}
-Respond to this actual message from ${cause.authorName} (${cause.id}):
+${delivery.intent === "request" ? "You are an explicitly requested recipient." : "You are receiving optional room context. A public reply is not required."}
+Public message intent: ${cause.intent}
+Addressed participants: ${JSON.stringify(participants.filter((participant) => cause.recipients.includes(participant.id)))}
+Consider this actual message from ${cause.authorName} (${cause.id}):
 ${cause.text}
 
 If you choose to answer publicly, execute your command with the bash tool now. Printing a command as assistant text does not send it. If no public reply is useful, finish without a command.`;
@@ -321,9 +520,17 @@ If you choose to answer publicly, execute your command with the bash tool now. P
       if (!started) return;
       const { activation, token } = started;
       let command: string;
+      let environment: ThreadSpawnArgs["environment"];
       try {
-        agent = await this.prepare(this.store.agent(agent.id));
-        command = await this.install(agent, activation.id, token);
+        const prepared = await this.prepare(this.store.agent(agent.id));
+        agent = prepared.agent;
+        environment = prepared.environment;
+        command = await this.install(
+          agent,
+          activation.id,
+          token,
+          prepared.hostId,
+        );
       } catch (error) {
         this.store.finishActivation(
           activation.id,
@@ -332,12 +539,12 @@ If you choose to answer publicly, execute your command with the bash tool now. P
             ? error.message
             : "Could not prepare agent participation CLI",
         );
-        await rm(this.credentialPath(agent, activation.id), { force: true });
+        await this.removeCredential(agent, activation.id);
         return;
       }
       if (this.store.activationForDelivery(delivery.id)?.stopRequested) {
         this.store.finishActivation(activation.id, "no_reply");
-        await rm(this.credentialPath(agent, activation.id), { force: true });
+        await this.removeCredential(agent, activation.id);
         return;
       }
       const prompt = this.prompt(agent, delivery, command, activation.id);
@@ -347,12 +554,16 @@ If you choose to answer publicly, execute your command with the bash tool now. P
           projectId: agent.projectId,
           providerId: agent.provider,
           ...(agent.model ? { model: agent.model } : {}),
-          environment: { type: "project-default" },
+          environment,
+          sectionId: this.store.room(agent.roomId).sectionId,
           title: `${agent.name} in ${this.store.room(agent.roomId).name}`,
-          permissionMode: agent.provider === "pi" ? "full" : "accept-edits",
           prompt,
         });
-        agent = { ...this.store.agent(agent.id), threadId: thread.id };
+        agent = {
+          ...this.store.agent(agent.id),
+          threadId: thread.id,
+          environmentId: thread.environmentId,
+        };
         this.store.saveAgent(agent);
       } else
         await this.sdk.threads.send({
@@ -365,7 +576,7 @@ If you choose to answer publicly, execute your command with the bash tool now. P
       this.store.bindActivation(activation.id, agent.threadId);
       const current = this.store.activationForDelivery(delivery.id);
       if (current?.stopRequested)
-        await this.sdk.threads.stop({ threadId: agent.threadId });
+        await this.stopOwnedExecution(agent.threadId, activation.id);
     }
     const activation = this.store.activationForDelivery(delivery.id);
     if (!activation || activation.state !== "running" || !activation.threadId)
@@ -455,7 +666,31 @@ If you choose to answer publicly, execute your command with the bash tool now. P
           ? "Agent execution failed. Inspect its private activity and provider status."
           : undefined),
     );
-    await rm(this.credentialPath(agent, activation.id), { force: true });
+    await this.removeCredential(agent, activation.id);
+  }
+  private async stopOwnedExecution(threadId: string, activationId: string) {
+    const events = await this.events(threadId);
+    const turnIds = new Set(inspectAdmission(events, activationId).turnIds);
+    for (const steering of this.store.pendingSteerings(activationId))
+      for (const turnId of inspectSteeringAdmission(
+        events,
+        activationId,
+        steering.id,
+        steering.text,
+      ).turnIds)
+        turnIds.add(turnId);
+    const pending = [...turnIds].filter(
+      (turnId) =>
+        !events.some(
+          (event) =>
+            event.type === "turn/completed" &&
+            event.scope.kind === "turn" &&
+            event.scope.turnId === turnId,
+        ),
+    );
+    for (const expectedTurnId of pending)
+      await this.sdk.threads.stop({ threadId, expectedTurnId });
+    return pending.length > 0;
   }
   async stop(agentId: string) {
     const agent = this.store.agent(agentId);
@@ -468,7 +703,15 @@ If you choose to answer publicly, execute your command with the bash tool now. P
       .filter((activation) => activation !== null);
     for (const activation of activations)
       await this.cancelQueued(agent.threadId, activation.id);
-    await this.sdk.threads.stop({ threadId: agent.threadId });
+    let stoppedNativeWork = false;
+    for (const activation of activations)
+      stoppedNativeWork =
+        (await this.stopOwnedExecution(agent.threadId, activation.id)) ||
+        stoppedNativeWork;
+    if (!stoppedNativeWork) {
+      this.tick();
+      return;
+    }
     const deadline = Date.now() + 15000;
     while (Date.now() < deadline) {
       const thread = await this.sdk.threads.get({ threadId: agent.threadId });
@@ -550,10 +793,10 @@ If you choose to answer publicly, execute your command with the bash tool now. P
         this.store.activationForDelivery(activation.deliveryId)?.stopRequested
       ) {
         await this.cancelQueued(activation.threadId, activation.id);
-        await this.sdk.threads.stop({ threadId: activation.threadId });
+        await this.stopOwnedExecution(activation.threadId, activation.id);
         await this.cancelQueued(activation.threadId, activation.id);
       }
-      return receipt;
+      return { ...receipt, steeringId };
     } finally {
       this.steering.delete(agentId);
     }
@@ -611,6 +854,7 @@ If you choose to answer publicly, execute your command with the bash tool now. P
         "Owner requested interrupted-dispatch recovery",
         "active-execution",
       );
+      const candidateThreadIds = new Set<string>();
       const threadIds = new Set<string>();
       for (const archived of [false, true]) {
         for (let offset = 0; ; offset += 100) {
@@ -621,32 +865,47 @@ If you choose to answer publicly, execute your command with the bash tool now. P
             limit: 100,
             offset,
           });
-          for (const thread of threads) threadIds.add(thread.id);
+          for (const thread of threads) candidateThreadIds.add(thread.id);
           if (threads.length < 100) break;
         }
       }
-      for (const threadId of threadIds) {
-        for (const activation of uncertain)
-          await this.cancelQueued(threadId, activation.id);
-        const thread = await this.sdk.threads.get({ threadId });
-        if (!["idle", "error", "stopped"].includes(thread.status))
-          await this.sdk.threads.stop({ threadId });
+      for (const threadId of candidateThreadIds) {
+        const events = await this.events(threadId);
+        for (const activation of uncertain) {
+          if (
+            inspectAdmission(events, activation.id).state !== "missing" ||
+            (await this.queued(threadId, activation.id)).length ||
+            this.store.hasQueueCancellation(activation.id, threadId)
+          ) {
+            threadIds.add(threadId);
+            await this.cancelQueued(threadId, activation.id);
+            await this.stopOwnedExecution(threadId, activation.id);
+          }
+        }
       }
       const deadline = Date.now() + 15000;
       while (true) {
-        const threads = await Promise.all(
-          [...threadIds].map((threadId) => this.sdk.threads.get({ threadId })),
-        );
-        if (
-          threads.every((thread) =>
-            ["idle", "error", "stopped"].includes(thread.status),
-          )
-        )
-          break;
+        let pending = false;
+        for (const threadId of threadIds) {
+          const events = await this.events(threadId);
+          for (const activation of uncertain) {
+            const proof = inspectAdmission(events, activation.id);
+            pending ||= proof.turnIds.some(
+              (turnId) =>
+                !events.some(
+                  (event) =>
+                    event.type === "turn/completed" &&
+                    event.scope.kind === "turn" &&
+                    event.scope.turnId === turnId,
+                ),
+            );
+          }
+        }
+        if (!pending) break;
         if (Date.now() >= deadline)
           throw new RoomError(
             409,
-            "Old execution has not confirmed stopping; its activation remains fenced and unresolved",
+            "Old room execution has not confirmed stopping; its activation remains fenced and unresolved",
           );
         await sleep(250);
       }

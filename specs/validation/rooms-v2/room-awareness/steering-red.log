@@ -1,0 +1,74 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 0ea5dade84c9ddc8
+@bb/templates:generate:plugin-scaffold: cache miss, executing da4e99067b9bad9d
+@bb/templates:generate:templates: cache miss, executing 2d5595584ecbe566
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/rooms:test: cache miss, executing ef142cd2fa3f3dbd
+@bb/rooms:test:
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:test: > vitest run "test/http.test.ts" "-t" "publishes acknowledged steering"
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb/apps/rooms[39m
+@bb/rooms:test:
+@bb/rooms:test:  [31m❯[39m [30m[45m @bb/rooms [49m[39m test/http.test.ts [2m([22m[2m7 tests[22m[2m | [22m[31m1 failed[39m[2m | [22m[33m6 skipped[39m[2m)[22m[32m 146[2mms[22m[39m
+@bb/rooms:test: [31m     [31m×[31m publishes acknowledged steering to peers without dispatching it to its target again[39m[32m 145[2mms[22m[39m
+@bb/rooms:test:      [2m[90m↓[39m[22m terminates a stream when its bearer session expires even if a valid cookie is also present
+@bb/rooms:test:      [2m[90m↓[39m[22m does not publish a human message when live steering is rejected
+@bb/rooms:test:      [2m[90m↓[39m[22m keeps human sessions and agent capabilities in separate authority domains
+@bb/rooms:test:      [2m[90m↓[39m[22m rejects anonymous reads and cross-room sessions
+@bb/rooms:test:      [2m[90m↓[39m[22m rejects CSRF and client-forged authors
+@bb/rooms:test:      [2m[90m↓[39m[22m attributes a valid send from the authenticated session
+@bb/rooms:test:
+@bb/rooms:test: [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+@bb/rooms:test:
+@bb/rooms:test: [41m[1m FAIL [22m[49m [30m[45m @bb/rooms [49m[39m test/http.test.ts[2m > [22mroom HTTP authorization[2m > [22mpublishes acknowledged steering to peers without dispatching it to its target again
+@bb/rooms:test: [31m[1mAssertionError[22m: expected [ { …(12) }, { …(12) } ] to have a length of 1 but got 2[39m
+@bb/rooms:test:
+@bb/rooms:test: [32m- Expected[39m
+@bb/rooms:test: [31m+ Received[39m
+@bb/rooms:test:
+@bb/rooms:test: [32m- 1[39m
+@bb/rooms:test: [31m+ 2[39m
+@bb/rooms:test:
+@bb/rooms:test: [36m [2m❯[22m test/http.test.ts:[2m66:26[22m[39m
+@bb/rooms:test:     [90m 64|[39m       const message = store.messages(room.id).find((m) => m.text === "…
+@bb/rooms:test:     [90m 65|[39m       const deliveries = store.deliveries(room.id).filter((d) => d.mes…
+@bb/rooms:test:     [90m 66|[39m       [34mexpect[39m(deliveries)[33m.[39m[34mtoHaveLength[39m([34m1[39m)[33m;[39m
+@bb/rooms:test:     [90m   |[39m                          [31m^[39m
+@bb/rooms:test:     [90m 67|[39m       expect(deliveries[0]).toMatchObject({ agentId: peer.id, intent: …
+@bb/rooms:test:     [90m 68|[39m       expect(message).toMatchObject({ authorId: owner.id, intent: "req…
+@bb/rooms:test:
+@bb/rooms:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[33m6 skipped[39m[90m (7)[39m
+@bb/rooms:test: [2m   Start at [22m 22:49:07
+@bb/rooms:test: [2m   Duration [22m 1.38s[2m (transform 740ms, setup 0ms, import 1.14s, tests 146ms, environment 0ms)[22m
+@bb/rooms:test:
+@bb/rooms:test:  ELIFECYCLE  Test failed. See above for more details.
+@bb/rooms#test:  ERROR  command (/Users/admin/code/Forks/get-bb/bb/apps/rooms) /opt/homebrew/bin/pnpm run test test/http.test.ts -t publishes acknowledged steering exited (1)
+
+ Tasks:    3 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    2.334s
+Failed:    @bb/rooms#test
+
+ ERROR  run failed: command  exited (1)

@@ -86,6 +86,10 @@ import {
   whenCriticalLoadsSettled,
 } from "./lib/split-prefetch";
 
+const RoomsView = lazy(() =>
+  import("./views/rooms/RoomsView").then((m) => ({ default: m.RoomsView })),
+);
+
 const SettingsView = lazy(() =>
   import("./views/SettingsView").then((m) => ({
     default: m.SettingsView,
@@ -297,6 +301,8 @@ export function AppRoutes() {
     <AppLayout>
       <Suspense fallback={null}>
         <Routes>
+          <Route path="/rooms" element={<RoomsView />} />
+          <Route path="/rooms/:roomId" element={<RoomsView />} />
           <Route
             path="/settings/usage"
             element={

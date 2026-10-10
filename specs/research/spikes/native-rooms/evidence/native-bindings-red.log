@@ -1,0 +1,64 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing f635be78f93c5f7d
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs aa7488658cc6e3fd
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates: cache hit, replaying logs 7d8afb48c6840fff
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/rooms:test: cache miss, executing e6d0b953f630e6c5
+@bb/rooms:test:
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:test: > vitest run "bindings.test.ts"
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms[39m
+@bb/rooms:test:
+@bb/rooms:test:  [31m❯[39m [30m[45m @bb/rooms [49m[39m test/bindings.test.ts [2m([22m[2m4 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[33m 434[2mms[22m[39m
+@bb/rooms:test:    [32m✓[39m associates an existing room without moving its agent or replaying history and receipts[32m 125[2mms[22m[39m
+@bb/rooms:test:    [32m✓[39m rejects a native thread bound to another participant even across rooms[32m 102[2mms[22m[39m
+@bb/rooms:test: [31m   [31m×[31m does not stop unrelated native work when only a room message is queued[39m[32m 104[2mms[22m[39m
+@bb/rooms:test:    [32m✓[39m requires project context before creating execution instead of inventing another project[32m 104[2mms[22m[39m
+@bb/rooms:test:
+@bb/rooms:test: [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+@bb/rooms:test:
+@bb/rooms:test: [41m[1m FAIL [22m[49m [30m[45m @bb/rooms [49m[39m test/bindings.test.ts[2m > [22mdoes not stop unrelated native work when only a room message is queued
+@bb/rooms:test: [31m[1mError[22m: Unrelated native work would be interrupted[39m
+@bb/rooms:test: [36m [2m❯[22m test/bindings.test.ts:[2m125:24[22m[39m
+@bb/rooms:test:
+@bb/rooms:test: [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m3 passed[39m[22m[90m (4)[39m
+@bb/rooms:test: [2m   Start at [22m 17:59:32
+@bb/rooms:test: [2m   Duration [22m 1.79s[2m (transform 794ms, setup 0ms, import 1.26s, tests 434ms, environment 0ms)[22m
+@bb/rooms:test:
+@bb/rooms:test:     [90m123|[39m   [35mconst[39m nativeStop [33m=[39m vi
+@bb/rooms:test:     [90m124|[39m     [33m.[39m[34mspyOn[39m(runtime[33m.[39msdk[33m.[39mthreads[33m,[39m [32m"stop"[39m)
+@bb/rooms:test:     [90m125|[39m     .mockRejectedValue(new Error("Unrelated native work would be inter…
+@bb/rooms:test:     [90m   |[39m                        [31m^[39m
+@bb/rooms:test:     [90m126|[39m   [35mawait[39m runtime[33m.[39m[34mstop[39m(agent[33m.[39mid)[33m;[39m
+@bb/rooms:test:     [90m127|[39m   [34mexpect[39m(nativeStop)[33m.[39mnot[33m.[39m[34mtoHaveBeenCalled[39m()[33m;[39m
+@bb/rooms:test:
+@bb/rooms:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+@bb/rooms:test:
+@bb/rooms:test:  ELIFECYCLE  Test failed. See above for more details.
+@bb/rooms#test:  ERROR  command (/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms) /opt/homebrew/bin/pnpm run test bindings.test.ts exited (1)
+
+ Tasks:    3 successful, 4 total
+Cached:    2 cached, 4 total
+  Time:    2.762s
+Failed:    @bb/rooms#test
+
+ ERROR  run failed: command  exited (1)

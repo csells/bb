@@ -21,6 +21,7 @@ import {
 } from "./contracts.js";
 import "./style.css";
 import { createExperimentalRoomsClient } from "@bb/sdk/browser";
+const handlePattern = "[a-z][a-z0-9_\\-]{1,31}";
 const roomsClient = createExperimentalRoomsClient({ baseUrl: location.origin });
 async function api<T>(
   path: string,
@@ -74,6 +75,56 @@ function Avatar({ name, agent = false }: { name: string; agent?: boolean }) {
       {agent ? "✳" : name.slice(0, 2).toUpperCase()}
     </span>
   );
+}
+function FailedReplies({
+  snapshot,
+  request,
+  followUp,
+  inspectActivity,
+}: {
+  snapshot: Snapshot;
+  request: Snapshot["messages"][number];
+  followUp: (agent: Agent, requestText: string) => void;
+  inspectActivity: ((agent: Agent) => void) | null;
+}) {
+  return snapshot.deliveries
+    .filter(
+      (delivery) =>
+        delivery.state === "error" && delivery.messageId === request.id,
+    )
+    .map((delivery) => {
+      const agent = snapshot.agents.find(
+        (candidate) => candidate.id === delivery.agentId,
+      );
+      if (!agent) return null;
+      return (
+        <article
+          className="message failure-reply"
+          key={delivery.id}
+          data-agent-id={agent.id}
+        >
+          <Avatar name={agent.name} agent />
+          <div className="message-body">
+            <strong>{agent.name} couldn’t complete this request</strong>
+            <blockquote>{request.text}</blockquote>
+            <p role="alert">
+              {delivery.error?.trim() ||
+                "No failure details were reported. The room owner can inspect the agent’s activity."}
+            </p>
+            <div className="failure-actions">
+              <button onClick={() => followUp(agent, request.text)}>
+                Ask {agent.name} again
+              </button>
+              {inspectActivity && (
+                <button onClick={() => inspectActivity(agent)}>
+                  Inspect activity
+                </button>
+              )}
+            </div>
+          </div>
+        </article>
+      );
+    });
 }
 function PendingReplies({
   snapshot,
@@ -566,7 +617,7 @@ function App() {
               <input
                 name="handle"
                 autoComplete="username"
-                pattern="[a-z][a-z0-9_-]{1,31}"
+                pattern={handlePattern}
                 placeholder="chris"
                 required
               />
@@ -843,62 +894,83 @@ function App() {
               </div>
             </section>
           )}
-          {snapshot?.messages.map((m) => (
-            <article
-              className={"message " + m.kind}
-              key={m.id}
-              data-message-id={m.id}
-              data-author={m.authorName}
-              data-author-id={m.authorId}
-              data-status={m.status}
-            >
-              <Avatar name={m.authorName} agent={m.kind === "agent"} />
-              <div className="message-body">
-                <div className="message-meta">
-                  <strong>
-                    {m.kind === "system" ? "Room status" : m.authorName}
-                  </strong>
-                  {m.kind === "agent" && <span className="tag">AGENT</span>}
-                  <time dateTime={new Date(m.createdAt).toISOString()}>
-                    {new Date(m.createdAt).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </time>
-                  {m.status === "streaming" && (
-                    <span className="stream-label">
-                      writing<span className="dots">…</span>
-                    </span>
-                  )}
-                </div>
-                {m.recipients.length > 0 && (
-                  <div className="message-recipients">
-                    {m.intent === "request"
-                      ? "Asked"
-                      : m.intent === "notice"
-                        ? "Shared with"
-                        : "To"}{" "}
-                    {m.recipients
-                      .map(
-                        (id) =>
-                          participants.find((p) => p.id === id)?.name ??
-                          "Former participant",
-                      )
-                      .join(", ")}
+          {snapshot &&
+            snapshot.messages.map((m) => (
+              <React.Fragment key={m.id}>
+                <article
+                  className={"message " + m.kind}
+                  data-message-id={m.id}
+                  data-author={m.authorName}
+                  data-author-id={m.authorId}
+                  data-status={m.status}
+                >
+                  <Avatar name={m.authorName} agent={m.kind === "agent"} />
+                  <div className="message-body">
+                    <div className="message-meta">
+                      <strong>
+                        {m.kind === "system" ? "Room status" : m.authorName}
+                      </strong>
+                      {m.kind === "agent" && <span className="tag">AGENT</span>}
+                      <time dateTime={new Date(m.createdAt).toISOString()}>
+                        {new Date(m.createdAt).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </time>
+                      {m.status === "streaming" && (
+                        <span className="stream-label">
+                          writing<span className="dots">…</span>
+                        </span>
+                      )}
+                    </div>
+                    {m.recipients.length > 0 && (
+                      <div className="message-recipients">
+                        {m.intent === "request"
+                          ? "Asked"
+                          : m.intent === "notice"
+                            ? "Shared with"
+                            : "To"}{" "}
+                        {m.recipients
+                          .map(
+                            (id) =>
+                              participants.find((p) => p.id === id)?.name ??
+                              "Former participant",
+                          )
+                          .join(", ")}
+                      </div>
+                    )}
+                    <div className="prose">
+                      <Markdown>{m.text || "…"}</Markdown>
+                    </div>
+                    {m.status === "stopped" && (
+                      <small>Publication interrupted</small>
+                    )}
+                    {m.status === "error" && (
+                      <small>Could not complete publication</small>
+                    )}
                   </div>
-                )}
-                <div className="prose">
-                  <Markdown>{m.text || "…"}</Markdown>
-                </div>
-                {m.status === "stopped" && (
-                  <small>Publication interrupted</small>
-                )}
-                {m.status === "error" && (
-                  <small>Could not complete publication</small>
-                )}
-              </div>
-            </article>
-          ))}
+                </article>
+                <FailedReplies
+                  snapshot={snapshot}
+                  request={m}
+                  followUp={(agent, requestText) => {
+                    setSteering(null);
+                    setText((draft) => (draft.trim() ? draft : requestText));
+                    setSelected([agent.id]);
+                    setIntent("request");
+                    composer.current?.focus();
+                  }}
+                  inspectActivity={
+                    owner
+                      ? (agent) => {
+                          setActivityAgentId(agent.id);
+                          setPanel("activity");
+                        }
+                      : null
+                  }
+                />
+              </React.Fragment>
+            ))}
           {sending && (
             <div className="sending-notice" role="status">
               Sending your message…
@@ -1026,10 +1098,10 @@ function App() {
               </label>
               <span>
                 {intent === "request"
-                  ? "Choose who should answer"
+                  ? "Ask selected participants; everyone follows along"
                   : intent === "notice"
-                    ? "Recipients respond only when useful"
-                    : "Visible to everyone; no response requested"}
+                    ? "Everyone follows along; replies are optional"
+                    : "Everyone follows along; reply when useful"}
               </span>
             </div>
             {selected.length > 0 && (
@@ -1076,7 +1148,7 @@ function App() {
             <textarea
               ref={composer}
               aria-label="Message the room"
-              placeholder="Message the room… use @ to bring someone in"
+              placeholder="Message the room… use @ to ask someone"
               value={text}
               onChange={(e) => {
                 setText(e.target.value);
@@ -1108,7 +1180,7 @@ function App() {
                         )
                         .filter(Boolean)
                         .join(", ")}`
-                    : "Use @ to choose participants"}
+                    : "Use @ to ask someone for a response"}
               </span>
               <button
                 type="submit"
@@ -1354,7 +1426,7 @@ function App() {
                 <input
                   name="handle"
                   placeholder="nova"
-                  pattern="[a-z][a-z0-9_-]{1,31}"
+                  pattern={handlePattern}
                   required
                 />
               </label>

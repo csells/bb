@@ -1,0 +1,60 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing a8f5a77b223ed1b6
+@bb/templates:generate:plugin-scaffold: cache miss, executing dd658dba3aae478d
+@bb/templates:generate:templates: cache miss, executing 0d44d75830f661da
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/rooms:test: cache miss, executing 9c0f41016db84601
+@bb/rooms:test:
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:test: > vitest run "test/native-access.test.ts"
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms[39m
+@bb/rooms:test:
+@bb/rooms:test:  [31m❯[39m [30m[45m @bb/rooms [49m[39m test/native-access.test.ts [2m([22m[2m0 test[22m[2m)[22m
+@bb/rooms:test:
+@bb/rooms:test: [31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 1 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+@bb/rooms:test:
+@bb/rooms:test: [41m[1m FAIL [22m[49m [30m[45m @bb/rooms [49m[39m test/native-access.test.ts[2m [ test/native-access.test.ts ][22m
+@bb/rooms:test: [31m[1mError[22m: Cannot find module '../src/native-access.js' imported from /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms/test/native-access.test.ts[39m
+@bb/rooms:test: [36m [2m❯[22m test/native-access.test.ts:[2m9:1[22m[39m
+@bb/rooms:test:     [90m  7|[39m [35mimport[39m { [33mRoomRuntime[39m } [35mfrom[39m [32m"../src/runtime.js"[39m[33m;[39m
+@bb/rooms:test:     [90m  8|[39m [35mimport[39m { createRoomsApp } [35mfrom[39m [32m"../src/app.js"[39m[33m;[39m
+@bb/rooms:test:
+@bb/rooms:test: [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+@bb/rooms:test: [2m      Tests [22m [2mno tests[22m
+@bb/rooms:test: [2m   Start at [22m 17:55:43
+@bb/rooms:test: [2m   Duration [22m 1.98s[2m (transform 973ms, setup 0ms, import 0ms, tests 0ms, environment 0ms)[22m
+@bb/rooms:test:     [90m  9|[39m [35mimport[39m { [33mNativeRoomsAccess[39m } [35mfrom[39m [32m"../src/native-access.js"[39m[33m;[39m
+@bb/rooms:test:     [90m   |[39m [31m^[39m
+@bb/rooms:test:     [90m 10|[39m
+@bb/rooms:test:     [90m 11|[39m [35mconst[39m cleanups[33m:[39m [33mArray[39m[33m<[39m() [33m=>[39m [33mPromise[39m[33m<[39m[35mvoid[39m[33m>[39m [33m|[39m [35mvoid[39m[33m>[39m [33m=[39m [][33m;[39m
+@bb/rooms:test:
+@bb/rooms:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯[22m[39m
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test:  ELIFECYCLE  Test failed. See above for more details.
+@bb/rooms#test:  ERROR  command (/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms) /opt/homebrew/bin/pnpm run test test/native-access.test.ts exited (1)
+
+ Tasks:    3 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    3.492s
+Failed:    @bb/rooms#test
+
+ ERROR  run failed: command  exited (1)

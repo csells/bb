@@ -1,0 +1,126 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/config
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 08019ee58014d63c
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/config:test: cache miss, executing 1845faf5d01aecf5
+@bb/config:test:
+@bb/config:test: > @bb/config@0.0.1 test /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/config
+@bb/config:test: > vitest run --config vitest.config.ts "test/config.test.ts"
+@bb/config:test:
+@bb/config:test:
+@bb/config:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/packages/config[39m
+@bb/config:test:
+@bb/config:test:  [31m❯[39m [30m[42m @bb/config [49m[39m test/config.test.ts [2m([22m[2m50 tests[22m[2m | [22m[31m2 failed[39m[2m | [22m[33m1 skipped[39m[2m)[22m[32m 23[2mms[22m[39m
+@bb/config:test:      [32m✓[39m does not validate environment at import time[32m 14[2mms[22m[39m
+@bb/config:test:      [32m✓[39m uses the production data dir default in production[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m requires repoRoot or BB_DATA_DIR for development data dir resolution[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m resolves development defaults from the checkout instance[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m expands home-directory overrides for BB_DATA_DIR[32m 0[2mms[22m[39m
+@bb/config:test:      [2m[90m↓[39m[22m expands a home-directory override written with a backslash on Windows
+@bb/config:test:      [32m✓[39m rejects whitespace-only BB_DATA_DIR overrides[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m rejects unsupported BB_LOG_LEVEL overrides[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m expands a bare home-directory override[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m rejects whitespace-only data dir overrides[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m resolves development defaults from the current checkout instance[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m keeps the legacy fallback label for degenerate checkout labels[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m accepts the TCP port boundary values[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m rejects malformed or out-of-range port values[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m uses the default port only when the env var is unset[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m rejects whitespace-padded port env values through every port loader path[32m 0[2mms[22m[39m
+@bb/config:test: [31m     [31m×[31m builds server config from explicit runtime env[39m[32m 3[2mms[22m[39m
+@bb/config:test:      [32m✓[39m validates the opt-in performance diagnostics setting[32m 0[2mms[22m[39m
+@bb/config:test: [31m     [31m×[31m validates the separate Rooms service lifecycle setting[39m[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m carries the launcher's server launch id only when it is set[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m carries the launcher's in-app update mode and rejects unknown modes[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m defaults the server bind host to loopback[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m honors an explicit wildcard server bind host[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m rejects an unsupported server bind host[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m parses the placeholder feature flag from env[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m parses the timeline window event budget from env[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m rejects a non-positive timeline window event budget[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m rejects invalid feature flag booleans in server config[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m uses 0.0.0-dev as the default BB_APP_VERSION in production[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m honors an explicit BB_APP_VERSION env override[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m parses the internal app surface marker for server telemetry[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m lets tooling read the server port without validating unrelated server env[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m validates server port env at loader call time[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m derives the database path from data dir without validating unrelated server env[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m requires a valid server URL for the daemon and CLI[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m normalizes server URL whitespace consistently for the daemon and CLI[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m validates host-daemon connection config without requiring data dir[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m validates explicit host-daemon ports with the shared port validator[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m builds full host-daemon config when the daemon entrypoint owns data dir[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m builds host-daemon start config from full config when data dir is not provided[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m builds logger config from an explicit data dir without resolving BB_DATA_DIR[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m defaults CLI connection env to the local app instance[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m lets explicit CLI env overrides win over NODE_ENV-selected defaults[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m allows app and external URLs to be omitted in production server config[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m validates app and external URLs independently[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m reads dev app host from its dedicated config scope[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m builds app Vite dev config from the app dev entrypoint scope[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m requires the app dev port for Vite dev config[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m parses optional host-daemon entrypoint env vars in one place[32m 0[2mms[22m[39m
+@bb/config:test:      [32m✓[39m drops empty optional host-daemon entrypoint env vars[32m 0[2mms[22m[39m
+@bb/config:test:
+@bb/config:test: [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+@bb/config:test:
+@bb/config:test: [41m[1m FAIL [22m[49m [30m[42m @bb/config [49m[39m test/config.test.ts[2m > [22mconsumer-specific config[2m > [22mbuilds server config from explicit runtime env
+@bb/config:test: [31m[1mAssertionError[22m: expected undefined to be false // Object.is equality[39m
+@bb/config:test:
+@bb/config:test: [32m- Expected:[39m
+@bb/config:test: false
+@bb/config:test:
+@bb/config:test: [31m+ Received:[39m
+@bb/config:test: undefined
+@bb/config:test:
+@bb/config:test: [36m [2m❯[22m test/config.test.ts:[2m310:52[22m[39m
+@bb/config:test:     [90m308|[39m
+@bb/config:test:     [90m309|[39m     [34mexpect[39m(serverConfig[33m.[39m[33mBB_PERF_DIAGNOSTICS[39m)[33m.[39m[34mtoBe[39m([35mfalse[39m)[33m;[39m
+@bb/config:test:     [90m310|[39m     [34mexpect[39m(serverConfig[33m.[39m[33mBB_ROOMS_SEPARATE_SERVICE[39m)[33m.[39m[34mtoBe[39m([35mfalse[39m)[33m;[39m
+@bb/config:test:     [90m   |[39m                                                    [31m^[39m
+@bb/config:test:     [90m311|[39m     [34mexpect[39m(serverConfig[33m.[39m[33mBB_SERVER_PORT[39m)[33m.[39m[34mtoBe[39m([34m4444[39m)[33m;[39m
+@bb/config:test:     [90m312|[39m     [34mexpect[39m(serverConfig[33m.[39m[33mBB_HOST_DAEMON_PORT[39m)[33m.[39m[34mtoBe[39m([34m5555[39m)[33m;[39m
+@bb/config:test:
+@bb/config:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯[22m[39m
+@bb/config:test:
+@bb/config:test: [41m[1m FAIL [22m[49m [30m[42m @bb/config [49m[39m test/config.test.ts[2m > [22mconsumer-specific config[2m > [22mvalidates the separate Rooms service lifecycle setting
+@bb/config:test: [31m[1mAssertionError[22m: expected undefined to be true // Object.is equality[39m
+@bb/config:test:
+@bb/config:test: [32m- Expected:[39m
+@bb/config:test: true
+@bb/config:test:
+@bb/config:test: [31m+ Received:[39m
+@bb/config:test: undefined
+@bb/config:test:
+@bb/config:test: [36m [2m❯[22m test/config.test.ts:[2m342:7[22m[39m
+@bb/config:test:     [90m340|[39m         env: createServerRuntimeEnv({ BB_ROOMS_SEPARATE_SERVICE: "true…
+@bb/config:test:     [90m341|[39m       })[33m.[39m[33mBB_ROOMS_SEPARATE_SERVICE[39m[33m,[39m
+@bb/config:test:     [90m342|[39m     )[33m.[39m[34mtoBe[39m([35mtrue[39m)[33m;[39m
+@bb/config:test:     [90m   |[39m       [31m^[39m
+@bb/config:test:     [90m343|[39m     [34mexpect[39m(
+@bb/config:test:     [90m344|[39m       [34mloadServerConfig[39m({
+@bb/config:test:
+@bb/config:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯[22m[39m
+@bb/config:test:
+@bb/config:test:
+@bb/config:test: [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+@bb/config:test: [2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m47 passed[39m[22m[2m | [22m[33m1 skipped[39m[90m (50)[39m
+@bb/config:test: [2m   Start at [22m 18:56:37
+@bb/config:test: [2m   Duration [22m 472ms[2m (transform 248ms, setup 0ms, import 356ms, tests 23ms, environment 0ms)[22m
+@bb/config:test:
+@bb/config:test:  ELIFECYCLE  Test failed. See above for more details.
+@bb/config#test:  ERROR  command (/Users/admin/code/Forks/get-bb/bb-native-rooms/packages/config) /opt/homebrew/bin/pnpm run test test/config.test.ts exited (1)
+
+ Tasks:    1 successful, 2 total
+Cached:    0 cached, 2 total
+  Time:    1.24s
+Failed:    @bb/config#test
+
+ ERROR  run failed: command  exited (1)

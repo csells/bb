@@ -205,6 +205,12 @@ experiment in Settings → Experiments or with
 Move server here, and `bb server move`, `bb server export`, and deleting an old
 server copy from the server are refused.
 
+In the native Rooms preview, set `BB_ROOMS_SEPARATE_SERVICE=true` on the BB
+server while Rooms has a separate database and service. This startup-only
+setting refuses export and move checks/starts even when `serverMove` is on:
+the ordinary archive cannot preserve room data and lifecycle. It defaults to
+false for ordinary BB installations. Do not disable it to bypass the refusal.
+
 Agents must not move a server, abandon a move, or unlock an old copy without
 the user's explicit confirmation in the conversation. Run `--check`, show the
 user the checklist, and wait for their confirmation; don't pass `--yes` to skip

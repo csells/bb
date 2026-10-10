@@ -1,0 +1,47 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running typecheck in 1 packages
+   • Remote caching disabled
+
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 253524128da6aae9
+@bb/templates:generate:plugin-scaffold: [WARN] The "pnpm" field in package.json is no longer read by pnpm. The following keys were ignored: "pnpm.supportedArchitectures", "pnpm.overrides", "pnpm.patchedDependencies". See https://pnpm.io/settings for the new home of each setting.
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates: cache hit, replaying logs 2c62b39e00704c77
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@bb/rooms:typecheck: cache miss, executing ea78c992fb01f356
+@bb/rooms:typecheck:
+@bb/rooms:typecheck: > @bb/rooms@0.1.0 typecheck /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms
+@bb/rooms:typecheck: > tsc --noEmit
+@bb/rooms:typecheck:
+@bb/rooms:typecheck: src/app.ts(249,42): error TS2345: Argument of type '{ handle: string; name: string; instructions: string; provider: "claude-code" | "codex" | "pi"; model: string; } | { handle: string; name: string; instructions: string; threadId: string; }' is not assignable to parameter of type 'Pick<{ id: string; roomId: string; handle: string; name: string; provider: "claude-code" | "codex" | "pi"; model: string; instructions: string; projectId: string | null; threadId: string | null; environmentId: string | null; status: string; }, "handle" | ... 3 more ... | "provider">'.
+@bb/rooms:typecheck:   Type '{ handle: string; name: string; instructions: string; threadId: string; }' is missing the following properties from type 'Pick<{ id: string; roomId: string; handle: string; name: string; provider: "claude-code" | "codex" | "pi"; model: string; instructions: string; projectId: string | null; threadId: string | null; environmentId: string | null; status: string; }, "handle" | ... 3 more ... | "provider">': provider, model
+@bb/rooms:typecheck: test/native-access.test.ts(9,35): error TS2307: Cannot find module '../src/native-access.js' or its corresponding type declarations.
+@bb/rooms:typecheck: test/native-access.test.ts(52,65): error TS2554: Expected 3 arguments, but got 4.
+@bb/rooms:typecheck: test/native-access.test.ts(58,10): error TS2339: Property 'closeAllConnections' does not exist on type 'ServerType'.
+@bb/rooms:typecheck:   Property 'closeAllConnections' does not exist on type 'Http2SecureServer<typeof IncomingMessage, typeof ServerResponse, typeof Http2ServerRequest, typeof Http2ServerResponse>'.
+@bb/rooms:typecheck: test/native-access.test.ts(89,71): error TS2769: No overload matches this call.
+@bb/rooms:typecheck:   The last overload gave the following error.
+@bb/rooms:typecheck:     Type '{ cookie: string; } | { authorization: string; cookie?: undefined; origin: string; }' is not assignable to type 'HeadersInit | undefined'.
+@bb/rooms:typecheck:       Type '{ authorization: string; cookie?: undefined; origin: string; }' is not assignable to type 'HeadersInit | undefined'.
+@bb/rooms:typecheck:         Type '{ authorization: string; cookie?: undefined; origin: string; }' is not assignable to type 'Record<string, string>'.
+@bb/rooms:typecheck:           Property 'cookie' is incompatible with index signature.
+@bb/rooms:typecheck:             Type 'undefined' is not assignable to type 'string'.
+@bb/rooms:typecheck: test/pending.browser.ts(11,3): error TS2739: Type '{ id: string; name: string; ownerId: string; paused: false; pauseReason: null; maxActivations: null; activationsUsed: number; revision: number; }' is missing the following properties from type '{ id: string; name: string; ownerId: string; projectId: string | null; defaultEnvironmentId: string | null; sectionId: string | null; revision: number; paused: boolean; pauseReason: string | null; maxActivations: number | null; activationsUsed: number; }': projectId, defaultEnvironmentId, sectionId
+@bb/rooms:typecheck: test/pending.browser.ts(22,3): error TS2322: Type '{ id: string; roomId: string; handle: string; name: string; provider: "pi"; model: string; instructions: string; projectId: null; threadId: null; status: string; }[]' is not assignable to type '{ id: string; roomId: string; handle: string; name: string; provider: "claude-code" | "codex" | "pi"; model: string; instructions: string; projectId: string | null; threadId: string | null; environmentId: string | null; status: string; }[]'.
+@bb/rooms:typecheck:   Property 'environmentId' is missing in type '{ id: string; roomId: string; handle: string; name: string; provider: "pi"; model: string; instructions: string; projectId: null; threadId: null; status: string; }' but required in type '{ id: string; roomId: string; handle: string; name: string; provider: "claude-code" | "codex" | "pi"; model: string; instructions: string; projectId: string | null; threadId: string | null; environmentId: string | null; status: string; }'.
+@bb/rooms:typecheck:  ELIFECYCLE  Command failed with exit code 1.
+@bb/rooms#typecheck:  ERROR  command (/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/rooms) /opt/homebrew/bin/pnpm run typecheck exited (1)
+
+ Tasks:    2 successful, 3 total
+Cached:    2 cached, 3 total
+  Time:    4.41s
+Failed:    @bb/rooms#typecheck
+
+ ERROR  run failed: command  exited (1)

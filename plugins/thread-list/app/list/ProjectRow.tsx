@@ -2,6 +2,7 @@ import {
   ThreadCreationPlacementScope,
   useThreadCreationPlacement,
 } from "./ThreadCreationPlacement.js";
+import { SidebarRoomRows, useSidebarRooms } from "./SidebarRoomRows.js";
 import {
   ThreadListVisibility,
   ThreadListMore,
@@ -1274,6 +1275,7 @@ const SectionTreeItemRow = memo(function SectionTreeItemRow({
   sortableRef,
   sortableStyle,
 }: SectionTreeItemRowProps) {
+  const rooms = useSidebarRooms({ kind: "section", id: section.id });
   const sdk = useSdk();
   const sectionName = section.name;
   const rename = useSidebarRename({
@@ -1304,7 +1306,8 @@ const SectionTreeItemRow = memo(function SectionTreeItemRow({
     sectionDnd ?? null,
     sectionKey,
   );
-  const showChildren = !isCollapsed && section.items.length > 0;
+  const showChildren =
+    !isCollapsed && (section.items.length > 0 || rooms.length > 0);
   const sectionThreads = useMemo(
     () => getProjectThreadItemDescendants(section.items),
     [section.items],
@@ -1319,6 +1322,11 @@ const SectionTreeItemRow = memo(function SectionTreeItemRow({
 
   const childrenArea = showChildren ? (
     <div className="relative space-y-px">
+      <SidebarRoomRows
+        rooms={rooms}
+        depth={depthOffset === 0 ? 0 : depthOffset + 1}
+        onSelect={onProjectSelect}
+      />
       {depthOffset > 0 ? (
         <ThreadTreeGroupLine parentRowDepth={headerDepth} />
       ) : null}
@@ -1827,6 +1835,9 @@ export const ProjectThreadTree = memo(function ProjectThreadTree({
   onToggleThreadCollapsed,
   onToggleEnvironmentCollapsed,
 }: ProjectThreadTreeProps) {
+  const rooms = useSidebarRooms(
+    projectId ? { kind: "project", id: projectId } : { kind: "none" },
+  );
   const projectThreads =
     threadListState.status === "ready"
       ? threadListState.threads
@@ -1855,7 +1866,7 @@ export const ProjectThreadTree = memo(function ProjectThreadTree({
     return <ThreadTreeLoadingSkeleton />;
   }
 
-  if (rootItems.length === 0) {
+  if (rootItems.length === 0 && rooms.length === 0) {
     return (
       <ThreadListEmptyState
         message={
@@ -1869,18 +1880,21 @@ export const ProjectThreadTree = memo(function ProjectThreadTree({
   }
 
   return (
-    <SectionThreadTreeItems
-      items={rootItems}
-      sectionDnd={dndParentKey !== undefined ? sectionDnd : null}
-      projectId={projectId}
-      sortableParentKey={projectId}
-      selectedThreadId={selectedThreadId}
-      collapsedThreadIds={collapsedThreadIds}
-      collapsedEnvironmentIds={collapsedEnvironmentIds}
-      onProjectSelect={onProjectSelect}
-      onToggleThreadCollapsed={onToggleThreadCollapsed}
-      onToggleEnvironmentCollapsed={onToggleEnvironmentCollapsed}
-    />
+    <>
+      <SidebarRoomRows rooms={rooms} depth={0} onSelect={onProjectSelect} />
+      <SectionThreadTreeItems
+        items={rootItems}
+        sectionDnd={dndParentKey !== undefined ? sectionDnd : null}
+        projectId={projectId}
+        sortableParentKey={projectId}
+        selectedThreadId={selectedThreadId}
+        collapsedThreadIds={collapsedThreadIds}
+        collapsedEnvironmentIds={collapsedEnvironmentIds}
+        onProjectSelect={onProjectSelect}
+        onToggleThreadCollapsed={onToggleThreadCollapsed}
+        onToggleEnvironmentCollapsed={onToggleEnvironmentCollapsed}
+      />
+    </>
   );
 });
 
@@ -1908,6 +1922,7 @@ export const ChronologicalSectionThreadSections = memo(
     pinnedThreads,
     onReorderPinnedThread,
   }: ChronologicalSectionThreadSectionsProps) {
+    const rooms = useSidebarRooms({ kind: "loose" });
     const threads =
       threadListState.status === "ready"
         ? threadListState.threads
@@ -1982,19 +1997,23 @@ export const ChronologicalSectionThreadSections = memo(
         className={PROJECT_THREAD_TREE_EMPTY_STATE_CLASS}
       />
     );
-    const threadsListContent =
-      threadListState.status === "loading" ? (
-        <ThreadTreeLoadingSkeleton />
-      ) : looseItems.length > 0 ? (
-        <SortableContext
-          items={looseItems.map(getSidebarDndItemId)}
-          strategy={verticalListSortingStrategy}
-        >
-          {renderItems(looseItems)}
-        </SortableContext>
-      ) : (
-        looseEmptyState
-      );
+    const threadsListContent = (
+      <>
+        <SidebarRoomRows rooms={rooms} depth={0} onSelect={onProjectSelect} />
+        {threadListState.status === "loading" ? (
+          <ThreadTreeLoadingSkeleton />
+        ) : looseItems.length > 0 ? (
+          <SortableContext
+            items={looseItems.map(getSidebarDndItemId)}
+            strategy={verticalListSortingStrategy}
+          >
+            {renderItems(looseItems)}
+          </SortableContext>
+        ) : rooms.length === 0 ? (
+          looseEmptyState
+        ) : null}
+      </>
+    );
     const threadsContent = renderedSectionDnd ? (
       <SectionDndDroppableParent
         sectionDnd={renderedSectionDnd}

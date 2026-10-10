@@ -157,11 +157,10 @@ export interface ExperimentalQuestionFormHost {
  * the host adds room for its microphone controls when voice input is
  * available.
  */
-export interface ExperimentalVoiceInputTextareaProps
-  extends Omit<
-    ComponentPropsWithRef<"textarea">,
-    "value" | "defaultValue" | "onChange" | "children"
-  > {
+export interface ExperimentalVoiceInputTextareaProps extends Omit<
+  ComponentPropsWithRef<"textarea">,
+  "value" | "defaultValue" | "onChange" | "children"
+> {
   value: string;
   /**
    * Receives typed edits and finished transcripts, which the host appends to
@@ -1090,6 +1089,18 @@ export interface PluginSidebarSection {
 }
 
 export interface PluginSidebarThreadsState {
+  /** Authenticated room navigation, absent on hosts without native Rooms. */
+  experimental_rooms?: {
+    status: "loading" | "ready" | "error";
+    error: string | null;
+    items: readonly {
+      id: string;
+      name: string;
+      href: string;
+      projectId: string | null;
+      sectionId: string | null;
+    }[];
+  };
   /** Null when archived threads were not requested. */
   experimental_archived: {
     status: "loading" | "ready" | "error";

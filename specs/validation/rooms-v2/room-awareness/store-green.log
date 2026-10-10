@@ -1,0 +1,41 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing c4d36f30cf740a10
+@bb/templates:generate:templates: cache miss, executing d7629e95199af24b
+@bb/templates:generate:plugin-scaffold: cache miss, executing ffd16f7a38c6c0cf
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/rooms:test: cache miss, executing b1d5fd2cc96668cc
+@bb/rooms:test:
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:test: > vitest run "test/protocol.test.ts" "test/store.test.ts"
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb/apps/rooms[39m
+@bb/rooms:test:
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/store.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 426[2mms[22m[39m
+@bb/rooms:test:  [32m✓[39m [30m[45m @bb/rooms [49m[39m test/protocol.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 1243[2mms[22m[39m
+@bb/rooms:test:
+@bb/rooms:test: [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[32m12 passed[39m[22m[90m (12)[39m
+@bb/rooms:test: [2m   Start at [22m 22:43:18
+@bb/rooms:test: [2m   Duration [22m 2.05s[2m (transform 757ms, setup 0ms, import 1.44s, tests 1.67s, environment 0ms)[22m
+@bb/rooms:test:
+
+ Tasks:    4 successful, 4 total
+Cached:    0 cached, 4 total
+  Time:    2.77s

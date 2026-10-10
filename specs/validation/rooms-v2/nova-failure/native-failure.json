@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-10-09T22:03:43.741Z",
+  "threadId": "thr_ghwyvj3ihy",
+  "activationId": "7173fd8c-fbce-43d9-bbcf-302c9f511c11",
+  "source": "Read-only BB SDK event query and patched inspectAdmission; no prompts or private tool output exported",
+  "providerErrors": [
+    {
+      "seq": 19,
+      "scope": {
+        "kind": "turn",
+        "turnId": "dab36ebd1d-t1"
+      },
+      "message": "Provider error",
+      "detail": "Failed to authenticate: OAuth session expired and could not be refreshed",
+      "errorInfo": null,
+      "willRetry": null
+    }
+  ],
+  "terminal": [
+    {
+      "seq": 20,
+      "scope": {
+        "kind": "turn",
+        "turnId": "dab36ebd1d-t1"
+      },
+      "status": "failed",
+      "hasEmbeddedError": false
+    }
+  ],
+  "proof": {
+    "state": "settled",
+    "requestIds": [
+      "creq_2nepzat9hn"
+    ],
+    "turnIds": [
+      "dab36ebd1d-t1"
+    ],
+    "terminalOutcome": "failed",
+    "error": "The provider login expired or was rejected. The room owner needs to reconnect this provider before trying again."
+  }
+}

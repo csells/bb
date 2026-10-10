@@ -1,0 +1,93 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/rooms
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 68a489b7818b19a0
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs 1be959fc399acc3f
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates: cache hit, replaying logs 1d4cf7c72fc08044
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/rooms:test: cache miss, executing 0fd784be6b5a226e
+@bb/rooms:test:
+@bb/rooms:test: > @bb/rooms@0.1.0 test /Users/admin/code/Forks/get-bb/bb/apps/rooms
+@bb/rooms:test: > vitest run "test/admission.test.ts"
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb/apps/rooms[39m
+@bb/rooms:test:
+@bb/rooms:test:  [31m❯[39m [30m[45m @bb/rooms [49m[39m test/admission.test.ts [2m([22m[2m5 tests[22m[2m | [22m[31m2 failed[39m[2m)[22m[32m 14[2mms[22m[39m
+@bb/rooms:test: [31m     [31m×[31m reports a failed turn's provider diagnostic without publishing private details[39m[32m 9[2mms[22m[39m
+@bb/rooms:test:      [32m✓[39m requires a steering submission's own marker rather than the original activation's completion[32m 1[2mms[22m[39m
+@bb/rooms:test: [31m     [31m×[31m requires matching request, acceptance and terminal turn even with no assistant output[39m[32m 2[2mms[22m[39m
+@bb/rooms:test:      [32m✓[39m does not treat private output, another request, another thread or an earlier turn as acceptance[32m 1[2mms[22m[39m
+@bb/rooms:test:      [32m✓[39m requires every observed submission to settle and accepts explicit admission rejection[32m 0[2mms[22m[39m
+@bb/rooms:test:
+@bb/rooms:test: [31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+@bb/rooms:test:
+@bb/rooms:test: [41m[1m FAIL [22m[49m [30m[45m @bb/rooms [49m[39m test/admission.test.ts[2m > [22mdurable provider admission proof[2m > [22mreports a failed turn's provider diagnostic without publishing private details
+@bb/rooms:test: [31m[1mAssertionError[22m: expected 'Private request payload must not appe…' to be 'The provider could not complete this …' // Object.is equality[39m
+@bb/rooms:test:
+@bb/rooms:test: Expected: [32m"The provider could not complete this request. The room owner can inspect its private session for details."[39m
+@bb/rooms:test: Received: [31m"Private request payload must not appear in the room"[39m
+@bb/rooms:test:
+@bb/rooms:test: [36m [2m❯[22m test/admission.test.ts:[2m113:7[22m[39m
+@bb/rooms:test:     [90m111|[39m     [34mexpect[39m(
+@bb/rooms:test:     [90m112|[39m       inspectAdmission([requested(), accepted(), privateCompletion], a…
+@bb/rooms:test:     [90m113|[39m     ).toBe("The provider could not complete this request. The room own…
+@bb/rooms:test:     [90m   |[39m       [31m^[39m
+@bb/rooms:test:     [90m114|[39m     [34mexpect[39m(
+@bb/rooms:test:     [90m115|[39m       inspectAdmission([requested(), accepted(), diagnostic, privateCo…
+@bb/rooms:test:
+@bb/rooms:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯[22m[39m
+@bb/rooms:test:
+@bb/rooms:test: [41m[1m FAIL [22m[49m [30m[45m @bb/rooms [49m[39m test/admission.test.ts[2m > [22mdurable provider admission proof[2m > [22mrequires matching request, acceptance and terminal turn even with no assistant output
+@bb/rooms:test: [31m[1mAssertionError[22m: expected { state: 'settled', …(4) } to match object { state: 'settled', …(2) }
+@bb/rooms:test: (2 matching properties omitted from actual)[39m
+@bb/rooms:test:
+@bb/rooms:test: [32m- Expected[39m
+@bb/rooms:test: [31m+ Received[39m
+@bb/rooms:test:
+@bb/rooms:test: [2m  {[22m
+@bb/rooms:test: [32m-   "error": "The provider could not complete this request. The room owner can inspect its private session for details.",[39m
+@bb/rooms:test: [31m+   "error": "Provider failed",[39m
+@bb/rooms:test: [2m    "state": "settled",[22m
+@bb/rooms:test: [2m    "terminalOutcome": "failed",[22m
+@bb/rooms:test: [2m  }[22m
+@bb/rooms:test:
+@bb/rooms:test: [36m [2m❯[22m test/admission.test.ts:[2m243:7[22m[39m
+@bb/rooms:test:     [90m241|[39m     [34mexpect[39m(
+@bb/rooms:test:     [90m242|[39m       [34minspectAdmission[39m([[34mrequested[39m()[33m,[39m [34maccepted[39m()[33m,[39m failed][33m,[39m activation)[33m,[39m
+@bb/rooms:test:     [90m243|[39m     )[33m.[39m[34mtoMatchObject[39m({
+@bb/rooms:test:     [90m   |[39m       [31m^[39m
+@bb/rooms:test:     [90m244|[39m       state[33m:[39m [32m"settled"[39m[33m,[39m
+@bb/rooms:test:     [90m245|[39m       terminalOutcome[33m:[39m [32m"failed"[39m[33m,[39m
+@bb/rooms:test:
+@bb/rooms:test: [31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯[22m[39m
+@bb/rooms:test:
+@bb/rooms:test:
+@bb/rooms:test: [2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+@bb/rooms:test: [2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m3 passed[39m[22m[90m (5)[39m
+@bb/rooms:test: [2m   Start at [22m 22:04:20
+@bb/rooms:test: [2m   Duration [22m 350ms[2m (transform 186ms, setup 0ms, import 258ms, tests 14ms, environment 0ms)[22m
+@bb/rooms:test:
+@bb/rooms:test:  ELIFECYCLE  Test failed. See above for more details.
+@bb/rooms#test:  ERROR  command (/Users/admin/code/Forks/get-bb/bb/apps/rooms) /opt/homebrew/bin/pnpm run test test/admission.test.ts exited (1)
+
+ Tasks:    3 successful, 4 total
+Cached:    2 cached, 4 total
+  Time:    1.036s
+Failed:    @bb/rooms#test
+
+ ERROR  run failed: command  exited (1)

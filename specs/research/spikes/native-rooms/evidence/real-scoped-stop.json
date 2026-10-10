@@ -1,0 +1,29 @@
+{
+  "startedAt": "2026-10-10T18:35:21.384Z",
+  "coreUrl": "http://127.0.0.1:38896",
+  "roomId": "049e699d-6b8d-48fe-a829-6b66cdf8cd13",
+  "agentId": "e551f35a-fd6b-47bc-af8f-355426027f55",
+  "threadId": "thr_fu2f65pm59",
+  "nativeSuccessorAdmitted": {
+    "previousTurnId": "dae73d498b-t7",
+    "turnId": "da23728e89-t1"
+  },
+  "queuedRoomStop": {
+    "messageId": "a2c5a750-9afe-42eb-b163-eb81f41c556e",
+    "preservedNativeTurn": true
+  },
+  "staleScopedStop": {
+    "previousTurnId": "dae73d498b-t7",
+    "preservedSuccessor": true
+  },
+  "matchingScopedStop": {
+    "turnId": "da23728e89-t1",
+    "providerCompletion": "interrupted",
+    "nativeThreadStatus": "idle"
+  },
+  "complete": {
+    "ok": true,
+    "providersCalledOnlyThroughBB": true,
+    "fixtureRoomPaused": true
+  }
+}

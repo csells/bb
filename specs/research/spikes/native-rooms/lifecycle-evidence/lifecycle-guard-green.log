@@ -1,0 +1,86 @@
+• turbo 2.10.12
+
+   • Packages in scope: @bb/server
+   • Running test in 1 packages
+   • Remote caching disabled
+
+@bb/server:generate:bb-official-marketplace: cache miss, executing 5aee9db1f4d4c36a
+@bb/templates:generate:plugin-scaffold: cache miss, executing b4465a88339e5ef1
+@bb/server:generate:bb-official-marketplace:
+@bb/server:generate:bb-official-marketplace: > @bb/server@0.0.1 generate:bb-official-marketplace /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/server
+@bb/server:generate:bb-official-marketplace: > node --conditions=source --import tsx scripts/generate-bb-official-marketplace.ts
+@bb/server:generate:bb-official-marketplace:
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+//:ensure-native-modules: cache bypass, force executing 80d0369be6eab17c
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+@bb/plugin-build:generate: cache miss, executing 1f8b7fe43d46763b
+@bb/templates:generate:templates: cache miss, executing 08407f8aca9900d1
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@get-bb/plugin-sdk:build: cache miss, executing 856945fc4095fff7
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@get-bb/plugin-sdk:build:types: cache miss, executing 5348db43e61c0c15
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: > @get-bb/plugin-sdk@0.6.33 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-sdk
+@get-bb/plugin-sdk:build: > node scripts/build-runtime.mjs
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build:types:
+@get-bb/plugin-sdk:build:types: > @get-bb/plugin-sdk@0.6.33 build:types /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-sdk
+@get-bb/plugin-sdk:build:types: > node scripts/build-bundled-dts.mjs
+@get-bb/plugin-sdk:build:types:
+@get-bb/plugin-sdk:build: Built 19 @get-bb/plugin-sdk runtime entries.
+@bb/agent-runtime:generate:test-bridges: cache miss, executing 77db25d861411b44
+@bb/agent-runtime:generate:test-bridges:
+@bb/agent-runtime:generate:test-bridges: > @bb/agent-runtime@0.0.1 generate:test-bridges /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/agent-runtime
+@bb/agent-runtime:generate:test-bridges: > node ./scripts/build-test-bridges.mjs
+@bb/agent-runtime:generate:test-bridges:
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-provider-bridge.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-provider-bridge-testing.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-provider-bridge-acp.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-environment-provider.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-machine-provider.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-app.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-host.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-composer-customization-validation.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-composer-handle.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-composer-view.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-file-navigation-validation.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-host-policy.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-internal-plugin-app-collector.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-testing.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-testing-app.d.ts
+@get-bb/plugin-sdk:build:types: Unchanged bundled-types/bb-plugin-sdk-testing-host.d.ts
+@bb/server:test: cache miss, executing 43bf52bfa42fffa8
+@bb/server:test:
+@bb/server:test: > @bb/server@0.0.1 test /Users/admin/code/Forks/get-bb/bb-native-rooms/apps/server
+@bb/server:test: > vitest run --config vitest.config.ts "test/server-move/routes.test.ts" "test/system/bb-app-managed-config.test.ts"
+@bb/server:test:
+@bb/server:test:
+@bb/server:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/apps/server[39m
+@bb/server:test:
+@bb/server:test:  [32m✓[39m [30m[45m @bb/server [49m[39m test/system/bb-app-managed-config.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+@bb/server:test:  [32m✓[39m [30m[45m @bb/server [49m[39m test/server-move/routes.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 655[2mms[22m[39m
+@bb/server:test:
+@bb/server:test: [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+@bb/server:test: [2m      Tests [22m [1m[32m17 passed[39m[22m[90m (17)[39m
+@bb/server:test: [2m   Start at [22m 18:58:24
+@bb/server:test: [2m   Duration [22m 3.82s[2m (transform 2.65s, setup 1.53s, import 2.54s, tests 667ms, environment 0ms)[22m
+@bb/server:test:
+
+ Tasks:    9 successful, 9 total
+Cached:    0 cached, 9 total
+  Time:    24.364s

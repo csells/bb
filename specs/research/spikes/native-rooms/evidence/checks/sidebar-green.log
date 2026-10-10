@@ -1,0 +1,54 @@
+• turbo 2.10.12
+
+   • Packages in scope: bb-plugin-thread-list
+   • Running test in 1 packages
+   • Remote caching disabled
+
+//:ensure-native-modules: cache bypass, force executing 5bca90bf967373bc
+@bb/plugin-build:generate: cache hit, replaying logs 604b9aba35a1aa66
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: > @bb/plugin-build@0.0.1 generate /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build
+@bb/plugin-build:generate: > node ./scripts/generate-plugin-theme.mjs && node ./scripts/generate-runtime-export-manifest.mjs
+@bb/plugin-build:generate:
+@bb/plugin-build:generate: plugin-theme.generated.ts up to date
+@bb/plugin-build:generate: wrote /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-build/src/generated/runtime-export-manifest.generated.ts (react@19.2.4)
+@bb/templates:generate:plugin-scaffold: cache hit, replaying logs c65013c1c4d12516
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:plugin-scaffold: > @bb/templates@0.0.1 generate:plugin-scaffold /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:plugin-scaffold: > node ./scripts/generate-plugin-scaffold.mjs
+@bb/templates:generate:plugin-scaffold:
+@bb/templates:generate:templates: cache hit, replaying logs 46bb314d9eed5175
+@bb/templates:generate:templates:
+@bb/templates:generate:templates: > @bb/templates@0.0.1 generate:templates /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/templates
+@bb/templates:generate:templates: > node ./scripts/generate-templates.mjs
+@bb/templates:generate:templates:
+@get-bb/plugin-sdk:build: cache hit, replaying logs cf588c965ae34900
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: > @get-bb/plugin-sdk@0.6.33 build /Users/admin/code/Forks/get-bb/bb-native-rooms/packages/plugin-sdk
+@get-bb/plugin-sdk:build: > node scripts/build-runtime.mjs
+@get-bb/plugin-sdk:build:
+@get-bb/plugin-sdk:build: Built 19 @get-bb/plugin-sdk runtime entries.
+//:ensure-native-modules:
+//:ensure-native-modules: > bb@ ensure-native-modules /Users/admin/code/Forks/get-bb/bb-native-rooms
+//:ensure-native-modules: > node scripts/ensure-native-modules.mjs
+//:ensure-native-modules:
+bb-plugin-thread-list:test: cache miss, executing 51c2c6c32a36a7b6
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: > bb-plugin-thread-list@0.1.0 test /Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/thread-list
+bb-plugin-thread-list:test: > vitest run --config vitest.config.ts "app/list/ProjectList.rooms.test.tsx" "app/list/ProjectList.sectionCreate.test.tsx"
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: [1m[46m RUN [49m[22m [36mv4.1.1 [39m[90m/Users/admin/code/Forks/get-bb/bb-native-rooms/plugins/thread-list[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test:  [32m✓[39m [30m[43m bb-plugin-thread-list [49m[39m app/list/ProjectList.rooms.test.tsx [2m([22m[2m2 tests[22m[2m)[22m[32m 143[2mms[22m[39m
+bb-plugin-thread-list:test:  [32m✓[39m [30m[43m bb-plugin-thread-list [49m[39m app/list/ProjectList.sectionCreate.test.tsx [2m([22m[2m6 tests[22m[2m)[22m[33m 831[2mms[22m[39m
+bb-plugin-thread-list:test:
+bb-plugin-thread-list:test: [2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+bb-plugin-thread-list:test: [2m      Tests [22m [1m[32m8 passed[39m[22m[90m (8)[39m
+bb-plugin-thread-list:test: [2m   Start at [22m 18:16:47
+bb-plugin-thread-list:test: [2m   Duration [22m 1.84s[2m (transform 700ms, setup 0ms, import 1.16s, tests 974ms, environment 651ms)[22m
+bb-plugin-thread-list:test:
+
+ Tasks:    6 successful, 6 total
+Cached:    4 cached, 6 total
+  Time:    2.512s
