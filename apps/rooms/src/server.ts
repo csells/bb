@@ -28,17 +28,13 @@ if (!existsSync(join(data, "initialized"))) {
   });
   writeFileSync(join(data, "initialized"), room.id, { mode: 0o600 });
 }
+const web = join(dirname(fileURLToPath(import.meta.url)), "web");
+if (!existsSync(join(web, "index.html")))
+  throw new Error("The Rooms web build is missing index.html");
 const app = createRoomsApp(store, runtime, origin);
-app.get(
-  "*",
-  serveStatic({ root: join(dirname(fileURLToPath(import.meta.url)), "web") }),
-);
-app.get(
-  "*",
-  serveStatic({
-    path: join(dirname(fileURLToPath(import.meta.url)), "web/index.html"),
-  }),
-);
+app.get("*", serveStatic({ root: web }));
+app.get("/assets/*", (c) => c.notFound());
+app.get("*", serveStatic({ path: join(web, "index.html") }));
 runtime.start();
 const server = serve(
   {
