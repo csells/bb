@@ -452,11 +452,19 @@ try {
     await expect
       .poll(async () => (await snapshot()).messages.length)
       .toBe(beforePrivate + 1);
-    expect((await snapshot()).deliveries).toHaveLength(
-      introductions.deliveries.length,
+    await settle(introductions.deliveries);
+    const afterPrivate = await snapshot();
+    const optional = afterPrivate.deliveries.filter(
+      (delivery) =>
+        !introductions.deliveries.some((old) => old.id === delivery.id),
     );
+    expect(optional).toHaveLength(agentIds.length);
+    expect(optional.every((delivery) => delivery.intent === "notice")).toBe(
+      true,
+    );
+    expect(afterPrivate.messages).toHaveLength(beforePrivate + 1);
     recordClaim(
-      "Raw narrative mentions do not wake agents without structured addressing",
+      "Raw narrative mentions remain optional context; each agent receives it and chooses silence",
     );
 
     await selectMention(blair, "nova", "Nova");
