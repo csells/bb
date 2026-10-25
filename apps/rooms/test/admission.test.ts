@@ -69,6 +69,108 @@ function completed(seq = 3, turnId = "turn-alpha", threadId = "thread-alpha") {
 }
 
 describe("durable provider admission proof", () => {
+  it("reports a failed turn's provider diagnostic without publishing private details", () => {
+    const failed = event(
+      "turn/completed",
+      5,
+      { providerThreadId: "provider", status: "failed" },
+      "turn-alpha",
+    );
+    const diagnostic = event(
+      "provider/error",
+      3,
+      {
+        providerThreadId: "provider",
+        message: "Provider error",
+        detail:
+          "Failed to authenticate: OAuth session expired and could not be refreshed",
+      },
+      "turn-alpha",
+    );
+    expect(
+      inspectAdmission(
+        [requested(), accepted(), diagnostic, failed],
+        activation,
+      ),
+    ).toMatchObject({
+      state: "settled",
+      terminalOutcome: "failed",
+      error:
+        "The provider login expired or was rejected. The room owner needs to reconnect this provider before trying again.",
+    });
+    const privateCompletion = event(
+      "turn/completed",
+      5,
+      {
+        providerThreadId: "provider",
+        status: "failed",
+        error: {
+          message: "Private request payload must not appear in the room",
+        },
+      },
+      "turn-alpha",
+    );
+    expect(
+      inspectAdmission([requested(), accepted(), privateCompletion], activation)
+        .error,
+    ).toBe(
+      "The provider could not complete this request. The room owner can inspect its private session for details.",
+    );
+    expect(
+      inspectAdmission(
+        [requested(), accepted(), diagnostic, privateCompletion],
+        activation,
+      ).error,
+    ).toBe(
+      "The provider login expired or was rejected. The room owner needs to reconnect this provider before trying again.",
+    );
+    const limited = event(
+      "provider/error",
+      4,
+      {
+        providerThreadId: "provider",
+        message: "Private diagnostic",
+        detail: "Private request payload must not appear in the room",
+        errorInfo: {
+          category: "rate-limit",
+          providerCode: null,
+          httpStatusCode: 429,
+        },
+      },
+      "turn-alpha",
+    );
+    expect(
+      inspectAdmission([requested(), accepted(), limited, failed], activation)
+        .error,
+    ).toBe(
+      "The provider's usage limit was reached. Wait for it to reset before trying again.",
+    );
+    for (const unrelated of [
+      { ...diagnostic, seq: 1 },
+      { ...diagnostic, seq: 6 },
+      { ...diagnostic, threadId: "another-thread" },
+      event("provider/error", 3, diagnostic.data, "another-turn"),
+      event(
+        "provider/error",
+        3,
+        { ...diagnostic.data, willRetry: true },
+        "turn-alpha",
+      ),
+    ]) {
+      expect(
+        inspectAdmission(
+          [requested(), accepted(), unrelated, failed],
+          activation,
+        ).error,
+      ).toBeNull();
+    }
+    expect(
+      inspectAdmission(
+        [requested(), accepted(), diagnostic, completed(5)],
+        activation,
+      ).error,
+    ).toBeNull();
+  });
   it("requires a steering submission's own marker rather than the original activation's completion", () => {
     const steeringId = "9c3745c3-1ca4-4de3-a2b8-726807abc7f7";
     const steeringMarker = `Steering: ${steeringId}\n`;
@@ -151,7 +253,8 @@ describe("durable provider admission proof", () => {
     ).toMatchObject({
       state: "settled",
       terminalOutcome: "failed",
-      error: "Provider failed",
+      error:
+        "The provider could not complete this request. The room owner can inspect its private session for details.",
     });
   });
   it("does not treat private output, another request, another thread or an earlier turn as acceptance", () => {

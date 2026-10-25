@@ -121,6 +121,7 @@ export class RoomRuntime {
           "turn/input/accepted",
           "turn/completed",
           "client/turn/rejected",
+          "provider/error",
         ],
       });
       events.push(...page);
