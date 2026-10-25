@@ -81,6 +81,90 @@ const publication: Publication = {
   replyTo: null,
 };
 describe("explicit authenticated participation", () => {
+  it("binds a steering publication to its durable target and human text without replaying cancelled input", () => {
+    const { store, room, human, second, a, b, ca } = setup();
+    const text = "Use the revised plan";
+    store.recordSteering(
+      ca.activation.id,
+      "thread-alpha",
+      "steer-publication",
+      `Steering from human ${human.name} (@${human.handle}): ${text}`,
+    );
+    for (const [actor, target, content] of [
+      [second, a.id, text],
+      [human, b.id, text],
+      [human, a.id, "Changed input"],
+    ] as const) {
+      expect(() =>
+        store.publishAcknowledgedSteering(
+          actor,
+          room.id,
+          target,
+          content,
+          "steer-publication",
+        ),
+      ).toThrow();
+    }
+    expect(store.messages(room.id)).toHaveLength(1);
+    store.fenceAgent(a.id, "Stopped after acknowledgement");
+    const receipt = store.publishAcknowledgedSteering(
+      human,
+      room.id,
+      a.id,
+      text,
+      "steer-publication",
+    );
+    expect(
+      store.publishAcknowledgedSteering(
+        human,
+        room.id,
+        a.id,
+        text,
+        "steer-publication",
+      ),
+    ).toMatchObject({
+      message: { id: receipt.message.id },
+      duplicate: true,
+    });
+    expect(
+      store
+        .deliveries(room.id)
+        .filter((d) => d.messageId === receipt.message.id),
+    ).toEqual([expect.objectContaining({ agentId: b.id, intent: "notice" })]);
+    expect(store.pendingSteerings(ca.activation.id)).toHaveLength(1);
+    const next = setup();
+    next.store.recordSteering(
+      next.ca.activation.id,
+      "thread-alpha",
+      "cancelled-steer",
+      `Steering from human ${next.human.name} (@${next.human.handle}): ${text}`,
+    );
+    next.store.fenceAgent(
+      next.a.id,
+      "Cancelled before acknowledgement returned",
+    );
+    next.store.settleSteering(
+      next.ca.activation.id,
+      "thread-alpha",
+      "cancelled-steer",
+      "cancelled",
+    );
+    expect(() =>
+      next.store.publishAcknowledgedSteering(
+        next.human,
+        next.room.id,
+        next.a.id,
+        text,
+        "cancelled-steer",
+      ),
+    ).toThrow("cancelled");
+    expect(next.store.messages(next.room.id)).toHaveLength(1);
+    expect(
+      next.store
+        .work()
+        .filter((d) => d.agentId === next.a.id && d.state === "queued"),
+    ).toEqual([]);
+  });
   it("delivers completed public messages once to every peer with addressed request precedence", () => {
     const { store, room, human, second, a, b, ca, command } = setup();
     const c = store.addAgent(room.id, {

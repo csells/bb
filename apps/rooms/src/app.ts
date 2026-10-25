@@ -7,7 +7,7 @@ import {
   pendingInteractionResolutionSchema,
   roomsActivitySchema,
 } from "@bb/domain";
-import { RoomsStore, RoomError, id } from "./store.js";
+import { RoomsStore, RoomError } from "./store.js";
 import { RoomRuntime } from "./runtime.js";
 import {
   createAgentSchema,
@@ -292,7 +292,13 @@ export function createRoomsApp(
       c.req.param("agentId"),
       `Steering from human ${u.name} (@${u.handle}): ${b.text}`,
     );
-    store.requestMessage(u, c.req.param("roomId"), b.text, id());
+    store.publishAcknowledgedSteering(
+      u,
+      c.req.param("roomId"),
+      c.req.param("agentId"),
+      b.text,
+      receipt.steeringId,
+    );
     return c.json({ accepted: true, delivery: receipt.delivery });
   });
   app.get("/api/rooms/:roomId/agents/:agentId/interactions", async (c) => {

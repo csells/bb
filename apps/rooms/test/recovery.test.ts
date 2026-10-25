@@ -20,10 +20,10 @@ function setup() {
     model: "local/model",
     instructions: "",
   });
-  const message = store.requestMessage(
+  const message = store.sendHuman(
     owner,
     room.id,
-    "work",
+    { text: "work", intent: "post", recipients: [], replyTo: null },
     crypto.randomUUID(),
   ).message;
   store.enqueue(agent.id, message);

@@ -1,4 +1,4 @@
-import { describe, it, expect, afterEach } from "vitest";
+import { describe, it, expect, afterEach, vi } from "vitest";
 import { RoomsStore } from "../src/store.js";
 import { RoomRuntime } from "../src/runtime.js";
 import { createRoomsApp } from "../src/app.js";
@@ -26,11 +26,96 @@ function setup() {
     room,
     owner,
     stranger,
+    runtime,
     app: createRoomsApp(store, runtime, "https://rooms.example"),
   };
 }
 afterEach(() => stores.splice(0).forEach((s) => s.close()));
 describe("room HTTP authorization", () => {
+  it("publishes acknowledged steering to peers without dispatching it to its target again", async () => {
+    const { app, store, room, owner, runtime } = setup();
+    const target = store.addAgent(room.id, {
+      handle: "atlas",
+      name: "Atlas",
+      provider: "pi",
+      model: "test",
+      instructions: "",
+    });
+    const peer = store.addAgent(room.id, {
+      handle: "nova",
+      name: "Nova",
+      provider: "pi",
+      model: "test",
+      instructions: "",
+    });
+    store.sendHuman(
+      owner,
+      room.id,
+      {
+        text: "Start",
+        intent: "request",
+        recipients: [target.id],
+        replyTo: null,
+      },
+      "start",
+    );
+    const activation = store.beginActivation(
+      store.work().find((d) => d.agentId === target.id)!.id,
+    )!;
+    store.bindActivation(activation.activation.id, "native-thread");
+    const steeringId = crypto.randomUUID();
+    const steering = vi
+      .spyOn(runtime, "steer")
+      .mockImplementation(async (agentId, text) => {
+        expect(agentId).toBe(target.id);
+        store.recordSteering(
+          activation.activation.id,
+          "native-thread",
+          steeringId,
+          text,
+        );
+        return { ok: true, delivery: "sent", steeringId };
+      });
+    try {
+      const response = await app.request(
+        `/api/rooms/${room.id}/agents/${target.id}/steer`,
+        {
+          method: "POST",
+          headers: {
+            authorization: "Bearer " + store.session(owner.id),
+            "content-type": "application/json",
+            "x-rooms-request": "1",
+          },
+          body: JSON.stringify({ text: "Use the corrected approach" }),
+        },
+      );
+      expect(response.status).toBe(200);
+      expect(await response.json()).toEqual({
+        accepted: true,
+        delivery: "sent",
+      });
+      const message = store
+        .messages(room.id)
+        .find((m) => m.text === "Use the corrected approach")!;
+      const deliveries = store
+        .deliveries(room.id)
+        .filter((d) => d.messageId === message.id);
+      expect(deliveries).toHaveLength(1);
+      expect(deliveries[0]).toMatchObject({
+        agentId: peer.id,
+        intent: "notice",
+        state: "queued",
+      });
+      expect(message).toMatchObject({
+        authorId: owner.id,
+        intent: "request",
+        recipients: [target.id],
+      });
+      expect(store.pendingSteerings(activation.activation.id)).toHaveLength(1);
+    } finally {
+      steering.mockRestore();
+    }
+  });
   it("terminates a stream when its bearer session expires even if a valid cookie is also present", async () => {
     const { app, store, room, owner } = setup();
     const token = store.session(owner.id);

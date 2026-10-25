@@ -568,7 +568,7 @@ If you choose to answer publicly, execute your command with the bash tool now. P
         await this.sdk.threads.stop({ threadId: activation.threadId });
         await this.cancelQueued(activation.threadId, activation.id);
       }
-      return receipt;
+      return { ...receipt, steeringId };
     } finally {
       this.steering.delete(agentId);
     }

@@ -391,6 +391,7 @@ export class RoomsStore {
     input: Publication,
     activationId: string | null,
     causeId: string | null,
+    steeredAgentId: string | null = null,
   ) {
     this.validatePublication(roomId, input, author.id);
     const message = this.insertMessage(
@@ -410,23 +411,27 @@ export class RoomsStore {
       },
       activationId,
     );
-    this.deliverPublicMessage(message);
+    this.deliverPublicMessage(message, steeredAgentId);
     return message;
   }
-  private deliverPublicMessage(message: Message) {
+  private deliverPublicMessage(
+    message: Message,
+    steeredAgentId: string | null = null,
+  ) {
     if (message.status !== "complete" || message.kind === "system") return;
     const peers = this.db
       .prepare("SELECT id FROM rooms_agents WHERE room_id=? AND id!=?")
       .all(message.roomId, message.authorId)
       .map((row) => z.object({ id: z.string() }).parse(row));
     for (const peer of peers)
-      this.enqueue(
-        peer.id,
-        message,
-        message.intent === "request" && message.recipients.includes(peer.id)
-          ? "request"
-          : "notice",
-      );
+      if (peer.id !== steeredAgentId)
+        this.enqueue(
+          peer.id,
+          message,
+          message.intent === "request" && message.recipients.includes(peer.id)
+            ? "request"
+            : "notice",
+        );
   }
   private receipt(scope: string, requestId: string, payload: string) {
     const row = this.db
@@ -471,13 +476,54 @@ export class RoomsStore {
       return { message, duplicate: false };
     });
   }
-  requestMessage(user: User, roomId: string, text: string, requestId: string) {
-    return this.sendHuman(
-      user,
-      roomId,
-      { text, intent: "post", recipients: [], replyTo: null },
-      requestId,
-    );
+  publishAcknowledgedSteering(
+    user: User,
+    roomId: string,
+    agentId: string,
+    text: string,
+    steeringId: string,
+  ) {
+    return this.transaction(() => {
+      this.membership(roomId, user.id);
+      const payload = canonical({ userId: user.id, roomId, agentId, text });
+      const scope = `steering-publication:${steeringId}`;
+      const previous = this.receipt(scope, steeringId, payload);
+      if (previous)
+        return { message: messageSchema.parse(previous), duplicate: true };
+      const row = this.db
+        .prepare(
+          "SELECT s.text,s.state FROM rooms_steering s JOIN rooms_activations a ON a.id=s.activation_id WHERE s.id=? AND a.room_id=? AND a.agent_id=?",
+        )
+        .get(steeringId, roomId, agentId);
+      if (!row)
+        throw new RoomError(
+          409,
+          "Steering does not belong to this room participant",
+        );
+      const steering = z
+        .object({
+          text: z.string(),
+          state: z.enum(["pending", "settled", "cancelled"]),
+        })
+        .parse(row);
+      if (
+        steering.text !==
+        `Steering from human ${user.name} (@${user.handle}): ${text}`
+      )
+        throw new RoomError(409, "Steering does not match this human input");
+      if (steering.state === "cancelled")
+        throw new RoomError(409, "Steering was cancelled before publication");
+      const message = this.publish(
+        { ...user, kind: "human" },
+        roomId,
+        { text, intent: "request", recipients: [agentId], replyTo: null },
+        null,
+        null,
+        agentId,
+      );
+      this.remember(scope, steeringId, payload, message);
+      return { message, duplicate: false };
+    });
   }
   enqueue(agentId: string, m: Message, intent: Delivery["intent"] = m.intent) {
     if (this.agent(agentId).roomId !== m.roomId)
