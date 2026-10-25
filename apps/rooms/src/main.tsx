@@ -21,6 +21,7 @@ import {
 } from "./contracts.js";
 import "./style.css";
 import { createExperimentalRoomsClient } from "@bb/sdk/browser";
+const handlePattern = "[a-z][a-z0-9_\\-]{1,31}";
 const roomsClient = createExperimentalRoomsClient({ baseUrl: location.origin });
 async function api<T>(
   path: string,
@@ -616,7 +617,7 @@ function App() {
               <input
                 name="handle"
                 autoComplete="username"
-                pattern="[a-z][a-z0-9_-]{1,31}"
+                pattern={handlePattern}
                 placeholder="chris"
                 required
               />
@@ -1425,7 +1426,7 @@ function App() {
                 <input
                   name="handle"
                   placeholder="nova"
-                  pattern="[a-z][a-z0-9_-]{1,31}"
+                  pattern={handlePattern}
                   required
                 />
               </label>

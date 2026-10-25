@@ -579,6 +579,27 @@ try {
     await agentName.evaluate((node) => getComputedStyle(node).fontSize),
   ).toBe("16px");
   await agentName.fill("Touch field remains usable");
+  const handle = page.getByRole("textbox", { name: "Handle", exact: true });
+  for (const value of ["agent-two", "agent_two", "a2"]) {
+    await handle.fill(value);
+    expect(
+      await handle.evaluate(
+        (node: HTMLInputElement) => node.validity.patternMismatch,
+      ),
+    ).toBe(false);
+  }
+  for (const value of ["Agent", "agent space", "a", "a".repeat(33)]) {
+    await handle.fill(value);
+    expect(
+      await handle.evaluate(
+        (node: HTMLInputElement) => node.validity.patternMismatch,
+      ),
+    ).toBe(true);
+  }
+  console.log(
+    "PASS rendered handle validation accepts hyphens/underscores and rejects invalid handles",
+  );
+
   await expect(page.getByLabel("Close panel")).toBeInViewport();
   await page.getByLabel("Close panel").click();
   await page
