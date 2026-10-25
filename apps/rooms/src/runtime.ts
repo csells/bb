@@ -192,11 +192,7 @@ export class RoomRuntime {
     );
     return quote(launcher);
   }
-  private async prepare(agent: Agent) {
-    if (agent.projectId) return agent;
-    const hosts = await this.sdk.hosts.list();
-    const host = hosts.find((candidate) => candidate.status === "connected");
-    if (!host) throw new Error("The room execution machine is offline");
+  private async writeInstructions(agent: Agent) {
     const path = this.workspace(agent);
     await mkdir(path, { recursive: true });
     await writeFile(
@@ -205,11 +201,22 @@ export class RoomRuntime {
 
 You are an independent participant in a shared conversation with humans and other agents. You can discuss any topic the humans choose. Other participants have their own identities and sessions; never manufacture their contributions.
 
-Your assistant text and tool output are private. To contribute publicly, execute the activation-specific room command supplied in the current prompt using your bash tool. Printing a command as text does not execute it. Use post for your own contribution, request to invite an actual peer response, and stream begin/append/commit to publish selected text as you compose it. Never forward private thoughts or tool logs.
+Your assistant text and tool output are private. To contribute publicly, execute the activation-specific room command supplied in the current prompt using your bash tool. Printing a command as text does not execute it. Use post for your own contribution, request to ask a specific participant to respond, and stream begin/append/commit to publish selected text as you compose it. Never forward private thoughts or tool logs.
 
-A plain post does not wake other agents. Explicit requests publish and queue a delivery asynchronously; their receipt is not the peer's answer. After your intended contributions and requests are accepted, finish this activation. A later reply addressed to you arrives as a new activation. Do not repeat a successful request just because its receipt contains no peer answer. Use the current delivery and shared goals to decide what helps next. Preserve relevant goals and commitments from history, but do not repeat already completed requests. Reply only when useful, and let a conversation rest when complete. Silence is a successful choice. Do not read, display or modify credential files. The current activation command binds your author and room; older commands cannot be reused.
+Every completed public human or agent message is delivered to every other agent once. A plain post reaches peers as optional context; structured request recipients are explicitly asked to respond. Receipts acknowledge publication and delivery, not the peer's answer. After your intended contributions and requests are accepted, finish this activation. Later public messages arrive as new activations. Do not repeat a successful request just because its receipt contains no peer answer. Use the current delivery and shared goals to decide what helps next. Preserve relevant goals and commitments from history, but do not repeat already completed requests. Reply only when useful, and let a conversation rest when complete. Silence is a successful choice. Do not read, display or modify credential files. The current activation command binds your author and room; older commands cannot be reused.
 `,
     );
+    return path;
+  }
+  private async prepare(agent: Agent) {
+    if (agent.projectId) {
+      await this.writeInstructions(agent);
+      return agent;
+    }
+    const hosts = await this.sdk.hosts.list();
+    const host = hosts.find((candidate) => candidate.status === "connected");
+    if (!host) throw new Error("The room execution machine is offline");
+    const path = await this.writeInstructions(agent);
     const project = await this.sdk.projects.create({
       name: `${this.store.room(agent.roomId).name} · ${agent.name}`,
       source: { type: "local_path", hostId: host.id, path },
@@ -258,6 +265,7 @@ A plain post does not wake other agents. Explicit requests publish and queue a d
             author: message.authorName,
             text,
             intent: message.intent,
+            recipients: message.recipients,
           },
         ];
       })
@@ -282,15 +290,22 @@ Other supported operations append to that same activation command:
   stream append --message ID --sequence 1 --text "Next public paragraph"
   stream commit --message ID
   stream abort --message ID
-The exact command is stream begin, with no message ID or text arguments. It creates and returns a new public messageId; the incoming human message ID is not the stream ID. Use the returned messageId for append and commit, increasing sequence numbers. Compose and append each public part as you develop it. Only commit wakes recipients; add --to @handle to commit if a response is useful. --text-file FILE handles longer text; --help describes other options. Lost-receipt retries need the same --request-id UUID and exact arguments.
+The exact command is stream begin, with no message ID or text arguments. It creates and returns a new public messageId; the incoming human message ID is not the stream ID. Use the returned messageId for append and commit, increasing sequence numbers. Compose and append each public part as you develop it. Only commit delivers the finished message to other agents. Add --to @handle and --intent request to commit when you specifically want that participant to answer. --text-file FILE handles longer text; --help describes other options. Lost-receipt retries need the same --request-id UUID and exact arguments.
 
-Plain post and narrative mentions never wake anyone. Explicit request publishes and queues the addressed agent independently. Its receipt acknowledges publication and queueing; it is not a synchronous peer answer. After your intended contributions and requests are accepted, end this private turn. A reply addressed back to you arrives in a later activation. Do not repeat a successful request while waiting for a peer answer. Use the current delivery and shared goals to decide what helps next. Preserve relevant goals and commitments from history, but do not repeat already completed requests. Request only when it advances the conversation; closing remarks normally use post. There is no handoff-count restriction. No response is also valid: finish privately if nothing should be posted. The runtime settles after your turn; no acknowledgment or settle command is needed. Use read when fresh room context is needed. Never print or inspect credential files, and use this activation's command rather than one from previous turns. Keep private thoughts and tool logs private.
+Current room delivery rules: every completed public human or agent message is delivered to every other agent once. A plain post reaches peers as optional context, including questions addressed to the room. Structured request recipients are explicitly asked to respond; other agents still receive optional context. Narrative mentions do not turn optional context into a directed request. Stream updates, private output and silence do not generate deliveries. These rules replace earlier wake rules in this room.
+
+For a request addressed to you, give a useful answer through the room CLI. For optional context, decide independently whether to contribute. Answer an open question when you have something useful to add. If a message is addressed to someone else, normally let them answer; do not duplicate their work or speak for them. Do not publish mere acknowledgments, repeated agreement, an announcement of silence, or a new question simply to prolong the exchange. If the discussion is resolved or nothing useful remains, finish privately with no room command.
+
+Every receipt acknowledges accepted publication and delivery, not the peer's answer. After your intended contributions and requests are accepted, end this private turn. Later public messages arrive in a new activation. Do not wait or repeat a successful request to obtain an answer. Current input is new; history supplies context and must not cause already completed requests to run again. There is no handoff-count restriction. The runtime settles after your turn; no acknowledgment or settle command is needed. Use read when fresh room context is needed. Never print or inspect credential files, and use this activation's command rather than one from previous turns. Keep private thoughts and tool logs private.
 
 Activation: ${activationId}
 Participants: ${JSON.stringify(participants)}
 Recent public messages: ${JSON.stringify(history)}
 Delivery intent: ${delivery.intent}
-Respond to this actual message from ${cause.authorName} (${cause.id}):
+${delivery.intent === "request" ? "You are an explicitly requested recipient." : "You are receiving optional room context. A public reply is not required."}
+Public message intent: ${cause.intent}
+Addressed participants: ${JSON.stringify(participants.filter((participant) => cause.recipients.includes(participant.id)))}
+Consider this actual message from ${cause.authorName} (${cause.id}):
 ${cause.text}
 
 If you choose to answer publicly, execute your command with the bash tool now. Printing a command as assistant text does not send it. If no public reply is useful, finish without a command.`;

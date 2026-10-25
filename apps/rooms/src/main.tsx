@@ -1026,10 +1026,10 @@ function App() {
               </label>
               <span>
                 {intent === "request"
-                  ? "Choose who should answer"
+                  ? "Ask selected participants; everyone follows along"
                   : intent === "notice"
-                    ? "Recipients respond only when useful"
-                    : "Visible to everyone; no response requested"}
+                    ? "Everyone follows along; replies are optional"
+                    : "Everyone follows along; reply when useful"}
               </span>
             </div>
             {selected.length > 0 && (
@@ -1076,7 +1076,7 @@ function App() {
             <textarea
               ref={composer}
               aria-label="Message the room"
-              placeholder="Message the room… use @ to bring someone in"
+              placeholder="Message the room… use @ to ask someone"
               value={text}
               onChange={(e) => {
                 setText(e.target.value);
@@ -1108,7 +1108,7 @@ function App() {
                         )
                         .filter(Boolean)
                         .join(", ")}`
-                    : "Use @ to choose participants"}
+                    : "Use @ to ask someone for a response"}
               </span>
               <button
                 type="submit"

@@ -410,15 +410,23 @@ export class RoomsStore {
       },
       activationId,
     );
-    if (input.intent !== "post")
-      for (const target of input.recipients)
-        if (
-          this.db
-            .prepare("SELECT id FROM rooms_agents WHERE id=? AND room_id=?")
-            .get(target, roomId)
-        )
-          this.enqueue(target, message);
+    this.deliverPublicMessage(message);
     return message;
+  }
+  private deliverPublicMessage(message: Message) {
+    if (message.status !== "complete" || message.kind === "system") return;
+    const peers = this.db
+      .prepare("SELECT id FROM rooms_agents WHERE room_id=? AND id!=?")
+      .all(message.roomId, message.authorId)
+      .map((row) => z.object({ id: z.string() }).parse(row));
+    for (const peer of peers)
+      this.enqueue(
+        peer.id,
+        message,
+        message.intent === "request" && message.recipients.includes(peer.id)
+          ? "request"
+          : "notice",
+      );
   }
   private receipt(scope: string, requestId: string, payload: string) {
     const row = this.db
@@ -471,7 +479,7 @@ export class RoomsStore {
       requestId,
     );
   }
-  enqueue(agentId: string, m: Message) {
+  enqueue(agentId: string, m: Message, intent: Delivery["intent"] = m.intent) {
     if (this.agent(agentId).roomId !== m.roomId)
       throw new RoomError(400, "Agent belongs to another room");
     const now = Date.now();
@@ -479,7 +487,7 @@ export class RoomsStore {
       .prepare(
         "INSERT OR IGNORE INTO rooms_deliveries(id,room_id,agent_id,message_id,state,created_at,intent) VALUES(?,?,?,?,?,?,?)",
       )
-      .run(id(), m.roomId, agentId, m.id, "queued", now, m.intent);
+      .run(id(), m.roomId, agentId, m.id, "queued", now, intent);
     this.touch(m.roomId);
   }
   deliveries(roomId: string) {
@@ -1156,16 +1164,7 @@ export class RoomsStore {
                 input.messageId,
               );
             const message = this.message(input.messageId);
-            if (publication.intent !== "post")
-              for (const target of publication.recipients)
-                if (
-                  this.db
-                    .prepare(
-                      "SELECT id FROM rooms_agents WHERE id=? AND room_id=?",
-                    )
-                    .get(target, a.roomId)
-                )
-                  this.enqueue(target, message);
+            this.deliverPublicMessage(message);
             this.touch(a.roomId);
             result = { message, duplicate: false };
           }
