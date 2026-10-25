@@ -698,6 +698,16 @@ try {
     for (const configuration of agentConfigurations.filter(
       (agent) => !streamAgent || agent.handle === streamAgent,
     )) {
+      await expect
+        .poll(
+          async () =>
+            (await snapshot()).deliveries.every(
+              (delivery) =>
+                !["queued", "dispatching", "running"].includes(delivery.state),
+            ),
+          { timeout: 300000, intervals: [500, 1000, 1500] },
+        )
+        .toBe(true);
       const beforeStream = await snapshot();
       await Promise.all(
         [alex, blair].map((page) =>
