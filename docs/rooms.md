@@ -29,15 +29,15 @@ Authenticate providers on the execution machine using their supported tools. Cla
 
 The composer separates the message from its recipients and purpose:
 
-- **Message** publishes without starting an agent. Writing a raw `@handle` alone is not a server-side dispatch command.
-- **Ask** requests a response from selected participants. Each selected agent receives its own durable delivery; human recipients do not create agent runs.
-- **Share context** offers selected agents information they can read without replying. Finishing without a public reply is successful participation.
+- **Message** gives every other agent optional context. Each decides whether to publish a useful response. Writing a raw `@handle` alone does not create a directed request.
+- **Ask** requests a response from selected participants; other agents still receive optional context. Human recipients do not create agent runs.
+- **Share context** names an intended audience while permitting silence. Finishing without a public reply is successful participation.
 
-Select people or agents through the mention picker. Two humans can continue sending while agents work. Busy agents receive follow-ups in order; different agents can run concurrently. The explicit Steer control supports verified Pi, Codex and Claude Code execution through BB's acknowledged live-input operation. Its receipt means input was accepted, not that the model has already read or followed it.
+Select people or agents through the mention picker. Two humans can continue sending while agents work. Busy agents receive follow-ups in order; different agents can run concurrently. The explicit Steer control supports verified Pi, Codex and Claude Code execution through BB's acknowledged live-input operation. Its receipt means input was accepted, not that the model has already read or followed it. Successful steering is also published as a request to its target. That agent already received the input through BB and is not queued a second time; the other agents receive optional context.
 
-Agents may request another participant through their CLI. Requests return a publication receipt immediately; the peer's answer arrives later through their own session. An addressed reply starts a new activation for its recipient. There is no fixed handoff cap. Owners can pause new dispatch and set a visible activation budget, or leave it unlimited. Pausing does not cancel existing work; Stop fences the selected agent's public-writing capability and requests its runtime stop. Pending cards show queued, starting and working states before any public text arrives, including an explanation when execution status cannot be confirmed.
+Agents may request another participant through their CLI. Requests return a publication receipt immediately; the peer's answer arrives later through their own session. Every completed human or agent message gives each other room agent one durable delivery: explicit request recipients receive `request` intent and everyone else receives `notice` intent. Agents never receive their own publications. Silence, private output, retries and system status do not wake anyone. There is no fixed handoff cap. Owners can pause new dispatch and set a visible activation budget, or leave it unlimited. Pausing does not cancel existing work; Stop fences the selected agent's public-writing capability and interrupts only the BB turns its room activations started, leaving other work in the agent's thread alone. Pending cards show queued, starting and working states before any public text arrives, including an explanation when execution status cannot be confirmed. A failed request leaves a card beside its originating message with a room-safe reason, such as an expired provider login or usage limit, and an **Ask again** action that preserves any draft. Owners can open the agent's activity from the card.
 
-Agents can explicitly begin, append, commit or abort a public message. Only committed messages notify recipients, so partial chunks do not start reply chains. These chunks are model-authored CLI publications and incur tool-call latency; they are not a stream of the agent's private thoughts. SSE and snapshot polling carry public updates, including through proxies that buffer SSE.
+Agents can explicitly begin, append, commit or abort a public message. Only committed messages notify the other agents, once, so partial chunks and aborted streams do not start reply chains. These chunks are model-authored CLI publications and incur tool-call latency; they are not a stream of the agent's private thoughts. SSE and snapshot polling carry public updates, including through proxies that buffer SSE.
 
 ## SDK and human CLI
 
@@ -78,7 +78,7 @@ The login file contains `handle` and `password`. Login exclusively creates a mod
 
 ## Agent participation CLI
 
-The runtime installs `.rooms/room.mjs` in each agent's workspace and gives each activation its own mode-0600 credential file. The prompt supplies the full executable command, including `--activation FILE`. No command accepts an author or room override.
+The runtime installs `.rooms/room.mjs` in each agent's workspace, refreshes the workspace `AGENTS.md` with the current delivery rules before every activation, and gives each activation its own mode-0600 credential file. The prompt supplies the full executable command, including `--activation FILE`. No command accepts an author or room override.
 
 ```sh
 node .rooms/room.mjs --activation ACTIVATION_FILE read
