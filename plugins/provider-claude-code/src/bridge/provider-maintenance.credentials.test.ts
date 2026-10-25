@@ -1,5 +1,6 @@
 import {
   afterAll,
+  afterEach,
   beforeAll,
   beforeEach,
   describe,
@@ -43,7 +44,7 @@ vi.mock("@get-bb/plugin-sdk/provider-bridge", async (importOriginal) => ({
   experimental_resolveExecutablePath: () => Promise.resolve("/test/claude"),
 }));
 
-import { getClaudeProviderUsage } from "./provider-maintenance.js";
+import { getClaudeProviderHealth, getClaudeProviderUsage } from "./provider-maintenance.js";
 
 const originalPlatform = process.platform;
 
@@ -63,6 +64,7 @@ afterAll(() => {
 });
 
 beforeEach(() => {
+  vi.stubEnv("CLAUDE_CODE_OAUTH_TOKEN", undefined);
   const credentials = JSON.stringify({
     claudeAiOauth: {
       accessToken: "test-access-token",
@@ -83,7 +85,25 @@ beforeEach(() => {
   );
 });
 
+afterEach(() => {
+  vi.unstubAllEnvs();
+});
+
 describe("Claude Code credential loading", () => {
+  it("honors an unattended OAuth token over an expired saved login without reporting unrelated subscription usage", async () => {
+    vi.stubEnv("CLAUDE_CODE_OAUTH_TOKEN", "test-unattended-oauth-token");
+    const expired = JSON.stringify({ claudeAiOauth: { accessToken: "expired-test-token", expiresAt: 0 } });
+    state.keychain = expired;
+    state.file = expired;
+
+    expect(await getClaudeProviderHealth()).toMatchObject({
+      supported: true,
+      health: { status: "ready", accountEmail: null, planLabel: null },
+    });
+    expect(await getClaudeProviderUsage()).toEqual({ supported: false });
+    expect(fetch).not.toHaveBeenCalled();
+  });
+
   it("loads a hex-encoded Keychain credential", async () => {
     const result = await getClaudeProviderUsage();
 
