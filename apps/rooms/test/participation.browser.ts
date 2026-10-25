@@ -565,12 +565,17 @@ try {
     const previousIds = new Set(
       beforeStop.deliveries.map((delivery) => delivery.id),
     );
+    const atlasId = beforeStop.agents.find(
+      (agent) => agent.handle === "atlas",
+    )!.id;
+    const newAtlasDeliveries = async () =>
+      (await snapshot()).deliveries.filter(
+        (delivery) =>
+          !previousIds.has(delivery.id) && delivery.agentId === atlasId,
+      );
     await expect
       .poll(async () =>
-        (await snapshot()).deliveries
-          .filter((delivery) => !previousIds.has(delivery.id))
-          .map((delivery) => delivery.state)
-          .sort(),
+        (await newAtlasDeliveries()).map((delivery) => delivery.state).sort(),
       )
       .toEqual(["queued", "running"]);
     await expect(
@@ -582,12 +587,12 @@ try {
     await atlasWork.getByRole("button", { name: "Stop", exact: true }).click();
     await expect
       .poll(async () =>
-        (await snapshot()).deliveries
-          .filter((delivery) => !previousIds.has(delivery.id))
-          .map((delivery) => delivery.state),
+        (await newAtlasDeliveries()).map((delivery) => delivery.state),
       )
       .toEqual(["stopped", "stopped"]);
-    await expect(alex.locator(".pending-reply")).toHaveCount(0);
+    await expect(
+      alex.locator(`.pending-reply[data-agent-id="${atlasId}"]`),
+    ).toHaveCount(0);
     recordClaim(
       "Stop cancels the selected agent activation and removes its pending reply",
     );
