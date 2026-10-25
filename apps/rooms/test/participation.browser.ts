@@ -406,7 +406,24 @@ try {
       blair,
       "A second human can still contribute while both requests wait.",
     );
-    expect((await snapshot()).deliveries).toHaveLength(2);
+    const whilePaused = await snapshot();
+    const contribution = whilePaused.messages.at(-1)!;
+    expect(
+      whilePaused.deliveries.filter(
+        (delivery) => delivery.messageId === queued.messages.at(-1)?.id,
+      ),
+    ).toEqual(queued.deliveries);
+    const optionalContext = whilePaused.deliveries.filter(
+      (delivery) => delivery.messageId === contribution.id,
+    );
+    expect(optionalContext).toHaveLength(agentIds.length);
+    expect(
+      optionalContext.every(
+        (delivery) =>
+          delivery.intent === "notice" && delivery.state === "queued",
+      ),
+    ).toBe(true);
+    expect(whilePaused.deliveries).toHaveLength(2 + agentIds.length);
     recordClaim(
       "Structured recipients route a request without textual mentions; both browsers show pending work and remain writable while paused",
     );

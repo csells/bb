@@ -109,9 +109,7 @@ function stubThread(runtime: RoomRuntime, events: unknown[]) {
   vi.spyOn(runtime.sdk.threads, "get").mockResolvedValue({
     status: "idle",
   } as never);
-  return vi
-    .spyOn(runtime.sdk.threads, "stop")
-    .mockResolvedValue({ ok: true });
+  return vi.spyOn(runtime.sdk.threads, "stop").mockResolvedValue({ ok: true });
 }
 it("does not stop the agent's BB thread when only a room message is queued", async () => {
   const { store, room, agent, runtime, send } = fixture();
@@ -129,7 +127,12 @@ it("stops only the turn its own activation started", async () => {
   send("Work on this");
   const activationId = startActivation(store);
   const stop = stubThread(runtime, [
-    ...admittedTurn("an-earlier-activation", "turn-earlier", 1, "creq_23456789ab"),
+    ...admittedTurn(
+      "an-earlier-activation",
+      "turn-earlier",
+      1,
+      "creq_23456789ab",
+    ),
     completed("turn-earlier", 3),
     ...admittedTurn(activationId, "turn-room", 4, "creq_3456789abc"),
   ]);

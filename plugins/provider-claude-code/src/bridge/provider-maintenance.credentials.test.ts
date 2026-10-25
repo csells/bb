@@ -44,7 +44,10 @@ vi.mock("@get-bb/plugin-sdk/provider-bridge", async (importOriginal) => ({
   experimental_resolveExecutablePath: () => Promise.resolve("/test/claude"),
 }));
 
-import { getClaudeProviderHealth, getClaudeProviderUsage } from "./provider-maintenance.js";
+import {
+  getClaudeProviderHealth,
+  getClaudeProviderUsage,
+} from "./provider-maintenance.js";
 
 const originalPlatform = process.platform;
 
@@ -92,7 +95,9 @@ afterEach(() => {
 describe("Claude Code credential loading", () => {
   it("honors an unattended OAuth token over an expired saved login without reporting unrelated subscription usage", async () => {
     vi.stubEnv("CLAUDE_CODE_OAUTH_TOKEN", "test-unattended-oauth-token");
-    const expired = JSON.stringify({ claudeAiOauth: { accessToken: "expired-test-token", expiresAt: 0 } });
+    const expired = JSON.stringify({
+      claudeAiOauth: { accessToken: "expired-test-token", expiresAt: 0 },
+    });
     state.keychain = expired;
     state.file = expired;
 
