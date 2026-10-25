@@ -726,6 +726,55 @@ describe("explicit authenticated participation", () => {
       }),
     ).toThrow("no longer active");
   });
+  it("keeps a budget pause distinct from a human pause when room controls are saved", () => {
+    const { store, room, human, a, ca, cb } = setup();
+    store.finishActivation(ca.activation.id, "no_reply");
+    store.finishActivation(cb.activation.id, "no_reply");
+    store.setPolicy(room.id, { paused: false, maxActivations: 2 });
+    store.sendHuman(
+      human,
+      room.id,
+      {
+        text: "Continue",
+        intent: "request",
+        recipients: [a.id],
+        replyTo: null,
+      },
+      "continue",
+    );
+    const next = store.work().find((d) => d.state === "queued")!;
+    expect(store.beginActivation(next.id)).toBeNull();
+    const budgetPaused = store.room(room.id);
+    expect(budgetPaused).toMatchObject({
+      paused: true,
+      pauseReason: "Configured activation budget reached",
+    });
+    store.setPolicy(room.id, {
+      paused: budgetPaused.paused,
+      maxActivations: 2,
+    });
+    expect(store.room(room.id)).toMatchObject({
+      paused: true,
+      pauseReason: "Configured activation budget reached",
+    });
+    store.setPolicy(room.id, {
+      paused: budgetPaused.paused,
+      maxActivations: 3,
+    });
+    expect(store.room(room.id)).toMatchObject({
+      paused: false,
+      pauseReason: null,
+      activationsUsed: 2,
+      maxActivations: 3,
+    });
+    expect(store.beginActivation(next.id)).not.toBeNull();
+    store.setPolicy(room.id, { paused: true, maxActivations: 3 });
+    store.setPolicy(room.id, { paused: true, maxActivations: null });
+    expect(store.room(room.id)).toMatchObject({
+      paused: true,
+      pauseReason: "Paused by a human",
+    });
+  });
   it("exposes configurable activation budgets and explicit pause without forbidding conversational depth", () => {
     const { store, room, human, a, b, ca, cb } = setup();
     store.finishActivation(ca.activation.id, "no_reply");

@@ -36,6 +36,7 @@ export class RoomError extends Error {
     super(message);
   }
 }
+const budgetPauseReason = "Configured activation budget reached";
 const roomColumns = `id,name,owner_id AS ownerId,revision,paused,pause_reason AS pauseReason,max_activations AS maxActivations,activations_used AS activationsUsed`;
 const agentColumns = `id,room_id AS roomId,handle,name,provider,model,instructions,project_id AS projectId,thread_id AS threadId,status`;
 const messageColumns = `id,room_id AS roomId,author_id AS authorId,author_name AS authorName,kind,text,status,created_at AS createdAt,cause_id AS causeId,intent,recipients,reply_to AS replyTo`;
@@ -306,13 +307,23 @@ export class RoomsStore {
   ) {
     return this.transaction(() => {
       const previous = this.room(roomId);
+      const budgetPaused =
+        previous.paused && previous.pauseReason === budgetPauseReason;
+      const budgetExhausted =
+        policy.maxActivations !== null &&
+        previous.activationsUsed >= policy.maxActivations;
+      const paused = policy.paused && !(budgetPaused && !budgetExhausted);
       this.db
         .prepare(
           "UPDATE rooms_rooms SET paused=?,pause_reason=?,max_activations=?,activations_used=? WHERE id=?",
         )
         .run(
-          Number(policy.paused),
-          policy.paused ? "Paused by a human" : null,
+          Number(paused),
+          paused
+            ? budgetPaused
+              ? budgetPauseReason
+              : "Paused by a human"
+            : null,
           policy.maxActivations,
           previous.paused && !policy.paused ? 0 : previous.activationsUsed,
           roomId,
@@ -600,10 +611,8 @@ export class RoomsStore {
         room.activationsUsed >= room.maxActivations
       ) {
         this.db
-          .prepare(
-            "UPDATE rooms_rooms SET paused=1,pause_reason='Configured activation budget reached' WHERE id=?",
-          )
-          .run(room.id);
+          .prepare("UPDATE rooms_rooms SET paused=1,pause_reason=? WHERE id=?")
+          .run(budgetPauseReason, room.id);
         this.touch(room.id);
         return null;
       }
