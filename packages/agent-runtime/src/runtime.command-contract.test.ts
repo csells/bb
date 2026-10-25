@@ -664,6 +664,78 @@ describe("createAgentRuntime command contracts", () => {
     await runtime.shutdown();
   });
 
+  it("ignores a stale scoped stop and still stops the exact successor turn", async () => {
+    const events: ThreadEvent[] = [];
+    const { record, runtime } = createContractRuntime({
+      onEvent: (event) => events.push(event),
+    });
+    try {
+      await runtime.startThread({
+        environmentId: "env-1",
+        threadId: "t1",
+        projectId: "p1",
+        providerId: "fake",
+        options: fullRuntimeOptions,
+      });
+      await runtime.runTurn({
+        clientRequestId: "creq_222222225v",
+        threadId: "t1",
+        input: [promptTextInput({ text: "first" })],
+        options: fullRuntimeOptions,
+      });
+      const { turnId: first } = await waitForThreadTurnStarted({
+        events,
+        providerId: "fake",
+        runtime,
+        threadId: "t1",
+      });
+      await waitForThreadTurnCompleted({
+        events,
+        providerId: "fake",
+        runtime,
+        threadId: "t1",
+        turnId: first,
+      });
+      await runtime.runTurn({
+        clientRequestId: "creq_222222225w",
+        threadId: "t1",
+        input: [promptTextInput({ text: "delay:3000" })],
+        options: fullRuntimeOptions,
+      });
+      await waitForRuntimeThreadEvent({
+        events,
+        providerId: "fake",
+        runtime,
+        threadId: "t1",
+        label: "successor turn",
+        predicate: (event) =>
+          event.type === "turn/started" &&
+          event.scope.kind === "turn" &&
+          event.scope.turnId !== first,
+      });
+      const successor = runtime.getActiveTurnId("t1");
+      expect(successor).not.toBeNull();
+      await runtime.stopThread({ threadId: "t1", expectedTurnId: first });
+      expect(runtime.getActiveTurnId("t1")).toBe(successor);
+      expect(record.last("thread/stop")).toBeUndefined();
+      expect(runtime.hasThread("t1")).toBe(true);
+      await runtime.stopThread({ threadId: "t1", expectedTurnId: successor! });
+      await waitForThreadTurnCompleted({
+        events,
+        providerId: "fake",
+        runtime,
+        threadId: "t1",
+        turnId: successor!,
+      });
+      expect(record.last("thread/stop")?.params).toMatchObject({
+        intent: "interrupt",
+      });
+      expect(runtime.hasThread("t1")).toBe(false);
+    } finally {
+      await runtime.shutdown();
+    }
+  });
+
   it("interrupts an active turn on stop and releases an idle thread", async () => {
     const events: ThreadEvent[] = [];
     const { record, runtime } = createContractRuntime({

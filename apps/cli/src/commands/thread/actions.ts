@@ -96,6 +96,7 @@ interface ThreadTellCommandOptions {
 interface ThreadActionOptions {
   self?: boolean;
   json?: boolean;
+  expectedTurn?: string;
 }
 
 interface ThreadRetryCommandOptions {
@@ -614,20 +615,34 @@ export function registerActionsCommands(
       done: "cleared its Goal",
     },
   ] as const) {
-    parent
+    const command = parent
       .command(`${name} [id]`)
       .description(description)
       .option("--self", "Target the current thread (from BB_THREAD_ID)")
-      .option("--json", "Print machine-readable JSON output")
-      .action(
-        action(async (id: string | undefined, opts: ThreadActionOptions) => {
-          const threadId = requireThreadIdOrSelf(id, opts);
-          const sdk = createCliBbSdk(getUrl());
-          await sdk.threads[method]({ threadId });
-          if (outputJson(opts, { ok: true, threadId })) return;
-          console.log(`Thread ${threadId} ${done}`);
-        }),
+      .option("--json", "Print machine-readable JSON output");
+    if (name === "stop")
+      command.option(
+        "--expected-turn <id>",
+        "Stop only this active turn; leave successors and idle runtimes alone",
       );
+    command.action(
+      action(async (id: string | undefined, opts: ThreadActionOptions) => {
+        const threadId = requireThreadIdOrSelf(id, opts);
+        const sdk = createCliBbSdk(getUrl());
+        if (method === "stop")
+          await sdk.threads.stop({
+            threadId,
+            expectedTurnId: opts.expectedTurn,
+          });
+        else await sdk.threads[method]({ threadId });
+        if (outputJson(opts, { ok: true, threadId })) return;
+        console.log(
+          opts.expectedTurn
+            ? `Stop requested for turn ${opts.expectedTurn} on thread ${threadId}; a stale turn is ignored`
+            : `Thread ${threadId} ${done}`,
+        );
+      }),
+    );
   }
 }
 

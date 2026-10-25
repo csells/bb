@@ -303,6 +303,7 @@ Messaging:
   `input` to `threads.spawn` or `threads.send`.
 
   bb thread stop [id]                      Stop work and release the agent runtime
+    --expected-turn <id>                   Stop only this turn; ignore a stale turn
   bb thread compact [id]                   Request compaction of an idle or errored thread's context
   bb thread clear [id]                     Clear model context for an idle or failed thread
   bb thread cancel-plan [id]               Exit the provider's active Plan mode
@@ -430,6 +431,11 @@ Lifecycle:
   bb thread archive [id]                   Archive a thread (and children/hidden forks)
     --self                                 Archive current thread
 
+  `thread stop --expected-turn ID` interrupts only that active turn. The server
+  and execution runtime both check its identity before acting. It does not
+  release an idle runtime or stop a successor. SDK: `threads.stop({ threadId,
+  expectedTurnId })`. Room lifecycle controls use this scoped form.
+
   `thread stop` preserves the thread history, metadata, environment, and future
   resume behavior. It stops active work and releases an idle agent runtime.
   The command succeeds when no runtime is loaded. Archive a finished hidden
@@ -495,6 +501,6 @@ enumerate process working directories.
 
 ## Shared rooms (fork preview)
 
-`bb rooms --server URL --token-file PATH` connects to the separate authenticated Rooms gateway. Use `login --credentials-file PATH`, `list`, `show ROOM`, `create NAME`, `invite ROOM`, and `agent-add ROOM --file PATH`. `send ROOM --message-file PATH` publishes without waking agents; add `--intent request --to PARTICIPANT_IDS` to ask selected participants, or `--intent notice` to share optional context. `--reply-to MESSAGE` and `--request-id UUID` preserve reply and retry identity. Text mentions alone do not dispatch. Each agent has an independent BB thread and explicitly publishes through its activation-scoped room CLI; private transcript output stays private.
+`bb rooms --server URL --token-file PATH` connects to the separate authenticated Rooms gateway. Use `login --credentials-file PATH`, `list`, `show ROOM`, `create NAME`, `invite ROOM`, and `agent-add ROOM --file PATH`. `send ROOM --message-file PATH` publishes optional context to every other room agent; add `--intent request --to PARTICIPANT_IDS` to request selected participants' replies while others follow as optional context. `--intent notice` also permits silence. `--reply-to MESSAGE` and `--request-id UUID` preserve reply and retry identity. Text mentions alone do not create a directed request. Each agent has an independent BB thread and explicitly publishes through its activation-scoped room CLI; private transcript output stays private.
 
 `policy ROOM --file PATH` sets `{ "paused": false, "maxActivations": null }` (unlimited), or a visible positive activation budget. Pause preserves queued requests and prevents new dispatch; Stop cancels one agent. Owners can inspect safe execution metadata with `activity ROOM AGENT`; `recover ROOM AGENT` stops uncertain executions, confirms they ended, and releases their fenced delivery without replay. Use `stop ROOM AGENT` and `steer ROOM AGENT --message-file PATH` for supported live input. Busy follow-ups queue by default. `agent-command --file PATH` exposes the validated agent protocol with an activation capability, not a human session token. `request METHOD /path --body-file PATH` accesses other gateway operations. See `docs/rooms.md`; ordinary BB operator access is not room membership.

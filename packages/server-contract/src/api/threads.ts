@@ -52,6 +52,13 @@ import {
   workspacePathListResponseSchema,
 } from "./shared.js";
 
+export const stopThreadQuerySchema = z
+  .object({
+    expectedTurnId: z.string().min(1).optional(),
+  })
+  .strict();
+export type StopThreadQuery = z.infer<typeof stopThreadQuerySchema>;
+
 export const sendMessageModeSchema = z.enum([
   "queue-if-active",
   "steer-if-active",

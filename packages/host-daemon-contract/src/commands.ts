@@ -357,6 +357,7 @@ export const threadStopCommandSchema = hostDaemonThreadTargetSchema
   .extend({
     type: z.literal("thread.stop"),
     intent: threadStopIntentSchema,
+    expectedTurnId: z.string().min(1).optional(),
   })
   .strict();
 

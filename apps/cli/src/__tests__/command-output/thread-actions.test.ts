@@ -387,7 +387,6 @@ describe("bb thread action command output", () => {
   });
 
   it.each([
-    ["stop", "stop", "stopped"],
     ["compact", "compact", "context compaction requested"],
     ["clear", "context.clear", "context cleared"],
     ["cancel-plan", "plan.cancel", "exited Plan mode"],
@@ -407,6 +406,31 @@ describe("bb thread action command output", () => {
       );
     },
   );
+
+  it("bb thread stop stops the thread unless --expected-turn scopes it to that turn", async () => {
+    const post = vi.fn(async () => ({ ok: true }));
+    stubServerApi({ "v1.threads.:id.stop.$post": post });
+
+    await runCommand(["thread", "stop", "thread-action"], register);
+    await runCommand(
+      ["thread", "stop", "thread-action", "--expected-turn", "turn-current"],
+      register,
+    );
+
+    expect(post).toHaveBeenNthCalledWith(1, {
+      param: { id: "thread-action" },
+      query: { expectedTurnId: undefined },
+    });
+    expect(post).toHaveBeenNthCalledWith(2, {
+      param: { id: "thread-action" },
+      query: { expectedTurnId: "turn-current" },
+    });
+    const lines = collectLogLines(vi.mocked(console.log));
+    expect(lines).toContain("Thread thread-action stopped");
+    expect(lines).toContain(
+      "Stop requested for turn turn-current on thread thread-action; a stale turn is ignored",
+    );
+  });
 
   it("bb thread retry defaults the turn and the reason at the boundary", async () => {
     const retryPost = vi.fn(async () => ({

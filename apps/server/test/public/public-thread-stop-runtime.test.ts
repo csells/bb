@@ -35,6 +35,190 @@ import {
 } from "../../src/services/threads/thread-lifecycle.js";
 
 describe("thread runtime stop", () => {
+  for (const successorStarted of [false, true]) {
+    it(`settles matching scoped provider interruption without settling a successor (${successorStarted})`, async () => {
+      await withTestHarness(async (harness) => {
+        const { session, thread } = seedThreadFixture(harness, {
+          thread: { status: "active", visibility: "hidden" },
+        });
+        seedTurnStarted(harness.deps, {
+          threadId: thread.id,
+          turnId: "room-turn",
+          providerThreadId: "provider-thread",
+        });
+        const responsePromise = harness.app.request(
+          `/api/v1/threads/${thread.id}/stop?expectedTurnId=room-turn`,
+          { method: "POST" },
+        );
+        const command = await waitForQueuedCommand(
+          harness,
+          ({ command }) =>
+            command.type === "thread.stop" && command.threadId === thread.id,
+        );
+        if (successorStarted) {
+          seedTurnStarted(harness.deps, {
+            threadId: thread.id,
+            sequence: 2,
+            turnId: "successor-turn",
+            providerThreadId: "provider-thread",
+          });
+          harness.deps.pendingInteractions.registerPendingInteraction({
+            interaction: {
+              threadId: thread.id,
+              turnId: "successor-turn",
+              providerId: thread.providerId,
+              providerThreadId: "provider-thread",
+              providerRequestId: "successor-question",
+              payload: createUserQuestionPayload(),
+            },
+          });
+        }
+        const completion = await harness.app.request(
+          "/internal/session/events",
+          {
+            method: "POST",
+            headers: internalAuthHeaders(harness),
+            body: JSON.stringify({
+              sessionId: session.id,
+              eventGroups: groupHostDaemonEvents([
+                {
+                  threadId: thread.id,
+                  event: {
+                    type: "turn/completed",
+                    threadId: thread.id,
+                    providerThreadId: "provider-thread",
+                    scope: turnScope("room-turn"),
+                    status: "interrupted",
+                  },
+                },
+              ]),
+            }),
+          },
+        );
+        expect(completion.status).toBe(200);
+        await reportQueuedCommandSuccess(harness, command, {
+          providerCheckpointId: null,
+        });
+        expect((await responsePromise).status).toBe(200);
+        expect(getThread(harness.db, thread.id)?.status).toBe(
+          successorStarted ? "active" : "idle",
+        );
+        expect(
+          harness.deps.pendingInteractions.listPendingThreadInteractions(
+            thread.id,
+          ),
+        ).toHaveLength(successorStarted ? 1 : 0);
+      });
+    });
+  }
+
+  it("ignores a stale scoped stop without changing a successor or its pending question", async () => {
+    await withTestHarness(async (harness) => {
+      const { thread } = seedThreadFixture(harness, {
+        thread: { status: "active", visibility: "hidden" },
+      });
+      seedTurnStarted(harness.deps, {
+        threadId: thread.id,
+        sequence: 3,
+        turnId: "successor-turn",
+        providerThreadId: "provider-thread",
+      });
+      harness.deps.pendingInteractions.registerPendingInteraction({
+        interaction: {
+          threadId: thread.id,
+          turnId: "successor-turn",
+          providerId: thread.providerId,
+          providerThreadId: "provider-thread",
+          providerRequestId: "successor-question",
+          payload: createUserQuestionPayload(),
+        },
+      });
+      const response = await harness.app.request(
+        `/api/v1/threads/${thread.id}/stop?expectedTurnId=previous-turn`,
+        { method: "POST" },
+      );
+      expect(response.status).toBe(200);
+      expect(getThread(harness.deps.db, thread.id)?.status).toBe("active");
+      expect(
+        harness.deps.pendingInteractions.listPendingThreadInteractions(
+          thread.id,
+        ),
+      ).toHaveLength(1);
+      expect(
+        listQueuedThreadCommands(harness, "thread.stop", thread.id),
+      ).toEqual([]);
+      expect(
+        listEvents(harness.deps.db, { threadId: thread.id }).filter(
+          (event) => event.type === "system/thread/interrupted",
+        ),
+      ).toEqual([]);
+    });
+  });
+
+  it("carries scoped stop identity to the host and ignores its late report after a successor starts", async () => {
+    await withTestHarness(async (harness) => {
+      const { thread } = seedThreadFixture(harness, {
+        thread: { status: "active", visibility: "hidden" },
+      });
+      seedTurnStarted(harness.deps, {
+        threadId: thread.id,
+        turnId: "room-turn",
+        providerThreadId: "provider-thread",
+      });
+      const responsePromise = harness.app.request(
+        `/api/v1/threads/${thread.id}/stop?expectedTurnId=room-turn`,
+        { method: "POST" },
+      );
+      const command = await waitForQueuedCommand(
+        harness,
+        ({ command }) =>
+          command.type === "thread.stop" && command.threadId === thread.id,
+      );
+      expect(command.command).toMatchObject({
+        expectedTurnId: "room-turn",
+        intent: "interrupt",
+      });
+      seedStoredEvent(harness.deps, {
+        threadId: thread.id,
+        sequence: 2,
+        type: "turn/completed",
+        scope: turnScope("room-turn"),
+        data: { providerThreadId: "provider-thread", status: "completed" },
+      });
+      seedTurnStarted(harness.deps, {
+        threadId: thread.id,
+        sequence: 3,
+        turnId: "successor-turn",
+        providerThreadId: "provider-thread",
+      });
+      harness.deps.pendingInteractions.registerPendingInteraction({
+        interaction: {
+          threadId: thread.id,
+          turnId: "successor-turn",
+          providerId: thread.providerId,
+          providerThreadId: "provider-thread",
+          providerRequestId: "successor-question",
+          payload: createUserQuestionPayload(),
+        },
+      });
+      await reportQueuedCommandSuccess(harness, command, {
+        providerCheckpointId: null,
+      });
+      expect((await responsePromise).status).toBe(200);
+      expect(getThread(harness.deps.db, thread.id)?.status).toBe("active");
+      expect(
+        harness.deps.pendingInteractions.listPendingThreadInteractions(
+          thread.id,
+        ),
+      ).toHaveLength(1);
+      expect(
+        listEvents(harness.deps.db, { threadId: thread.id }).filter(
+          (event) => event.type === "system/thread/interrupted",
+        ),
+      ).toEqual([]);
+    });
+  });
+
   it("releases and dismisses a question when the runtime ends during a failed interrupt", async () => {
     await withTestHarness(async (harness) => {
       const { thread } = seedThreadFixture(harness, {

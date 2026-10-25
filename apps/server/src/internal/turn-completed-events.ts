@@ -1,4 +1,8 @@
-import { getThread, hasRootStoredTurnStarted } from "@bb/db";
+import {
+  findLastRootStoredTurnStarted,
+  getThread,
+  hasRootStoredTurnStarted,
+} from "@bb/db";
 import {
   requireThreadEventScopeTurnId,
   type ThreadEvent,
@@ -48,6 +52,12 @@ export function applyTurnCompletedEvent(
     turnId,
   });
   if (!isRootTurnCompletion) {
+    return { isRootTurnCompletion, nextStatus: null, thread };
+  }
+  if (
+    findLastRootStoredTurnStarted(deps.db, { threadId: payload.threadId })
+      ?.turnId !== turnId
+  ) {
     return { isRootTurnCompletion, nextStatus: null, thread };
   }
 

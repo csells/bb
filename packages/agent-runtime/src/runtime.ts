@@ -2201,15 +2201,18 @@ export function createAgentRuntime(options: AgentRuntimeOptions): AgentRuntime {
       });
     },
 
-    async stopThread({ threadId }) {
-      toolCalls.cancelThread(threadId);
+    async stopThread({ threadId, expectedTurnId }) {
+      if (expectedTurnId === undefined) toolCalls.cancelThread(threadId);
       return runThreadOperation({
         threadId,
         work: async () => {
+          const activeTurnId = turnState.getActiveTurnId(threadId);
+          if (expectedTurnId !== undefined && activeTurnId !== expectedTurnId)
+            return { providerCheckpointId: null };
+          if (expectedTurnId !== undefined) toolCalls.cancelThread(threadId);
           const pid = threadIdentityRegistry.resolveProviderForThread(threadId);
           const proc = requireProviderProcessForThread(threadId);
           const providerThreadId = requireProviderThreadId(threadId);
-          const activeTurnId = turnState.getActiveTurnId(threadId);
           const adapterCommand: AdapterCommand = {
             type: "thread/stop",
             threadId,
