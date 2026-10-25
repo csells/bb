@@ -381,7 +381,7 @@ If you choose to answer publicly, execute your command with the bash tool now. P
       this.store.bindActivation(activation.id, agent.threadId);
       const current = this.store.activationForDelivery(delivery.id);
       if (current?.stopRequested)
-        await this.sdk.threads.stop({ threadId: agent.threadId });
+        await this.stopOwnedExecution(agent.threadId, activation.id);
     }
     const activation = this.store.activationForDelivery(delivery.id);
     if (!activation || activation.state !== "running" || !activation.threadId)
@@ -473,6 +473,30 @@ If you choose to answer publicly, execute your command with the bash tool now. P
     );
     await rm(this.credentialPath(agent, activation.id), { force: true });
   }
+  private async stopOwnedExecution(threadId: string, activationId: string) {
+    const events = await this.events(threadId);
+    const turnIds = new Set(inspectAdmission(events, activationId).turnIds);
+    for (const steering of this.store.pendingSteerings(activationId))
+      for (const turnId of inspectSteeringAdmission(
+        events,
+        activationId,
+        steering.id,
+        steering.text,
+      ).turnIds)
+        turnIds.add(turnId);
+    const pending = [...turnIds].filter(
+      (turnId) =>
+        !events.some(
+          (event) =>
+            event.type === "turn/completed" &&
+            event.scope.kind === "turn" &&
+            event.scope.turnId === turnId,
+        ),
+    );
+    for (const expectedTurnId of pending)
+      await this.sdk.threads.stop({ threadId, expectedTurnId });
+    return pending.length > 0;
+  }
   async stop(agentId: string) {
     const agent = this.store.agent(agentId);
     this.store.fenceAgent(agentId, "Stopped by a room participant");
@@ -484,7 +508,15 @@ If you choose to answer publicly, execute your command with the bash tool now. P
       .filter((activation) => activation !== null);
     for (const activation of activations)
       await this.cancelQueued(agent.threadId, activation.id);
-    await this.sdk.threads.stop({ threadId: agent.threadId });
+    let stoppedRoomWork = false;
+    for (const activation of activations)
+      stoppedRoomWork =
+        (await this.stopOwnedExecution(agent.threadId, activation.id)) ||
+        stoppedRoomWork;
+    if (!stoppedRoomWork) {
+      this.tick();
+      return;
+    }
     const deadline = Date.now() + 15000;
     while (Date.now() < deadline) {
       const thread = await this.sdk.threads.get({ threadId: agent.threadId });
@@ -566,7 +598,7 @@ If you choose to answer publicly, execute your command with the bash tool now. P
         this.store.activationForDelivery(activation.deliveryId)?.stopRequested
       ) {
         await this.cancelQueued(activation.threadId, activation.id);
-        await this.sdk.threads.stop({ threadId: activation.threadId });
+        await this.stopOwnedExecution(activation.threadId, activation.id);
         await this.cancelQueued(activation.threadId, activation.id);
       }
       return { ...receipt, steeringId };
@@ -627,6 +659,7 @@ If you choose to answer publicly, execute your command with the bash tool now. P
         "Owner requested interrupted-dispatch recovery",
         "active-execution",
       );
+      const candidateThreadIds = new Set<string>();
       const threadIds = new Set<string>();
       for (const archived of [false, true]) {
         for (let offset = 0; ; offset += 100) {
@@ -637,32 +670,47 @@ If you choose to answer publicly, execute your command with the bash tool now. P
             limit: 100,
             offset,
           });
-          for (const thread of threads) threadIds.add(thread.id);
+          for (const thread of threads) candidateThreadIds.add(thread.id);
           if (threads.length < 100) break;
         }
       }
-      for (const threadId of threadIds) {
-        for (const activation of uncertain)
-          await this.cancelQueued(threadId, activation.id);
-        const thread = await this.sdk.threads.get({ threadId });
-        if (!["idle", "error", "stopped"].includes(thread.status))
-          await this.sdk.threads.stop({ threadId });
+      for (const threadId of candidateThreadIds) {
+        const events = await this.events(threadId);
+        for (const activation of uncertain) {
+          if (
+            inspectAdmission(events, activation.id).state !== "missing" ||
+            (await this.queued(threadId, activation.id)).length ||
+            this.store.hasQueueCancellation(activation.id, threadId)
+          ) {
+            threadIds.add(threadId);
+            await this.cancelQueued(threadId, activation.id);
+            await this.stopOwnedExecution(threadId, activation.id);
+          }
+        }
       }
       const deadline = Date.now() + 15000;
       while (true) {
-        const threads = await Promise.all(
-          [...threadIds].map((threadId) => this.sdk.threads.get({ threadId })),
-        );
-        if (
-          threads.every((thread) =>
-            ["idle", "error", "stopped"].includes(thread.status),
-          )
-        )
-          break;
+        let pending = false;
+        for (const threadId of threadIds) {
+          const events = await this.events(threadId);
+          for (const activation of uncertain) {
+            const proof = inspectAdmission(events, activation.id);
+            pending ||= proof.turnIds.some(
+              (turnId) =>
+                !events.some(
+                  (event) =>
+                    event.type === "turn/completed" &&
+                    event.scope.kind === "turn" &&
+                    event.scope.turnId === turnId,
+                ),
+            );
+          }
+        }
+        if (!pending) break;
         if (Date.now() >= deadline)
           throw new RoomError(
             409,
-            "Old execution has not confirmed stopping; its activation remains fenced and unresolved",
+            "Old room execution has not confirmed stopping; its activation remains fenced and unresolved",
           );
         await sleep(250);
       }
