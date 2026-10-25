@@ -72,11 +72,26 @@ let interactions: { id: string; payload: PendingInteractionPayload }[] = [];
 const interactionSubmissions: unknown[] = [];
 const steeringSubmissions: unknown[] = [];
 const policySubmissions: unknown[] = [];
+const messageSubmissions: unknown[] = [];
 let steeringDelivery: "sent" | "queued" = "sent";
 page.on("pageerror", (e) => errors.push(e.message));
 await page.route("**/api/**", async (route) => {
   const path = new URL(route.request().url()).pathname;
   if (path.endsWith("/events")) return route.abort();
+  if (path.endsWith("/activity")) {
+    return route.fulfill({
+      json: {
+        providerStatus: "error",
+        threadId: null,
+        activationId: null,
+        deliveryId: "Reviewer",
+        startedAt: null,
+      },
+    });
+  }
+  if (path.endsWith("/messages") && route.request().method() === "POST") {
+    messageSubmissions.push(route.request().postDataJSON());
+  }
   if (path.endsWith("/policy") && route.request().method() === "PUT") {
     policySubmissions.push(route.request().postDataJSON());
     return route.fulfill({ json: snapshot.room });
@@ -117,6 +132,142 @@ try {
   });
   console.log(
     "PASS two visible waiting replies before first token, live elapsed time, usable composer",
+  );
+  snapshot.deliveries[1].state = "error";
+  snapshot.deliveries[1].error =
+    "Provider authentication expired. Sign in again.";
+  snapshot.agents[1].status = "error";
+  snapshot.room.revision++;
+  const failure = page.locator(".conversation .failure-reply");
+  await expect(failure).toContainText(
+    "Reviewer couldn’t complete this request",
+  );
+  await expect(failure).toContainText(
+    "Provider authentication expired. Sign in again.",
+  );
+  await expect(failure.locator(".pulse, .pending-elapsed")).toHaveCount(0);
+  await page.reload();
+  await expect(failure).toContainText(
+    "Provider authentication expired. Sign in again.",
+  );
+  await failure.getByRole("button", { name: "Ask Reviewer again" }).click();
+  await expect(page.getByLabel("Message the room")).toHaveValue(
+    "@builder @reviewer Introduce yourselves.",
+  );
+  expect(messageSubmissions).toEqual([]);
+  await page.getByLabel("Message the room").fill("Keep my existing draft");
+  await failure.getByRole("button", { name: "Ask Reviewer again" }).click();
+  await expect(page.getByLabel("Message the room")).toHaveValue(
+    "Keep my existing draft",
+  );
+  await expect(page.getByLabel("Message intent")).toHaveValue("request");
+  expect(messageSubmissions).toEqual([]);
+  await expect(page.getByLabel("Selected recipients")).toContainText(
+    "Reviewer",
+  );
+  await failure.getByRole("button", { name: "Inspect activity" }).click();
+  await expect(
+    page.getByRole("combobox", { name: "Agent", exact: true }),
+  ).toHaveValue("Reviewer");
+  await page.getByLabel("Close panel").click();
+  await expect(page.locator(".rooms-drawer")).not.toBeInViewport();
+  await page.screenshot({
+    path: evidence + "/failed-reply.png",
+    fullPage: true,
+  });
+  const originalRequest = snapshot.messages[0];
+  for (let index = 0; index < 12; index++) {
+    snapshot.messages.push({
+      ...originalRequest,
+      id: `later-${index}`,
+      authorId: index % 2 ? "Reviewer" : user.id,
+      authorName: index % 2 ? "Reviewer" : user.name,
+      kind: index % 2 ? "agent" : "human",
+      text: `Later room message ${index + 1}: the discussion continues after the failed attempt.`,
+      createdAt: originalRequest.createdAt + index + 1,
+      recipients: [],
+      intent: "post",
+      causeId: index % 2 ? `later-${index - 1}` : null,
+    });
+  }
+  snapshot.deliveries.push({
+    ...snapshot.deliveries[1],
+    id: "later-success",
+    messageId: "later-10",
+    state: "complete",
+    error: null,
+    outcome: "replied",
+    createdAt: originalRequest.createdAt + 12,
+  });
+  snapshot.agents[1].status = "idle";
+  snapshot.room.revision++;
+  const laterReply = page.locator('[data-message-id="later-11"]');
+  const firstLaterMessage = page.locator('[data-message-id="later-0"]');
+  await expect(laterReply).toBeVisible();
+  await expect(failure).toHaveCount(1);
+  await expect
+    .poll(async () => {
+      const earlier = await failure.boundingBox();
+      const later = await firstLaterMessage.boundingBox();
+      return (
+        earlier !== null &&
+        later !== null &&
+        earlier.y + earlier.height <= later.y
+      );
+    })
+    .toBe(true);
+  await laterReply.scrollIntoViewIfNeeded();
+  await expect(laterReply).toBeInViewport();
+  await expect(failure).not.toBeInViewport();
+  await page.screenshot({
+    path: evidence + "/failure-in-history.png",
+    fullPage: true,
+  });
+  await failure.scrollIntoViewIfNeeded();
+  await expect(
+    failure.getByRole("button", { name: "Ask Reviewer again" }),
+  ).toBeVisible();
+  const requestBounds = await page
+    .locator('[data-message-id="prompt"]')
+    .boundingBox();
+  const failureBounds = await failure.boundingBox();
+  expect(
+    requestBounds !== null &&
+      failureBounds !== null &&
+      requestBounds.y + requestBounds.height <= failureBounds.y,
+  ).toBe(true);
+  snapshot.messages.shift();
+  snapshot.room.revision++;
+  await expect(failure).toHaveCount(0);
+  snapshot.messages.unshift(originalRequest);
+  snapshot.room.revision++;
+  await expect(failure).toHaveCount(1);
+  snapshot.messages.splice(1);
+  snapshot.deliveries.pop();
+  snapshot.agents[1].status = "error";
+  snapshot.room.revision++;
+  await failure.scrollIntoViewIfNeeded();
+  console.log(
+    "PASS failed attempts stay beside their original request, scroll behind later successful conversation, and follow loaded history",
+  );
+  snapshot.deliveries[1].error = null;
+  snapshot.room.revision++;
+  await expect(failure).toContainText("No failure details were reported.");
+  snapshot.room.ownerId = "other-owner";
+  snapshot.room.revision++;
+  await expect(
+    failure.getByRole("button", { name: "Inspect activity" }),
+  ).toHaveCount(0);
+  await expect(
+    failure.getByRole("button", { name: "Ask Reviewer again" }),
+  ).toBeVisible();
+  snapshot.room.ownerId = user.id;
+  snapshot.deliveries[1].state = "running";
+  snapshot.agents[1].status = "working";
+  snapshot.room.revision++;
+  await expect(failure).toHaveCount(0);
+  console.log(
+    "PASS failed requests retain their reason after reload, preserve drafts, and expose owner-only activity",
   );
   await page
     .getByRole("button", { name: "Room controls", exact: true })

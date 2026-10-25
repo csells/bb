@@ -75,6 +75,56 @@ function Avatar({ name, agent = false }: { name: string; agent?: boolean }) {
     </span>
   );
 }
+function FailedReplies({
+  snapshot,
+  request,
+  followUp,
+  inspectActivity,
+}: {
+  snapshot: Snapshot;
+  request: Snapshot["messages"][number];
+  followUp: (agent: Agent, requestText: string) => void;
+  inspectActivity: ((agent: Agent) => void) | null;
+}) {
+  return snapshot.deliveries
+    .filter(
+      (delivery) =>
+        delivery.state === "error" && delivery.messageId === request.id,
+    )
+    .map((delivery) => {
+      const agent = snapshot.agents.find(
+        (candidate) => candidate.id === delivery.agentId,
+      );
+      if (!agent) return null;
+      return (
+        <article
+          className="message failure-reply"
+          key={delivery.id}
+          data-agent-id={agent.id}
+        >
+          <Avatar name={agent.name} agent />
+          <div className="message-body">
+            <strong>{agent.name} couldn’t complete this request</strong>
+            <blockquote>{request.text}</blockquote>
+            <p role="alert">
+              {delivery.error?.trim() ||
+                "No failure details were reported. The room owner can inspect the agent’s activity."}
+            </p>
+            <div className="failure-actions">
+              <button onClick={() => followUp(agent, request.text)}>
+                Ask {agent.name} again
+              </button>
+              {inspectActivity && (
+                <button onClick={() => inspectActivity(agent)}>
+                  Inspect activity
+                </button>
+              )}
+            </div>
+          </div>
+        </article>
+      );
+    });
+}
 function PendingReplies({
   snapshot,
   decisionAgents,
@@ -843,62 +893,83 @@ function App() {
               </div>
             </section>
           )}
-          {snapshot?.messages.map((m) => (
-            <article
-              className={"message " + m.kind}
-              key={m.id}
-              data-message-id={m.id}
-              data-author={m.authorName}
-              data-author-id={m.authorId}
-              data-status={m.status}
-            >
-              <Avatar name={m.authorName} agent={m.kind === "agent"} />
-              <div className="message-body">
-                <div className="message-meta">
-                  <strong>
-                    {m.kind === "system" ? "Room status" : m.authorName}
-                  </strong>
-                  {m.kind === "agent" && <span className="tag">AGENT</span>}
-                  <time dateTime={new Date(m.createdAt).toISOString()}>
-                    {new Date(m.createdAt).toLocaleTimeString([], {
-                      hour: "2-digit",
-                      minute: "2-digit",
-                    })}
-                  </time>
-                  {m.status === "streaming" && (
-                    <span className="stream-label">
-                      writing<span className="dots">…</span>
-                    </span>
-                  )}
-                </div>
-                {m.recipients.length > 0 && (
-                  <div className="message-recipients">
-                    {m.intent === "request"
-                      ? "Asked"
-                      : m.intent === "notice"
-                        ? "Shared with"
-                        : "To"}{" "}
-                    {m.recipients
-                      .map(
-                        (id) =>
-                          participants.find((p) => p.id === id)?.name ??
-                          "Former participant",
-                      )
-                      .join(", ")}
+          {snapshot &&
+            snapshot.messages.map((m) => (
+              <React.Fragment key={m.id}>
+                <article
+                  className={"message " + m.kind}
+                  data-message-id={m.id}
+                  data-author={m.authorName}
+                  data-author-id={m.authorId}
+                  data-status={m.status}
+                >
+                  <Avatar name={m.authorName} agent={m.kind === "agent"} />
+                  <div className="message-body">
+                    <div className="message-meta">
+                      <strong>
+                        {m.kind === "system" ? "Room status" : m.authorName}
+                      </strong>
+                      {m.kind === "agent" && <span className="tag">AGENT</span>}
+                      <time dateTime={new Date(m.createdAt).toISOString()}>
+                        {new Date(m.createdAt).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </time>
+                      {m.status === "streaming" && (
+                        <span className="stream-label">
+                          writing<span className="dots">…</span>
+                        </span>
+                      )}
+                    </div>
+                    {m.recipients.length > 0 && (
+                      <div className="message-recipients">
+                        {m.intent === "request"
+                          ? "Asked"
+                          : m.intent === "notice"
+                            ? "Shared with"
+                            : "To"}{" "}
+                        {m.recipients
+                          .map(
+                            (id) =>
+                              participants.find((p) => p.id === id)?.name ??
+                              "Former participant",
+                          )
+                          .join(", ")}
+                      </div>
+                    )}
+                    <div className="prose">
+                      <Markdown>{m.text || "…"}</Markdown>
+                    </div>
+                    {m.status === "stopped" && (
+                      <small>Publication interrupted</small>
+                    )}
+                    {m.status === "error" && (
+                      <small>Could not complete publication</small>
+                    )}
                   </div>
-                )}
-                <div className="prose">
-                  <Markdown>{m.text || "…"}</Markdown>
-                </div>
-                {m.status === "stopped" && (
-                  <small>Publication interrupted</small>
-                )}
-                {m.status === "error" && (
-                  <small>Could not complete publication</small>
-                )}
-              </div>
-            </article>
-          ))}
+                </article>
+                <FailedReplies
+                  snapshot={snapshot}
+                  request={m}
+                  followUp={(agent, requestText) => {
+                    setSteering(null);
+                    setText((draft) => (draft.trim() ? draft : requestText));
+                    setSelected([agent.id]);
+                    setIntent("request");
+                    composer.current?.focus();
+                  }}
+                  inspectActivity={
+                    owner
+                      ? (agent) => {
+                          setActivityAgentId(agent.id);
+                          setPanel("activity");
+                        }
+                      : null
+                  }
+                />
+              </React.Fragment>
+            ))}
           {sending && (
             <div className="sending-notice" role="status">
               Sending your message…

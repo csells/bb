@@ -354,7 +354,8 @@ header {
   flex: 1;
   min-width: 0;
 }
-.pending-reply .message-body {
+.pending-reply .message-body,
+.failure-reply .message-body {
   border: 1px solid var(--line);
   border-radius: 10px;
   background: var(--panel);
@@ -1093,4 +1094,22 @@ footer {
 
 .pending-error {
   color: var(--accent);
+}
+
+.failure-reply .message-body {
+  overflow-wrap: anywhere;
+}
+.failure-reply blockquote {
+  border-left: 2px solid var(--line);
+  padding-left: 12px;
+  margin: 12px 0;
+  color: var(--muted);
+}
+.failure-reply p {
+  color: var(--accent);
+}
+.failure-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
