@@ -63,7 +63,7 @@ import {
 } from "./sdk-session.js";
 import { MissingClaudeCliError } from "./missing-cli-error.js";
 import { claudeConfigDirectory, forkClaudeSession } from "./session-fork.js";
-import { createClaudeCodeBridgeModelListMemo } from "./model-list.js";
+import { listClaudeCodeBridgeModels } from "./model-list.js";
 import {
   PROVIDER_COMMANDS_STATE_KIND,
   createClaudeCodeBridgeCommandListMemo,
@@ -862,9 +862,6 @@ async function applyLiveSessionSettings(
 
 const PROVIDER_CATALOG_MEMO_TTL_MS = 2 * 60_000;
 const listCommandsMemoized = createClaudeCodeBridgeCommandListMemo({
-  ttlMs: PROVIDER_CATALOG_MEMO_TTL_MS,
-});
-const listModelsMemoized = createClaudeCodeBridgeModelListMemo({
   ttlMs: PROVIDER_CATALOG_MEMO_TTL_MS,
 });
 
@@ -2297,7 +2294,7 @@ async function handleRequest(request: ClaudeCodeJsonRpcRequest): Promise<void> {
       try {
         sendResult(
           request.id,
-          await listModelsMemoized(
+          await listClaudeCodeBridgeModels(
             buildSessionEnv(request.params.envVars ?? {}),
           ),
         );

@@ -64,7 +64,7 @@ import {
 import { applyLoggedThreadLifecycleEvent } from "../services/threads/lifecycle-outcome.js";
 import { dropSettledThreadSessionOptionSelections } from "../services/threads/thread-session-options.js";
 import { rejectUnstartedTurnRequest } from "../services/threads/unconfirmed-turn-requests.js";
-import { rememberSessionModelCatalog } from "../services/providers/session-model-catalog.js";
+import { invalidateSessionModelCatalog } from "../services/providers/session-model-catalog.js";
 import {
   applyTurnCompletedEvent,
   readTurnCompletion,
@@ -472,7 +472,7 @@ async function applyEventEffects(
 
       if (event.type === "thread/extensionState/updated") {
         if (event.kind === THREAD_PROVIDER_MODEL_CATALOG_STATE_KIND) {
-          await rememberSessionModelCatalog(deps, entry);
+          await invalidateSessionModelCatalog(deps, entry);
         }
         if (event.kind === THREAD_SESSION_OPTIONS_STATE_KIND) {
           dropSettledThreadSessionOptionSelections(deps, {

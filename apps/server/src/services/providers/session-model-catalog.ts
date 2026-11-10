@@ -4,7 +4,7 @@ import type { HostDaemonEventEnvelope } from "@bb/host-daemon-contract";
 import type { LoggedPendingInteractionWorkSessionDeps } from "../../types.js";
 import { getLastProviderThreadId } from "../threads/thread-events.js";
 
-export async function rememberSessionModelCatalog(
+export async function invalidateSessionModelCatalog(
   deps: LoggedPendingInteractionWorkSessionDeps,
   entry: HostDaemonEventEnvelope,
 ): Promise<void> {
@@ -26,10 +26,9 @@ export async function rememberSessionModelCatalog(
   if (environment === null || provider === null || !catalog.success) {
     return;
   }
-  await deps.lifecycleDedupers.providerModelCatalogs.remember(deps, {
+  deps.lifecycleDedupers.providerModelCatalogs.invalidate(deps, {
     hostId: environment.hostId,
     provider: provider.info,
     cwd: environment.path,
-    ...catalog.data,
   });
 }

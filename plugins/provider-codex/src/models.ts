@@ -238,6 +238,7 @@ export function parseModelCatalog(result: unknown): CodexModelCatalog {
   }
 
   const listed: AvailableModel[] = [];
+  const seenModels = new Set<string>();
   const cyberProgramsByModel = new Map<string, CodexCyberProgram[]>();
   for (const entry of data) {
     const identity = codexModelIdentitySchema.safeParse(entry);
@@ -245,6 +246,8 @@ export function parseModelCatalog(result: unknown): CodexModelCatalog {
       continue;
     }
     const model = toAvailableModel(identity.data);
+    if (seenModels.has(model.model)) continue;
+    seenModels.add(model.model);
     listed.push(model);
     cyberProgramsByModel.set(
       model.model,

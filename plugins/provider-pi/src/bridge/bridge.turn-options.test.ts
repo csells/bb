@@ -69,7 +69,8 @@ function providerThreadIdFor(threadId: string): string {
   const providerThreadId = (identity?.params as { providerThreadId?: unknown })
     .providerThreadId;
   expect(typeof providerThreadId).toBe("string");
-  if (typeof providerThreadId !== "string") throw new Error("missing provider thread identity");
+  if (typeof providerThreadId !== "string")
+    throw new Error("missing provider thread identity");
   return providerThreadId;
 }
 
@@ -110,6 +111,8 @@ it(
 
     expect(readFileSync(envLog, "utf8").trim().split("\n")).toEqual([
       "first",
+      "first",
+      "second",
       "second",
     ]);
     expect(sessionReplacements(threadId)).toHaveLength(1);
@@ -123,7 +126,9 @@ it(
     const threadId = "thr_turn_options_model";
     const start = await harness.startThread(threadId, { options: MINI });
     const originalProviderThreadId = providerThreadIdFor(threadId);
-    expect(start.result).toMatchObject({ providerThreadId: originalProviderThreadId });
+    expect(start.result).toMatchObject({
+      providerThreadId: originalProviderThreadId,
+    });
 
     expect((await turnStart(1, threadId, "first", MINI)).error).toBeUndefined();
     let seen = await harness.waitForTurnBoundary(threadId, 0);

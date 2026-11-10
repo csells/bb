@@ -57,7 +57,7 @@ interface ResolveSystemProviderModelsArgs {
 
 type ModelListResult = Pick<
   SystemExecutionOptionsResponse,
-  "modelLoadError" | "models" | "selectedOnlyModels"
+  "modelLoadError" | "models" | "selectedOnlyModels" | "modelCatalog"
 >;
 
 function unavailableProviderModelResult(providerId: string): ModelListResult {
@@ -419,11 +419,11 @@ export function resolveSystemExecutionOptions(
   return resolveExecutionOptions(
     deps,
     query,
-    query.preferCached === "true"
+    query.preferCached === "true" && query.refresh !== "true"
       ? { kind: "picker", selectedModel: query.selectedModel }
       : {
-          kind: "validation",
-          requiredModel: query.selectedModel ?? null,
+          kind: "read",
+          refresh: query.refresh === "true",
           selectedModel: query.selectedModel,
         },
   );
@@ -570,6 +570,7 @@ async function resolveExecutionOptions(
     models,
     selectedOnlyModels,
     modelLoadError: modelResult.modelLoadError,
+    modelCatalog: modelResult.modelCatalog,
   };
 }
 
@@ -593,7 +594,8 @@ async function loadSystemProviderModels(
     return {
       models: result.models,
       selectedOnlyModels: result.selectedOnlyModels,
-      modelLoadError: null,
+      modelLoadError: result.modelLoadError,
+      modelCatalog: result.modelCatalog,
     };
   }
   return {

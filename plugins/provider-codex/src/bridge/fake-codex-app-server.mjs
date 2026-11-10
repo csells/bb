@@ -455,6 +455,10 @@ async function handleRequest(message) {
       respond(id, { rateLimits: {} });
       return;
     case "model/list":
+      if (script?.modelPages) {
+        respond(id, script.modelPages[params?.cursor ?? "first"]);
+        return;
+      }
       if (shouldFailThisModelList()) {
         respond(id, { data: [] });
         return;

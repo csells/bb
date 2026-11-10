@@ -1193,26 +1193,25 @@ describe("bridge", () => {
     }
   });
 
-  it("applies model discovery routing variables and invalidates the memo when they change", async () => {
+  it("applies model discovery routing variables on every server refresh", async () => {
     const bridge = createBridgeJsonRpcTestHarness(handleLine);
     queryMock.mockReturnValue({
-      initializationResult: vi
-        .fn()
-        .mockResolvedValue({
-          models: [
-            {
-              value: "claude-opus-5-5",
-              displayName: "Opus",
-              description: "Opus",
-            },
-          ],
-        }),
+      initializationResult: vi.fn().mockResolvedValue({
+        models: [
+          {
+            value: "claude-opus-5-5",
+            displayName: "Opus",
+            description: "Opus",
+          },
+        ],
+      }),
       close: vi.fn(),
     });
     try {
       for (const [id, token] of [
         [901, "first-hub-token"],
         [902, "second-hub-token"],
+        [903, "second-hub-token"],
       ] as const) {
         bridge.sendRequest(id, "model/list", {
           envVars: {
@@ -1227,7 +1226,7 @@ describe("bridge", () => {
           CLAUDE_CODE_PROVIDER_MANAGED_BY_HOST: "1",
         });
       }
-      expect(queryMock).toHaveBeenCalledTimes(2);
+      expect(queryMock).toHaveBeenCalledTimes(3);
     } finally {
       bridge.restore();
     }

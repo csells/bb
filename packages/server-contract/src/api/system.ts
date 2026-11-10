@@ -85,6 +85,13 @@ export const systemExecutionOptionsResponseSchema = z.object({
   models: z.array(availableModelSchema),
   selectedOnlyModels: z.array(availableModelSchema),
   modelLoadError: systemExecutionOptionsModelLoadErrorSchema.nullable(),
+  modelCatalog: z
+    .object({
+      revision: z.string().min(1),
+      fetchedAt: z.number(),
+      stale: z.boolean(),
+    })
+    .optional(),
 });
 export type SystemExecutionOptionsResponse = z.infer<
   typeof systemExecutionOptionsResponseSchema
@@ -111,6 +118,7 @@ export const systemExecutionOptionsQuerySchema = z
     projectId: z.string().min(1),
     selectedModel: z.string().min(1),
     preferCached: z.enum(["true", "false"]),
+    refresh: z.enum(["true", "false"]),
   })
   .partial()
   .superRefine(rejectMultipleWorkspaceSelectors)
@@ -124,6 +132,11 @@ export const systemExecutionOptionsQuerySchema = z
   });
 export type SystemExecutionOptionsQuery = z.infer<
   typeof systemExecutionOptionsQuerySchema
+>;
+
+export type ModelCatalogRouting = Pick<
+  SystemExecutionOptionsQuery,
+  "hostId" | "environmentId" | "projectId"
 >;
 
 export const systemUsageLimitsQuerySchema = z.object({

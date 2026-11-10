@@ -285,3 +285,42 @@ it("rejects a model catalog request with the missing-executable code when codex 
   expect(response.error?.code).toBe(BRIDGE_JSON_RPC_ERRORS.MISSING_EXECUTABLE);
   expect(response.error?.message).toContain("could not find the Codex CLI");
 });
+
+it("reads every catalog page and rejects repeated cursors instead of publishing a partial list", async () => {
+  const workDir = await mkdtemp(join(tmpdir(), "bb-codex-pages-"));
+  temporaryDirectories.push(workDir);
+  const scriptPath = join(workDir, "script.json");
+  const first = { id: "first", model: "first", isDefault: true };
+  await writeFile(
+    scriptPath,
+    JSON.stringify({
+      modelPages: {
+        first: { data: [first], nextCursor: "page-2" },
+        "page-2": {
+          data: [first, { id: "new-model", model: "new-model" }],
+          nextCursor: null,
+        },
+      },
+      turns: [],
+    }),
+  );
+  stubFakeCodexAppServer(scriptPath);
+  harness.sendRequest(901, "model/list", {});
+  expect((await harness.waitForResponse(901)).result).toMatchObject({
+    models: [{ model: "first" }, { model: "new-model" }],
+  });
+  await writeFile(
+    scriptPath,
+    JSON.stringify({
+      modelPages: {
+        first: { data: [first], nextCursor: "page-2" },
+        "page-2": { data: [], nextCursor: "page-2" },
+      },
+      turns: [],
+    }),
+  );
+  harness.sendRequest(902, "model/list", {});
+  expect((await harness.waitForResponse(902)).error?.message).toContain(
+    "repeated a pagination cursor",
+  );
+});

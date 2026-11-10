@@ -26,6 +26,8 @@ export type ProviderModelsArgs = (
 ) & {
   providerId?: string;
   preferCached?: boolean;
+  refresh?: boolean;
+  selectedModel?: string;
   signal?: AbortSignal;
 };
 

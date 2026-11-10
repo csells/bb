@@ -427,10 +427,12 @@ function sendModelList(
     modelLines?: string;
     cwd?: string;
     selectedModel?: string;
+    contributedEnv?: Record<string, string>;
   } = {},
 ): number {
-  const { modelLines, cwd, selectedModel, ...launch } = args;
+  const { modelLines, cwd, selectedModel, contributedEnv, ...launch } = args;
   return sendRequest("model/list", {
+    ...(contributedEnv === undefined ? {} : { envVars: contributedEnv }),
     ...(selectedModel === undefined ? {} : { selectedModel }),
     ...(cwd === undefined ? {} : { cwd }),
     providerOptions: {
@@ -774,6 +776,25 @@ describe("acp bridge", () => {
       ],
       selectedOnlyModels: [],
     });
+  });
+
+  it("uses contributed routing environment for discovery and refreshes with the same credentials", async () => {
+    const scriptPath = join(workspaceDir, "models.cjs");
+    writeFileSync(
+      scriptPath,
+      "process.stdout.write(process.env.ROUTED_MODEL + ' - Routed Model\\n')",
+    );
+    const launch = {
+      agent: { command: process.execPath, args: [scriptPath] },
+      modelListArgs: ["--"],
+    };
+    for (const model of ["account-a-model", "account-b-model"]) {
+      const response = await waitForResponse(
+        sendModelList({ ...launch, contributedEnv: { ROUTED_MODEL: model } }),
+      );
+      expect(response.error).toBeUndefined();
+      expect(response.result).toMatchObject({ models: [{ id: model }] });
+    }
   });
 
   it("uses the CLI model list before ACP-native session discovery when both are present", async () => {
@@ -1648,7 +1669,7 @@ describe("acp bridge", () => {
     });
   });
 
-  it("serves ACP-native discovered models from cache within the TTL and re-discovers after it", async () => {
+  it("re-discovers ACP-native models on every server catalog refresh", async () => {
     const launchLog = join(workspaceDir, "discovery-launches.txt");
     const discoveryEnv = {
       FAKE_ACP_MODEL_CONFIG: "1",
@@ -1670,11 +1691,11 @@ describe("acp bridge", () => {
 
       vi.setSystemTime(1_030_000);
       await listModels();
-      expect(launchCount()).toBe(1);
+      expect(launchCount()).toBe(2);
 
       vi.setSystemTime(1_061_000);
       const refreshed = await listModels();
-      expect(launchCount()).toBe(2);
+      expect(launchCount()).toBe(3);
       expect(refreshed).toMatchObject({
         models: [
           { id: "fake/default", isDefault: true },
@@ -1784,7 +1805,7 @@ describe("acp bridge", () => {
     await waitForAgentExit(readyFile);
   });
 
-  it("keeps the last good CLI catalog when the same command later fails", async () => {
+  it("reports CLI discovery failures so the server owns stale catalog fallback", async () => {
     const scriptPath = join(workspaceDir, "model-list.cjs");
     writeFileSync(
       scriptPath,
@@ -1801,8 +1822,10 @@ describe("acp bridge", () => {
 
     writeFileSync(scriptPath, "process.exit(2)");
     const second = await waitForResponse(sendModelList(launch));
-    expect(second.error).toBeUndefined();
-    expect(second.result).toEqual(first.result);
+    expect(second.error?.message).toContain(
+      "failed to provide a model catalog",
+    );
+    expect(second.result).toBeUndefined();
   });
 
   it("keeps CLI reasoning on the resolved model variant instead of ACP config", async () => {

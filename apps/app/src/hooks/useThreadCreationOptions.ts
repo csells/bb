@@ -25,6 +25,7 @@ import type {
   ExistingThreadExecutionInputSources,
   SystemExecutionOptionsModelLoadError,
   SystemProvidersQuery,
+  ModelCatalogRouting,
 } from "@bb/server-contract";
 import {
   PROJECT_CHECKOUT_ENVIRONMENT_PROVIDER_ID,
@@ -115,7 +116,7 @@ type ProviderModelReasoningSelectionSetter = (
 ) => void;
 
 interface UseThreadCreationOptionsResult<TExecutionInputSources> {
-  executionOptionsRouting: SystemProvidersQuery;
+  executionOptionsRouting: ModelCatalogRouting;
   selectedProviderId: string;
   setSelectedProviderId: StringSelectionSetter;
   setProviderModelReasoning: ProviderModelReasoningSelectionSetter;
@@ -577,10 +578,7 @@ export function useThreadCreationOptions(
   );
 
   const resolveReasoningForModel = useCallback(
-    (
-      model: string,
-      preferred: ReasoningLevel,
-    ): ModelReasoningOptions => {
+    (model: string, preferred: ReasoningLevel): ModelReasoningOptions => {
       const selection = resolveModelCatalogSelection({
         models: executionOptionsQuery.data?.models ?? [],
         selectedOnlyModels:
@@ -1131,7 +1129,13 @@ export function useThreadCreationOptions(
   }, [scope, setRootComposeReuseValue]);
 
   return {
-    executionOptionsRouting,
+    executionOptionsRouting: {
+      ...executionOptionsRouting,
+      ...(executionOptionsRouting.environmentId === undefined &&
+      catalogProjectId !== undefined
+        ? { projectId: catalogProjectId }
+        : {}),
+    },
     selectedProviderId: effectiveProviderId,
     setSelectedProviderId,
     setProviderModelReasoning,

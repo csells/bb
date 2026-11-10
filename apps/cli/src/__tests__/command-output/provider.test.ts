@@ -14,6 +14,28 @@ describe("bb provider command output", () => {
   const register: CommandRegistrar = (program) =>
     registerProviderCommands(program, () => "http://server");
 
+  it("refreshes through the shared API and exposes catalog freshness without changing model-array JSON", async () => {
+    const snapshot = {
+      providers: [],
+      models: [],
+      selectedOnlyModels: [],
+      modelLoadError: null,
+      modelCatalog: { revision: "new", fetchedAt: 123, stale: false },
+    };
+    const get = vi.fn(async () => snapshot);
+    stubServerApi({ "v1.system.execution-options.$get": get });
+    await runCommand(
+      ["provider", "models", "claude-code", "--refresh", "--catalog"],
+      register,
+    );
+    expect(get).toHaveBeenCalledWith({
+      query: { providerId: "claude-code", refresh: "true" },
+    });
+    expect(collectLogPayloads(vi.mocked(console.log))).toEqual([
+      JSON.stringify(snapshot, null, 2),
+    ]);
+  });
+
   it("bb provider list renders the shared borderless table", async () => {
     const get = vi.fn(async () => [{ id: "openai", displayName: "OpenAI" }]);
     stubServerApi({ "v1.system.providers.$get": get });

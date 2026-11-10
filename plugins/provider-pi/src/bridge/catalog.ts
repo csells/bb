@@ -1,5 +1,6 @@
 import type { AvailableModel } from "@get-bb/plugin-sdk/provider-bridge";
 import { resolve } from "node:path";
+import { createHash } from "node:crypto";
 import {
   createPiModelContextWindowResolverFrom,
   type PiModelContextWindowResolver,
@@ -91,6 +92,7 @@ async function spawnCatalog(
   cwd: string,
   extensionPath: string,
   touch: () => void,
+  envVars: Readonly<Record<string, string>>,
 ): Promise<PiCatalog> {
   interface CatalogChildGeneration {
     child: PiRpcChild;
@@ -131,7 +133,7 @@ async function spawnCatalog(
     };
     const child = new PiRpcChild({
       cwd,
-      env: buildPiChildEnv({}),
+      env: buildPiChildEnv(envVars),
       args: ["--mode", "rpc", "--no-session", "--extension", extensionPath],
       onEvent: () => {},
       onChannelMessage: (message) => {
@@ -356,21 +358,35 @@ function touchCatalog(key: string): void {
   catalogIdleTimers.set(key, timer);
 }
 
-export function peekPiCatalog(cwd: string): Promise<PiCatalog> | null {
-  return catalogsByCwd.get(resolve(cwd)) ?? null;
-}
-
 export function getPiCatalog(
   cwd: string,
   extensionPath: string,
+  envVars: Readonly<Record<string, string>> = {},
 ): Promise<PiCatalog> {
-  const key = resolve(cwd);
+  const workspace = resolve(cwd);
+  const catalogEnv = Object.fromEntries(
+    Object.entries(envVars).filter(
+      ([name]) => name !== "BB_THREAD_ID" && name !== "PI_BB_TOOLS_FILE",
+    ),
+  );
+  const key = createHash("sha256")
+    .update(
+      JSON.stringify([
+        workspace,
+        extensionPath,
+        Object.entries(catalogEnv).sort(([a], [b]) => a.localeCompare(b)),
+      ]),
+    )
+    .digest("hex");
   const existing = catalogsByCwd.get(key);
   if (existing) {
     return existing;
   }
-  const created = spawnCatalog(key, extensionPath, () =>
-    touchCatalog(key),
+  const created = spawnCatalog(
+    workspace,
+    extensionPath,
+    () => touchCatalog(key),
+    catalogEnv,
   ).catch((error: unknown) => {
     catalogsByCwd.delete(key);
     throw error;

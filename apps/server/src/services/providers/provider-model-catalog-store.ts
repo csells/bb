@@ -8,6 +8,7 @@ import {
 } from "@bb/db";
 import {
   availableModelSchema,
+  PROVIDER_MODEL_CATALOG_FRESH_MS,
   providerModelCatalogDependsOnWorkspace,
   type AvailableModel,
   type ProviderInfo,
@@ -38,7 +39,7 @@ import {
 
 export const PROVIDER_MODEL_CATALOG_PUSH_COALESCE_MS = 250;
 export const PROVIDER_MODEL_CATALOG_MEMORY_ENTRY_LIMIT = 256;
-const FRESH_MS = 60_000;
+const FRESH_MS = PROVIDER_MODEL_CATALOG_FRESH_MS;
 const FAILURE_TTL_MS = 30_000;
 const FAILURE_DETAIL_MAX_LENGTH = 300;
 const PREWARM_MIN_AGE_MS = 4 * 60 * 60_000;
@@ -51,6 +52,7 @@ type ProviderModelCatalogFailureCode = Exclude<
 
 export type ProviderModelCatalogAccess =
   | { kind: "picker"; selectedModel?: string }
+  | { kind: "read"; refresh: boolean; selectedModel?: string }
   | {
       kind: "validation";
       requiredModel: string | null;
@@ -62,6 +64,12 @@ type ProviderModelCatalogReadResult =
       kind: "catalog";
       models: AvailableModel[];
       selectedOnlyModels: AvailableModel[];
+      modelCatalog: { revision: string; fetchedAt: number; stale: boolean };
+      modelLoadError: {
+        providerId: string;
+        code: ProviderModelCatalogFailureCode;
+        detail: string | null;
+      } | null;
     }
   | {
       kind: "error";
@@ -70,6 +78,10 @@ type ProviderModelCatalogReadResult =
     };
 
 export interface ProviderModelCatalogStore {
+  invalidate(
+    deps: WorkSessionDeps,
+    args: { hostId: string; provider: ProviderInfo; cwd: string | null },
+  ): void;
   remember(
     deps: WorkSessionDeps,
     args: {
@@ -114,6 +126,7 @@ interface CatalogGood {
   modelsJson: string;
   selectedOnlyModelsJson: string;
   fetchedAt: number;
+  invalidated: boolean;
 }
 
 interface CatalogFailure {
@@ -260,6 +273,7 @@ function nextGood(
     models: AvailableModel[];
     selectedOnlyModels: AvailableModel[];
     fetchedAt: number;
+    invalidated: boolean;
   },
 ): CatalogGood {
   const previous =
@@ -278,7 +292,16 @@ function nextGood(
     modelsJson: JSON.stringify(models),
     selectedOnlyModelsJson: JSON.stringify(selectedOnlyModels),
     fetchedAt: args.fetchedAt,
+    invalidated: args.invalidated,
   };
+}
+
+function catalogRevision(good: CatalogGood): string {
+  return createHash("sha256")
+    .update(good.modelsJson)
+    .update("\0")
+    .update(good.selectedOnlyModelsJson)
+    .digest("hex");
 }
 
 function currentState(entry: CatalogEntry, fingerprint: string) {
@@ -295,7 +318,7 @@ function currentState(entry: CatalogEntry, fingerprint: string) {
 function pickerView(entry: CatalogEntry, fingerprint: string): string {
   const { failure, servable } = currentState(entry, fingerprint);
   if (servable !== null) {
-    return `catalog:${servable.modelsJson}\0${servable.selectedOnlyModelsJson}`;
+    return `catalog:${servable.modelsJson}\0${servable.selectedOnlyModelsJson}\0${failure?.code ?? ""}\0${failure?.detail ?? ""}`;
   }
   return failure === null
     ? "none"
@@ -323,12 +346,19 @@ function evaluate(
 ): CatalogDecision {
   const { failure, servable } = currentState(entry, fingerprint);
   const active = failure !== null && now - failure.failedAt < FAILURE_TTL_MS;
+  if (access.kind === "read" && access.refresh && !refreshed) {
+    return { kind: "wait" };
+  }
   if (servable !== null) {
-    const stale = !refreshed && !active && now - servable.fetchedAt >= FRESH_MS;
+    const stale =
+      !refreshed &&
+      !active &&
+      (servable.invalidated || now - servable.fetchedAt >= FRESH_MS);
     if (
       stale &&
-      access.kind === "validation" &&
-      lacksRequiredModel(servable, access.requiredModel)
+      (access.kind === "read" ||
+        (access.kind === "validation" &&
+          lacksRequiredModel(servable, access.requiredModel)))
     ) {
       return { kind: "wait" };
     }
@@ -338,6 +368,22 @@ function evaluate(
         kind: "catalog",
         models: servable.models,
         selectedOnlyModels: servable.selectedOnlyModels,
+        modelCatalog: {
+          revision: catalogRevision(servable),
+          fetchedAt: servable.fetchedAt,
+          stale:
+            failure !== null ||
+            servable.invalidated ||
+            now - servable.fetchedAt >= FRESH_MS,
+        },
+        modelLoadError:
+          failure === null
+            ? null
+            : {
+                providerId: entry.key.providerId,
+                code: failure.code,
+                detail: failure.detail,
+              },
       },
       backgroundRefresh: stale,
     };
@@ -352,7 +398,7 @@ function evaluate(
       backgroundRefresh: false,
     };
   }
-  if (access.kind === "validation" || failure === null) {
+  if (access.kind !== "picker" || failure === null) {
     return { kind: "wait" };
   }
   if (active || failure.code === "timeout") {
@@ -393,6 +439,7 @@ export function createProviderModelCatalogStore(options: {
       modelsJson: row.modelsJson,
       selectedOnlyModelsJson: row.selectedOnlyModelsJson,
       fetchedAt: row.fetchedAt,
+      invalidated: false,
     };
   }
 
@@ -518,7 +565,8 @@ export function createProviderModelCatalogStore(options: {
         fingerprint: refresh.fingerprint,
         models: settlement.models,
         selectedOnlyModels: settlement.selectedOnlyModels,
-        fetchedAt: refresh.markedStale ? 0 : now,
+        fetchedAt: now,
+        invalidated: refresh.markedStale,
       });
       entry.failure = null;
       entry.unavailableDetail = null;
@@ -742,6 +790,26 @@ export function createProviderModelCatalogStore(options: {
       return null;
     },
 
+    invalidate(deps, args) {
+      const scopeKey =
+        args.cwd !== null &&
+        providerModelCatalogDependsOnWorkspace(
+          args.provider.capabilities.modelCatalogScope,
+        )
+          ? args.cwd
+          : "";
+      const entry = loadEntry(deps, {
+        hostId: args.hostId,
+        providerId: args.provider.id,
+        scopeKey,
+      });
+      entry.failure = null;
+      entry.selectedModels.clear();
+      if (entry.good !== null) entry.good.invalidated = true;
+      if (entry.refresh !== null) entry.refresh.markedStale = true;
+      schedulePush(deps, args.hostId);
+    },
+
     async remember(deps, args) {
       const launch = await resolveCatalogLaunch({
         hostId: args.hostId,
@@ -768,6 +836,7 @@ export function createProviderModelCatalogStore(options: {
         models: args.models,
         selectedOnlyModels: args.selectedOnlyModels,
         fetchedAt: options.now(),
+        invalidated: false,
       });
       persistGood(deps, entry.key, entry.good);
       if (before !== pickerView(entry, launch.fingerprint)) {
@@ -815,9 +884,13 @@ export function createProviderModelCatalogStore(options: {
             const latest = currentState(entry, fingerprint).servable;
             if (latest !== null)
               return {
-                kind: "catalog",
+                ...decision.result,
                 models: latest.models,
                 selectedOnlyModels: latest.selectedOnlyModels,
+                modelCatalog: {
+                  ...decision.result.modelCatalog,
+                  revision: catalogRevision(latest),
+                },
               };
           }
           return decision.result;
@@ -877,7 +950,7 @@ export function createProviderModelCatalogStore(options: {
         entry.unavailableDetail = null;
         entry.selectedModels.clear();
         if (entry.good !== null) {
-          entry.good.fetchedAt = 0;
+          entry.good.invalidated = true;
         }
         if (entry.refresh !== null) {
           entry.refresh.markedStale = true;

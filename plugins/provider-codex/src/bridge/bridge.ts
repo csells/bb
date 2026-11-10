@@ -1048,13 +1048,32 @@ async function loadModelCatalog(
   connection: CodexAppServerConnection,
   timeoutMs: number,
 ): Promise<CodexModelCatalog> {
-  const result = await connection.request({
-    method: "model/list",
-    params: {},
-    resultSchema: ignoredChildResultSchema,
-    timeoutMs,
-  });
-  const catalog = parseModelCatalog(result);
+  const data: unknown[] = [];
+  const seenCursors = new Set<string>();
+  let cursor: string | undefined;
+  const deadline = Date.now() + timeoutMs;
+  for (let page = 0; ; page += 1) {
+    if (page >= 100 || Date.now() >= deadline) {
+      throw new Error("Codex model catalog pagination did not complete.");
+    }
+    const result = await connection.request({
+      method: "model/list",
+      params: cursor === undefined ? {} : { cursor },
+      resultSchema: z.object({
+        data: z.array(z.unknown()),
+        nextCursor: z.string().nullish(),
+      }),
+      timeoutMs: Math.max(1, deadline - Date.now()),
+    });
+    data.push(...result.data);
+    if (!result.nextCursor) break;
+    if (seenCursors.has(result.nextCursor)) {
+      throw new Error("Codex model catalog repeated a pagination cursor.");
+    }
+    seenCursors.add(result.nextCursor);
+    cursor = result.nextCursor;
+  }
+  const catalog = parseModelCatalog({ data });
   const configuredModel = await connection
     .request({
       method: "config/read",

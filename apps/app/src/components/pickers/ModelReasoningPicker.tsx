@@ -9,7 +9,7 @@ import {
 } from "react";
 import type {
   SystemExecutionOptionsModelLoadError,
-  SystemProvidersQuery,
+  ModelCatalogRouting,
 } from "@bb/server-contract";
 import {
   resolveServiceTierOptions,
@@ -36,6 +36,7 @@ import { LIST_HOVER_TRANSITION } from "@bb/shared-ui/motion";
 import { cn } from "@bb/shared-ui/lib/utils";
 import {
   prefetchSystemExecutionOptions,
+  refreshSystemExecutionOptions,
   useProviderPreviewExecutionOptions,
 } from "@/hooks/queries/system-queries";
 import { resolveModelCatalogSelection } from "@/hooks/thread-creation-options/model-catalog-selection";
@@ -174,7 +175,7 @@ export function buildModelNavRows({
 }
 
 interface ModelReasoningPickerProps {
-  providerRouting?: SystemProvidersQuery;
+  providerRouting?: ModelCatalogRouting;
   providerOptions: readonly ProviderPickerOption[];
   selectedProviderId: string;
   onSelectedProviderChange?: (value: string) => void;
@@ -308,6 +309,8 @@ export function ModelReasoningPicker({
     onSelectedProviderChange !== undefined &&
     providerOptions.length > 1;
   const queryClient = useQueryClient();
+  const [refreshingModels, setRefreshingModels] = useState(false);
+  const [refreshError, setRefreshError] = useState<string | null>(null);
   const prefetchProviderTab = (providerId: string) => {
     if (providerId === selectedProviderId) {
       return;
@@ -1113,6 +1116,33 @@ export function ModelReasoningPicker({
           />
         ) : null}
 
+        <div className="flex items-center justify-between gap-2 px-2 py-1">
+          <span role="status" className="text-muted-foreground text-xs">
+            {refreshError ??
+              (activeModelLoadFailed && hasActiveModelOptions
+                ? "Showing previously discovered models"
+                : "")}
+          </span>
+          <Button
+            variant="ghost"
+            size="sm"
+            disabled={refreshingModels}
+            onClick={() => {
+              setRefreshingModels(true);
+              setRefreshError(null);
+              void refreshSystemExecutionOptions(queryClient, {
+                ...providerRouting,
+                providerId: activeProviderId,
+              })
+                .catch(() => {
+                  setRefreshError("Could not refresh models");
+                })
+                .finally(() => setRefreshingModels(false));
+            }}
+          >
+            {refreshingModels ? "Refreshing…" : "Refresh models"}
+          </Button>
+        </div>
         <ModelReasoningMenu
           listRef={listRef}
           providerId={activeProviderId}

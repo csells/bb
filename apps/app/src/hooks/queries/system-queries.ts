@@ -6,12 +6,16 @@ import type {
   ProviderModelCatalogScope,
 } from "@bb/domain";
 import { SYSTEM_EXECUTION_OPTIONS_QUERY_KEY } from "@/hooks/queries/query-keys";
-import { permissionModeValues } from "@bb/domain";
+import {
+  permissionModeValues,
+  PROVIDER_MODEL_CATALOG_FRESH_MS,
+} from "@bb/domain";
 import type {
   SystemCliCommandStatus,
   SystemCliSkillsStatusResponse,
   SystemExecutionOptionsResponse,
   SystemProvidersQuery,
+  ModelCatalogRouting,
   SystemProviderStatesResponse,
   SystemVersionResponse,
 } from "@bb/server-contract";
@@ -423,27 +427,43 @@ function systemExecutionOptionsQueryOptions({
           cached !== null &&
           (cached.models.length > 0 || cached.selectedOnlyModels.length > 0)
         ) {
-          return { ...response, ...cached, modelLoadError: null };
+          return { ...response, ...cached };
         }
       }
       return response;
     },
-    staleTime: 60_000,
+    staleTime: PROVIDER_MODEL_CATALOG_FRESH_MS,
+    refetchInterval: PROVIDER_MODEL_CATALOG_FRESH_MS,
     retry: shouldRetrySystemExecutionOptions,
     retryDelay: SYSTEM_EXECUTION_OPTIONS_RETRY_DELAY_MS,
   });
 }
 
+export async function refreshSystemExecutionOptions(
+  queryClient: QueryClient,
+  args: UseSystemExecutionOptionsArgs,
+): Promise<void> {
+  const response = await sdk.system.executionOptions({
+    ...args,
+    refresh: true,
+  });
+  await queryClient.invalidateQueries({
+    queryKey: allSystemExecutionOptionsQueryKeyPrefix(),
+  });
+  if (response.modelLoadError !== null)
+    throw new Error("Could not refresh models");
+}
+
 export function prefetchSystemExecutionOptions(
   queryClient: QueryClient,
-  args: { routing: SystemProvidersQuery; providerId: string },
+  args: { routing: ModelCatalogRouting; providerId: string },
 ): void {
   void queryClient.prefetchQuery(
     systemExecutionOptionsQueryOptions({
       environmentId: args.routing.environmentId ?? null,
       hostId: args.routing.hostId ?? null,
       providerId: args.providerId,
-      projectId: null,
+      projectId: args.routing.projectId ?? null,
       writeLastKnown: false,
     }),
   );

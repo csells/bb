@@ -675,3 +675,32 @@ public dependencies, so `packages/provider-parity` replays their committed
 cells instead. Its self-suite applies the recorded conformance checks to the
 same replay used for event and timeline parity, so each cell launches its
 bridge only once.
+
+## Model discovery and freshness
+
+The server's `ProviderModelCatalogStore` is the authority for model discovery,
+shared by execution-options, SDK provider models, CLI provider models, internal
+validation, and core/plugin model pickers. Provider bridges implement `model/list`
+as an uncached discovery operation. The server owns the one-minute freshness
+window, concurrent refresh deduplication, persistent last-good snapshots, errors,
+and catalog-change notifications. Session catalog events invalidate discovery;
+they cannot overwrite the catalog with models from an older credential context.
+
+Every implementation must honor `envVars` using the same precedence as session
+execution, and honor `cwd` for workspace-scoped catalogs. Discovery must enumerate
+every upstream page, preserve unknown model IDs, and report incomplete or failed
+discovery as an error. Do not turn a failed discovery into a successful stale or
+partial list. Discovery must not execute an inference turn. User-declared custom
+models and upstream selected-only models remain distinct from discovered choices.
+
+Codex reads the app-server catalog, including pagination. Claude reads SDK
+initialization and, when configured, its routed catalog endpoint. Pi refreshes its
+runtime registry with the supplied environment. ACP uses the configured list
+command or native session discovery with that same environment. External provider
+plugins must satisfy the same contract; core never guesses a vendor's raw API
+inventory or maintains provider-specific model allowlists.
+
+An upstream runtime can itself cache or bundle its model inventory. The BB
+freshness window bounds BB's re-querying, not that upstream runtime's release or
+refresh schedule. Upstream model availability also remains subject to account
+entitlements and runtime support.

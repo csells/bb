@@ -234,3 +234,20 @@ describe("pi catalog freshness", () => {
     60_000,
   );
 });
+
+it("discovers with contributed credentials and isolates catalogs when they change", async () => {
+  const paths = setUpFakeCatalog({});
+  const envLog = join(paths.workspace, "env.txt");
+  const first = await getPiCatalog(paths.workspace, paths.extensionPath, {
+    FAKE_PI_ENV_LOG: envLog,
+    FAKE_PI_ENV_MARKER: "first-account",
+  });
+  await first.listModels();
+  const second = await getPiCatalog(paths.workspace, paths.extensionPath, {
+    FAKE_PI_ENV_LOG: envLog,
+    FAKE_PI_ENV_MARKER: "second-account",
+  });
+  await second.listModels();
+  expect(second).not.toBe(first);
+  expect(readLogLines(envLog)).toEqual(["first-account", "second-account"]);
+});

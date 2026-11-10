@@ -797,12 +797,7 @@ interface AcpDynamicToolBridge {
 
 let cachedModelCatalog: { key: string; catalog: AgentModelCatalog } | null =
   null;
-const SESSION_MODEL_DISCOVERY_TTL_MS = 60_000;
-let cachedSessionDiscoveredModels: {
-  key: string;
-  models: AvailableModel[];
-  fetchedAt: number;
-} | null = null;
+const DECLARED_OPTIONS_TTL_MS = 60_000;
 
 function resolveAcpAuthMethodId(
   authMethods: readonly { id: string }[],
@@ -882,14 +877,14 @@ async function loadAgentModelCatalog(
     process.stderr.write(
       `acp bridge: model list command "${listCommand.command}" failed\n`,
     );
-    return cachedModelCatalog?.key === key ? cachedModelCatalog.catalog : null;
+    return null;
   }
   const catalog = buildAgentModelCatalog(parseAgentModelLines(stdout));
   if (!catalog) {
     process.stderr.write(
       `acp bridge: model list command "${listCommand.command}" printed no models\n`,
     );
-    return cachedModelCatalog?.key === key ? cachedModelCatalog.catalog : null;
+    return null;
   }
   cachedModelCatalog = { key, catalog };
   return catalog;
@@ -929,7 +924,7 @@ function freshDeclaredSessionOptions(
 ): ThreadSessionOption[] | null {
   return cachedDeclaredSessionOptions?.key === key &&
     Date.now() - cachedDeclaredSessionOptions.fetchedAt <
-      SESSION_MODEL_DISCOVERY_TTL_MS
+      DECLARED_OPTIONS_TTL_MS
     ? cachedDeclaredSessionOptions.options
     : null;
 }
@@ -1009,12 +1004,15 @@ async function resolveModelListWorkspace(
 function inModelListWorkspace(
   params: AcpModelListParams,
   workspace: string | undefined,
+  envVars: Record<string, string> = {},
 ): AcpModelListParams {
-  if (workspace === undefined) {
-    return params;
-  }
-  const place = (command: AcpAgentCommandParam): AcpAgentCommandParam =>
-    command.cwd === undefined ? { ...command, cwd: workspace } : command;
+  const place = (command: AcpAgentCommandParam): AcpAgentCommandParam => ({
+    ...command,
+    ...(command.cwd === undefined && workspace !== undefined
+      ? { cwd: workspace }
+      : {}),
+    envVars: { ...command.envVars, ...envVars },
+  });
   return {
     ...params,
     ...(params.listCommand === undefined
@@ -1133,20 +1131,6 @@ async function loadSessionDiscoveredModels(
   dialectId: string,
   selectedModel: string | undefined,
 ): Promise<AvailableModel[] | null> {
-  const key = JSON.stringify({
-    agent,
-    reasoningProbePriorityModelIds,
-    parameterizedModelPicker,
-  });
-  if (
-    selectedModel === undefined &&
-    cachedSessionDiscoveredModels?.key === key &&
-    Date.now() - cachedSessionDiscoveredModels.fetchedAt <
-      SESSION_MODEL_DISCOVERY_TTL_MS
-  ) {
-    return cachedSessionDiscoveredModels.models;
-  }
-
   const childEnv = {
     ...withoutBridgeRuntimeEnv(process.env),
     ...(agent.envVars ?? {}),
@@ -1222,13 +1206,6 @@ async function loadSessionDiscoveredModels(
     }
 
     if (configOptionModels.length === 0) {
-      if (selectedModel === undefined) {
-        cachedSessionDiscoveredModels = {
-          key,
-          models: sessionModels,
-          fetchedAt: Date.now(),
-        };
-      }
       return sessionModels;
     }
 
@@ -1244,9 +1221,6 @@ async function loadSessionDiscoveredModels(
       modelOption,
       supportByModel,
     );
-    if (selectedModel === undefined) {
-      cachedSessionDiscoveredModels = { key, models, fetchedAt: Date.now() };
-    }
     return models;
   } catch (error) {
     process.stderr.write(
@@ -3666,6 +3640,7 @@ async function handleModelList(
     command: params.optionsAgent?.command ?? params.agent?.command ?? "",
   });
   const resolvedDialectId = dialect.id;
+  cachedDeclaredSessionOptions = null;
   const declaredOptions = (): Promise<ThreadSessionOption[]> =>
     params.optionsAgent
       ? loadDeclaredSessionOptions(
@@ -3856,6 +3831,7 @@ async function handleRequest(
             modelPicker,
           ),
           await resolveModelListWorkspace(request.params.cwd),
+          request.params.envVars,
         ),
         decodeDialectId(request.params.providerOptions),
         request.params.selectedModel,

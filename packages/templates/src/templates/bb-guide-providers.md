@@ -13,7 +13,7 @@ Providers are agent backends (e.g., codex, claude-code). Each supports different
                                           List available providers
   bb provider models [providerId] [--machine <id-or-name> | --environment <id>]
                      [--project <id>]
-    [--selected-model <model-id>]
+    [--selected-model <model-id>] [--refresh] [--catalog | --json]
                                           List models for a provider
 
 Use these before spawning threads if you are unsure which provider or model to use.
@@ -48,16 +48,31 @@ tiers per model, in which case the model accepts every tier the provider
 lists). Pass a tier id to `--service-tier`; a tier the provider does not list
 is rejected.
 
-Model lists answer from the machine's last stored list. A request for a list
-more than a minute old starts a background refresh, and open model pickers
-update when it changes the list. The first request after a quiet period can
-therefore return a list that is hours old. A provider whose refresh keeps
-failing or timing out keeps answering from its last stored list.
+Model discovery is shared by the CLI, SDK, internal execution validation, and
+all model pickers. Catalogs are scoped to the provider, machine, authentication
+and routing configuration, and workspace where the provider requires one.
+New model IDs reported by the provider do not require a BB release.
 
-When no list can be served, bb provider models prints the failing provider,
-the failure code, and the underlying host message on stderr, then reports the
-empty catalog on stdout. The model pickers show the same underlying message
-beneath their summary line.
+Catalogs are fresh for one minute. Ordinary CLI/SDK reads wait for discovery
+when a catalog is stale. UI reads can show the previous catalog while refreshing;
+visible UI queries revalidate every minute and receive change notifications.
+Without upstream push, discovery can take up to two minutes (cache freshness
+plus the next UI poll), plus the provider request duration.
+Background tabs refresh when active again. Upstream agents may have their own
+release or refresh schedule; BB cannot discover a model they do not yet expose.
+
+Use `bb provider models <id> --refresh` or the picker's **Refresh models** button
+to request discovery immediately, including while the cached catalog is fresh.
+SDK callers use `providers.models({ providerId, refresh: true })`.
+`--json` retains its model-array format. `--catalog` prints the full response,
+including `modelCatalog` (revision, fetchedAt in epoch milliseconds, stale) when
+a discovered snapshot exists, and `modelLoadError`. The revision identifies the
+discovered model lists and capabilities, excluding user-configured custom models.
+
+A failed refresh retains the last good catalog for transient failures and reports
+the error; it does not mark stale data as freshly discovered. Authentication and
+unavailable-provider failures do not serve a previous account's catalog. The CLI
+prints discovery errors on stderr, and model pickers identify retained models.
 
 Enabling and disabling providers
 

@@ -55,7 +55,9 @@ export async function supplementPooledClaudeModels(
       });
       if (!response.ok) {
         await response.body?.cancel();
-        return [...discovered];
+        throw new Error(
+          `Claude model catalog request failed (HTTP ${response.status}).`,
+        );
       }
       const result = modelPageSchema.parse(await response.json());
       for (const model of result.data) {
@@ -72,12 +74,16 @@ export async function supplementPooledClaudeModels(
       }
       if (!result.has_more) return models;
       if (!result.last_id || cursors.has(result.last_id))
-        return [...discovered];
+        throw new Error(
+          "Claude model catalog returned an invalid pagination cursor.",
+        );
       cursors.add(result.last_id);
       url.searchParams.set("after_id", result.last_id);
     }
-  } catch {
-    return [...discovered];
+  } catch (error) {
+    throw new Error("Could not refresh the routed Claude model catalog.", {
+      cause: error,
+    });
   }
-  return [...discovered];
+  throw new Error("Claude model catalog pagination did not complete.");
 }

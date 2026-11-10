@@ -6,6 +6,7 @@ import { internalAuthHeaders } from "../helpers/commands.js";
 import { registerHostRpcResponder } from "../helpers/host-rpc.js";
 import {
   healthAnswer,
+  catalogAnswer,
   installCatalogStore,
   modelList,
   requireRegistration,
@@ -18,7 +19,7 @@ describe("session model catalogs", () => {
     { providerThreadId: "current-session", expectedModel: "live-model" },
     { providerThreadId: "retired-session", expectedModel: "cached-model" },
   ])(
-    "accepts catalog updates only from the current session: $providerThreadId",
+    "uses current-session updates as refresh hints without trusting their potentially stale credential context: $providerThreadId",
     async (scenario) => {
       await withTestHarness(async (harness) => {
         const { host, session, environment, thread } = seedThreadFixture(
@@ -34,6 +35,8 @@ describe("session model catalogs", () => {
             if (request.command.type === "provider.health") {
               return healthAnswer("not_installed");
             }
+            if (request.command.type === "provider.list_models")
+              return catalogAnswer(modelList("live-model"));
             throw new Error(`Unexpected RPC ${request.command.type}`);
           },
         });
@@ -67,7 +70,7 @@ describe("session model catalogs", () => {
                   scope: threadScope(),
                   kind: "bb/provider-model-catalog",
                   payload: {
-                    models: modelList("live-model"),
+                    models: modelList("old-session-account-model"),
                     selectedOnlyModels: [],
                   },
                 },
@@ -87,7 +90,7 @@ describe("session model catalogs", () => {
           responder.requests.filter(
             (request) => request.command.type === "provider.list_models",
           ),
-        ).toHaveLength(0);
+        ).toHaveLength(scenario.providerThreadId === "current-session" ? 1 : 0);
       });
     },
   );

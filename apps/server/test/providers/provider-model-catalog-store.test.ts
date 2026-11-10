@@ -658,7 +658,7 @@ describe("provider model catalog store", () => {
       outcome: "failed",
     },
   ])(
-    "keeps serving the last good catalog when a refresh $label, without a push or a row rewrite",
+    "keeps serving the last good catalog when a refresh $label, with a stale error notification but without a row rewrite",
     async ({ answer, level, outcome }) => {
       await withTestHarness(async (harness) => {
         const logLines = captureLogLines(harness);
@@ -699,16 +699,17 @@ describe("provider model catalog store", () => {
         });
         await settleTimers();
         const response = await host.read("claude-code");
-        expect(response.modelLoadError).toBeNull();
+        expect(response.modelLoadError?.code).toBe(outcome);
+        expect(response.modelCatalog?.stale).toBe(true);
         expect(modelIds(response)).toEqual(["claude-code-model"]);
         expect(getStoredProviderModelCatalog(harness.db, rowKey)).toEqual(row);
         await settleTimers();
-        expect(pushes).toEqual([]);
+        expect(pushes).toEqual([host.hostId]);
         expect(logLines(SETTLED)).toHaveLength(2);
         expect(logLines(SETTLED)[1]).toMatchObject({
           level,
           outcome,
-          changed: false,
+          changed: true,
         });
       });
     },
@@ -890,7 +891,10 @@ describe("provider model catalog store", () => {
 
       host.clock.now += 61 * SECOND;
       codexAnswer = () => errorAnswer("command_timeout");
-      await expect(override("gpt-other")).rejects.toMatchObject(invalidModel);
+      await expect(override("gpt-other")).rejects.toMatchObject({
+        status: 503,
+        body: { code: "model_catalog_unavailable" },
+      });
       expect(host.listRequests("codex")).toHaveLength(4);
     });
   });
@@ -1329,5 +1333,78 @@ describe("provider model catalog store", () => {
         setServerMoveFrozen(harness.db, false);
       }
     });
+  });
+});
+
+it.each(["codex", "claude-code", "pi", "catalog-probe"])(
+  "shares refreshed %s models across picker, API and internal validation",
+  async (providerId) => {
+    await withTestHarness(async (harness) => {
+      if (providerId === "catalog-probe") registerCatalogProbe(harness, {});
+      const host = setupCatalogHost(harness, { id: "host-catalog-contract" });
+      const first = await host.read(providerId);
+      host.setAnswer(() =>
+        catalogAnswer(modelList("future-model-without-bb-code-change")),
+      );
+      const refreshed = await resolveSystemExecutionOptions(harness.deps, {
+        hostId: host.hostId,
+        providerId,
+        refresh: "true",
+      });
+      expect(modelIds(refreshed)).toEqual([
+        "future-model-without-bb-code-change",
+      ]);
+      expect(refreshed.modelCatalog?.revision).not.toBe(
+        first.modelCatalog?.revision,
+      );
+      expect(refreshed.modelCatalog?.stale).toBe(false);
+      expect(modelIds(await host.read(providerId))).toEqual(
+        modelIds(refreshed),
+      );
+      expect(
+        modelIds(
+          await resolveSystemProviderModels(harness.deps, {
+            hostId: host.hostId,
+            providerId,
+          }),
+        ),
+      ).toEqual(modelIds(refreshed));
+      expect(host.listRequests()).toHaveLength(2);
+      host.clock.now += MINUTE;
+      host.setAnswer(() => catalogAnswer(modelList("another-new-model")));
+      const next = await resolveSystemExecutionOptions(harness.deps, {
+        hostId: host.hostId,
+        providerId,
+      });
+      expect(modelIds(next)).toEqual(["another-new-model"]);
+    });
+  },
+);
+
+it("coalesces concurrent explicit refreshes and retains a marked-stale snapshot on failure", async () => {
+  await withTestHarness(async (harness) => {
+    const host = setupCatalogHost(harness, { id: "host-force-refresh" });
+    const first = await host.read("codex");
+    const pending = createDeferredPromise<HostRpcHandlerResult>();
+    host.setAnswer(() => pending.promise);
+    const query = {
+      hostId: host.hostId,
+      providerId: "codex",
+      refresh: "true" as const,
+    };
+    const reads = [
+      resolveSystemExecutionOptions(harness.deps, query),
+      resolveSystemExecutionOptions(harness.deps, query),
+    ];
+    await vi.waitFor(() => expect(host.listRequests()).toHaveLength(2));
+    pending.resolve(errorAnswer("failed"));
+    for (const result of await Promise.all(reads)) {
+      expect(result.models).toEqual(first.models);
+      expect(result.modelCatalog).toMatchObject({
+        revision: first.modelCatalog?.revision,
+        stale: true,
+      });
+      expect(result.modelLoadError?.code).toBe("failed");
+    }
   });
 });

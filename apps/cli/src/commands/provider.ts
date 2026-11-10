@@ -25,6 +25,8 @@ interface ProviderModelsCommandOptions {
   machine?: string;
   project?: string;
   selectedModel?: string;
+  refresh?: boolean;
+  catalog?: boolean;
 }
 
 interface IncludeSelectedOnlyModelArgs {
@@ -124,6 +126,11 @@ export function registerProviderCommands(
 
   addProviderRoutingOptions(provider.command("models [providerId]"))
     .description("List available models for a provider")
+    .option("--refresh", "Refresh the provider catalog before returning")
+    .option(
+      "--catalog",
+      "Print the full catalog response with freshness and errors as JSON",
+    )
     .option(
       "--project <id>",
       "Project whose checkout on the machine the provider reads its models and options from",
@@ -156,6 +163,7 @@ export function registerProviderCommands(
               ? routing
               : { ...routing, projectId: opts.project }),
             ...(providerId ? { providerId } : {}),
+            ...(opts.refresh ? { refresh: true } : {}),
             ...(opts.selectedModel
               ? { selectedModel: opts.selectedModel }
               : {}),
@@ -166,6 +174,10 @@ export function registerProviderCommands(
             selectedModel: opts.selectedModel,
           });
           printModelLoadError(executionOptions.modelLoadError);
+          if (opts.catalog) {
+            console.log(JSON.stringify(executionOptions, null, 2));
+            return;
+          }
           if (outputJson(opts, models)) return;
           if (models.length === 0) {
             console.log("No models available");

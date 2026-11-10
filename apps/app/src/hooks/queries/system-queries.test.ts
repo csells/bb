@@ -26,6 +26,7 @@ import {
   hostProviderCliStatusQueryOptions,
   liveSystemExecutionOptionsQueryOptions,
   prefetchSystemExecutionOptions,
+  refreshSystemExecutionOptions,
   resolveSystemProviderInfo,
   systemProviderStatesQueryOptions,
   systemProvidersQueryOptions,
@@ -622,9 +623,7 @@ describe("useSystemExecutionOptions", () => {
         expect(sdk.system.executionOptions).toHaveBeenCalledTimes(2);
         expect(result.isFetching).toBe(false);
         expect(result.dataUpdatedAt).toBeGreaterThan(loadedAt);
-        expect(result.data?.modelLoadError).toEqual(
-          retainCatalog ? null : modelLoadError,
-        );
+        expect(result.data?.modelLoadError).toEqual(modelLoadError);
       });
       expect(observer.getCurrentResult().data?.models).toEqual(
         retainCatalog ? [CODEX_MODEL] : [],
@@ -835,4 +834,48 @@ describe("useSystemProviderStates", () => {
       });
     });
   });
+});
+
+it("refreshes the shared catalog and invalidates every observed product surface", async () => {
+  const harness = createQueryClientTestHarness();
+  try {
+    const routing = {
+      hostId: "host-refresh",
+      projectId: "project-refresh",
+      providerId: "codex",
+    };
+    const opts = liveSystemExecutionOptionsQueryOptions(routing);
+    expect(opts.refetchInterval).toBe(60_000);
+    vi.mocked(sdk.system.executionOptions).mockResolvedValue(
+      EXECUTION_OPTIONS_RESPONSE,
+    );
+    const firstSurface = observe(harness.queryClient, opts);
+    const secondSurface = observe(harness.queryClient, opts);
+    await vi.waitFor(() =>
+      expect(firstSurface.getCurrentResult().isSuccess).toBe(true),
+    );
+    const newModel: AvailableModel = {
+      id: "future-model",
+      model: "future-model",
+      displayName: "Future Model",
+      description: "",
+      reasoningDiscovery: "unknown",
+      supportedReasoningEfforts: [],
+      defaultReasoningEffort: "medium",
+      isDefault: true,
+    };
+    vi.mocked(sdk.system.executionOptions).mockResolvedValue({
+      ...EXECUTION_OPTIONS_RESPONSE,
+      models: [newModel],
+    });
+    await refreshSystemExecutionOptions(harness.queryClient, routing);
+    expect(sdk.system.executionOptions).toHaveBeenCalledWith({
+      ...routing,
+      refresh: true,
+    });
+    expect(firstSurface.getCurrentResult().data?.models).toEqual([newModel]);
+    expect(secondSurface.getCurrentResult().data?.models).toEqual([newModel]);
+  } finally {
+    harness.queryClient.clear();
+  }
 });

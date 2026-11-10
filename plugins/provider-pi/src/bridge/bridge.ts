@@ -608,7 +608,7 @@ function toPiSessionParams(
 
 async function handleModelList(
   id: string | number,
-  params: { cwd?: string },
+  params: z.infer<typeof modelListParamsSchema>,
 ): Promise<void> {
   const gate = await getPiInstallGate();
   if (!gate.ok) {
@@ -627,6 +627,7 @@ async function handleModelList(
     const catalog = await getPiCatalog(
       params.cwd ?? process.cwd(),
       requireExtensionPath(),
+      params.envVars,
     );
     contextWindows.learn(await catalog.rawModels());
     sendResult(id, await catalog.listModels());
@@ -679,8 +680,9 @@ async function handleProviderHealth(
 async function resolvePiModel(
   modelStr: string,
   cwd: string,
+  envVars: Record<string, string>,
 ): Promise<{ provider: string; id: string }> {
-  const catalog = await getPiCatalog(cwd, requireExtensionPath());
+  const catalog = await getPiCatalog(cwd, requireExtensionPath(), envVars);
   const models = await catalog.rawModels();
   const canonical = models.find(
     (model) => `${model.provider}/${model.id}` === modelStr,
@@ -712,7 +714,13 @@ async function buildSessionOptions(args: {
   return {
     cwd: args.params.cwd,
     ...(args.params.model
-      ? { model: await resolvePiModel(args.params.model, args.params.cwd) }
+      ? {
+          model: await resolvePiModel(
+            args.params.model,
+            args.params.cwd,
+            args.params.shellEnvOverrides,
+          ),
+        }
       : {}),
     sessionFilePath: resolvePiSessionFilePath({
       env: process.env,
@@ -1021,7 +1029,11 @@ async function reconcileTurnOptions(
   const nextModel =
     changedModelRequest === undefined
       ? undefined
-      : await resolvePiModel(changedModelRequest, construction.cwd);
+      : await resolvePiModel(
+          changedModelRequest,
+          construction.cwd,
+          shellEnvOverrides ?? construction.shellEnvOverrides,
+        );
   const modelChanged =
     nextModel !== undefined &&
     (threadSession.constructionModel === undefined ||

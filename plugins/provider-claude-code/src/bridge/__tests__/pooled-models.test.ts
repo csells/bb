@@ -97,7 +97,7 @@ describe("pooled Claude discovery", () => {
   });
 
   it.each(["unauthorized", "malformed", "unreachable", "repeated-cursor"])(
-    "retains CLI models when the pooled catalog is %s",
+    "reports %s discovery to the central catalog without publishing a partial list",
     async (failure) => {
       vi.stubGlobal(
         "fetch",
@@ -113,11 +113,9 @@ describe("pooled Claude discovery", () => {
           });
         }),
       );
-      const result = await listClaudeCodeBridgeModels(env);
-      expect(result.models.map((entry) => entry.model)).toEqual([
-        "claude-opus-5-5",
-        "claude-fable-5-1",
-      ]);
+      await expect(listClaudeCodeBridgeModels(env)).rejects.toThrow(
+        "Could not refresh the routed Claude model catalog",
+      );
     },
   );
 
